@@ -1,0 +1,679 @@
+{
+  "schema": "evidencerca.environment/v1",
+  "stage": "pre",
+  "captured_at": "2026-10-12T04:48:45+00:00",
+  "host": {
+    "os": {
+      "system": "Darwin",
+      "release": "25.5.0",
+      "product_version": "26.5.2",
+      "build": "25F84"
+    },
+    "hardware": {
+      "machine": "arm64",
+      "cpu": "Apple M1",
+      "logical_cpus": 8,
+      "memory_gib": 8.0
+    },
+    "disk_gib": {
+      "total": 228.3,
+      "used": 191.3,
+      "free": 37.0
+    },
+    "memory_gib": {
+      "free": 0.09,
+      "active": 1.14,
+      "inactive": 1.1,
+      "wired": 1.74,
+      "compressed": 3.35
+    },
+    "load_average": [
+      14.97,
+      11.08,
+      7.14
+    ]
+  },
+  "toolchain": {
+    "python_host": "3.12.7",
+    "uv": "uv 0.12.22 (Homebrew 2026-10-01 aarch64-apple-darwin)",
+    "git": "git version 2.48.1",
+    "docker_client": "28.1.1",
+    "docker_server": "27.4.0",
+    "docker_compose": "2.36.0",
+    "colima": [
+      "colima version 0.8.1"
+    ],
+    "colima_vm": {
+      "name": "default",
+      "status": "Running",
+      "arch": "aarch64",
+      "cpus": 4,
+      "memory": 3221225472,
+      "disk": 32212254720,
+      "runtime": "docker"
+    },
+    "ollama": "ollama version is 0.34.2",
+    "ollama_models": "NAME    ID    SIZE    MODIFIED",
+    "locked_packages": {
+      "annotated-doc": "0.0.5",
+      "annotated-types": "0.8.0",
+      "anyio": "4.15.1",
+      "asgiref": "3.12.1",
+      "certifi": "2026.7.22",
+      "charset-normalizer": "3.5.2",
+      "click": "8.5.0",
+      "colorama": "0.4.6",
+      "evidencerca": "0.1.0",
+      "fastapi": "0.143.0",
+      "googleapis-common-protos": "1.75.5",
+      "greenlet": "3.5.6",
+      "h11": "0.16.0",
+      "httpcore": "1.0.9",
+      "httpx": "0.28.1",
+      "idna": "3.20",
+      "iniconfig": "2.3.1",
+      "opentelemetry-api": "1.45.1",
+      "opentelemetry-exporter-http-transport": "0.66b1",
+      "opentelemetry-exporter-otlp-common": "0.66b1",
+      "opentelemetry-exporter-otlp-proto-common": "1.45.1",
+      "opentelemetry-exporter-otlp-proto-http": "1.45.1",
+      "opentelemetry-instrumentation": "0.66b1",
+      "opentelemetry-instrumentation-asgi": "0.66b1",
+      "opentelemetry-instrumentation-fastapi": "0.66b1",
+      "opentelemetry-instrumentation-httpx": "0.66b1",
+      "opentelemetry-instrumentation-logging": "0.66b1",
+      "opentelemetry-instrumentation-sqlalchemy": "0.66b1",
+      "opentelemetry-instrumentation-system-metrics": "0.66b1",
+      "opentelemetry-proto": "1.45.1",
+      "opentelemetry-sdk": "1.45.1",
+      "opentelemetry-semantic-conventions": "0.66b1",
+      "opentelemetry-util-http": "0.66b1",
+      "packaging": "26.3",
+      "pluggy": "1.6.0",
+      "protobuf": "7.36.2",
+      "psutil": "7.2.2",
+      "psycopg": "3.3.6",
+      "psycopg-binary": "3.3.6",
+      "pydantic": "2.14.1",
+      "pydantic-core": "2.50.1",
+      "pygments": "2.21.0",
+      "pytest": "9.1.1",
+      "requests": "2.34.2",
+      "sqlalchemy": "2.0.54",
+      "starlette": "1.7.0",
+      "typing-extensions": "4.16.0",
+      "typing-inspection": "0.4.4",
+      "tzdata": "2026.5",
+      "urllib3": "2.8.0",
+      "uvicorn": "0.54.0",
+      "wrapt": "2.5.0"
+    }
+  },
+  "git": {
+    "commit": "db5531c31c2931752f528c5fa9b8155ce74665fc",
+    "dirty_tracked_files": false
+  },
+  "images": [
+    {
+      "reference": "evidencerca-testbed:phase1",
+      "image_id": "sha256:7f64c20a1f1363aa9ec60a6ccfd4aa01d7f9d4bad77ce337c5ac409f183ca851",
+      "repo_digests": [],
+      "architecture": "arm64",
+      "size_mb": 227.9,
+      "created": "2026-10-12T00:33:01.596248243-04:00"
+    },
+    {
+      "reference": "otel/opentelemetry-collector-contrib:0.162.0@sha256:39923a8e431bd1f57be82411999d389fcfe40857492e4365456d97a4c1f74be6",
+      "image_id": "sha256:4fde0edd6eb23e0e92bc9f52a839210e9235e7dfba93fe4034a6ff6718ca4d32",
+      "repo_digests": [
+        "otel/opentelemetry-collector-contrib@sha256:39923a8e431bd1f57be82411999d389fcfe40857492e4365456d97a4c1f74be6"
+      ],
+      "architecture": "arm64",
+      "size_mb": 379.6,
+      "created": "2026-09-29T12:45:08.910484048Z"
+    },
+    {
+      "reference": "postgres:16.15-alpine3.24@sha256:721873c34ceb9f8d8fc265984940dc982404c105f19ad51be9fdc5970a6080ea",
+      "image_id": "sha256:ef738a34a8651d11b2bace81c55c7e2187f786b484add6c83070884340074368",
+      "repo_digests": [
+        "postgres@sha256:721873c34ceb9f8d8fc265984940dc982404c105f19ad51be9fdc5970a6080ea"
+      ],
+      "architecture": "arm64",
+      "size_mb": 288.1,
+      "created": "2026-09-17T21:33:33.594772508Z"
+    }
+  ],
+  "build_inputs_sha256": {
+    "testbed/Dockerfile": "f160bcf5808fef7840030e13d6c789e4e7e94f87e6c530545c92e9b5f72237ee",
+    "testbed/requirements.lock": "fb63abed16ab0fe46aa11ee3f02a3efe184c2e34da21005f8c77b5eea1d7196e",
+    "uv.lock": "1f61e2022a8dc1e4478d5bd0aae4480edfa7b4542d5565741de75f8c615bcbe5",
+    "compose.yaml": "6df993d1943a0ea71ef4ae42fa9b970c7f7ff8c20ed8c31382fc1ffd565d42fc",
+    "testbed/otel-collector.yaml": "26d545707005cd2a00ec8959dd65eab3f42943b2741d329fcb6878f7485277af",
+    "testbed/postgres/init.sql": "fe9d7e8c1ba37447d95594f8395df26d3a92ff459ab10fe553160e98c68269ba",
+    "testbed/app/__init__.py": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+    "testbed/app/common.py": "af347760c5c54a224602fb51c195be6064a2fd263bf10962b438d97fc3b3cdfb",
+    "testbed/app/gateway.py": "828cb5bbb968993fbaf046ed5422b099646b6e1cdc3804120ddeadbda4d42cc3",
+    "testbed/app/inventory.py": "788733eae9e315802d46ae7c38095b72b24e7d6b95a97f2b146ccb37bdfb2fbe",
+    "testbed/app/order.py": "3f259c980911dfe5034004cd66d0497723e58f03c9baadee9c70da366ba09490",
+    "testbed/app/payment.py": "cc62d85a9772d0436dd9cf7a81d7dcc4186a4a5f85e9f79c558e0acdc62df933",
+    "testbed/app/telemetry.py": "02082a61ebc1175d068a20fd4f39e2d777ea1b5965979d19f318a85165405573"
+  },
+  "service_limits": {
+    "gateway": {
+      "mem_limit": "201326592",
+      "cpus": 1,
+      "image": "evidencerca-testbed:phase1",
+      "command": [
+        "uvicorn",
+        "app.gateway:app",
+        "--host",
+        "0.0.0.0",
+        "--port",
+        "8000",
+        "--no-access-log"
+      ]
+    },
+    "inventory": {
+      "mem_limit": "201326592",
+      "cpus": 1,
+      "image": "evidencerca-testbed:phase1",
+      "command": [
+        "uvicorn",
+        "app.inventory:app",
+        "--host",
+        "0.0.0.0",
+        "--port",
+        "8000",
+        "--no-access-log"
+      ]
+    },
+    "order": {
+      "mem_limit": "201326592",
+      "cpus": 1,
+      "image": "evidencerca-testbed:phase1",
+      "command": [
+        "uvicorn",
+        "app.order:app",
+        "--host",
+        "0.0.0.0",
+        "--port",
+        "8000",
+        "--no-access-log"
+      ]
+    },
+    "otel-collector": {
+      "mem_limit": "234881024",
+      "cpus": 1,
+      "image": "otel/opentelemetry-collector-contrib:0.162.0@sha256:39923a8e431bd1f57be82411999d389fcfe40857492e4365456d97a4c1f74be6",
+      "command": [
+        "--config=/etc/otelcol/config.yaml"
+      ]
+    },
+    "payment": {
+      "mem_limit": "201326592",
+      "cpus": 1,
+      "image": "evidencerca-testbed:phase1",
+      "command": [
+        "uvicorn",
+        "app.payment:app",
+        "--host",
+        "0.0.0.0",
+        "--port",
+        "8000",
+        "--no-access-log"
+      ]
+    },
+    "postgres": {
+      "mem_limit": "268435456",
+      "cpus": 1,
+      "image": "postgres:16.15-alpine3.24@sha256:721873c34ceb9f8d8fc265984940dc982404c105f19ad51be9fdc5970a6080ea",
+      "command": [
+        "postgres",
+        "-c",
+        "shared_buffers=32MB",
+        "-c",
+        "max_connections=40",
+        "-c",
+        "log_connections=on",
+        "-c",
+        "log_disconnections=on",
+        "-c",
+        "log_min_duration_statement=250",
+        "-c",
+        "log_line_prefix=%m [%p] %q%u@%d"
+      ]
+    }
+  },
+  "compose_config_redacted": {
+    "name": "evidencerca",
+    "networks": {
+      "default": {
+        "name": "evidencerca_default",
+        "ipam": {}
+      }
+    },
+    "services": {
+      "gateway": {
+        "build": {
+          "context": "<repo>",
+          "dockerfile": "testbed/Dockerfile"
+        },
+        "cpus": 1,
+        "command": [
+          "uvicorn",
+          "app.gateway:app",
+          "--host",
+          "0.0.0.0",
+          "--port",
+          "8000",
+          "--no-access-log"
+        ],
+        "depends_on": {
+          "inventory": {
+            "condition": "service_healthy",
+            "required": true
+          },
+          "order": {
+            "condition": "service_healthy",
+            "required": true
+          },
+          "otel-collector": {
+            "condition": "service_started",
+            "required": true
+          }
+        },
+        "entrypoint": null,
+        "environment": {
+          "DOWNSTREAM_RETRIES": "1",
+          "DOWNSTREAM_TIMEOUT_S": "2.0",
+          "INVENTORY_URL": "http://inventory:8000",
+          "ORDER_URL": "http://order:8000",
+          "OTEL_BLRP_SCHEDULE_DELAY": "1000",
+          "OTEL_BSP_SCHEDULE_DELAY": "1000",
+          "OTEL_EXPORTER_OTLP_ENDPOINT": "http://otel-collector:4318",
+          "OTEL_EXPORTER_OTLP_PROTOCOL": "http/protobuf",
+          "OTEL_METRIC_EXPORT_INTERVAL": "5000",
+          "OTEL_SEMCONV_STABILITY_OPT_IN": "http,database"
+        },
+        "healthcheck": {
+          "test": [
+            "CMD",
+            "python",
+            "-c",
+            "import urllib.request; urllib.request.urlopen('http://localhost:8000/health', timeout=2)"
+          ],
+          "timeout": "3s",
+          "interval": "3s",
+          "retries": 20
+        },
+        "image": "evidencerca-testbed:phase1",
+        "mem_limit": "201326592",
+        "networks": {
+          "default": null
+        },
+        "ports": [
+          {
+            "mode": "ingress",
+            "host_ip": "127.0.0.1",
+            "target": 8000,
+            "published": "8080",
+            "protocol": "tcp"
+          }
+        ],
+        "restart": "no"
+      },
+      "inventory": {
+        "build": {
+          "context": "<repo>",
+          "dockerfile": "testbed/Dockerfile"
+        },
+        "cpus": 1,
+        "command": [
+          "uvicorn",
+          "app.inventory:app",
+          "--host",
+          "0.0.0.0",
+          "--port",
+          "8000",
+          "--no-access-log"
+        ],
+        "depends_on": {
+          "otel-collector": {
+            "condition": "service_started",
+            "required": true
+          },
+          "postgres": {
+            "condition": "service_healthy",
+            "required": true
+          }
+        },
+        "entrypoint": null,
+        "environment": {
+          "DATABASE_URL": "postgresql+psycopg://shop:<redacted>@postgres:5432/shop",
+          "DB_POOL_SIZE": "5",
+          "DB_POOL_TIMEOUT_S": "2.0",
+          "DOWNSTREAM_RETRIES": "1",
+          "DOWNSTREAM_TIMEOUT_S": "2.0",
+          "OTEL_BLRP_SCHEDULE_DELAY": "1000",
+          "OTEL_BSP_SCHEDULE_DELAY": "1000",
+          "OTEL_EXPORTER_OTLP_ENDPOINT": "http://otel-collector:4318",
+          "OTEL_EXPORTER_OTLP_PROTOCOL": "http/protobuf",
+          "OTEL_METRIC_EXPORT_INTERVAL": "5000",
+          "OTEL_SEMCONV_STABILITY_OPT_IN": "http,database"
+        },
+        "healthcheck": {
+          "test": [
+            "CMD",
+            "python",
+            "-c",
+            "import urllib.request; urllib.request.urlopen('http://localhost:8000/health', timeout=2)"
+          ],
+          "timeout": "3s",
+          "interval": "3s",
+          "retries": 20
+        },
+        "image": "evidencerca-testbed:phase1",
+        "mem_limit": "201326592",
+        "networks": {
+          "default": null
+        },
+        "restart": "no"
+      },
+      "order": {
+        "build": {
+          "context": "<repo>",
+          "dockerfile": "testbed/Dockerfile"
+        },
+        "cpus": 1,
+        "command": [
+          "uvicorn",
+          "app.order:app",
+          "--host",
+          "0.0.0.0",
+          "--port",
+          "8000",
+          "--no-access-log"
+        ],
+        "depends_on": {
+          "inventory": {
+            "condition": "service_healthy",
+            "required": true
+          },
+          "otel-collector": {
+            "condition": "service_started",
+            "required": true
+          },
+          "payment": {
+            "condition": "service_healthy",
+            "required": true
+          },
+          "postgres": {
+            "condition": "service_healthy",
+            "required": true
+          }
+        },
+        "entrypoint": null,
+        "environment": {
+          "DATABASE_URL": "postgresql+psycopg://shop:<redacted>@postgres:5432/shop",
+          "DB_POOL_SIZE": "5",
+          "DB_POOL_TIMEOUT_S": "2.0",
+          "DOWNSTREAM_RETRIES": "1",
+          "DOWNSTREAM_TIMEOUT_S": "2.0",
+          "INVENTORY_URL": "http://inventory:8000",
+          "OTEL_BLRP_SCHEDULE_DELAY": "1000",
+          "OTEL_BSP_SCHEDULE_DELAY": "1000",
+          "OTEL_EXPORTER_OTLP_ENDPOINT": "http://otel-collector:4318",
+          "OTEL_EXPORTER_OTLP_PROTOCOL": "http/protobuf",
+          "OTEL_METRIC_EXPORT_INTERVAL": "5000",
+          "OTEL_SEMCONV_STABILITY_OPT_IN": "http,database",
+          "PAYMENT_URL": "http://payment:8000"
+        },
+        "healthcheck": {
+          "test": [
+            "CMD",
+            "python",
+            "-c",
+            "import urllib.request; urllib.request.urlopen('http://localhost:8000/health', timeout=2)"
+          ],
+          "timeout": "3s",
+          "interval": "3s",
+          "retries": 20
+        },
+        "image": "evidencerca-testbed:phase1",
+        "mem_limit": "201326592",
+        "networks": {
+          "default": null
+        },
+        "restart": "no"
+      },
+      "otel-collector": {
+        "cpus": 1,
+        "command": [
+          "--config=/etc/otelcol/config.yaml"
+        ],
+        "entrypoint": null,
+        "image": "otel/opentelemetry-collector-contrib:0.162.0@sha256:39923a8e431bd1f57be82411999d389fcfe40857492e4365456d97a4c1f74be6",
+        "mem_limit": "234881024",
+        "networks": {
+          "default": null
+        },
+        "ports": [
+          {
+            "mode": "ingress",
+            "host_ip": "127.0.0.1",
+            "target": 8888,
+            "published": "8888",
+            "protocol": "tcp"
+          },
+          {
+            "mode": "ingress",
+            "host_ip": "127.0.0.1",
+            "target": 13133,
+            "published": "13133",
+            "protocol": "tcp"
+          },
+          {
+            "mode": "ingress",
+            "host_ip": "127.0.0.1",
+            "target": 24224,
+            "published": "24224",
+            "protocol": "tcp"
+          }
+        ],
+        "restart": "no",
+        "user": "0:0",
+        "volumes": [
+          {
+            "type": "bind",
+            "source": "<repo>/testbed/otel-collector.yaml",
+            "target": "/etc/otelcol/config.yaml",
+            "read_only": true,
+            "bind": {
+              "create_host_path": true
+            }
+          },
+          {
+            "type": "bind",
+            "source": "/var/run/docker.sock",
+            "target": "/var/run/docker.sock",
+            "read_only": true,
+            "bind": {
+              "create_host_path": true
+            }
+          },
+          {
+            "type": "bind",
+            "source": "<repo>/runs/phase1-20261012T044845Z/telemetry",
+            "target": "/telemetry",
+            "bind": {
+              "create_host_path": true
+            }
+          }
+        ]
+      },
+      "payment": {
+        "build": {
+          "context": "<repo>",
+          "dockerfile": "testbed/Dockerfile"
+        },
+        "cpus": 1,
+        "command": [
+          "uvicorn",
+          "app.payment:app",
+          "--host",
+          "0.0.0.0",
+          "--port",
+          "8000",
+          "--no-access-log"
+        ],
+        "depends_on": {
+          "otel-collector": {
+            "condition": "service_started",
+            "required": true
+          }
+        },
+        "entrypoint": null,
+        "environment": {
+          "DOWNSTREAM_RETRIES": "1",
+          "DOWNSTREAM_TIMEOUT_S": "2.0",
+          "OTEL_BLRP_SCHEDULE_DELAY": "1000",
+          "OTEL_BSP_SCHEDULE_DELAY": "1000",
+          "OTEL_EXPORTER_OTLP_ENDPOINT": "http://otel-collector:4318",
+          "OTEL_EXPORTER_OTLP_PROTOCOL": "http/protobuf",
+          "OTEL_METRIC_EXPORT_INTERVAL": "5000",
+          "OTEL_SEMCONV_STABILITY_OPT_IN": "http,database"
+        },
+        "healthcheck": {
+          "test": [
+            "CMD",
+            "python",
+            "-c",
+            "import urllib.request; urllib.request.urlopen('http://localhost:8000/health', timeout=2)"
+          ],
+          "timeout": "3s",
+          "interval": "3s",
+          "retries": 20
+        },
+        "image": "evidencerca-testbed:phase1",
+        "mem_limit": "201326592",
+        "networks": {
+          "default": null
+        },
+        "restart": "no"
+      },
+      "postgres": {
+        "cpus": 1,
+        "command": [
+          "postgres",
+          "-c",
+          "shared_buffers=32MB",
+          "-c",
+          "max_connections=40",
+          "-c",
+          "log_connections=on",
+          "-c",
+          "log_disconnections=on",
+          "-c",
+          "log_min_duration_statement=250",
+          "-c",
+          "log_line_prefix=%m [%p] %q%u@%d"
+        ],
+        "depends_on": {
+          "otel-collector": {
+            "condition": "service_started",
+            "required": true
+          }
+        },
+        "entrypoint": null,
+        "environment": {
+          "POSTGRES_DB": "shop",
+          "POSTGRES_PASSWORD": "<redacted>",
+          "POSTGRES_USER": "shop"
+        },
+        "healthcheck": {
+          "test": [
+            "CMD-SHELL",
+            "pg_isready -U shop -d shop"
+          ],
+          "timeout": "3s",
+          "interval": "2s",
+          "retries": 30
+        },
+        "image": "postgres:16.15-alpine3.24@sha256:721873c34ceb9f8d8fc265984940dc982404c105f19ad51be9fdc5970a6080ea",
+        "logging": {
+          "driver": "fluentd",
+          "options": {
+            "fluentd-address": "127.0.0.1:24224",
+            "fluentd-async": "true",
+            "tag": "postgres"
+          }
+        },
+        "mem_limit": "268435456",
+        "networks": {
+          "default": null
+        },
+        "restart": "no",
+        "tmpfs": [
+          "/var/lib/postgresql/data:size=128m"
+        ],
+        "volumes": [
+          {
+            "type": "bind",
+            "source": "<repo>/testbed/postgres/init.sql",
+            "target": "/docker-entrypoint-initdb.d/init.sql",
+            "read_only": true,
+            "bind": {
+              "create_host_path": true
+            }
+          }
+        ]
+      }
+    },
+    "x-db-env": {
+      "DATABASE_URL": "postgresql+psycopg://shop:<redacted>@postgres:5432/shop",
+      "DB_POOL_SIZE": "5",
+      "DB_POOL_TIMEOUT_S": "2.0"
+    },
+    "x-otel-env": {
+      "DOWNSTREAM_RETRIES": "1",
+      "DOWNSTREAM_TIMEOUT_S": "2.0",
+      "OTEL_BLRP_SCHEDULE_DELAY": "1000",
+      "OTEL_BSP_SCHEDULE_DELAY": "1000",
+      "OTEL_EXPORTER_OTLP_ENDPOINT": "http://otel-collector:4318",
+      "OTEL_EXPORTER_OTLP_PROTOCOL": "http/protobuf",
+      "OTEL_METRIC_EXPORT_INTERVAL": "5000",
+      "OTEL_SEMCONV_STABILITY_OPT_IN": "http,database"
+    },
+    "x-service": {
+      "build": {
+        "context": ".",
+        "dockerfile": "testbed/Dockerfile"
+      },
+      "cpus": 1,
+      "depends_on": {
+        "otel-collector": {
+          "condition": "service_started"
+        }
+      },
+      "healthcheck": {
+        "interval": "3s",
+        "retries": 20,
+        "test": [
+          "CMD",
+          "python",
+          "-c",
+          "import urllib.request; urllib.request.urlopen('http://localhost:8000/health', timeout=2)"
+        ],
+        "timeout": "3s"
+      },
+      "image": "evidencerca-testbed:phase1",
+      "mem_limit": "192m",
+      "restart": "no"
+    }
+  },
+  "vm": {
+    "free_m": "total        used        free      shared  buff/cache   available\nMem:            2899         376        1168           0        1516        2522\nSwap:              0           0           0",
+    "df_root": "Filesystem      Size  Used Avail Use% Mounted on\n/dev/root        29G  1.9G   27G   7% /",
+    "docker_system_df": "TYPE            TOTAL     ACTIVE    SIZE      RECLAIMABLE\nImages          15        0         981.7MB   981.7MB (100%)\nContainers      0         0         0B        0B\nLocal Volumes   0         0         0B        0B\nBuild Cache     21        0         82.71kB   82.71kB"
+  }
+}

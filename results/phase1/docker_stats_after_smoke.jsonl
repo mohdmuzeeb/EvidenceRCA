@@ -1,0 +1,6 @@
+{"BlockIO":"0B / 0B","CPUPerc":"0.96%","Container":"fb7c7e48040c","ID":"fb7c7e48040c","MemPerc":"31.06%","MemUsage":"59.64MiB / 192MiB","Name":"evidencerca-gateway-1","NetIO":"15.7kB / 67.6kB","PIDs":"5"}
+{"BlockIO":"0B / 0B","CPUPerc":"0.36%","Container":"25eea38166bf","ID":"25eea38166bf","MemPerc":"38.50%","MemUsage":"73.93MiB / 192MiB","Name":"evidencerca-order-1","NetIO":"17.9kB / 61kB","PIDs":"5"}
+{"BlockIO":"0B / 0B","CPUPerc":"0.26%","Container":"036ad6f111a0","ID":"036ad6f111a0","MemPerc":"37.39%","MemUsage":"71.79MiB / 192MiB","Name":"evidencerca-inventory-1","NetIO":"21.7kB / 68.1kB","PIDs":"5"}
+{"BlockIO":"0B / 0B","CPUPerc":"0.56%","Container":"8aef0632256b","ID":"8aef0632256b","MemPerc":"29.96%","MemUsage":"57.52MiB / 192MiB","Name":"evidencerca-payment-1","NetIO":"7.3kB / 28.3kB","PIDs":"5"}
+{"BlockIO":"0B / 8.19kB","CPUPerc":"2.21%","Container":"49b8cfd791f6","ID":"49b8cfd791f6","MemPerc":"25.58%","MemUsage":"65.48MiB / 256MiB","Name":"evidencerca-postgres-1","NetIO":"20.8kB / 17.2kB","PIDs":"8"}
+{"BlockIO":"0B / 0B","CPUPerc":"1.54%","Container":"0b1e610491d5","ID":"0b1e610491d5","MemPerc":"18.48%","MemUsage":"41.4MiB / 224MiB","Name":"evidencerca-otel-collector-1","NetIO":"212kB / 17.5kB","PIDs":"8"}

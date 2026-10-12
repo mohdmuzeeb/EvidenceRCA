@@ -1,0 +1,7 @@
+SERVICE          STATUS
+gateway          Up 3 seconds (healthy)
+inventory        Up 11 seconds (healthy)
+order            Up 7 seconds (healthy)
+otel-collector   Up 13 seconds
+payment          Up 13 seconds (healthy)
+postgres         Up 13 seconds (healthy)

@@ -1,0 +1,1733 @@
+{
+  "schema": "evidencerca.phase1.telemetry_validation/v1",
+  "run_id": "phase1-20261012T044845Z",
+  "inputs": {
+    "telemetry_files": [
+      {
+        "file": "traces.jsonl",
+        "exists": true,
+        "bytes": 99818,
+        "lines": 2,
+        "unparseable_lines": 0,
+        "sha256": "92f87fc0f52f12c487a362c61a0b5238f0dbf33d1ce519690ec77fa329883c92"
+      },
+      {
+        "file": "logs.jsonl",
+        "exists": true,
+        "bytes": 129761,
+        "lines": 26,
+        "unparseable_lines": 0,
+        "sha256": "f2c0c3f4c1d9f05cc39c36ce848f988e55808e35e30b96ea00939a48679ec705"
+      },
+      {
+        "file": "metrics.jsonl",
+        "exists": true,
+        "bytes": 370393,
+        "lines": 20,
+        "unparseable_lines": 0,
+        "sha256": "e47d852d36b0bb140e7ba2af7f13033d5c5f9a34dc27cb6464e2ddc9b2b8a928"
+      }
+    ],
+    "smoke_report": "smoke_test_results.json",
+    "collector_metrics": "collector_internal_metrics.prom"
+  },
+  "sample_trace_ids": {
+    "stock-before:sku-001": "c6126f347975f01743c5ba13ad56f554",
+    "stock-before:sku-002": "be36e2c7fd738af19b7d17142d56e9cb",
+    "stock-before:sku-003": "00ea86dc23381402d0b7b4b7f7c37d62",
+    "stock-before:sku-004": "339b1619dc61876e55a26c04f71f2e9e",
+    "stock-before:sku-005": "488b1d6e8a74a2fd5fa8711e05a368c3",
+    "order:sku-001x2": "63ac0804390fceb01f8563478f195843",
+    "order:sku-002x1": "05eabfd9484fdf13866e2e0502f52bf3",
+    "order:sku-003x3": "9c244ff05cb2a9596fe528162c9daf43",
+    "order:sku-005x10": "85e0399956df87b29a725e7284c72ab6",
+    "order:sku-001x1": "3ec27e61afc93eb814b2fb229d39fe47",
+    "order-lookup": "6070bef841220848e0b42db761c51f9d",
+    "expected-reject:sku-004x999": "cf620e35d1179682d280bff36cd9ae49"
+  },
+  "summary": {
+    "checks": 22,
+    "passed": 22,
+    "failed": [],
+    "traces_validated": true,
+    "logs_validated": true,
+    "metrics_validated": true,
+    "collector_validated": true,
+    "all_passed": true
+  },
+  "checks": [
+    {
+      "id": "P1",
+      "signal": "all",
+      "description": "Collector output persisted to local files and read back (every line parses as OTLP JSON)",
+      "status": "pass",
+      "evidence": {
+        "files": [
+          {
+            "file": "traces.jsonl",
+            "exists": true,
+            "bytes": 99818,
+            "lines": 2,
+            "unparseable_lines": 0,
+            "sha256": "92f87fc0f52f12c487a362c61a0b5238f0dbf33d1ce519690ec77fa329883c92"
+          },
+          {
+            "file": "logs.jsonl",
+            "exists": true,
+            "bytes": 129761,
+            "lines": 26,
+            "unparseable_lines": 0,
+            "sha256": "f2c0c3f4c1d9f05cc39c36ce848f988e55808e35e30b96ea00939a48679ec705"
+          },
+          {
+            "file": "metrics.jsonl",
+            "exists": true,
+            "bytes": 370393,
+            "lines": 20,
+            "unparseable_lines": 0,
+            "sha256": "e47d852d36b0bb140e7ba2af7f13033d5c5f9a34dc27cb6464e2ddc9b2b8a928"
+          }
+        ],
+        "records": {
+          "spans": 130,
+          "log_records": 203,
+          "metric_points": 885
+        }
+      }
+    },
+    {
+      "id": "T1",
+      "signal": "traces",
+      "description": "Spans received from every application service",
+      "status": "pass",
+      "evidence": {
+        "gateway": 29,
+        "payment": 5,
+        "order": 38,
+        "inventory": 58
+      }
+    },
+    {
+      "id": "T2",
+      "signal": "traces",
+      "description": "All trace IDs (32 hex) and span IDs (16 hex) are valid, non-zero and unique",
+      "status": "pass",
+      "evidence": {
+        "spans_checked": 130,
+        "invalid": [],
+        "duplicates": []
+      }
+    },
+    {
+      "id": "T3",
+      "signal": "traces",
+      "description": "Every trace ID returned to the smoke client is present in the exported traces",
+      "status": "pass",
+      "evidence": {
+        "smoke_trace_ids": [
+          "c6126f347975f01743c5ba13ad56f554",
+          "be36e2c7fd738af19b7d17142d56e9cb",
+          "00ea86dc23381402d0b7b4b7f7c37d62",
+          "339b1619dc61876e55a26c04f71f2e9e",
+          "488b1d6e8a74a2fd5fa8711e05a368c3",
+          "63ac0804390fceb01f8563478f195843",
+          "05eabfd9484fdf13866e2e0502f52bf3",
+          "9c244ff05cb2a9596fe528162c9daf43",
+          "85e0399956df87b29a725e7284c72ab6",
+          "3ec27e61afc93eb814b2fb229d39fe47",
+          "6070bef841220848e0b42db761c51f9d",
+          "cf620e35d1179682d280bff36cd9ae49"
+        ],
+        "missing": []
+      }
+    },
+    {
+      "id": "T4",
+      "signal": "traces",
+      "description": "Each smoke trace is one tree: a single gateway SERVER root, every parent present",
+      "status": "pass",
+      "evidence": {
+        "problems": [],
+        "traces": {
+          "c6126f347975f01743c5ba13ad56f554": {
+            "label": "stock-before:sku-001",
+            "spans": 5,
+            "root": [
+              "gateway",
+              "SERVER",
+              "GET /api/stock/{item_id}"
+            ],
+            "roots": 1,
+            "orphans": []
+          },
+          "be36e2c7fd738af19b7d17142d56e9cb": {
+            "label": "stock-before:sku-002",
+            "spans": 5,
+            "root": [
+              "gateway",
+              "SERVER",
+              "GET /api/stock/{item_id}"
+            ],
+            "roots": 1,
+            "orphans": []
+          },
+          "00ea86dc23381402d0b7b4b7f7c37d62": {
+            "label": "stock-before:sku-003",
+            "spans": 5,
+            "root": [
+              "gateway",
+              "SERVER",
+              "GET /api/stock/{item_id}"
+            ],
+            "roots": 1,
+            "orphans": []
+          },
+          "339b1619dc61876e55a26c04f71f2e9e": {
+            "label": "stock-before:sku-004",
+            "spans": 5,
+            "root": [
+              "gateway",
+              "SERVER",
+              "GET /api/stock/{item_id}"
+            ],
+            "roots": 1,
+            "orphans": []
+          },
+          "488b1d6e8a74a2fd5fa8711e05a368c3": {
+            "label": "stock-before:sku-005",
+            "spans": 5,
+            "root": [
+              "gateway",
+              "SERVER",
+              "GET /api/stock/{item_id}"
+            ],
+            "roots": 1,
+            "orphans": []
+          },
+          "63ac0804390fceb01f8563478f195843": {
+            "label": "order:sku-001x2",
+            "spans": 19,
+            "root": [
+              "gateway",
+              "SERVER",
+              "POST /api/orders"
+            ],
+            "roots": 1,
+            "orphans": []
+          },
+          "05eabfd9484fdf13866e2e0502f52bf3": {
+            "label": "order:sku-002x1",
+            "spans": 19,
+            "root": [
+              "gateway",
+              "SERVER",
+              "POST /api/orders"
+            ],
+            "roots": 1,
+            "orphans": []
+          },
+          "9c244ff05cb2a9596fe528162c9daf43": {
+            "label": "order:sku-003x3",
+            "spans": 19,
+            "root": [
+              "gateway",
+              "SERVER",
+              "POST /api/orders"
+            ],
+            "roots": 1,
+            "orphans": []
+          },
+          "85e0399956df87b29a725e7284c72ab6": {
+            "label": "order:sku-005x10",
+            "spans": 19,
+            "root": [
+              "gateway",
+              "SERVER",
+              "POST /api/orders"
+            ],
+            "roots": 1,
+            "orphans": []
+          },
+          "3ec27e61afc93eb814b2fb229d39fe47": {
+            "label": "order:sku-001x1",
+            "spans": 19,
+            "root": [
+              "gateway",
+              "SERVER",
+              "POST /api/orders"
+            ],
+            "roots": 1,
+            "orphans": []
+          },
+          "6070bef841220848e0b42db761c51f9d": {
+            "label": "order-lookup",
+            "spans": 5,
+            "root": [
+              "gateway",
+              "SERVER",
+              "GET /api/orders/{order_id}"
+            ],
+            "roots": 1,
+            "orphans": []
+          },
+          "cf620e35d1179682d280bff36cd9ae49": {
+            "label": "expected-reject:sku-004x999",
+            "spans": 5,
+            "root": [
+              "gateway",
+              "SERVER",
+              "POST /api/orders"
+            ],
+            "roots": 1,
+            "orphans": []
+          }
+        }
+      }
+    },
+    {
+      "id": "T5",
+      "signal": "traces",
+      "description": "Trace context propagates across service boundaries: every order trace contains gateway->inventory, gateway->order, order->inventory and order->payment (CLIENT span parent of the callee's SERVER span)",
+      "status": "pass",
+      "evidence": {
+        "required_edges": [
+          [
+            "gateway",
+            "inventory"
+          ],
+          [
+            "gateway",
+            "order"
+          ],
+          [
+            "order",
+            "inventory"
+          ],
+          [
+            "order",
+            "payment"
+          ]
+        ],
+        "traces": {
+          "63ac0804390fceb01f8563478f195843": [
+            {
+              "caller": "order",
+              "callee": "payment",
+              "client_span_id": "81d0ee411484d759",
+              "server_span_id": "4dfc357f135e70bd"
+            },
+            {
+              "caller": "gateway",
+              "callee": "order",
+              "client_span_id": "e4032575768bd291",
+              "server_span_id": "ba73ba088f9a145b"
+            },
+            {
+              "caller": "gateway",
+              "callee": "inventory",
+              "client_span_id": "f8d978dc3186e492",
+              "server_span_id": "5b447430ed93f679"
+            },
+            {
+              "caller": "order",
+              "callee": "inventory",
+              "client_span_id": "3b143c333e0328b6",
+              "server_span_id": "e4d6d700ca67d1e4"
+            }
+          ],
+          "05eabfd9484fdf13866e2e0502f52bf3": [
+            {
+              "caller": "order",
+              "callee": "payment",
+              "client_span_id": "fcc52b95297d625f",
+              "server_span_id": "a57ce7dac76ab11b"
+            },
+            {
+              "caller": "gateway",
+              "callee": "order",
+              "client_span_id": "e412927f9e360dd6",
+              "server_span_id": "e4f020d7b7f0ce0b"
+            },
+            {
+              "caller": "gateway",
+              "callee": "inventory",
+              "client_span_id": "f6a2d6861de2ff0e",
+              "server_span_id": "b0909c756b7d536a"
+            },
+            {
+              "caller": "order",
+              "callee": "inventory",
+              "client_span_id": "0e2602561ffdf49e",
+              "server_span_id": "f4149900392a9990"
+            }
+          ],
+          "9c244ff05cb2a9596fe528162c9daf43": [
+            {
+              "caller": "order",
+              "callee": "payment",
+              "client_span_id": "410a41e4412ec016",
+              "server_span_id": "b830220b36efe7e3"
+            },
+            {
+              "caller": "gateway",
+              "callee": "order",
+              "client_span_id": "2e2b164842d1e68a",
+              "server_span_id": "b0ce9a4d5ebe3e0d"
+            },
+            {
+              "caller": "gateway",
+              "callee": "inventory",
+              "client_span_id": "345a00e0d0716646",
+              "server_span_id": "f414a88095d64de9"
+            },
+            {
+              "caller": "order",
+              "callee": "inventory",
+              "client_span_id": "14856a0017ba465a",
+              "server_span_id": "03bfc4014c5347b4"
+            }
+          ],
+          "85e0399956df87b29a725e7284c72ab6": [
+            {
+              "caller": "order",
+              "callee": "payment",
+              "client_span_id": "e810a270eadac29a",
+              "server_span_id": "688a39cc9e9abf4b"
+            },
+            {
+              "caller": "gateway",
+              "callee": "order",
+              "client_span_id": "d7229525678f7cab",
+              "server_span_id": "12f4030ac05becb6"
+            },
+            {
+              "caller": "gateway",
+              "callee": "inventory",
+              "client_span_id": "681b8082058e6b5b",
+              "server_span_id": "ca78f5bf8cf31d0c"
+            },
+            {
+              "caller": "order",
+              "callee": "inventory",
+              "client_span_id": "8fa712f07f73bf51",
+              "server_span_id": "4eded0c6f3cf9c7f"
+            }
+          ],
+          "3ec27e61afc93eb814b2fb229d39fe47": [
+            {
+              "caller": "order",
+              "callee": "payment",
+              "client_span_id": "957f9c587a7a63e4",
+              "server_span_id": "3346ee5e3888c080"
+            },
+            {
+              "caller": "gateway",
+              "callee": "order",
+              "client_span_id": "635897911e29211e",
+              "server_span_id": "869d42d3c69e9909"
+            },
+            {
+              "caller": "gateway",
+              "callee": "inventory",
+              "client_span_id": "2061f8b96817d53b",
+              "server_span_id": "e0340cbecc57902a"
+            },
+            {
+              "caller": "order",
+              "callee": "inventory",
+              "client_span_id": "fe289bcd8b52ee10",
+              "server_span_id": "a21c10dbfe6dfc34"
+            }
+          ]
+        }
+      }
+    },
+    {
+      "id": "T6",
+      "signal": "traces",
+      "description": "Database calls appear as postgresql CLIENT spans inside order and inventory, parented within the same service",
+      "status": "pass",
+      "evidence": {
+        "63ac0804390fceb01f8563478f195843": {
+          "order": [
+            {
+              "span_id": "67fa07ea0e27df69",
+              "name": "connect",
+              "parent_kind": "SERVER",
+              "parent_service": "order"
+            },
+            {
+              "span_id": "d04800f014f5618c",
+              "name": "INSERT shop",
+              "parent_kind": "SERVER",
+              "parent_service": "order"
+            },
+            {
+              "span_id": "713700d782c644c8",
+              "name": "connect",
+              "parent_kind": "SERVER",
+              "parent_service": "order"
+            },
+            {
+              "span_id": "aa129f17ab88c5e8",
+              "name": "UPDATE shop",
+              "parent_kind": "SERVER",
+              "parent_service": "order"
+            }
+          ],
+          "inventory": [
+            {
+              "span_id": "5ca1067bc7804d87",
+              "name": "connect",
+              "parent_kind": "SERVER",
+              "parent_service": "inventory"
+            },
+            {
+              "span_id": "fdcfb7676480a2d7",
+              "name": "SELECT shop",
+              "parent_kind": "SERVER",
+              "parent_service": "inventory"
+            },
+            {
+              "span_id": "9d3cc373d6087929",
+              "name": "connect",
+              "parent_kind": "SERVER",
+              "parent_service": "inventory"
+            },
+            {
+              "span_id": "0e2db4b704d400a4",
+              "name": "INSERT shop",
+              "parent_kind": "SERVER",
+              "parent_service": "inventory"
+            },
+            {
+              "span_id": "005795e3b2f1c4fe",
+              "name": "UPDATE shop",
+              "parent_kind": "SERVER",
+              "parent_service": "inventory"
+            },
+            {
+              "span_id": "98eda2977ab58e70",
+              "name": "SELECT shop",
+              "parent_kind": "SERVER",
+              "parent_service": "inventory"
+            }
+          ]
+        },
+        "05eabfd9484fdf13866e2e0502f52bf3": {
+          "order": [
+            {
+              "span_id": "7359b21d8c7ab1c7",
+              "name": "connect",
+              "parent_kind": "SERVER",
+              "parent_service": "order"
+            },
+            {
+              "span_id": "3b7e2afb4e0ff663",
+              "name": "INSERT shop",
+              "parent_kind": "SERVER",
+              "parent_service": "order"
+            },
+            {
+              "span_id": "8d799d5dd9da8642",
+              "name": "connect",
+              "parent_kind": "SERVER",
+              "parent_service": "order"
+            },
+            {
+              "span_id": "64305fb7dcbe880b",
+              "name": "UPDATE shop",
+              "parent_kind": "SERVER",
+              "parent_service": "order"
+            }
+          ],
+          "inventory": [
+            {
+              "span_id": "32169d5e75f58b00",
+              "name": "connect",
+              "parent_kind": "SERVER",
+              "parent_service": "inventory"
+            },
+            {
+              "span_id": "646661474409b237",
+              "name": "SELECT shop",
+              "parent_kind": "SERVER",
+              "parent_service": "inventory"
+            },
+            {
+              "span_id": "25b0641103469c16",
+              "name": "connect",
+              "parent_kind": "SERVER",
+              "parent_service": "inventory"
+            },
+            {
+              "span_id": "7592d899a7332554",
+              "name": "INSERT shop",
+              "parent_kind": "SERVER",
+              "parent_service": "inventory"
+            },
+            {
+              "span_id": "a8e3c7da30ab6401",
+              "name": "UPDATE shop",
+              "parent_kind": "SERVER",
+              "parent_service": "inventory"
+            },
+            {
+              "span_id": "27db4431a39850db",
+              "name": "SELECT shop",
+              "parent_kind": "SERVER",
+              "parent_service": "inventory"
+            }
+          ]
+        },
+        "9c244ff05cb2a9596fe528162c9daf43": {
+          "order": [
+            {
+              "span_id": "01820d696cd526fe",
+              "name": "connect",
+              "parent_kind": "SERVER",
+              "parent_service": "order"
+            },
+            {
+              "span_id": "f2c97f19bced4741",
+              "name": "INSERT shop",
+              "parent_kind": "SERVER",
+              "parent_service": "order"
+            },
+            {
+              "span_id": "7bfc90e16734e3bd",
+              "name": "connect",
+              "parent_kind": "SERVER",
+              "parent_service": "order"
+            },
+            {
+              "span_id": "006c3bab09a15d76",
+              "name": "UPDATE shop",
+              "parent_kind": "SERVER",
+              "parent_service": "order"
+            }
+          ],
+          "inventory": [
+            {
+              "span_id": "12becbe7040f5c27",
+              "name": "connect",
+              "parent_kind": "SERVER",
+              "parent_service": "inventory"
+            },
+            {
+              "span_id": "498eb82cca678e4b",
+              "name": "SELECT shop",
+              "parent_kind": "SERVER",
+              "parent_service": "inventory"
+            },
+            {
+              "span_id": "4f78889e497b3368",
+              "name": "connect",
+              "parent_kind": "SERVER",
+              "parent_service": "inventory"
+            },
+            {
+              "span_id": "eae96fde6eec492b",
+              "name": "INSERT shop",
+              "parent_kind": "SERVER",
+              "parent_service": "inventory"
+            },
+            {
+              "span_id": "0541919bf0840f49",
+              "name": "UPDATE shop",
+              "parent_kind": "SERVER",
+              "parent_service": "inventory"
+            },
+            {
+              "span_id": "db5b0a2fbfe69365",
+              "name": "SELECT shop",
+              "parent_kind": "SERVER",
+              "parent_service": "inventory"
+            }
+          ]
+        },
+        "85e0399956df87b29a725e7284c72ab6": {
+          "order": [
+            {
+              "span_id": "143706c1f0a8f09a",
+              "name": "connect",
+              "parent_kind": "SERVER",
+              "parent_service": "order"
+            },
+            {
+              "span_id": "7e402c7d55a5f9bb",
+              "name": "INSERT shop",
+              "parent_kind": "SERVER",
+              "parent_service": "order"
+            },
+            {
+              "span_id": "f592c0040c95b5dc",
+              "name": "connect",
+              "parent_kind": "SERVER",
+              "parent_service": "order"
+            },
+            {
+              "span_id": "cf1502d62cb4901e",
+              "name": "UPDATE shop",
+              "parent_kind": "SERVER",
+              "parent_service": "order"
+            }
+          ],
+          "inventory": [
+            {
+              "span_id": "6a56e7782c285a1a",
+              "name": "connect",
+              "parent_kind": "SERVER",
+              "parent_service": "inventory"
+            },
+            {
+              "span_id": "e1fe478222b0026c",
+              "name": "SELECT shop",
+              "parent_kind": "SERVER",
+              "parent_service": "inventory"
+            },
+            {
+              "span_id": "21ea9b00806f8287",
+              "name": "connect",
+              "parent_kind": "SERVER",
+              "parent_service": "inventory"
+            },
+            {
+              "span_id": "707a3a254a012859",
+              "name": "INSERT shop",
+              "parent_kind": "SERVER",
+              "parent_service": "inventory"
+            },
+            {
+              "span_id": "37dcd1878fc62819",
+              "name": "UPDATE shop",
+              "parent_kind": "SERVER",
+              "parent_service": "inventory"
+            },
+            {
+              "span_id": "d16d1ff5500be47b",
+              "name": "SELECT shop",
+              "parent_kind": "SERVER",
+              "parent_service": "inventory"
+            }
+          ]
+        },
+        "3ec27e61afc93eb814b2fb229d39fe47": {
+          "order": [
+            {
+              "span_id": "f4624e9c0fe7fdda",
+              "name": "connect",
+              "parent_kind": "SERVER",
+              "parent_service": "order"
+            },
+            {
+              "span_id": "b22a534ce08513c1",
+              "name": "INSERT shop",
+              "parent_kind": "SERVER",
+              "parent_service": "order"
+            },
+            {
+              "span_id": "10ec44a1bd21ceec",
+              "name": "connect",
+              "parent_kind": "SERVER",
+              "parent_service": "order"
+            },
+            {
+              "span_id": "810945e26ff95aba",
+              "name": "UPDATE shop",
+              "parent_kind": "SERVER",
+              "parent_service": "order"
+            }
+          ],
+          "inventory": [
+            {
+              "span_id": "0c943a9f0d463495",
+              "name": "connect",
+              "parent_kind": "SERVER",
+              "parent_service": "inventory"
+            },
+            {
+              "span_id": "7537755b2f2f11c1",
+              "name": "SELECT shop",
+              "parent_kind": "SERVER",
+              "parent_service": "inventory"
+            },
+            {
+              "span_id": "4b8fdf194210fb22",
+              "name": "connect",
+              "parent_kind": "SERVER",
+              "parent_service": "inventory"
+            },
+            {
+              "span_id": "004554299ab3008e",
+              "name": "INSERT shop",
+              "parent_kind": "SERVER",
+              "parent_service": "inventory"
+            },
+            {
+              "span_id": "7ed35cbe25c7ea9f",
+              "name": "UPDATE shop",
+              "parent_kind": "SERVER",
+              "parent_service": "inventory"
+            },
+            {
+              "span_id": "3b1f508a8d31ed0f",
+              "name": "SELECT shop",
+              "parent_kind": "SERVER",
+              "parent_service": "inventory"
+            }
+          ]
+        }
+      }
+    },
+    {
+      "id": "T7",
+      "signal": "traces",
+      "description": "Service identity is consistent: each service has exactly one instance id, only known service names appear, and SERVER spans carry that service's own routes",
+      "status": "pass",
+      "evidence": {
+        "instances": {
+          "gateway": [
+            "fb7c7e48040c"
+          ],
+          "payment": [
+            "8aef0632256b"
+          ],
+          "order": [
+            "25eea38166bf"
+          ],
+          "inventory": [
+            "036ad6f111a0"
+          ]
+        },
+        "server_routes": {
+          "gateway": [
+            "/api/orders",
+            "/api/orders/{order_id}",
+            "/api/stock/{item_id}"
+          ],
+          "payment": [
+            "/charge"
+          ],
+          "order": [
+            "/orders",
+            "/orders/{order_id}"
+          ],
+          "inventory": [
+            "/reserve",
+            "/stock/{item_id}"
+          ]
+        }
+      }
+    },
+    {
+      "id": "L1",
+      "signal": "logs",
+      "description": "Log records received from every application service (OTLP) and from postgres (Docker fluentd driver)",
+      "status": "pass",
+      "evidence": {
+        "postgres": 130,
+        "payment": 12,
+        "inventory": 23,
+        "order": 18,
+        "gateway": 20
+      }
+    },
+    {
+      "id": "L2",
+      "signal": "logs",
+      "description": "Application logs are structured (severity, timestamp, message, typed attributes); postgres lines arrive in a structured envelope (container identity, timestamp) with a plain-text body",
+      "status": "pass",
+      "evidence": {
+        "app_log_records": 73,
+        "unstructured": 0,
+        "common_attribute_keys": {
+          "http_route": 39,
+          "http_method": 39,
+          "status_code": 39,
+          "duration_ms": 39,
+          "order_id": 25,
+          "item_id": 16,
+          "quantity": 11,
+          "payment_id": 10,
+          "amount_cents": 10,
+          "event": 8,
+          "replayed": 5,
+          "stock": 1
+        },
+        "postgres_records": 130,
+        "postgres_with_envelope": 130,
+        "postgres_sample": "2026-10-12 04:49:22.235 UTC [1] LOG:  database system is shut down"
+      }
+    },
+    {
+      "id": "L3",
+      "signal": "logs",
+      "description": "Logs correlate to traces: every smoke trace has logs from each service in it, and each log's (trace_id, span_id) resolves to a span of the same service whose time window contains the log timestamp",
+      "status": "pass",
+      "evidence": {
+        "c6126f347975f01743c5ba13ad56f554": {
+          "log_records": 2,
+          "services_in_trace": [
+            "gateway",
+            "inventory"
+          ],
+          "services_with_logs": [
+            "gateway",
+            "inventory"
+          ],
+          "mismatched": [],
+          "sample": [
+            {
+              "service": "gateway",
+              "span_id": "5546fae701f096da",
+              "body": "request completed"
+            },
+            {
+              "service": "inventory",
+              "span_id": "8acbd2636ed1c7fc",
+              "body": "request completed"
+            }
+          ]
+        },
+        "be36e2c7fd738af19b7d17142d56e9cb": {
+          "log_records": 2,
+          "services_in_trace": [
+            "gateway",
+            "inventory"
+          ],
+          "services_with_logs": [
+            "gateway",
+            "inventory"
+          ],
+          "mismatched": [],
+          "sample": [
+            {
+              "service": "gateway",
+              "span_id": "f61c96c5765b1370",
+              "body": "request completed"
+            },
+            {
+              "service": "inventory",
+              "span_id": "94cecaaf865f6875",
+              "body": "request completed"
+            }
+          ]
+        },
+        "00ea86dc23381402d0b7b4b7f7c37d62": {
+          "log_records": 2,
+          "services_in_trace": [
+            "gateway",
+            "inventory"
+          ],
+          "services_with_logs": [
+            "gateway",
+            "inventory"
+          ],
+          "mismatched": [],
+          "sample": [
+            {
+              "service": "gateway",
+              "span_id": "0a1df9e3202ff7f5",
+              "body": "request completed"
+            },
+            {
+              "service": "inventory",
+              "span_id": "29ce066324d6de23",
+              "body": "request completed"
+            }
+          ]
+        },
+        "339b1619dc61876e55a26c04f71f2e9e": {
+          "log_records": 2,
+          "services_in_trace": [
+            "gateway",
+            "inventory"
+          ],
+          "services_with_logs": [
+            "gateway",
+            "inventory"
+          ],
+          "mismatched": [],
+          "sample": [
+            {
+              "service": "gateway",
+              "span_id": "25e1d4a0154fa87c",
+              "body": "request completed"
+            },
+            {
+              "service": "inventory",
+              "span_id": "f1ac8d5212aa5c85",
+              "body": "request completed"
+            }
+          ]
+        },
+        "488b1d6e8a74a2fd5fa8711e05a368c3": {
+          "log_records": 2,
+          "services_in_trace": [
+            "gateway",
+            "inventory"
+          ],
+          "services_with_logs": [
+            "gateway",
+            "inventory"
+          ],
+          "mismatched": [],
+          "sample": [
+            {
+              "service": "gateway",
+              "span_id": "21d691165e7a41fb",
+              "body": "request completed"
+            },
+            {
+              "service": "inventory",
+              "span_id": "c4002645b8829b39",
+              "body": "request completed"
+            }
+          ]
+        },
+        "63ac0804390fceb01f8563478f195843": {
+          "log_records": 10,
+          "services_in_trace": [
+            "gateway",
+            "inventory",
+            "order",
+            "payment"
+          ],
+          "services_with_logs": [
+            "gateway",
+            "inventory",
+            "order",
+            "payment"
+          ],
+          "mismatched": [],
+          "sample": [
+            {
+              "service": "payment",
+              "span_id": "4dfc357f135e70bd",
+              "body": "payment authorised"
+            },
+            {
+              "service": "payment",
+              "span_id": "4dfc357f135e70bd",
+              "body": "request completed"
+            },
+            {
+              "service": "order",
+              "span_id": "ba73ba088f9a145b",
+              "body": "order created"
+            }
+          ]
+        },
+        "05eabfd9484fdf13866e2e0502f52bf3": {
+          "log_records": 10,
+          "services_in_trace": [
+            "gateway",
+            "inventory",
+            "order",
+            "payment"
+          ],
+          "services_with_logs": [
+            "gateway",
+            "inventory",
+            "order",
+            "payment"
+          ],
+          "mismatched": [],
+          "sample": [
+            {
+              "service": "payment",
+              "span_id": "a57ce7dac76ab11b",
+              "body": "payment authorised"
+            },
+            {
+              "service": "payment",
+              "span_id": "a57ce7dac76ab11b",
+              "body": "request completed"
+            },
+            {
+              "service": "order",
+              "span_id": "e4f020d7b7f0ce0b",
+              "body": "order created"
+            }
+          ]
+        },
+        "9c244ff05cb2a9596fe528162c9daf43": {
+          "log_records": 10,
+          "services_in_trace": [
+            "gateway",
+            "inventory",
+            "order",
+            "payment"
+          ],
+          "services_with_logs": [
+            "gateway",
+            "inventory",
+            "order",
+            "payment"
+          ],
+          "mismatched": [],
+          "sample": [
+            {
+              "service": "payment",
+              "span_id": "b830220b36efe7e3",
+              "body": "payment authorised"
+            },
+            {
+              "service": "payment",
+              "span_id": "b830220b36efe7e3",
+              "body": "request completed"
+            },
+            {
+              "service": "order",
+              "span_id": "b0ce9a4d5ebe3e0d",
+              "body": "order created"
+            }
+          ]
+        },
+        "85e0399956df87b29a725e7284c72ab6": {
+          "log_records": 10,
+          "services_in_trace": [
+            "gateway",
+            "inventory",
+            "order",
+            "payment"
+          ],
+          "services_with_logs": [
+            "gateway",
+            "inventory",
+            "order",
+            "payment"
+          ],
+          "mismatched": [],
+          "sample": [
+            {
+              "service": "payment",
+              "span_id": "688a39cc9e9abf4b",
+              "body": "payment authorised"
+            },
+            {
+              "service": "payment",
+              "span_id": "688a39cc9e9abf4b",
+              "body": "request completed"
+            },
+            {
+              "service": "order",
+              "span_id": "12f4030ac05becb6",
+              "body": "order created"
+            }
+          ]
+        },
+        "3ec27e61afc93eb814b2fb229d39fe47": {
+          "log_records": 10,
+          "services_in_trace": [
+            "gateway",
+            "inventory",
+            "order",
+            "payment"
+          ],
+          "services_with_logs": [
+            "gateway",
+            "inventory",
+            "order",
+            "payment"
+          ],
+          "mismatched": [],
+          "sample": [
+            {
+              "service": "payment",
+              "span_id": "3346ee5e3888c080",
+              "body": "payment authorised"
+            },
+            {
+              "service": "payment",
+              "span_id": "3346ee5e3888c080",
+              "body": "request completed"
+            },
+            {
+              "service": "order",
+              "span_id": "869d42d3c69e9909",
+              "body": "order created"
+            }
+          ]
+        },
+        "6070bef841220848e0b42db761c51f9d": {
+          "log_records": 2,
+          "services_in_trace": [
+            "gateway",
+            "order"
+          ],
+          "services_with_logs": [
+            "gateway",
+            "order"
+          ],
+          "mismatched": [],
+          "sample": [
+            {
+              "service": "order",
+              "span_id": "d968acf39c14c8c1",
+              "body": "request completed"
+            },
+            {
+              "service": "gateway",
+              "span_id": "8800630c9544385f",
+              "body": "request completed"
+            }
+          ]
+        },
+        "cf620e35d1179682d280bff36cd9ae49": {
+          "log_records": 3,
+          "services_in_trace": [
+            "gateway",
+            "inventory"
+          ],
+          "services_with_logs": [
+            "gateway",
+            "inventory"
+          ],
+          "mismatched": [],
+          "sample": [
+            {
+              "service": "inventory",
+              "span_id": "6fd6112fa1e8f724",
+              "body": "request completed"
+            },
+            {
+              "service": "gateway",
+              "span_id": "23a7127c48c3228e",
+              "body": "order refused: insufficient stock"
+            },
+            {
+              "service": "gateway",
+              "span_id": "23a7127c48c3228e",
+              "body": "request completed"
+            }
+          ]
+        }
+      }
+    },
+    {
+      "id": "L4",
+      "signal": "logs",
+      "description": "Postgres logged the connections opened by the order and inventory pools during the smoke window (matched by application_name)",
+      "status": "pass",
+      "evidence": {
+        "records_in_window": 18,
+        "pool_connections": {
+          "order": [
+            "2026-10-12 04:49:05.264 UTC [122] shop@shopLOG:  connection authorized: user=shop database=shop application_name=order"
+          ],
+          "inventory": [
+            "2026-10-12 04:49:05.203 UTC [121] shop@shopLOG:  connection authorized: user=shop database=shop application_name=inventory"
+          ]
+        }
+      }
+    },
+    {
+      "id": "M1",
+      "signal": "metrics",
+      "description": "Every service exports request count, latency histogram (app and HTTP semconv) and process CPU/memory metrics",
+      "status": "pass",
+      "evidence": {
+        "missing": {
+          "gateway": [],
+          "order": [],
+          "payment": [],
+          "inventory": []
+        },
+        "metric_names": {
+          "gateway": [
+            "app.errors",
+            "app.request.duration",
+            "app.requests",
+            "container.cpu.usage.kernelmode",
+            "container.cpu.usage.total",
+            "container.cpu.usage.usermode",
+            "container.cpu.utilization",
+            "container.memory.file",
+            "container.memory.percent",
+            "container.memory.usage.limit",
+            "container.memory.usage.total",
+            "container.network.io.usage.rx_bytes",
+            "container.network.io.usage.rx_dropped",
+            "container.network.io.usage.tx_bytes",
+            "container.network.io.usage.tx_dropped",
+            "http.client.request.duration",
+            "http.server.active_requests",
+            "http.server.request.body.size",
+            "http.server.request.duration",
+            "http.server.response.body.size",
+            "process.cpu.time",
+            "process.cpu.utilization",
+            "process.memory.usage",
+            "process.memory.virtual",
+            "process.open_file_descriptor.count",
+            "process.runtime.cpython.gc_count",
+            "process.thread.count"
+          ],
+          "order": [
+            "app.db.pool.checked_out",
+            "app.db.pool.size",
+            "app.request.duration",
+            "app.requests",
+            "container.cpu.usage.kernelmode",
+            "container.cpu.usage.total",
+            "container.cpu.usage.usermode",
+            "container.cpu.utilization",
+            "container.memory.file",
+            "container.memory.percent",
+            "container.memory.usage.limit",
+            "container.memory.usage.total",
+            "container.network.io.usage.rx_bytes",
+            "container.network.io.usage.rx_dropped",
+            "container.network.io.usage.tx_bytes",
+            "container.network.io.usage.tx_dropped",
+            "db.client.connections.usage",
+            "http.client.request.duration",
+            "http.server.active_requests",
+            "http.server.request.body.size",
+            "http.server.request.duration",
+            "http.server.response.body.size",
+            "process.cpu.time",
+            "process.cpu.utilization",
+            "process.memory.usage",
+            "process.memory.virtual",
+            "process.open_file_descriptor.count",
+            "process.runtime.cpython.gc_count",
+            "process.thread.count"
+          ],
+          "payment": [
+            "app.request.duration",
+            "app.requests",
+            "container.cpu.usage.kernelmode",
+            "container.cpu.usage.total",
+            "container.cpu.usage.usermode",
+            "container.cpu.utilization",
+            "container.memory.file",
+            "container.memory.percent",
+            "container.memory.usage.limit",
+            "container.memory.usage.total",
+            "container.network.io.usage.rx_bytes",
+            "container.network.io.usage.rx_dropped",
+            "container.network.io.usage.tx_bytes",
+            "container.network.io.usage.tx_dropped",
+            "http.server.active_requests",
+            "http.server.request.body.size",
+            "http.server.request.duration",
+            "http.server.response.body.size",
+            "process.cpu.time",
+            "process.cpu.utilization",
+            "process.memory.usage",
+            "process.memory.virtual",
+            "process.open_file_descriptor.count",
+            "process.runtime.cpython.gc_count",
+            "process.thread.count"
+          ],
+          "inventory": [
+            "app.db.pool.checked_out",
+            "app.db.pool.size",
+            "app.request.duration",
+            "app.requests",
+            "container.cpu.usage.kernelmode",
+            "container.cpu.usage.total",
+            "container.cpu.usage.usermode",
+            "container.cpu.utilization",
+            "container.memory.file",
+            "container.memory.percent",
+            "container.memory.usage.limit",
+            "container.memory.usage.total",
+            "container.network.io.usage.rx_bytes",
+            "container.network.io.usage.rx_dropped",
+            "container.network.io.usage.tx_bytes",
+            "container.network.io.usage.tx_dropped",
+            "db.client.connections.usage",
+            "http.server.active_requests",
+            "http.server.request.body.size",
+            "http.server.request.duration",
+            "http.server.response.body.size",
+            "process.cpu.time",
+            "process.cpu.utilization",
+            "process.memory.usage",
+            "process.memory.virtual",
+            "process.open_file_descriptor.count",
+            "process.runtime.cpython.gc_count",
+            "process.thread.count"
+          ]
+        }
+      }
+    },
+    {
+      "id": "M2",
+      "signal": "metrics",
+      "description": "Request counters equal the requests the smoke client actually made, per service, route, method and status",
+      "status": "pass",
+      "evidence": {
+        "gateway": {
+          "expected": {
+            "/api/orders|POST|201": 5,
+            "/api/orders|POST|409": 1,
+            "/api/orders/{order_id}|GET|200": 1,
+            "/api/stock/{item_id}|GET|200": 5
+          },
+          "observed": {
+            "/api/orders|POST|201": 5,
+            "/api/orders|POST|409": 1,
+            "/api/orders/{order_id}|GET|200": 1,
+            "/api/stock/{item_id}|GET|200": 5
+          }
+        },
+        "order": {
+          "expected": {
+            "/orders|POST|201": 5,
+            "/orders/{order_id}|GET|200": 1
+          },
+          "observed": {
+            "/orders|POST|201": 5,
+            "/orders/{order_id}|GET|200": 1
+          }
+        },
+        "payment": {
+          "expected": {
+            "/charge|POST|200": 5
+          },
+          "observed": {
+            "/charge|POST|200": 5
+          }
+        },
+        "inventory": {
+          "expected": {
+            "/reserve|POST|200": 5,
+            "/stock/{item_id}|GET|200": 11
+          },
+          "observed": {
+            "/reserve|POST|200": 5,
+            "/stock/{item_id}|GET|200": 11
+          }
+        }
+      }
+    },
+    {
+      "id": "M3",
+      "signal": "metrics",
+      "description": "Latency histograms are consistent: per-series count equals the request counter, sums are positive, and the OTel HTTP semconv histogram agrees",
+      "status": "pass",
+      "evidence": {
+        "gateway": {
+          "app_histogram_count": 12,
+          "semconv_histogram_count": 12,
+          "mean_latency_ms": {
+            "GET|200|/api/stock/{item_id}": 9.788,
+            "POST|201|/api/orders": 27.077,
+            "GET|200|/api/orders/{order_id}": 3.862,
+            "POST|409|/api/orders": 2.955
+          }
+        },
+        "order": {
+          "app_histogram_count": 6,
+          "semconv_histogram_count": 6,
+          "mean_latency_ms": {
+            "POST|201|/orders": 20.908,
+            "GET|200|/orders/{order_id}": 1.993
+          }
+        },
+        "payment": {
+          "app_histogram_count": 5,
+          "semconv_histogram_count": 5,
+          "mean_latency_ms": {
+            "POST|200|/charge": 1.4
+          }
+        },
+        "inventory": {
+          "app_histogram_count": 16,
+          "semconv_histogram_count": 16,
+          "mean_latency_ms": {
+            "GET|200|/stock/{item_id}": 3.817,
+            "POST|200|/reserve": 9.498
+          }
+        }
+      }
+    },
+    {
+      "id": "M4",
+      "signal": "metrics",
+      "description": "Error counters reflect reality: gateway counted exactly the expected client rejection(s); no server errors anywhere",
+      "status": "pass",
+      "evidence": {
+        "expected_client_errors": 1,
+        "observed": {
+          "gateway": {
+            "client": 1
+          },
+          "order": {},
+          "payment": {},
+          "inventory": {}
+        }
+      }
+    },
+    {
+      "id": "M5",
+      "signal": "metrics",
+      "description": "Container resource metrics (docker_stats: CPU, memory, network) for every service and postgres during the smoke window",
+      "status": "pass",
+      "evidence": {
+        "gateway": [
+          "container.cpu.usage.kernelmode",
+          "container.cpu.usage.total",
+          "container.cpu.usage.usermode",
+          "container.cpu.utilization",
+          "container.memory.file",
+          "container.memory.percent",
+          "container.memory.usage.limit",
+          "container.memory.usage.total",
+          "container.network.io.usage.rx_bytes",
+          "container.network.io.usage.rx_dropped",
+          "container.network.io.usage.tx_bytes",
+          "container.network.io.usage.tx_dropped"
+        ],
+        "order": [
+          "container.cpu.usage.kernelmode",
+          "container.cpu.usage.total",
+          "container.cpu.usage.usermode",
+          "container.cpu.utilization",
+          "container.memory.file",
+          "container.memory.percent",
+          "container.memory.usage.limit",
+          "container.memory.usage.total",
+          "container.network.io.usage.rx_bytes",
+          "container.network.io.usage.rx_dropped",
+          "container.network.io.usage.tx_bytes",
+          "container.network.io.usage.tx_dropped"
+        ],
+        "payment": [
+          "container.cpu.usage.kernelmode",
+          "container.cpu.usage.total",
+          "container.cpu.usage.usermode",
+          "container.cpu.utilization",
+          "container.memory.file",
+          "container.memory.percent",
+          "container.memory.usage.limit",
+          "container.memory.usage.total",
+          "container.network.io.usage.rx_bytes",
+          "container.network.io.usage.rx_dropped",
+          "container.network.io.usage.tx_bytes",
+          "container.network.io.usage.tx_dropped"
+        ],
+        "inventory": [
+          "container.cpu.usage.kernelmode",
+          "container.cpu.usage.total",
+          "container.cpu.usage.usermode",
+          "container.cpu.utilization",
+          "container.memory.file",
+          "container.memory.percent",
+          "container.memory.usage.limit",
+          "container.memory.usage.total",
+          "container.network.io.usage.rx_bytes",
+          "container.network.io.usage.rx_dropped",
+          "container.network.io.usage.tx_bytes",
+          "container.network.io.usage.tx_dropped"
+        ],
+        "postgres": [
+          "container.blockio.io_service_bytes_recursive",
+          "container.cpu.usage.kernelmode",
+          "container.cpu.usage.total",
+          "container.cpu.usage.usermode",
+          "container.cpu.utilization",
+          "container.memory.file",
+          "container.memory.percent",
+          "container.memory.usage.limit",
+          "container.memory.usage.total",
+          "container.network.io.usage.rx_bytes",
+          "container.network.io.usage.rx_dropped",
+          "container.network.io.usage.tx_bytes",
+          "container.network.io.usage.tx_dropped"
+        ]
+      }
+    },
+    {
+      "id": "P2",
+      "signal": "all",
+      "description": "Nothing lost between collector and disk: records read back from the files equal the counts the file exporters report as sent",
+      "status": "pass",
+      "evidence": {
+        "read_back": {
+          "spans": 130,
+          "log_records": 203,
+          "metric_points": 885
+        },
+        "exporter_sent": {
+          "spans": 130.0,
+          "log_records": 203.0,
+          "metric_points": 885.0
+        }
+      }
+    },
+    {
+      "id": "C1",
+      "signal": "collector",
+      "description": "Collector self-metrics: OTLP, fluent_forward and docker_stats receivers accepted data, file exporters sent it, nothing was refused or failed",
+      "status": "pass",
+      "evidence": {
+        "otlp_accepted_spans": 130.0,
+        "otlp_refused_spans": 0.0,
+        "otlp_accepted_log_records": 73.0,
+        "otlp_refused_log_records": 0.0,
+        "otlp_accepted_metric_points": 511.0,
+        "otlp_refused_metric_points": 0.0,
+        "fluent_forward_accepted_log_records": 130.0,
+        "docker_stats_accepted_metric_points": 374.0,
+        "file_traces_sent_spans": 130.0,
+        "file_logs_sent_log_records": 203.0,
+        "file_metrics_sent_metric_points": 885.0,
+        "send_failed": 0,
+        "refused_total": 0.0
+      }
+    },
+    {
+      "id": "X1",
+      "signal": "consistency",
+      "description": "Timestamps are consistent: start <= end for all spans, smoke spans fall inside the client's request window (host/VM slack 500 ms), children nest in parents (1 ms slack), metric points have start <= time",
+      "status": "pass",
+      "evidence": {
+        "bad_order": [],
+        "outside_window": [],
+        "nesting_violations": [],
+        "metric_time_violations": [],
+        "client_vs_root_span_offsets": [
+          {
+            "trace_id": "c6126f347975f01743c5ba13ad56f554",
+            "client_send_to_root_start_ms": 23.569,
+            "root_end_to_client_receive_ms": -15.453
+          },
+          {
+            "trace_id": "be36e2c7fd738af19b7d17142d56e9cb",
+            "client_send_to_root_start_ms": 17.747,
+            "root_end_to_client_receive_ms": -16.354
+          },
+          {
+            "trace_id": "00ea86dc23381402d0b7b4b7f7c37d62",
+            "client_send_to_root_start_ms": 17.511,
+            "root_end_to_client_receive_ms": -16.533
+          },
+          {
+            "trace_id": "339b1619dc61876e55a26c04f71f2e9e",
+            "client_send_to_root_start_ms": 17.882,
+            "root_end_to_client_receive_ms": -16.404
+          },
+          {
+            "trace_id": "488b1d6e8a74a2fd5fa8711e05a368c3",
+            "client_send_to_root_start_ms": 17.501,
+            "root_end_to_client_receive_ms": -16.405
+          },
+          {
+            "trace_id": "63ac0804390fceb01f8563478f195843",
+            "client_send_to_root_start_ms": 17.538,
+            "root_end_to_client_receive_ms": -16.224
+          },
+          {
+            "trace_id": "05eabfd9484fdf13866e2e0502f52bf3",
+            "client_send_to_root_start_ms": 17.657,
+            "root_end_to_client_receive_ms": -16.352
+          },
+          {
+            "trace_id": "9c244ff05cb2a9596fe528162c9daf43",
+            "client_send_to_root_start_ms": 17.585,
+            "root_end_to_client_receive_ms": -16.249
+          },
+          {
+            "trace_id": "85e0399956df87b29a725e7284c72ab6",
+            "client_send_to_root_start_ms": 17.522,
+            "root_end_to_client_receive_ms": -16.227
+          },
+          {
+            "trace_id": "3ec27e61afc93eb814b2fb229d39fe47",
+            "client_send_to_root_start_ms": 17.496,
+            "root_end_to_client_receive_ms": -16.262
+          },
+          {
+            "trace_id": "6070bef841220848e0b42db761c51f9d",
+            "client_send_to_root_start_ms": 17.5,
+            "root_end_to_client_receive_ms": -16.389
+          },
+          {
+            "trace_id": "cf620e35d1179682d280bff36cd9ae49",
+            "client_send_to_root_start_ms": 17.467,
+            "root_end_to_client_receive_ms": -16.463
+          }
+        ]
+      }
+    },
+    {
+      "id": "X2",
+      "signal": "consistency",
+      "description": "Service identity is the same across signals: each service reports one service.instance.id, identical in its traces, logs and metrics",
+      "status": "pass",
+      "evidence": {
+        "gateway": {
+          "traces": [
+            "fb7c7e48040c"
+          ],
+          "logs": [
+            "fb7c7e48040c"
+          ],
+          "metrics": [
+            "fb7c7e48040c"
+          ]
+        },
+        "order": {
+          "traces": [
+            "25eea38166bf"
+          ],
+          "logs": [
+            "25eea38166bf"
+          ],
+          "metrics": [
+            "25eea38166bf"
+          ]
+        },
+        "payment": {
+          "traces": [
+            "8aef0632256b"
+          ],
+          "logs": [
+            "8aef0632256b"
+          ],
+          "metrics": [
+            "8aef0632256b"
+          ]
+        },
+        "inventory": {
+          "traces": [
+            "036ad6f111a0"
+          ],
+          "logs": [
+            "036ad6f111a0"
+          ],
+          "metrics": [
+            "036ad6f111a0"
+          ]
+        }
+      }
+    },
+    {
+      "id": "E1",
+      "signal": "all",
+      "description": "No unexpected service errors: no ERROR-status spans, no 5xx server spans, no ERROR logs; every WARN log belongs to the deliberately rejected request",
+      "status": "pass",
+      "evidence": {
+        "error_spans": [],
+        "server_5xx": [],
+        "error_logs": [],
+        "warn_logs": [
+          {
+            "service": "gateway",
+            "trace_id": "cf620e35d1179682d280bff36cd9ae49",
+            "body": "order refused: insufficient stock"
+          }
+        ],
+        "expected_error_trace_ids": [
+          "cf620e35d1179682d280bff36cd9ae49"
+        ]
+      }
+    }
+  ]
+}
