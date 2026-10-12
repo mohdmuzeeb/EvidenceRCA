@@ -1,0 +1,26 @@
+[project]
+name = "evidencerca"
+version = "0.1.0"
+description = "EvidenceRCA research prototype: testbed, telemetry capture and (later) verified, abstaining RCA"
+requires-python = ">=3.12,<3.13"
+dependencies = [
+    "fastapi",
+    "uvicorn",
+    "httpx",
+    "sqlalchemy>=2.0,<2.1",  # opentelemetry-instrumentation-sqlalchemy 0.66b1 supports < 2.1
+    "psycopg[binary]",
+    "opentelemetry-api",
+    "opentelemetry-sdk",
+    "opentelemetry-exporter-otlp-proto-http",
+    "opentelemetry-instrumentation-fastapi",
+    "opentelemetry-instrumentation-httpx",
+    "opentelemetry-instrumentation-sqlalchemy",
+    "opentelemetry-instrumentation-system-metrics",
+    "opentelemetry-instrumentation-logging>=0.66b1",
+]
+
+[dependency-groups]
+dev = ["pytest"]
+
+[tool.uv]
+package = false

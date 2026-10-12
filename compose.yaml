@@ -1,0 +1,133 @@
+# EvidenceRCA testbed (Phase 1). Run via scripts/run_phase1.sh; see README.
+name: evidencerca
+
+x-service: &service
+  image: evidencerca-testbed:phase1
+  build:
+    context: .
+    dockerfile: testbed/Dockerfile
+  restart: "no"
+  mem_limit: 192m
+  cpus: 1.0
+  depends_on:
+    otel-collector: {condition: service_started}
+  healthcheck:
+    test: ["CMD", "python", "-c", "import urllib.request; urllib.request.urlopen('http://localhost:8000/health', timeout=2)"]
+    interval: 3s
+    timeout: 3s
+    retries: 20
+
+x-otel-env: &otel-env
+  OTEL_EXPORTER_OTLP_ENDPOINT: http://otel-collector:4318
+  OTEL_EXPORTER_OTLP_PROTOCOL: http/protobuf
+  OTEL_METRIC_EXPORT_INTERVAL: "5000"
+  OTEL_BSP_SCHEDULE_DELAY: "1000"
+  OTEL_BLRP_SCHEDULE_DELAY: "1000"
+  OTEL_SEMCONV_STABILITY_OPT_IN: http,database
+  DOWNSTREAM_TIMEOUT_S: "2.0"
+  DOWNSTREAM_RETRIES: "1"
+
+x-db-env: &db-env
+  DATABASE_URL: postgresql+psycopg://shop:${POSTGRES_PASSWORD:?run scripts/run_phase1.sh or create .env}@postgres:5432/shop
+  DB_POOL_SIZE: "5"
+  DB_POOL_TIMEOUT_S: "2.0"
+
+services:
+  gateway:
+    <<: *service
+    command: ["uvicorn", "app.gateway:app", "--host", "0.0.0.0", "--port", "8000", "--no-access-log"]
+    environment:
+      <<: *otel-env
+      ORDER_URL: http://order:8000
+      INVENTORY_URL: http://inventory:8000
+    ports: ["127.0.0.1:8080:8000"]
+    depends_on:
+      otel-collector: {condition: service_started}
+      order: {condition: service_healthy}
+      inventory: {condition: service_healthy}
+
+  order:
+    <<: *service
+    command: ["uvicorn", "app.order:app", "--host", "0.0.0.0", "--port", "8000", "--no-access-log"]
+    environment:
+      <<: [*otel-env, *db-env]
+      INVENTORY_URL: http://inventory:8000
+      PAYMENT_URL: http://payment:8000
+    depends_on:
+      otel-collector: {condition: service_started}
+      postgres: {condition: service_healthy}
+      inventory: {condition: service_healthy}
+      payment: {condition: service_healthy}
+
+  payment:
+    <<: *service
+    command: ["uvicorn", "app.payment:app", "--host", "0.0.0.0", "--port", "8000", "--no-access-log"]
+    environment:
+      <<: *otel-env
+
+  inventory:
+    <<: *service
+    command: ["uvicorn", "app.inventory:app", "--host", "0.0.0.0", "--port", "8000", "--no-access-log"]
+    environment:
+      <<: [*otel-env, *db-env]
+    depends_on:
+      otel-collector: {condition: service_started}
+      postgres: {condition: service_healthy}
+
+  postgres:
+    image: postgres:16.15-alpine3.24@sha256:721873c34ceb9f8d8fc265984940dc982404c105f19ad51be9fdc5970a6080ea
+    restart: "no"
+    mem_limit: 256m
+    cpus: 1.0
+    environment:
+      POSTGRES_DB: shop
+      POSTGRES_USER: shop
+      POSTGRES_PASSWORD: ${POSTGRES_PASSWORD:?run scripts/run_phase1.sh or create .env}
+    command:
+      - postgres
+      - -c
+      - shared_buffers=32MB
+      - -c
+      - max_connections=40
+      - -c
+      - log_connections=on
+      - -c
+      - log_disconnections=on
+      - -c
+      - log_min_duration_statement=250
+      - -c
+      - log_line_prefix=%m [%p] %q%u@%d
+    volumes:
+      - ./testbed/postgres/init.sql:/docker-entrypoint-initdb.d/init.sql:ro
+    tmpfs:
+      - /var/lib/postgresql/data:size=128m
+    healthcheck:
+      test: ["CMD-SHELL", "pg_isready -U shop -d shop"]
+      interval: 2s
+      timeout: 3s
+      retries: 30
+    logging:
+      driver: fluentd
+      options:
+        fluentd-address: 127.0.0.1:24224
+        fluentd-async: "true"
+        tag: postgres
+    depends_on:
+      otel-collector: {condition: service_started}
+
+  otel-collector:
+    image: otel/opentelemetry-collector-contrib:0.162.0@sha256:39923a8e431bd1f57be82411999d389fcfe40857492e4365456d97a4c1f74be6
+    restart: "no"
+    # root is needed to read the VM's docker.sock (docker_stats) and to write the bind mount.
+    user: "0:0"
+    mem_limit: 224m
+    cpus: 1.0
+    command: ["--config=/etc/otelcol/config.yaml"]
+    volumes:
+      - ./testbed/otel-collector.yaml:/etc/otelcol/config.yaml:ro
+      - /var/run/docker.sock:/var/run/docker.sock:ro
+      - ${TELEMETRY_DIR:-./runs/scratch/telemetry}:/telemetry
+    ports:
+      - "127.0.0.1:8888:8888"     # collector self-metrics (Prometheus)
+      - "127.0.0.1:13133:13133"   # health_check
+      - "127.0.0.1:24224:24224"   # fluentd forward, used by the postgres log driver

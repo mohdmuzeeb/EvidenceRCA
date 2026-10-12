@@ -1,0 +1,74 @@
+# Collector: OTLP from the services, container metrics from Docker, Postgres stdout via fluentd.
+# Every signal is written as OTLP-JSON lines to /telemetry (bind-mounted from the run directory).
+receivers:
+  otlp:
+    protocols:
+      http:
+        endpoint: 0.0.0.0:4318
+  docker_stats:
+    endpoint: unix:///var/run/docker.sock
+    collection_interval: 5s
+    timeout: 5s
+    excluded_images: ["otel/opentelemetry-collector-contrib*"]
+    container_labels_to_metric_labels:
+      com.docker.compose.service: compose.service
+  fluent_forward:
+    endpoint: 0.0.0.0:24224
+
+processors:
+  memory_limiter:
+    check_interval: 1s
+    limit_mib: 160
+    spike_limit_mib: 40
+  batch:
+    timeout: 1s
+  # fluentd records carry container metadata but no OTel service identity.
+  resource/postgres:
+    attributes:
+      - {key: service.name, value: postgres, action: upsert}
+      - {key: service.namespace, value: evidencerca-testbed, action: upsert}
+      - {key: telemetry.source, value: docker-fluentd, action: upsert}
+
+exporters:
+  file/traces:
+    path: /telemetry/traces.jsonl
+    format: json
+  file/metrics:
+    path: /telemetry/metrics.jsonl
+    format: json
+  file/logs:
+    path: /telemetry/logs.jsonl
+    format: json
+
+extensions:
+  health_check:
+    endpoint: 0.0.0.0:13133
+
+service:
+  extensions: [health_check]
+  telemetry:
+    metrics:
+      level: normal
+      readers:
+        - pull:
+            exporter:
+              prometheus:
+                host: 0.0.0.0
+                port: 8888
+  pipelines:
+    traces:
+      receivers: [otlp]
+      processors: [memory_limiter, batch]
+      exporters: [file/traces]
+    metrics:
+      receivers: [otlp, docker_stats]
+      processors: [memory_limiter, batch]
+      exporters: [file/metrics]
+    logs/app:
+      receivers: [otlp]
+      processors: [memory_limiter, batch]
+      exporters: [file/logs]
+    logs/postgres:
+      receivers: [fluent_forward]
+      processors: [memory_limiter, resource/postgres, batch]
+      exporters: [file/logs]

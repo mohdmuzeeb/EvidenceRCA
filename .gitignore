@@ -1,0 +1,9 @@
+.DS_Store
+.venv/
+__pycache__/
+*.pyc
+.env
+# third-party papers stay local (copyright); listed in docs/literature_matrix.md
+Literature/
+# raw telemetry is large; summaries/reports in results/ are committed
+runs/
