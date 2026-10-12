@@ -122,7 +122,7 @@ def main() -> int:
         "captured_at": datetime.now(timezone.utc).isoformat(timespec="seconds"),
         "host": host(),
         "toolchain": toolchain(),
-        "git": {"commit": sh("git", "rev-parse", "HEAD"), "dirty": bool(sh("git", "status", "--porcelain"))},
+        "git": {"commit": sh("git", "rev-parse", "HEAD"), "dirty_tracked_files": bool(sh("git", "status", "--porcelain", "--untracked-files=no"))},
         "images": images(compose_cfg),
         "build_inputs_sha256": build_inputs(),
         "service_limits": limits,
