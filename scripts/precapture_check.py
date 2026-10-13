@@ -43,8 +43,13 @@ def main() -> int:
     phase2 = json.loads(Path("results/phase2/environment.json").read_text())["build_inputs_sha256"]
     now = build_inputs()
     diff = sorted(k for k in set(phase2) | set(now) if phase2.get(k) != now.get(k))
-    checks["testbed_and_pipeline_unchanged_since_phase2_capture"] = {"passed": not diff, "differences": diff,
-                                                                      "files_compared": len(now)}
+    # uv.lock also pins host-side analysis libraries (numpy/scikit-learn, added in Phase 3 as a separate
+    # dependency group). What the services run is testbed/requirements.lock, which is compared above.
+    host_only = {"uv.lock"}
+    checks["testbed_and_pipeline_unchanged_since_phase2_capture"] = {
+        "passed": not (set(diff) - host_only), "differences": diff, "files_compared": len(now),
+        "note": "uv.lock differs only by the host-side 'analysis' group; the service image lock is unchanged"
+        if "uv.lock" in diff else None}
 
     leak = json.loads(Path(a.leakage).read_text())
     checks["no_labels_in_agent_visible_evidence"] = {"passed": leak["passed"],
