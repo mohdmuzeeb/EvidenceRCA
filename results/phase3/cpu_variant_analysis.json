@@ -1,0 +1,254 @@
+{
+ "schema": "evidencerca.phase3.cpu_variant/v1",
+ "split": "dev (seed 11) only",
+ "cases": [
+  {
+   "case_id": "210cdb38-cfe5-4c6a-aa02-c90efa2154be",
+   "target": "inventory",
+   "variant": "standard",
+   "params": {
+    "burner_processes": 2,
+    "container_cpu_cap": 1.0
+   },
+   "fault_occurred": true,
+   "recovered": true,
+   "observable_impact": false,
+   "p95_ms": {
+    "baseline": 37.128,
+    "injection": 71.827
+   },
+   "p50_ms": {
+    "baseline": 14.14,
+    "injection": 21.141
+   },
+   "unexpected_rate": {
+    "baseline": 0.0,
+    "injection": 0.0
+   },
+   "agent_alert_triggered": false,
+   "e0_top1": null,
+   "e0_fault_type": null,
+   "cgroup_baseline": {
+    "target_cores_median": 0.109,
+    "throttled_ratio_median": 0.0,
+    "all_containers_cores_median": 0.425,
+    "samples": 18
+   },
+   "cgroup_injection": {
+    "target_cores_median": 0.999,
+    "throttled_ratio_median": 1.0,
+    "all_containers_cores_median": 1.248,
+    "samples": 21
+   },
+   "quota_restored": null
+  },
+  {
+   "case_id": "890a1afe-1f92-4e51-8d82-5ac5fcd78ce7",
+   "target": "order",
+   "variant": "standard",
+   "params": {
+    "burner_processes": 2,
+    "container_cpu_cap": 1.0
+   },
+   "fault_occurred": true,
+   "recovered": true,
+   "observable_impact": false,
+   "p95_ms": {
+    "baseline": 60.923,
+    "injection": 89.925
+   },
+   "p50_ms": {
+    "baseline": 16.727,
+    "injection": 13.776
+   },
+   "unexpected_rate": {
+    "baseline": 0.0,
+    "injection": 0.0
+   },
+   "agent_alert_triggered": false,
+   "e0_top1": null,
+   "e0_fault_type": null,
+   "cgroup_baseline": {
+    "target_cores_median": 0.112,
+    "throttled_ratio_median": 0.0,
+    "all_containers_cores_median": 0.473,
+    "samples": 18
+   },
+   "cgroup_injection": {
+    "target_cores_median": 1.0,
+    "throttled_ratio_median": 1.0,
+    "all_containers_cores_median": 1.275,
+    "samples": 21
+   },
+   "quota_restored": null
+  },
+  {
+   "case_id": "fff9c2ab-2eae-4166-b3da-a5498d39b419",
+   "target": "payment",
+   "variant": "standard",
+   "params": {
+    "burner_processes": 2,
+    "container_cpu_cap": 1.0
+   },
+   "fault_occurred": true,
+   "recovered": true,
+   "observable_impact": false,
+   "p95_ms": {
+    "baseline": 41.826,
+    "injection": 64.882
+   },
+   "p50_ms": {
+    "baseline": 15.985,
+    "injection": 10.809
+   },
+   "unexpected_rate": {
+    "baseline": 0.0,
+    "injection": 0.0
+   },
+   "agent_alert_triggered": false,
+   "e0_top1": null,
+   "e0_fault_type": null,
+   "cgroup_baseline": {
+    "target_cores_median": 0.087,
+    "throttled_ratio_median": 0.0,
+    "all_containers_cores_median": 0.455,
+    "samples": 18
+   },
+   "cgroup_injection": {
+    "target_cores_median": 1.0,
+    "throttled_ratio_median": 1.0,
+    "all_containers_cores_median": 1.287,
+    "samples": 22
+   },
+   "quota_restored": null
+  },
+  {
+   "case_id": "0114724b-0b0b-498e-905d-e5a8ab072db2",
+   "target": "order",
+   "variant": "strong",
+   "params": {
+    "variant": "strong",
+    "burner_processes": 2,
+    "container_cpu_cap": 1.0,
+    "cpu_cap_during_injection": 0.2
+   },
+   "fault_occurred": true,
+   "recovered": true,
+   "observable_impact": true,
+   "p95_ms": {
+    "baseline": 41.06,
+    "injection": 4141.14
+   },
+   "p50_ms": {
+    "baseline": 14.901,
+    "injection": 4117.997
+   },
+   "unexpected_rate": {
+    "baseline": 0.0,
+    "injection": 0.5453
+   },
+   "agent_alert_triggered": true,
+   "e0_top1": "order",
+   "e0_fault_type": "db_pool_exhaustion",
+   "cgroup_baseline": {
+    "target_cores_median": 0.104,
+    "throttled_ratio_median": 0.022,
+    "all_containers_cores_median": 0.42,
+    "samples": 18
+   },
+   "cgroup_injection": {
+    "target_cores_median": 0.2,
+    "throttled_ratio_median": 1.0,
+    "all_containers_cores_median": 0.557,
+    "samples": 21
+   },
+   "quota_restored": true
+  },
+  {
+   "case_id": "787043b1-7a57-40b1-bcc4-cae76b8edc74",
+   "target": "payment",
+   "variant": "strong",
+   "params": {
+    "variant": "strong",
+    "burner_processes": 2,
+    "container_cpu_cap": 1.0,
+    "cpu_cap_during_injection": 0.2
+   },
+   "fault_occurred": true,
+   "recovered": true,
+   "observable_impact": true,
+   "p95_ms": {
+    "baseline": 36.058,
+    "injection": 268.425
+   },
+   "p50_ms": {
+    "baseline": 14.719,
+    "injection": 18.888
+   },
+   "unexpected_rate": {
+    "baseline": 0.0,
+    "injection": 0.0
+   },
+   "agent_alert_triggered": true,
+   "e0_top1": "payment",
+   "e0_fault_type": "processing_latency",
+   "cgroup_baseline": {
+    "target_cores_median": 0.081,
+    "throttled_ratio_median": 0.0,
+    "all_containers_cores_median": 0.417,
+    "samples": 19
+   },
+   "cgroup_injection": {
+    "target_cores_median": 0.2,
+    "throttled_ratio_median": 1.0,
+    "all_containers_cores_median": 0.573,
+    "samples": 21
+   },
+   "quota_restored": true
+  },
+  {
+   "case_id": "49961fbe-ae9f-4e69-b4fc-d4e1dc34cb4d",
+   "target": "inventory",
+   "variant": "strong",
+   "params": {
+    "variant": "strong",
+    "burner_processes": 2,
+    "container_cpu_cap": 1.0,
+    "cpu_cap_during_injection": 0.2
+   },
+   "fault_occurred": true,
+   "recovered": true,
+   "observable_impact": true,
+   "p95_ms": {
+    "baseline": 38.239,
+    "injection": 4160.294
+   },
+   "p50_ms": {
+    "baseline": 15.069,
+    "injection": 4121.741
+   },
+   "unexpected_rate": {
+    "baseline": 0.0,
+    "injection": 0.8505
+   },
+   "agent_alert_triggered": true,
+   "e0_top1": "postgres",
+   "e0_fault_type": "cascading_failure",
+   "cgroup_baseline": {
+    "target_cores_median": 0.119,
+    "throttled_ratio_median": 0.0,
+    "all_containers_cores_median": 0.449,
+    "samples": 18
+   },
+   "cgroup_injection": {
+    "target_cores_median": 0.201,
+    "throttled_ratio_median": 1.0,
+    "all_containers_cores_median": 0.526,
+    "samples": 21
+   },
+   "quota_restored": true
+  }
+ ],
+ "host_thermal_state_after_runs": "Note: No thermal warning level has been recorded\nNote: No performance warning level has been recorded\nNote: No CPU power status has been recorded",
+ "host_safety_argument": "The strong variant lowers the target container's own CFS quota to 0.2 CPU; a container can then consume at most 0.2 cores, so host CPU load from the fault is lower than the standard variant's (bounded by 1.0). See all_containers_cores_median per window."
+}

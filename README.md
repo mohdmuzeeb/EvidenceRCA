@@ -2,14 +2,15 @@
 
 EvidenceRCA is the research prototype for ICICYTA 2026 Paper 3: an evidence-verification and abstention layer for root-cause analysis (RCA) in microservices, evaluated with a matched-perturbation protocol. The plan, literature and protocol are in [`docs/`](docs/).
 
-Work proceeds in approval-gated phases. Phases 0–2 are done (design; testbed and telemetry validation; workload, fault injection, ground truth and leakage controls). **No RCA, verifier or LLM code exists yet.**
+Work proceeds in approval-gated phases. Phases 0–3 are done (design; testbed and telemetry validation; workload, fault injection, ground truth and leakage controls; deterministic baselines, EvidenceRCA without an LLM, the evidence verifier and abstention, evaluated on dev data only). **No LLM integration exists (Phase 4).**
 
 | Phase | Status | Report |
 |---|---|---|
 | 0: research plan, literature matrix, experiment protocol | done | [`docs/research_plan.md`](docs/research_plan.md) |
 | 1: microservice testbed and telemetry validation | done | [`docs/phase1_validation.md`](docs/phase1_validation.md) |
 | 2: workload, fault injection, ground truth, leakage prevention, pilot | done | [`docs/phase2_validation.md`](docs/phase2_validation.md), [`docs/fault_catalog.md`](docs/fault_catalog.md) |
-| 3+: evidence store, baselines, verifier, RCA, evaluation | not started (needs approval) | — |
+| 3: baselines B1–B3, EvidenceRCA (no LLM), verifier V0–V6, abstention, dev evaluation | done | [`docs/phase3_validation.md`](docs/phase3_validation.md), [`docs/baseline_implementation.md`](docs/baseline_implementation.md), [`docs/evidence_verifier_spec.md`](docs/evidence_verifier_spec.md) |
+| 4+: LLM provider, B4/E1, calibration/test capture, evaluation | not started (needs approval) | — |
 
 ## Repository layout
 
@@ -37,6 +38,13 @@ harness/                      Phase 2 capture side (may read ground truth)
   leakage.py, reevaluate.py   label-leakage checks; recompute verdicts from recorded files
 evidencerca/                  agent side (never reads ground truth)
   rca_input.py                the only sanctioned case reader: allowlisted, symlink-safe, hash-verified
+  evidence.py                 normalized evidence records (content ids) and the View object
+  core.py, signals.py         alert detector + windows, observed graph; per-service signals and onsets
+  methods/                    B1, B2 (MicroRCA-inspired), B3 (TraceRCA-inspired), EvidenceRCA E0 (+ A-graph)
+  verifier.py                 V0-V6, independent of the pipeline
+  abstention.py               sufficiency, modality agreement, margin, verified-claim coverage; A-margin
+evaluation/                   evaluation side (may read ground truth): views (18 per case), dev runs, verifier
+                              mutation tests, CPU-variant analysis, audit sheet
 scripts/run_phase2.py         pilot / mechanism / load captures; leakage_check.py; summarize_phase2.py
 tests/                        validator self-test, leakage tests
 results/phase1/, phase2/      committed reports and evidence
@@ -138,6 +146,22 @@ uv run pytest -q                                 # all tests (validator self-tes
 - Non-dev seeds (calibration 23/37, test 41/53/67) are refused unless explicitly allowed; the full matrix is not run in Phase 2.
 - Raw bundles in `data/cases/` are sealed read-only. To delete data, run `chmod -R u+w data` first.
 - Phase 1 regression on the Phase 2 testbed: `RUN_ID=x RESULTS=results/phase2/phase1_regression ./scripts/run_phase1.sh`.
+
+## Phase 3: baselines, EvidenceRCA, verifier, abstention (dev seed 11 only)
+
+```bash
+colima start && uv sync --frozen
+caffeinate -dims uv run python -m scripts.run_phase2 matrix --seed 11      # dev matrix captures (skips valid ones)
+caffeinate -dims uv run python -m scripts.run_phase2 cpu-variant           # strong cpu_pressure dev cases
+colima stop                                                                # never analyse while capturing
+uv run python -m evaluation.run_dev               # -> results/phase3/dev_results.json, abstention_dev_results.json
+uv run python -m evaluation.verifier_tests        # -> results/phase3/verifier_tests.json (mutations by construction)
+uv run python -m evaluation.cpu_variant_analysis  # -> results/phase3/cpu_variant_analysis.json
+uv run pytest -q                                  # all tests (Phase 1-3)
+```
+
+- Methods only see a `View` (opaque `view_id`, records, unavailable modalities, time tolerance). The view builder (evaluation side) may read ground truth for the CS/RL/CF perturbations; its transform log never enters a View.
+- Calibration/test seeds remain refused by default. tau (abstention) is not calibrated in Phase 3.
 
 ## Constraints and integrity rules
 

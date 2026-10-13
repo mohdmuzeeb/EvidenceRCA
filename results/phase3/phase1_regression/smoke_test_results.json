@@ -1,0 +1,480 @@
+{
+  "schema": "evidencerca.phase1.smoke_test/v1",
+  "run_id": "phase3-regression-phase1",
+  "base_url": "http://127.0.0.1:8080",
+  "started_at": "2026-10-13T11:45:33.203500+00:00",
+  "finished_at": "2026-10-13T11:45:33.498946+00:00",
+  "request_count": 12,
+  "expected_error_requests": 1,
+  "requests": [
+    {
+      "label": "stock-before:sku-001",
+      "method": "GET",
+      "path": "/api/stock/sku-001",
+      "route": "/api/stock/{item_id}",
+      "request_body": null,
+      "status_code": 200,
+      "expected_status": 200,
+      "expected_error": false,
+      "ok": true,
+      "trace_id": "46b162d9e083a5d7de4345b548ab92e7",
+      "latency_ms": 93.265,
+      "sent_unix_nano": 1791891933250044000,
+      "received_unix_nano": 1791891933343309000,
+      "response": {
+        "item_id": "sku-001",
+        "stock": 1000000,
+        "unit_price_cents": 1250
+      }
+    },
+    {
+      "label": "stock-before:sku-002",
+      "method": "GET",
+      "path": "/api/stock/sku-002",
+      "route": "/api/stock/{item_id}",
+      "request_body": null,
+      "status_code": 200,
+      "expected_status": 200,
+      "expected_error": false,
+      "ok": true,
+      "trace_id": "63fbb824b732a684fe27241561a80d13",
+      "latency_ms": 5.173,
+      "sent_unix_nano": 1791891933343347000,
+      "received_unix_nano": 1791891933348520000,
+      "response": {
+        "item_id": "sku-002",
+        "stock": 1000000,
+        "unit_price_cents": 4999
+      }
+    },
+    {
+      "label": "stock-before:sku-003",
+      "method": "GET",
+      "path": "/api/stock/sku-003",
+      "route": "/api/stock/{item_id}",
+      "request_body": null,
+      "status_code": 200,
+      "expected_status": 200,
+      "expected_error": false,
+      "ok": true,
+      "trace_id": "832b186e26b68e597ca5c50478394e33",
+      "latency_ms": 3.695,
+      "sent_unix_nano": 1791891933348543000,
+      "received_unix_nano": 1791891933352238000,
+      "response": {
+        "item_id": "sku-003",
+        "stock": 1000000,
+        "unit_price_cents": 799
+      }
+    },
+    {
+      "label": "stock-before:sku-004",
+      "method": "GET",
+      "path": "/api/stock/sku-004",
+      "route": "/api/stock/{item_id}",
+      "request_body": null,
+      "status_code": 200,
+      "expected_status": 200,
+      "expected_error": false,
+      "ok": true,
+      "trace_id": "d9e9170166e209e9b2a318bf69a807b8",
+      "latency_ms": 4.022,
+      "sent_unix_nano": 1791891933352255000,
+      "received_unix_nano": 1791891933356277000,
+      "response": {
+        "item_id": "sku-004",
+        "stock": 50,
+        "unit_price_cents": 2500
+      }
+    },
+    {
+      "label": "stock-before:sku-005",
+      "method": "GET",
+      "path": "/api/stock/sku-005",
+      "route": "/api/stock/{item_id}",
+      "request_body": null,
+      "status_code": 200,
+      "expected_status": 200,
+      "expected_error": false,
+      "ok": true,
+      "trace_id": "586f28664ddcb9985de4dff0fcac4ae5",
+      "latency_ms": 4.943,
+      "sent_unix_nano": 1791891933356294000,
+      "received_unix_nano": 1791891933361237000,
+      "response": {
+        "item_id": "sku-005",
+        "stock": 1000000,
+        "unit_price_cents": 150
+      }
+    },
+    {
+      "label": "order:sku-001x2",
+      "method": "POST",
+      "path": "/api/orders",
+      "route": "/api/orders",
+      "request_body": {
+        "item_id": "sku-001",
+        "quantity": 2
+      },
+      "status_code": 201,
+      "expected_status": 201,
+      "expected_error": false,
+      "ok": true,
+      "trace_id": "69999c9b3ebd1384a7f1371d46d84806",
+      "latency_ms": 66.224,
+      "sent_unix_nano": 1791891933361263000,
+      "received_unix_nano": 1791891933427487000,
+      "response": {
+        "order_id": "1b376403-8c00-4dcd-8cc2-36e41a4e06fc",
+        "status": "confirmed",
+        "amount_cents": 2500,
+        "payment_id": "a9d2cada-483a-4097-81fe-f4e3f9391904"
+      }
+    },
+    {
+      "label": "order:sku-002x1",
+      "method": "POST",
+      "path": "/api/orders",
+      "route": "/api/orders",
+      "request_body": {
+        "item_id": "sku-002",
+        "quantity": 1
+      },
+      "status_code": 201,
+      "expected_status": 201,
+      "expected_error": false,
+      "ok": true,
+      "trace_id": "2204e7dbcb588282db45a17c39e71d6d",
+      "latency_ms": 18.147,
+      "sent_unix_nano": 1791891933427509000,
+      "received_unix_nano": 1791891933445656000,
+      "response": {
+        "order_id": "dc7df1bf-d0a1-4501-9e55-ce99a245fbea",
+        "status": "confirmed",
+        "amount_cents": 4999,
+        "payment_id": "87e9fd86-f14a-4071-9ba4-73b091c86060"
+      }
+    },
+    {
+      "label": "order:sku-003x3",
+      "method": "POST",
+      "path": "/api/orders",
+      "route": "/api/orders",
+      "request_body": {
+        "item_id": "sku-003",
+        "quantity": 3
+      },
+      "status_code": 201,
+      "expected_status": 201,
+      "expected_error": false,
+      "ok": true,
+      "trace_id": "de2fa0eefb643e2c78549574a9bcb156",
+      "latency_ms": 15.273,
+      "sent_unix_nano": 1791891933445676000,
+      "received_unix_nano": 1791891933460949000,
+      "response": {
+        "order_id": "bc4dc929-366d-468d-b4b5-8d41dd02b684",
+        "status": "confirmed",
+        "amount_cents": 2397,
+        "payment_id": "c784a6e5-5ec6-4683-8365-239f80d9752c"
+      }
+    },
+    {
+      "label": "order:sku-005x10",
+      "method": "POST",
+      "path": "/api/orders",
+      "route": "/api/orders",
+      "request_body": {
+        "item_id": "sku-005",
+        "quantity": 10
+      },
+      "status_code": 201,
+      "expected_status": 201,
+      "expected_error": false,
+      "ok": true,
+      "trace_id": "54275ba1df87ab16c8e7524a2fc313ff",
+      "latency_ms": 14.547,
+      "sent_unix_nano": 1791891933460968000,
+      "received_unix_nano": 1791891933475515000,
+      "response": {
+        "order_id": "997def05-e0aa-4d6e-9218-10c008150d0f",
+        "status": "confirmed",
+        "amount_cents": 1500,
+        "payment_id": "869e7211-7571-4cd1-bad3-f7a38ca43939"
+      }
+    },
+    {
+      "label": "order:sku-001x1",
+      "method": "POST",
+      "path": "/api/orders",
+      "route": "/api/orders",
+      "request_body": {
+        "item_id": "sku-001",
+        "quantity": 1
+      },
+      "status_code": 201,
+      "expected_status": 201,
+      "expected_error": false,
+      "ok": true,
+      "trace_id": "165339449e06dea99be3cb596d9bad4f",
+      "latency_ms": 13.279,
+      "sent_unix_nano": 1791891933475533000,
+      "received_unix_nano": 1791891933488812000,
+      "response": {
+        "order_id": "af31e315-2adf-4178-aa65-00d6893f84f5",
+        "status": "confirmed",
+        "amount_cents": 1250,
+        "payment_id": "fd8e5842-61fb-422a-ac06-25da154208be"
+      }
+    },
+    {
+      "label": "order-lookup",
+      "method": "GET",
+      "path": "/api/orders/1b376403-8c00-4dcd-8cc2-36e41a4e06fc",
+      "route": "/api/orders/{order_id}",
+      "request_body": null,
+      "status_code": 200,
+      "expected_status": 200,
+      "expected_error": false,
+      "ok": true,
+      "trace_id": "0ea74914b949bf52049dc1b3b680cd89",
+      "latency_ms": 5.456,
+      "sent_unix_nano": 1791891933488840000,
+      "received_unix_nano": 1791891933494296000,
+      "response": {
+        "order_id": "1b376403-8c00-4dcd-8cc2-36e41a4e06fc",
+        "item_id": "sku-001",
+        "quantity": 2,
+        "status": "confirmed",
+        "amount_cents": 2500,
+        "payment_id": "a9d2cada-483a-4097-81fe-f4e3f9391904"
+      }
+    },
+    {
+      "label": "expected-reject:sku-004x999",
+      "method": "POST",
+      "path": "/api/orders",
+      "route": "/api/orders",
+      "request_body": {
+        "item_id": "sku-004",
+        "quantity": 999
+      },
+      "status_code": 409,
+      "expected_status": 409,
+      "expected_error": true,
+      "ok": true,
+      "trace_id": "9439c2cec2d7bf3156cf3d4525daeddf",
+      "latency_ms": 4.595,
+      "sent_unix_nano": 1791891933494316000,
+      "received_unix_nano": 1791891933498911000,
+      "response": {
+        "detail": "insufficient stock"
+      }
+    }
+  ],
+  "checks": [
+    {
+      "id": "S1",
+      "description": "Every request returned its expected status code",
+      "status": "pass",
+      "evidence": [
+        {
+          "label": "stock-before:sku-001",
+          "status": 200,
+          "expected": 200
+        },
+        {
+          "label": "stock-before:sku-002",
+          "status": 200,
+          "expected": 200
+        },
+        {
+          "label": "stock-before:sku-003",
+          "status": 200,
+          "expected": 200
+        },
+        {
+          "label": "stock-before:sku-004",
+          "status": 200,
+          "expected": 200
+        },
+        {
+          "label": "stock-before:sku-005",
+          "status": 200,
+          "expected": 200
+        },
+        {
+          "label": "order:sku-001x2",
+          "status": 201,
+          "expected": 201
+        },
+        {
+          "label": "order:sku-002x1",
+          "status": 201,
+          "expected": 201
+        },
+        {
+          "label": "order:sku-003x3",
+          "status": 201,
+          "expected": 201
+        },
+        {
+          "label": "order:sku-005x10",
+          "status": 201,
+          "expected": 201
+        },
+        {
+          "label": "order:sku-001x1",
+          "status": 201,
+          "expected": 201
+        },
+        {
+          "label": "order-lookup",
+          "status": 200,
+          "expected": 200
+        },
+        {
+          "label": "expected-reject:sku-004x999",
+          "status": 409,
+          "expected": 409
+        }
+      ]
+    },
+    {
+      "id": "S2",
+      "description": "Every successful order is confirmed with a payment id",
+      "status": "pass",
+      "evidence": [
+        {
+          "order_id": "1b376403-8c00-4dcd-8cc2-36e41a4e06fc",
+          "status": "confirmed"
+        },
+        {
+          "order_id": "dc7df1bf-d0a1-4501-9e55-ce99a245fbea",
+          "status": "confirmed"
+        },
+        {
+          "order_id": "bc4dc929-366d-468d-b4b5-8d41dd02b684",
+          "status": "confirmed"
+        },
+        {
+          "order_id": "997def05-e0aa-4d6e-9218-10c008150d0f",
+          "status": "confirmed"
+        },
+        {
+          "order_id": "af31e315-2adf-4178-aa65-00d6893f84f5",
+          "status": "confirmed"
+        }
+      ]
+    },
+    {
+      "id": "S3",
+      "description": "Every response carries a W3C-format trace id (x-trace-id header)",
+      "status": "pass",
+      "evidence": [
+        "46b162d9e083a5d7de4345b548ab92e7",
+        "63fbb824b732a684fe27241561a80d13",
+        "832b186e26b68e597ca5c50478394e33",
+        "d9e9170166e209e9b2a318bf69a807b8",
+        "586f28664ddcb9985de4dff0fcac4ae5",
+        "69999c9b3ebd1384a7f1371d46d84806",
+        "2204e7dbcb588282db45a17c39e71d6d",
+        "de2fa0eefb643e2c78549574a9bcb156",
+        "54275ba1df87ab16c8e7524a2fc313ff",
+        "165339449e06dea99be3cb596d9bad4f",
+        "0ea74914b949bf52049dc1b3b680cd89",
+        "9439c2cec2d7bf3156cf3d4525daeddf"
+      ]
+    },
+    {
+      "id": "S4",
+      "description": "No 5xx responses",
+      "status": "pass",
+      "evidence": {
+        "5xx_count": 0
+      }
+    },
+    {
+      "id": "S5",
+      "description": "Orders persisted in Postgres as confirmed, matching the API responses",
+      "status": "pass",
+      "evidence": {
+        "rows": [
+          {
+            "order_id": "1b376403-8c00-4dcd-8cc2-36e41a4e06fc",
+            "status": "confirmed",
+            "quantity": 2,
+            "amount_cents": 2500,
+            "payment_id": "a9d2cada-483a-4097-81fe-f4e3f9391904"
+          },
+          {
+            "order_id": "dc7df1bf-d0a1-4501-9e55-ce99a245fbea",
+            "status": "confirmed",
+            "quantity": 1,
+            "amount_cents": 4999,
+            "payment_id": "87e9fd86-f14a-4071-9ba4-73b091c86060"
+          },
+          {
+            "order_id": "bc4dc929-366d-468d-b4b5-8d41dd02b684",
+            "status": "confirmed",
+            "quantity": 3,
+            "amount_cents": 2397,
+            "payment_id": "c784a6e5-5ec6-4683-8365-239f80d9752c"
+          },
+          {
+            "order_id": "997def05-e0aa-4d6e-9218-10c008150d0f",
+            "status": "confirmed",
+            "quantity": 10,
+            "amount_cents": 1500,
+            "payment_id": "869e7211-7571-4cd1-bad3-f7a38ca43939"
+          },
+          {
+            "order_id": "af31e315-2adf-4178-aa65-00d6893f84f5",
+            "status": "confirmed",
+            "quantity": 1,
+            "amount_cents": 1250,
+            "payment_id": "fd8e5842-61fb-422a-ac06-25da154208be"
+          }
+        ]
+      }
+    },
+    {
+      "id": "S6",
+      "description": "Item stock in Postgres decreased by exactly the ordered quantities (the rejected order changed nothing)",
+      "status": "pass",
+      "evidence": {
+        "initial": {
+          "sku-001": 1000000,
+          "sku-002": 1000000,
+          "sku-003": 1000000,
+          "sku-004": 50,
+          "sku-005": 1000000
+        },
+        "expected": {
+          "sku-001": 999997,
+          "sku-002": 999999,
+          "sku-003": 999997,
+          "sku-004": 50,
+          "sku-005": 999990
+        },
+        "observed": {
+          "sku-001": 999997,
+          "sku-002": 999999,
+          "sku-003": 999997,
+          "sku-004": 50,
+          "sku-005": 999990
+        }
+      }
+    },
+    {
+      "id": "S7",
+      "description": "One stock reservation per confirmed order",
+      "status": "pass",
+      "evidence": {
+        "reservations": 5,
+        "orders": 5
+      }
+    }
+  ],
+  "passed": true
+}

@@ -1,0 +1,614 @@
+{
+ "schema": "evidencerca.phase3.verifier_tests/v1",
+ "generated_at": "2026-10-13T11:37:15+00:00",
+ "split": "dev (seed 11) only",
+ "method": "mutation of real E0 claims; expected outcome known by construction (not the verifier's own verdict)",
+ "positive_control_unmodified_observed_claims": {
+  "verified": 81,
+  "rejected": 3
+ },
+ "mutations": {
+  "false_citation": {
+   "n": 84,
+   "rejected": 84,
+   "rejected_by_expected_check": 84,
+   "examples": [],
+   "rejection_rate": 1.0,
+   "expected_check": "V1"
+  },
+  "missing_record": {
+   "n": 84,
+   "rejected": 84,
+   "rejected_by_expected_check": 84,
+   "examples": [],
+   "rejection_rate": 1.0,
+   "expected_check": "V1"
+  },
+  "window_shift": {
+   "n": 84,
+   "rejected": 84,
+   "rejected_by_expected_check": 84,
+   "examples": [],
+   "rejection_rate": 1.0,
+   "expected_check": "V2"
+  },
+  "wrong_service": {
+   "n": 84,
+   "rejected": 84,
+   "rejected_by_expected_check": 80,
+   "examples": [],
+   "rejection_rate": 1.0,
+   "expected_check": "V3"
+  },
+  "altered_value": {
+   "n": 84,
+   "rejected": 84,
+   "rejected_by_expected_check": 84,
+   "examples": [],
+   "rejection_rate": 1.0,
+   "expected_check": "V4"
+  },
+  "unit_swap": {
+   "n": 59,
+   "rejected": 58,
+   "rejected_by_expected_check": 54,
+   "examples": [
+    {
+     "case_id": "70a3e296-764a-47fb-be3b-5d9611a74383",
+     "predicate": "onset_before",
+     "checks": {
+      "V0": "pass",
+      "V1": "pass",
+      "V2": "pass",
+      "V3": "pass",
+      "V4": "pass",
+      "V5": "pass"
+     }
+    }
+   ],
+   "rejection_rate": 0.9831,
+   "expected_check": "V4"
+  },
+  "contradictory_evidence": {
+   "n": 61,
+   "rejected": 61,
+   "rejected_by_expected_check": 61,
+   "examples": [],
+   "rejection_rate": 1.0,
+   "expected_check": "V5"
+  }
+ },
+ "fabricated_propagation_edges": {
+  "n": 43,
+  "rejected_V6": 43,
+  "real_edges": 21,
+  "real_edges_pass_V6": 21
+ },
+ "valid_citation_is_not_causation": {
+  "inferred_claims": 16,
+  "premises_valid": 16,
+  "counted_as_verified_fact": 0
+ },
+ "no_telemetry_from_single_missing_record": {
+  "n": 64,
+  "wrongly_verified": 0,
+  "results": [
+   {
+    "service": "gateway",
+    "verified": false,
+    "V5": "fail"
+   },
+   {
+    "service": "order",
+    "verified": false,
+    "V5": "fail"
+   },
+   {
+    "service": "payment",
+    "verified": false,
+    "V5": "fail"
+   },
+   {
+    "service": "postgres",
+    "verified": false,
+    "V5": "fail"
+   },
+   {
+    "service": "gateway",
+    "verified": false,
+    "V5": "fail"
+   },
+   {
+    "service": "order",
+    "verified": false,
+    "V5": "fail"
+   },
+   {
+    "service": "payment",
+    "verified": false,
+    "V5": "fail"
+   },
+   {
+    "service": "postgres",
+    "verified": false,
+    "V5": "fail"
+   },
+   {
+    "service": "gateway",
+    "verified": false,
+    "V5": "fail"
+   },
+   {
+    "service": "order",
+    "verified": false,
+    "V5": "fail"
+   },
+   {
+    "service": "payment",
+    "verified": false,
+    "V5": "fail"
+   },
+   {
+    "service": "postgres",
+    "verified": false,
+    "V5": "fail"
+   },
+   {
+    "service": "gateway",
+    "verified": false,
+    "V5": "fail"
+   },
+   {
+    "service": "order",
+    "verified": false,
+    "V5": "fail"
+   },
+   {
+    "service": "payment",
+    "verified": false,
+    "V5": "fail"
+   },
+   {
+    "service": "postgres",
+    "verified": false,
+    "V5": "fail"
+   },
+   {
+    "service": "gateway",
+    "verified": false,
+    "V5": "fail"
+   },
+   {
+    "service": "order",
+    "verified": false,
+    "V5": "fail"
+   },
+   {
+    "service": "inventory",
+    "verified": false,
+    "V5": "fail"
+   },
+   {
+    "service": "postgres",
+    "verified": false,
+    "V5": "fail"
+   },
+   {
+    "service": "gateway",
+    "verified": false,
+    "V5": "fail"
+   },
+   {
+    "service": "payment",
+    "verified": false,
+    "V5": "fail"
+   },
+   {
+    "service": "inventory",
+    "verified": false,
+    "V5": "fail"
+   },
+   {
+    "service": "postgres",
+    "verified": false,
+    "V5": "fail"
+   },
+   {
+    "service": "gateway",
+    "verified": false,
+    "V5": "fail"
+   },
+   {
+    "service": "payment",
+    "verified": false,
+    "V5": "fail"
+   },
+   {
+    "service": "inventory",
+    "verified": false,
+    "V5": "fail"
+   },
+   {
+    "service": "postgres",
+    "verified": false,
+    "V5": "fail"
+   },
+   {
+    "service": "gateway",
+    "verified": false,
+    "V5": "fail"
+   },
+   {
+    "service": "order",
+    "verified": false,
+    "V5": "fail"
+   },
+   {
+    "service": "inventory",
+    "verified": false,
+    "V5": "fail"
+   },
+   {
+    "service": "postgres",
+    "verified": false,
+    "V5": "fail"
+   },
+   {
+    "service": "order",
+    "verified": false,
+    "V5": "fail"
+   },
+   {
+    "service": "payment",
+    "verified": false,
+    "V5": "fail"
+   },
+   {
+    "service": "inventory",
+    "verified": false,
+    "V5": "fail"
+   },
+   {
+    "service": "postgres",
+    "verified": false,
+    "V5": "fail"
+   },
+   {
+    "service": "gateway",
+    "verified": false,
+    "V5": "fail"
+   },
+   {
+    "service": "order",
+    "verified": false,
+    "V5": "fail"
+   },
+   {
+    "service": "payment",
+    "verified": false,
+    "V5": "fail"
+   },
+   {
+    "service": "postgres",
+    "verified": false,
+    "V5": "fail"
+   },
+   {
+    "service": "gateway",
+    "verified": false,
+    "V5": "fail"
+   },
+   {
+    "service": "payment",
+    "verified": false,
+    "V5": "fail"
+   },
+   {
+    "service": "inventory",
+    "verified": false,
+    "V5": "fail"
+   },
+   {
+    "service": "postgres",
+    "verified": false,
+    "V5": "fail"
+   },
+   {
+    "service": "gateway",
+    "verified": false,
+    "V5": "fail"
+   },
+   {
+    "service": "order",
+    "verified": false,
+    "V5": "fail"
+   },
+   {
+    "service": "inventory",
+    "verified": false,
+    "V5": "fail"
+   },
+   {
+    "service": "postgres",
+    "verified": false,
+    "V5": "fail"
+   },
+   {
+    "service": "gateway",
+    "verified": false,
+    "V5": "fail"
+   },
+   {
+    "service": "payment",
+    "verified": false,
+    "V5": "fail"
+   },
+   {
+    "service": "inventory",
+    "verified": false,
+    "V5": "fail"
+   },
+   {
+    "service": "postgres",
+    "verified": false,
+    "V5": "fail"
+   },
+   {
+    "service": "gateway",
+    "verified": false,
+    "V5": "fail"
+   },
+   {
+    "service": "payment",
+    "verified": false,
+    "V5": "fail"
+   },
+   {
+    "service": "inventory",
+    "verified": false,
+    "V5": "fail"
+   },
+   {
+    "service": "postgres",
+    "verified": false,
+    "V5": "fail"
+   },
+   {
+    "service": "gateway",
+    "verified": false,
+    "V5": "fail"
+   },
+   {
+    "service": "order",
+    "verified": false,
+    "V5": "fail"
+   },
+   {
+    "service": "inventory",
+    "verified": false,
+    "V5": "fail"
+   },
+   {
+    "service": "postgres",
+    "verified": false,
+    "V5": "fail"
+   },
+   {
+    "service": "gateway",
+    "verified": false,
+    "V5": "fail"
+   },
+   {
+    "service": "order",
+    "verified": false,
+    "V5": "fail"
+   },
+   {
+    "service": "payment",
+    "verified": false,
+    "V5": "fail"
+   },
+   {
+    "service": "inventory",
+    "verified": false,
+    "V5": "fail"
+   }
+  ]
+ },
+ "per_case_native_verification": [
+  {
+   "case_id": "a4f3f9b6-8b93-4f4f-8bad-d4c1c81d67e7",
+   "observed": 5,
+   "observed_verified": 5,
+   "observed_rejected": 0,
+   "inferred": 1,
+   "inferred_premises_valid": 1,
+   "edges": 2,
+   "edges_verified": 2,
+   "verified_claim_coverage": 1.0
+  },
+  {
+   "case_id": "70a3e296-764a-47fb-be3b-5d9611a74383",
+   "observed": 3,
+   "observed_verified": 2,
+   "observed_rejected": 1,
+   "inferred": 1,
+   "inferred_premises_valid": 1,
+   "edges": 1,
+   "edges_verified": 1,
+   "verified_claim_coverage": 0.6666666666666666
+  },
+  {
+   "case_id": "c4a78010-46e9-4f59-a403-5321e0ec3a86",
+   "observed": 11,
+   "observed_verified": 11,
+   "observed_rejected": 0,
+   "inferred": 1,
+   "inferred_premises_valid": 1,
+   "edges": 1,
+   "edges_verified": 1,
+   "verified_claim_coverage": 1.0
+  },
+  {
+   "case_id": "6c13ed8f-334f-4bed-809f-5fd45d4cfd5b",
+   "observed": 5,
+   "observed_verified": 5,
+   "observed_rejected": 0,
+   "inferred": 1,
+   "inferred_premises_valid": 1,
+   "edges": 2,
+   "edges_verified": 2,
+   "verified_claim_coverage": 1.0
+  },
+  {
+   "case_id": "500d8c48-9c18-4050-ab52-446345c572d0",
+   "observed": 4,
+   "observed_verified": 3,
+   "observed_rejected": 1,
+   "inferred": 1,
+   "inferred_premises_valid": 1,
+   "edges": 2,
+   "edges_verified": 2,
+   "verified_claim_coverage": 0.75
+  },
+  {
+   "case_id": "eb67f5c7-b367-4cc3-bd5f-13c299762003",
+   "observed": 5,
+   "observed_verified": 5,
+   "observed_rejected": 0,
+   "inferred": 1,
+   "inferred_premises_valid": 1,
+   "edges": 1,
+   "edges_verified": 1,
+   "verified_claim_coverage": 1.0
+  },
+  {
+   "case_id": "8914fe4e-97ad-4ef4-ae2f-e6d5b805d835",
+   "observed": 11,
+   "observed_verified": 11,
+   "observed_rejected": 0,
+   "inferred": 1,
+   "inferred_premises_valid": 1,
+   "edges": 1,
+   "edges_verified": 1,
+   "verified_claim_coverage": 1.0
+  },
+  {
+   "case_id": "ef763608-bea4-4f8f-a65a-7ef3fc640efc",
+   "observed": 3,
+   "observed_verified": 2,
+   "observed_rejected": 1,
+   "inferred": 1,
+   "inferred_premises_valid": 1,
+   "edges": 2,
+   "edges_verified": 2,
+   "verified_claim_coverage": 0.6666666666666666
+  },
+  {
+   "case_id": "b76e4d51-6da8-4881-806e-957c9e9cc5be",
+   "observed": 2,
+   "observed_verified": 2,
+   "observed_rejected": 0,
+   "inferred": 1,
+   "inferred_premises_valid": 1,
+   "edges": 0,
+   "edges_verified": 0,
+   "verified_claim_coverage": 1.0
+  },
+  {
+   "case_id": "210cdb38-cfe5-4c6a-aa02-c90efa2154be",
+   "skipped": "no alert"
+  },
+  {
+   "case_id": "ac2a7c4f-5755-492e-a623-36db384cf8c4",
+   "observed": 11,
+   "observed_verified": 11,
+   "observed_rejected": 0,
+   "inferred": 1,
+   "inferred_premises_valid": 1,
+   "edges": 1,
+   "edges_verified": 1,
+   "verified_claim_coverage": 1.0
+  },
+  {
+   "case_id": "f5aa4147-8081-4246-918c-215fe8f3b6b2",
+   "observed": 4,
+   "observed_verified": 4,
+   "observed_rejected": 0,
+   "inferred": 1,
+   "inferred_premises_valid": 1,
+   "edges": 1,
+   "edges_verified": 1,
+   "verified_claim_coverage": 1.0
+  },
+  {
+   "case_id": "e07cd199-e1a0-43f3-b413-be9b41fbec9d",
+   "observed": 3,
+   "observed_verified": 3,
+   "observed_rejected": 0,
+   "inferred": 1,
+   "inferred_premises_valid": 1,
+   "edges": 0,
+   "edges_verified": 0,
+   "verified_claim_coverage": 1.0
+  },
+  {
+   "case_id": "890a1afe-1f92-4e51-8d82-5ac5fcd78ce7",
+   "skipped": "no alert"
+  },
+  {
+   "case_id": "b30ed23c-7742-4994-89ed-bffb5da3ffec",
+   "observed": 5,
+   "observed_verified": 5,
+   "observed_rejected": 0,
+   "inferred": 1,
+   "inferred_premises_valid": 1,
+   "edges": 1,
+   "edges_verified": 1,
+   "verified_claim_coverage": 1.0
+  },
+  {
+   "case_id": "fff9c2ab-2eae-4166-b3da-a5498d39b419",
+   "skipped": "no alert"
+  },
+  {
+   "case_id": "0114724b-0b0b-498e-905d-e5a8ab072db2",
+   "observed": 8,
+   "observed_verified": 8,
+   "observed_rejected": 0,
+   "inferred": 1,
+   "inferred_premises_valid": 1,
+   "edges": 1,
+   "edges_verified": 1,
+   "verified_claim_coverage": 1.0
+  },
+  {
+   "case_id": "787043b1-7a57-40b1-bcc4-cae76b8edc74",
+   "observed": 3,
+   "observed_verified": 3,
+   "observed_rejected": 0,
+   "inferred": 1,
+   "inferred_premises_valid": 1,
+   "edges": 2,
+   "edges_verified": 2,
+   "verified_claim_coverage": 1.0
+  },
+  {
+   "case_id": "49961fbe-ae9f-4e69-b4fc-d4e1dc34cb4d",
+   "observed": 1,
+   "observed_verified": 1,
+   "observed_rejected": 0,
+   "inferred": 1,
+   "inferred_premises_valid": 1,
+   "edges": 3,
+   "edges_verified": 3,
+   "verified_claim_coverage": 1.0
+  }
+ ],
+ "unit_tests": {
+  "command": "pytest -q tests/test_verifier.py",
+  "returncode": 0,
+  "summary": "16 passed in 0.51s"
+ },
+ "human_audit": "specified in docs/evidence_verifier_spec.md (>= 200 claims, blinded); NOT yet performed"
+}
