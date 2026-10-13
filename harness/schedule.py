@@ -41,13 +41,18 @@ class Scenario:
     fault_type: str
     target: str
     replicate: int = 0
+    variant: str = "standard"   # fault intensity variant; the default keeps pre-Phase-3 keys unchanged
 
     @property
     def key(self) -> str:
-        return f"{self.master_seed}:{self.fault_type}:{self.target}:{self.replicate}"
+        base = f"{self.master_seed}:{self.fault_type}:{self.target}:{self.replicate}"
+        return base if self.variant == "standard" else f"{base}:{self.variant}"
 
     def derived_int(self, purpose: str) -> int:
-        return int(hashlib.sha256(f"{self.key}:{purpose}".encode()).hexdigest()[:8], 16)
+        # derived from the key *without* the variant: intensity variants of a scenario get the identical workload
+        # schedule and onset jitter, so they can be compared pairwise
+        base = f"{self.master_seed}:{self.fault_type}:{self.target}:{self.replicate}"
+        return int(hashlib.sha256(f"{base}:{purpose}".encode()).hexdigest()[:8], 16)
 
     @property
     def workload_seed(self) -> int:

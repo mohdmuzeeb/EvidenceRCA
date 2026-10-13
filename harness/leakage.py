@@ -199,7 +199,7 @@ def check_static_imports(repo: Path) -> dict:
                 if isinstance(node, (ast.Import, ast.ImportFrom)):
                     names = [a.name for a in node.names] + ([node.module] if isinstance(node, ast.ImportFrom)
                                                             and node.module else [])
-                    if any(n.split(".")[0] in ("harness", "scripts") for n in names):
+                    if any(n.split(".")[0] in ("harness", "scripts", "evaluation") for n in names):
                         violations.append({"file": rel, "issue": f"imports {names}"})
                     if any("GROUND_TRUTH" in n for n in names) and rel not in ALLOWED_GT_REFERENCES:
                         violations.append({"file": rel, "issue": f"imports ground-truth name {names}"})

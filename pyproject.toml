@@ -20,10 +20,16 @@ dependencies = [
 ]
 
 [dependency-groups]
+analysis = [
+    "numpy>=2.5.4",
+    "scikit-learn>=1.9.1",
+]
 dev = ["pytest"]
 
 [tool.uv]
 package = false
+# Host-side analysis deps are not part of the service image (testbed/requirements.lock = --no-dev, main deps only).
+default-groups = ["dev", "analysis"]
 
 [tool.pytest.ini_options]
 pythonpath = ["."]

@@ -17,7 +17,8 @@ from pathlib import Path
 
 from evidencerca.paths import CASES_ROOT, DATA_ROOT, GROUND_TRUTH_ROOT
 from harness.case import run_case
-from harness.schedule import MECHANISM_CHECK_TIMELINE, PROTOCOL_TIMELINE, Scenario, Timeline, pilot, split_of
+from harness.schedule import (MECHANISM_CHECK_TIMELINE, PROTOCOL_TIMELINE, Scenario, Timeline, pilot,
+                              single_fault_matrix, split_of)
 
 RESULTS = Path("results/phase2")
 INDEX = DATA_ROOT / "harness_index.jsonl"   # case_id -> run group/label; harness side only
@@ -51,6 +52,40 @@ def cmd_pilot(args) -> int:
             continue
         gt = run_case(sc, PROTOCOL_TIMELINE, CASES_ROOT, GROUND_TRUTH_ROOT, rate=args.rate, log=log)
         record("pilot", args.label, gt)
+        rc |= not gt["case_valid"]
+    return rc
+
+
+def cmd_matrix(args) -> int:
+    """Capture the single-fault + control matrix of one seed (dev only unless explicitly allowed), skipping
+    scenarios that already have a valid protocol-timeline capture in the experiment index."""
+    split = split_of(args.seed, allow_non_dev=False)
+    done = set()
+    if INDEX.exists():
+        for line in INDEX.read_text().splitlines():
+            e = json.loads(line)
+            if e["group"] in ("pilot", "matrix") and e["case_valid"]:
+                done.add(e["scenario"])
+    todo = [s for s in single_fault_matrix(args.seed) if s.key not in done]
+    log(f"matrix: seed {args.seed} ({split}): {len(todo)} scenarios to capture, {len(done)} already captured")
+    rc = 0
+    for sc in todo:
+        gt = run_case(sc, PROTOCOL_TIMELINE, CASES_ROOT, GROUND_TRUTH_ROOT, rate=args.rate, log=log)
+        record("matrix", args.label, gt)
+        rc |= not gt["case_valid"]
+    return rc
+
+
+def cmd_cpu_variant(args) -> int:
+    """Phase 3: strong cpu_pressure variant on the dev seed, protocol timeline, every eligible target."""
+    split = split_of(args.seed)
+    rc = 0
+    for target in ("order", "payment", "inventory"):
+        sc = Scenario(args.seed, split, "cpu_pressure", target, replicate=0, variant="strong")
+        if args.only and target not in args.only:
+            continue
+        gt = run_case(sc, PROTOCOL_TIMELINE, CASES_ROOT, GROUND_TRUTH_ROOT, rate=args.rate, log=log)
+        record("cpu_variant", args.label, gt)
         rc |= not gt["case_valid"]
     return rc
 
@@ -95,6 +130,15 @@ def main() -> int:
     lo.add_argument("--duration", type=float, default=120.0)
     lo.add_argument("--concurrency", type=int, default=64)
     lo.add_argument("--label")
+    mx = sub.add_parser("matrix")
+    mx.add_argument("--seed", type=int, default=11)
+    mx.add_argument("--label", default="dev-matrix")
+    mx.add_argument("--rate", type=float, default=10.0)
+    cv = sub.add_parser("cpu-variant")
+    cv.add_argument("--seed", type=int, default=11)
+    cv.add_argument("--label", default="cpu-strong")
+    cv.add_argument("--rate", type=float, default=10.0)
+    cv.add_argument("--only", nargs="*")
     sub.add_parser("summarize")
     args = p.parse_args()
     if args.cmd == "summarize":
@@ -102,7 +146,8 @@ def main() -> int:
         return summarize()
     awake = keep_awake()
     try:
-        return {"pilot": cmd_pilot, "mechanism": cmd_mechanism, "load": cmd_load}[args.cmd](args)
+        return {"pilot": cmd_pilot, "mechanism": cmd_mechanism, "load": cmd_load, "matrix": cmd_matrix,
+                "cpu-variant": cmd_cpu_variant}[args.cmd](args)
     finally:
         awake.terminate()
 

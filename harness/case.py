@@ -18,7 +18,7 @@ from datetime import datetime, timezone
 from pathlib import Path
 
 from harness import docker_ops as d
-from harness.faults import FAULTS, Context
+from harness.faults import Context, fault_for
 from harness.monitor import Monitor
 from harness.schedule import Scenario, Timeline
 from harness.telemetry_check import check_case, load_raw
@@ -81,7 +81,7 @@ def run_case(scenario: Scenario, timeline: Timeline, cases_root: Path, gt_root: 
     tel_dir, hdir = raw_dir / "telemetry", gt_dir / "harness"
     for p in (tel_dir, hdir):
         p.mkdir(parents=True)
-    fault = FAULTS[scenario.fault_type]
+    fault = fault_for(scenario.fault_type, scenario.variant)
     jitter = scenario.onset_jitter_s(timeline)
     workload_s = timeline.warmup_s + timeline.baseline_s + jitter + timeline.injection_s + timeline.recovery_s
     env = {"TELEMETRY_DIR": str(tel_dir), "HARNESS_OUT_DIR": str(hdir)}

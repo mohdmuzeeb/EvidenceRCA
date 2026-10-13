@@ -20,6 +20,7 @@ NETEM_DELAY_MS = 2500           # > the 2.0 s caller timeout (DOWNSTREAM_TIMEOUT
 PROCESSING_DELAY_MS = 500       # < the caller timeout: slow but successful
 POOL_SIZE = 5                   # DB_POOL_SIZE in compose.yaml
 CPU_BURNERS = 2                 # busy processes inside a container capped at cpus: 1.0
+STRONG_CPU_CAP = 0.2            # "strong" cpu_pressure: the target's own CPU quota is lowered to this during injection
 LOCKED_TABLE = "items"          # read by inventory on every stock check and reservation
 
 # Operation targeted by the processing-latency fault, per service.
@@ -219,5 +220,43 @@ class CascadingFailure(Fault):
         return {"action": "psql: COMMIT", "vm_ns": int(out[-1]), "vm_ns_source": "postgres clock_timestamp()"}
 
 
+class CpuPressureStrong(CpuPressure):
+    """Stronger, still container-scoped CPU pressure (Phase 3): the target's own CPU quota is lowered from its
+    configured cap to STRONG_CPU_CAP with `docker update --cpus`, and the same busy loops run inside it.
+    Lowering a quota can only reduce what the container consumes, so host CPU load goes *down*, not up.
+    Cleanup kills the burners and restores the exact original quota (HostConfig.NanoCpus)."""
+    name, eligible = "cpu_pressure", ("order", "payment", "inventory")
+    variant = "strong"
+
+    def params(self, target):
+        return {"variant": "strong", "burner_processes": CPU_BURNERS, "container_cpu_cap": 1.0,
+                "cpu_cap_during_injection": STRONG_CPU_CAP}
+
+    def inject(self, ctx):
+        name = d.project_container(ctx.target)
+        nano = int(d.run("docker", "inspect", "-f", "{{.HostConfig.NanoCpus}}", name).stdout.strip())
+        ctx.notes["original_nano_cpus"] = nano
+        d.run("docker", "update", "--cpus", str(STRONG_CPU_CAP), name)
+        res = super().inject(ctx)
+        res.update(action=f"docker update --cpus {STRONG_CPU_CAP} + " + res["action"], original_nano_cpus=nano)
+        return res
+
+    def cleanup(self, ctx):
+        res = super().cleanup(ctx)
+        name = d.project_container(ctx.target)
+        nano = ctx.notes.get("original_nano_cpus", 1_000_000_000)
+        d.run("docker", "update", "--cpus", f"{nano / 1e9:g}", name)
+        restored = int(d.run("docker", "inspect", "-f", "{{.HostConfig.NanoCpus}}", name).stdout.strip())
+        res.update(action=res["action"] + f"; docker update --cpus {nano / 1e9:g}", restored_nano_cpus=restored,
+                   quota_restored=restored == nano)
+        return res
+
+
 FAULTS: dict[str, Fault] = {f.name: f for f in (NoFault(), ServiceCrash(), ProcessingLatency(), NetworkTimeout(),
                                                  DbPoolExhaustion(), CpuPressure(), CascadingFailure())}
+
+VARIANTS: dict[tuple[str, str], Fault] = {("cpu_pressure", "strong"): CpuPressureStrong()}
+
+
+def fault_for(fault_type: str, variant: str = "standard") -> Fault:
+    return FAULTS[fault_type] if variant == "standard" else VARIANTS[(fault_type, variant)]

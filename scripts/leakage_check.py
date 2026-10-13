@@ -23,7 +23,9 @@ def case_sets() -> list[tuple[str, Path, Path]]:
 
 
 def main() -> int:
-    argparse.ArgumentParser().parse_args()
+    ap = argparse.ArgumentParser()
+    ap.add_argument("--out", default=str(OUT))
+    out_path = Path(ap.parse_args().out)
     report = {"schema": "evidencerca.phase2.leakage/v1",
               "generated_at": datetime.now(timezone.utc).isoformat(timespec="seconds"),
               "forbidden_tokens": leakage.FORBIDDEN, "case_sets": {}}
@@ -71,15 +73,15 @@ def main() -> int:
                                            "summary": res.stdout.strip().splitlines()[-1] if res.stdout else ""}
     all_ok &= res.returncode == 0
     report["passed"] = all_ok
-    OUT.parent.mkdir(parents=True, exist_ok=True)
-    OUT.write_text(json.dumps(report, indent=2, default=str) + "\n")
+    out_path.parent.mkdir(parents=True, exist_ok=True)
+    out_path.write_text(json.dumps(report, indent=2, default=str) + "\n")
     for name, cs in report["case_sets"].items():
         print(f"{name}: {cs['cases']} cases, passed={cs['passed']}")
     for key in ("path_guard_attacks", "scanner_mutation_tests", "static_import_check", "cross_case_consistency"):
         if report.get(key):
             print(f"{key}: passed={report[key]['passed']}")
     print(f"pytest tests/test_leakage.py: {report['pytest_tests_test_leakage']['summary']}")
-    print(f"leakage checks {'PASSED' if all_ok else 'FAILED'} -> {OUT}")
+    print(f"leakage checks {'PASSED' if all_ok else 'FAILED'} -> {out_path}")
     return 0 if all_ok else 1
 
 

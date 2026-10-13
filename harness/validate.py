@@ -30,6 +30,7 @@ from harness.faults import NETEM_DELAY_MS, POOL_SIZE, PROCESSING_DELAY_MS
 SETTLE_NS = 15 * 10**9          # ignore the first 15 s of injection and of recovery when judging steady state
 PRESENT_FRACTION = 0.8          # share of injection samples that must show the signature
 CPU_CORES_THRESHOLD = 0.8
+THROTTLED_RATIO = 0.5           # share of CFS periods throttled (cgroup cpu.stat), used for the strong CPU variant
 APP_DB_SERVICES = {"order", "inventory"}
 
 # Workload request kinds whose call path goes through each (service, operation).
@@ -90,6 +91,11 @@ def sample_signatures(monitor: list[dict], probes: list[dict], offset_ns: int) -
                         out.append({"t": t, "detector": "cpu_saturated", "service": svc,
                                     "present": cores >= CPU_CORES_THRESHOLD, "value": round(cores, 3),
                                     "throttled": cg.get("nr_throttled", 0) - cg_prev.get("nr_throttled", 0)})
+                        periods = cg.get("nr_periods", 0) - cg_prev.get("nr_periods", 0)
+                        if periods > 0:
+                            ratio = (cg.get("nr_throttled", 0) - cg_prev.get("nr_throttled", 0)) / periods
+                            out.append({"t": t, "detector": "cpu_throttled", "service": svc,
+                                        "present": ratio >= THROTTLED_RATIO, "value": round(ratio, 3)})
                 if "usage_usec" in cg:
                     prev_cg[svc] = (t, cg)
         elif kind == "pg" and "vm_ns" in rec:
@@ -214,6 +220,8 @@ def validate_case(gt: dict, monitor, probes, requests, spans) -> dict:
                        "evidence": client})
     elif fault in PRIMARY:
         det, second = PRIMARY[fault]
+        if fault == "cpu_pressure" and gt["params"].get("variant") == "strong":
+            det, second = "cpu_throttled", None   # usage is capped at 0.2 cores, so saturation cannot be >= 0.8
         svc = "postgres" if fault == "cascading_failure" else target
         v = presence_verdict(matrix, det, svc)
         checks.append({"check": f"{det} present during injection, absent before and after", "independent": True,
