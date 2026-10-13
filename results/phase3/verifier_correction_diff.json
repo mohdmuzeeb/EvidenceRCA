@@ -1,0 +1,378 @@
+{
+ "schema": "evidencerca.phase3.verifier_correction_diff/v1",
+ "correction": "onset_before: a cited record counts towards the object only if the object emitted it and it is not a call to the subject; otherwise towards the subject. Applied in V3 and V4.",
+ "original_verifier": "results/phase3/pre_verifier_correction/verifier_v1.py (git 98f6a8e)",
+ "trials_compared": 3820,
+ "ranking_outputs_changed": 0,
+ "trials_with_changed_abstention_S": 149,
+ "e0_observed_claims": {
+  "before": {
+   "observed": 6445,
+   "verified": 6263
+  },
+  "after": {
+   "observed": 6445,
+   "verified": 6204
+  }
+ },
+ "claim_verdict_changes": {
+  "onset_before:now_rejected": 106,
+  "onset_before:now_verified": 47
+ },
+ "claim_change_examples": [
+  {
+   "trial": {
+    "case_id": "a4f3f9b6-8b93-4f4f-8bad-d4c1c81d67e7",
+    "condition": "C0",
+    "perturbation_seed": 1,
+    "anchor": "alert",
+    "method": "E0"
+   },
+   "predicate": "onset_before",
+   "subject": "inventory",
+   "before": true,
+   "after": false
+  },
+  {
+   "trial": {
+    "case_id": "a4f3f9b6-8b93-4f4f-8bad-d4c1c81d67e7",
+    "condition": "C0",
+    "perturbation_seed": 1,
+    "anchor": "oracle",
+    "method": "E0"
+   },
+   "predicate": "onset_before",
+   "subject": "inventory",
+   "before": true,
+   "after": false
+  },
+  {
+   "trial": {
+    "case_id": "a4f3f9b6-8b93-4f4f-8bad-d4c1c81d67e7",
+    "condition": "R20",
+    "perturbation_seed": 1,
+    "anchor": "alert",
+    "method": "E0"
+   },
+   "predicate": "onset_before",
+   "subject": "inventory",
+   "before": true,
+   "after": false
+  },
+  {
+   "trial": {
+    "case_id": "a4f3f9b6-8b93-4f4f-8bad-d4c1c81d67e7",
+    "condition": "R20",
+    "perturbation_seed": 1,
+    "anchor": "oracle",
+    "method": "E0"
+   },
+   "predicate": "onset_before",
+   "subject": "inventory",
+   "before": true,
+   "after": false
+  },
+  {
+   "trial": {
+    "case_id": "a4f3f9b6-8b93-4f4f-8bad-d4c1c81d67e7",
+    "condition": "R20",
+    "perturbation_seed": 2,
+    "anchor": "alert",
+    "method": "E0"
+   },
+   "predicate": "onset_before",
+   "subject": "inventory",
+   "before": true,
+   "after": false
+  },
+  {
+   "trial": {
+    "case_id": "a4f3f9b6-8b93-4f4f-8bad-d4c1c81d67e7",
+    "condition": "R20",
+    "perturbation_seed": 2,
+    "anchor": "oracle",
+    "method": "E0"
+   },
+   "predicate": "onset_before",
+   "subject": "inventory",
+   "before": true,
+   "after": false
+  },
+  {
+   "trial": {
+    "case_id": "a4f3f9b6-8b93-4f4f-8bad-d4c1c81d67e7",
+    "condition": "R20",
+    "perturbation_seed": 3,
+    "anchor": "alert",
+    "method": "E0"
+   },
+   "predicate": "onset_before",
+   "subject": "inventory",
+   "before": true,
+   "after": false
+  },
+  {
+   "trial": {
+    "case_id": "a4f3f9b6-8b93-4f4f-8bad-d4c1c81d67e7",
+    "condition": "R20",
+    "perturbation_seed": 3,
+    "anchor": "oracle",
+    "method": "E0"
+   },
+   "predicate": "onset_before",
+   "subject": "inventory",
+   "before": true,
+   "after": false
+  },
+  {
+   "trial": {
+    "case_id": "a4f3f9b6-8b93-4f4f-8bad-d4c1c81d67e7",
+    "condition": "R40",
+    "perturbation_seed": 2,
+    "anchor": "alert",
+    "method": "E0"
+   },
+   "predicate": "onset_before",
+   "subject": "inventory",
+   "before": true,
+   "after": false
+  },
+  {
+   "trial": {
+    "case_id": "a4f3f9b6-8b93-4f4f-8bad-d4c1c81d67e7",
+    "condition": "R40",
+    "perturbation_seed": 3,
+    "anchor": "oracle",
+    "method": "E0"
+   },
+   "predicate": "onset_before",
+   "subject": "inventory",
+   "before": true,
+   "after": false
+  },
+  {
+   "trial": {
+    "case_id": "a4f3f9b6-8b93-4f4f-8bad-d4c1c81d67e7",
+    "condition": "R60",
+    "perturbation_seed": 3,
+    "anchor": "alert",
+    "method": "E0"
+   },
+   "predicate": "onset_before",
+   "subject": "inventory",
+   "before": false,
+   "after": true
+  },
+  {
+   "trial": {
+    "case_id": "a4f3f9b6-8b93-4f4f-8bad-d4c1c81d67e7",
+    "condition": "R60",
+    "perturbation_seed": 3,
+    "anchor": "oracle",
+    "method": "E0"
+   },
+   "predicate": "onset_before",
+   "subject": "inventory",
+   "before": false,
+   "after": true
+  },
+  {
+   "trial": {
+    "case_id": "a4f3f9b6-8b93-4f4f-8bad-d4c1c81d67e7",
+    "condition": "ML",
+    "perturbation_seed": 1,
+    "anchor": "alert",
+    "method": "E0"
+   },
+   "predicate": "onset_before",
+   "subject": "inventory",
+   "before": true,
+   "after": false
+  },
+  {
+   "trial": {
+    "case_id": "a4f3f9b6-8b93-4f4f-8bad-d4c1c81d67e7",
+    "condition": "ML",
+    "perturbation_seed": 1,
+    "anchor": "oracle",
+    "method": "E0"
+   },
+   "predicate": "onset_before",
+   "subject": "inventory",
+   "before": true,
+   "after": false
+  },
+  {
+   "trial": {
+    "case_id": "a4f3f9b6-8b93-4f4f-8bad-d4c1c81d67e7",
+    "condition": "MM",
+    "perturbation_seed": 1,
+    "anchor": "alert",
+    "method": "E0"
+   },
+   "predicate": "onset_before",
+   "subject": "inventory",
+   "before": true,
+   "after": false
+  },
+  {
+   "trial": {
+    "case_id": "a4f3f9b6-8b93-4f4f-8bad-d4c1c81d67e7",
+    "condition": "MM",
+    "perturbation_seed": 1,
+    "anchor": "oracle",
+    "method": "E0"
+   },
+   "predicate": "onset_before",
+   "subject": "inventory",
+   "before": true,
+   "after": false
+  },
+  {
+   "trial": {
+    "case_id": "a4f3f9b6-8b93-4f4f-8bad-d4c1c81d67e7",
+    "condition": "CS",
+    "perturbation_seed": 1,
+    "anchor": "alert",
+    "method": "E0"
+   },
+   "predicate": "onset_before",
+   "subject": "inventory",
+   "before": true,
+   "after": false
+  },
+  {
+   "trial": {
+    "case_id": "a4f3f9b6-8b93-4f4f-8bad-d4c1c81d67e7",
+    "condition": "CS",
+    "perturbation_seed": 1,
+    "anchor": "oracle",
+    "method": "E0"
+   },
+   "predicate": "onset_before",
+   "subject": "inventory",
+   "before": true,
+   "after": false
+  },
+  {
+   "trial": {
+    "case_id": "a4f3f9b6-8b93-4f4f-8bad-d4c1c81d67e7",
+    "condition": "RL",
+    "perturbation_seed": 1,
+    "anchor": "alert",
+    "method": "E0"
+   },
+   "predicate": "onset_before",
+   "subject": "inventory",
+   "before": true,
+   "after": false
+  },
+  {
+   "trial": {
+    "case_id": "a4f3f9b6-8b93-4f4f-8bad-d4c1c81d67e7",
+    "condition": "RL",
+    "perturbation_seed": 1,
+    "anchor": "oracle",
+    "method": "E0"
+   },
+   "predicate": "onset_before",
+   "subject": "inventory",
+   "before": true,
+   "after": false
+  }
+ ],
+ "mutation_tests": {
+  "false_citation": {
+   "before": 1.0,
+   "after": 1.0,
+   "by_expected_check_before": 84,
+   "by_expected_check_after": 84
+  },
+  "missing_record": {
+   "before": 1.0,
+   "after": 1.0,
+   "by_expected_check_before": 84,
+   "by_expected_check_after": 84
+  },
+  "window_shift": {
+   "before": 1.0,
+   "after": 1.0,
+   "by_expected_check_before": 84,
+   "by_expected_check_after": 84
+  },
+  "wrong_service": {
+   "before": 1.0,
+   "after": 1.0,
+   "by_expected_check_before": 80,
+   "by_expected_check_after": 82
+  },
+  "altered_value": {
+   "before": 1.0,
+   "after": 1.0,
+   "by_expected_check_before": 84,
+   "by_expected_check_after": 84
+  },
+  "unit_swap": {
+   "before": 0.9831,
+   "after": 1.0,
+   "by_expected_check_before": 54,
+   "by_expected_check_after": 55
+  },
+  "contradictory_evidence": {
+   "before": 1.0,
+   "after": 1.0,
+   "by_expected_check_before": 61,
+   "by_expected_check_after": 61
+  }
+ },
+ "positive_control": {
+  "before": {
+   "verified": 81,
+   "rejected": 3
+  },
+  "after": {
+   "verified": 80,
+   "rejected": 4
+  }
+ },
+ "aurc": {
+  "B1": {
+   "S_margin": {
+    "before": 0.7536,
+    "after": 0.7536
+   }
+  },
+  "B2": {
+   "S_margin": {
+    "before": 0.1392,
+    "after": 0.1392
+   }
+  },
+  "B3": {
+   "S_margin": {
+    "before": 0.9534,
+    "after": 0.9534
+   }
+  },
+  "E0": {
+   "S": {
+    "before": 0.2314,
+    "after": 0.2279
+   },
+   "A-margin": {
+    "before": 0.1418,
+    "after": 0.1418
+   }
+  },
+  "E0-A-graph": {
+   "S": {
+    "before": 0.6876,
+    "after": 0.6876
+   },
+   "A-margin": {
+    "before": 0.5182,
+    "after": 0.5182
+   }
+  }
+ }
+}

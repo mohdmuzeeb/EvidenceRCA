@@ -1,11 +1,11 @@
 {
  "schema": "evidencerca.phase3.verifier_tests/v1",
- "generated_at": "2026-10-13T11:37:15+00:00",
+ "generated_at": "2026-10-13T12:09:18+00:00",
  "split": "dev (seed 11) only",
  "method": "mutation of real E0 claims; expected outcome known by construction (not the verifier's own verdict)",
  "positive_control_unmodified_observed_claims": {
-  "verified": 81,
-  "rejected": 3
+  "verified": 80,
+  "rejected": 4
  },
  "mutations": {
   "false_citation": {
@@ -35,7 +35,7 @@
   "wrong_service": {
    "n": 84,
    "rejected": 84,
-   "rejected_by_expected_check": 80,
+   "rejected_by_expected_check": 82,
    "examples": [],
    "rejection_rate": 1.0,
    "expected_check": "V3"
@@ -50,23 +50,10 @@
   },
   "unit_swap": {
    "n": 59,
-   "rejected": 58,
-   "rejected_by_expected_check": 54,
-   "examples": [
-    {
-     "case_id": "70a3e296-764a-47fb-be3b-5d9611a74383",
-     "predicate": "onset_before",
-     "checks": {
-      "V0": "pass",
-      "V1": "pass",
-      "V2": "pass",
-      "V3": "pass",
-      "V4": "pass",
-      "V5": "pass"
-     }
-    }
-   ],
-   "rejection_rate": 0.9831,
+   "rejected": 59,
+   "rejected_by_expected_check": 55,
+   "examples": [],
+   "rejection_rate": 1.0,
    "expected_check": "V4"
   },
   "contradictory_evidence": {
@@ -419,24 +406,24 @@
   {
    "case_id": "a4f3f9b6-8b93-4f4f-8bad-d4c1c81d67e7",
    "observed": 5,
-   "observed_verified": 5,
-   "observed_rejected": 0,
+   "observed_verified": 4,
+   "observed_rejected": 1,
    "inferred": 1,
    "inferred_premises_valid": 1,
    "edges": 2,
    "edges_verified": 2,
-   "verified_claim_coverage": 1.0
+   "verified_claim_coverage": 0.8
   },
   {
    "case_id": "70a3e296-764a-47fb-be3b-5d9611a74383",
    "observed": 3,
-   "observed_verified": 2,
-   "observed_rejected": 1,
+   "observed_verified": 3,
+   "observed_rejected": 0,
    "inferred": 1,
    "inferred_premises_valid": 1,
    "edges": 1,
    "edges_verified": 1,
-   "verified_claim_coverage": 0.6666666666666666
+   "verified_claim_coverage": 1.0
   },
   {
    "case_id": "c4a78010-46e9-4f59-a403-5321e0ec3a86",
@@ -452,13 +439,13 @@
   {
    "case_id": "6c13ed8f-334f-4bed-809f-5fd45d4cfd5b",
    "observed": 5,
-   "observed_verified": 5,
-   "observed_rejected": 0,
+   "observed_verified": 4,
+   "observed_rejected": 1,
    "inferred": 1,
    "inferred_premises_valid": 1,
    "edges": 2,
    "edges_verified": 2,
-   "verified_claim_coverage": 1.0
+   "verified_claim_coverage": 0.8
   },
   {
    "case_id": "500d8c48-9c18-4050-ab52-446345c572d0",
@@ -608,7 +595,7 @@
  "unit_tests": {
   "command": "pytest -q tests/test_verifier.py",
   "returncode": 0,
-  "summary": "16 passed in 0.51s"
+  "summary": "16 passed in 0.55s"
  },
  "human_audit": "specified in docs/evidence_verifier_spec.md (>= 200 claims, blinded); NOT yet performed"
 }

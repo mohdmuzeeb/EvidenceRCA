@@ -183,6 +183,8 @@ All entries below were recorded on 2026-10-12, before the Phase 2 pilot was capt
 | 2026-10-13 | **View specifics:** CS for a postgres root removes DB statement spans (postgres emits none); the CF decoy is a non-root, non-adjacent app service (seeded), shifted +4·MAD on container CPU, process CPU and latency_mean in the agent's analysis window (oracle window if the clean view does not alert); J1/J2 set the view's time tolerance. | Needed to implement §4. |
 | 2026-10-13 | **Claim schema extension:** optional `object_service` for the relational predicate `onset_before`. | §6.1's schema had no field for the second service. |
 | 2026-10-13 | **Dev case set:** pilot run A + the dev-seed matrix + the 3 strong-CPU dev cases (21 base cases). Pilot run B is used only as a replicate. | — |
+| 2026-10-13 | **Dual-fault scenarios not captured** (optional in §3; not implemented). Calibration = 32 single + 4 control cases; test = 48 single + 6 control cases. | Scope; dual faults need a second injector and metric (all-roots-found@3) that were never built. |
+| 2026-10-13 | **Verifier V3/V4 `onset_before` association corrected** (decision 2): a cited record counts towards the object only if the object emitted it and it is not a call to the subject. | Spec ambiguity found in Phase 3; original behaviour preserved in `results/phase3/pre_verifier_correction/`. |
 
 
 ## 13. Freeze candidate (prepared 2026-10-13, Phase 3): decisions required before calibration/test capture
@@ -195,3 +197,11 @@ Everything not listed here is frozen as implemented at the Phase 3 commit: detec
 | 2 | Verifier V4 association for `onset_before` | A cited CLIENT span (caller → subject) is associated with both services. V4 then attributes it to the object and rejects a correct lead (27 V4 rejections, all onset). | Count a cited record towards the object only if the object emitted it and it is not a call to the subject. Freeze **before** test capture; do not change after. |
 | 3 | Abstention score | Dev AURC: S (equal-weight 4-signal) 0.231 vs A-margin 0.142 for E0. The composite is *worse* than margin alone on dev. | Keep S as pre-registered, with A-margin as the mandated competitor, and report both. Do **not** re-weight on 16 dev cases (overfitting risk), unless you prefer to fix weights on dev now. |
 | 4 | τ | Not chosen (protocol: calibration seeds only) | Choose on seeds 23/37 per §7 |
+
+**Approved by you on 2026-10-13:**
+- Decision 1: `strong` CPU for calibration/test; the dev standard cases are kept as detection failures.
+- Decision 2: the onset association correction, with tests, a dev re-run and a before/after record (`results/phase3/verifier_correction_diff.json`).
+- Decision 3: S kept unchanged, with A-margin reported.
+- Decision 4: τ on seeds 23/37 only.
+
+The frozen protocol is [`docs/frozen/frozen_protocol.md`](frozen/frozen_protocol.md).

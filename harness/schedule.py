@@ -74,10 +74,13 @@ def split_of(seed: int, allow_non_dev: bool = False) -> str:
     return SPLITS[seed]
 
 
-def single_fault_matrix(seed: int, allow_non_dev: bool = False) -> list[Scenario]:
-    """The 16 single-fault + 2 control scenarios of one seed, in seeded execution order."""
+def single_fault_matrix(seed: int, allow_non_dev: bool = False, cpu_variant: str = "standard") -> list[Scenario]:
+    """The 16 single-fault + 2 control scenarios of one seed, in seeded execution order.
+    `cpu_variant="strong"` selects the Phase 3 CPU variant (protocol §13.1) for calibration/test capture; the
+    execution order and workload seeds do not depend on the variant."""
     split = split_of(seed, allow_non_dev)
-    scenarios = [Scenario(seed, split, f, t) for f, targets in ELIGIBLE.items() for t in targets]
+    scenarios = [Scenario(seed, split, f, t, variant=cpu_variant if f == "cpu_pressure" else "standard")
+                 for f, targets in ELIGIBLE.items() for t in targets]
     scenarios += [Scenario(seed, split, "none", "-", replicate=r) for r in range(CONTROLS_PER_SEED)]
     random.Random(f"order:{seed}").shuffle(scenarios)
     return scenarios

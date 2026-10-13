@@ -1,0 +1,275 @@
+{
+ "schema": "evidencerca.freeze_manifest/v1",
+ "frozen_at": "2026-10-13T13:07:18+00:00",
+ "splits": {
+  "dev": [
+   11
+  ],
+  "calibration": [
+   23,
+   37
+  ],
+  "test": [
+   41,
+   53,
+   67
+  ]
+ },
+ "use": {
+  "dev": "development only (done; Phases 2-3)",
+  "calibration": "abstention threshold tau only (protocol \u00a77); no other tuning",
+  "test": "held-out evaluation; labels read only by evaluation/run_final.py evaluate, after calibration"
+ },
+ "capture": {
+  "timeline_s": {
+   "warmup_s": 30.0,
+   "baseline_s": 90.0,
+   "injection_s": 120.0,
+   "recovery_s": 60.0,
+   "max_onset_jitter_s": 10.0
+  },
+  "workload": {
+   "rate_rps": 10.0,
+   "concurrency": 32
+  },
+  "fault_parameters": {
+   "processing_delay_ms": 500,
+   "netem_delay_ms": 2500,
+   "pool_held": 5,
+   "cpu_burners": 2,
+   "strong_cpu_cap": 0.2,
+   "cpu_variant_for_calibration_and_test": "strong"
+  },
+  "dual_fault_scenarios": "not captured (optional in protocol \u00a73; not implemented)"
+ },
+ "scenarios": {
+  "11": {
+   "split": "dev",
+   "cpu_variant": "standard",
+   "scenarios_in_execution_order": [
+    "11:network_timeout:inventory:0",
+    "11:network_timeout:payment:0",
+    "11:none:-:0",
+    "11:service_crash:inventory:0",
+    "11:processing_latency:payment:0",
+    "11:service_crash:order:0",
+    "11:db_pool_exhaustion:order:0",
+    "11:service_crash:payment:0",
+    "11:processing_latency:inventory:0",
+    "11:processing_latency:gateway:0",
+    "11:cpu_pressure:inventory:0",
+    "11:cascading_failure:postgres:0",
+    "11:processing_latency:order:0",
+    "11:cpu_pressure:order:0",
+    "11:network_timeout:order:0",
+    "11:db_pool_exhaustion:inventory:0",
+    "11:cpu_pressure:payment:0",
+    "11:none:-:1"
+   ]
+  },
+  "23": {
+   "split": "calibration",
+   "cpu_variant": "strong",
+   "scenarios_in_execution_order": [
+    "23:processing_latency:gateway:0",
+    "23:service_crash:inventory:0",
+    "23:network_timeout:payment:0",
+    "23:processing_latency:order:0",
+    "23:none:-:0",
+    "23:network_timeout:order:0",
+    "23:cpu_pressure:order:0:strong",
+    "23:processing_latency:payment:0",
+    "23:service_crash:order:0",
+    "23:cpu_pressure:inventory:0:strong",
+    "23:processing_latency:inventory:0",
+    "23:cpu_pressure:payment:0:strong",
+    "23:db_pool_exhaustion:inventory:0",
+    "23:none:-:1",
+    "23:db_pool_exhaustion:order:0",
+    "23:service_crash:payment:0",
+    "23:cascading_failure:postgres:0",
+    "23:network_timeout:inventory:0"
+   ]
+  },
+  "37": {
+   "split": "calibration",
+   "cpu_variant": "strong",
+   "scenarios_in_execution_order": [
+    "37:processing_latency:gateway:0",
+    "37:cascading_failure:postgres:0",
+    "37:service_crash:payment:0",
+    "37:cpu_pressure:order:0:strong",
+    "37:none:-:1",
+    "37:network_timeout:order:0",
+    "37:processing_latency:order:0",
+    "37:processing_latency:payment:0",
+    "37:network_timeout:inventory:0",
+    "37:db_pool_exhaustion:inventory:0",
+    "37:cpu_pressure:payment:0:strong",
+    "37:service_crash:order:0",
+    "37:processing_latency:inventory:0",
+    "37:service_crash:inventory:0",
+    "37:db_pool_exhaustion:order:0",
+    "37:none:-:0",
+    "37:network_timeout:payment:0",
+    "37:cpu_pressure:inventory:0:strong"
+   ]
+  },
+  "41": {
+   "split": "test",
+   "cpu_variant": "strong",
+   "scenarios_in_execution_order": [
+    "41:db_pool_exhaustion:inventory:0",
+    "41:service_crash:order:0",
+    "41:processing_latency:order:0",
+    "41:cpu_pressure:payment:0:strong",
+    "41:processing_latency:gateway:0",
+    "41:cpu_pressure:inventory:0:strong",
+    "41:processing_latency:payment:0",
+    "41:network_timeout:order:0",
+    "41:network_timeout:payment:0",
+    "41:network_timeout:inventory:0",
+    "41:none:-:0",
+    "41:cascading_failure:postgres:0",
+    "41:service_crash:payment:0",
+    "41:service_crash:inventory:0",
+    "41:none:-:1",
+    "41:processing_latency:inventory:0",
+    "41:db_pool_exhaustion:order:0",
+    "41:cpu_pressure:order:0:strong"
+   ]
+  },
+  "53": {
+   "split": "test",
+   "cpu_variant": "strong",
+   "scenarios_in_execution_order": [
+    "53:processing_latency:inventory:0",
+    "53:cpu_pressure:inventory:0:strong",
+    "53:db_pool_exhaustion:inventory:0",
+    "53:db_pool_exhaustion:order:0",
+    "53:cpu_pressure:order:0:strong",
+    "53:network_timeout:payment:0",
+    "53:service_crash:order:0",
+    "53:cpu_pressure:payment:0:strong",
+    "53:service_crash:inventory:0",
+    "53:cascading_failure:postgres:0",
+    "53:none:-:0",
+    "53:none:-:1",
+    "53:processing_latency:order:0",
+    "53:processing_latency:payment:0",
+    "53:network_timeout:order:0",
+    "53:service_crash:payment:0",
+    "53:processing_latency:gateway:0",
+    "53:network_timeout:inventory:0"
+   ]
+  },
+  "67": {
+   "split": "test",
+   "cpu_variant": "strong",
+   "scenarios_in_execution_order": [
+    "67:processing_latency:order:0",
+    "67:processing_latency:payment:0",
+    "67:network_timeout:inventory:0",
+    "67:db_pool_exhaustion:inventory:0",
+    "67:cascading_failure:postgres:0",
+    "67:none:-:1",
+    "67:network_timeout:payment:0",
+    "67:network_timeout:order:0",
+    "67:cpu_pressure:inventory:0:strong",
+    "67:none:-:0",
+    "67:cpu_pressure:payment:0:strong",
+    "67:service_crash:inventory:0",
+    "67:cpu_pressure:order:0:strong",
+    "67:processing_latency:inventory:0",
+    "67:service_crash:order:0",
+    "67:processing_latency:gateway:0",
+    "67:service_crash:payment:0",
+    "67:db_pool_exhaustion:order:0"
+   ]
+  }
+ },
+ "views_per_case": [
+  "C0:1",
+  "R20:1",
+  "R20:2",
+  "R20:3",
+  "R40:1",
+  "R40:2",
+  "R40:3",
+  "R60:1",
+  "R60:2",
+  "R60:3",
+  "MT:1",
+  "ML:1",
+  "MM:1",
+  "CS:1",
+  "RL:1",
+  "J1:1",
+  "J2:1",
+  "CF:1"
+ ],
+ "methods": [
+  "B1",
+  "B2",
+  "B3",
+  "E0",
+  "E0-A-graph"
+ ],
+ "abstention": {
+  "score": "equal-weight mean of sufficiency, agreement, margin, verified-claim coverage",
+  "ablations": [
+   "A-margin (margin only)",
+   "A-ver (S without verified-claim coverage)",
+   "A-abst (never abstain)",
+   "A-graph (E0 without graph constraints)"
+  ],
+  "tau_rule": "on calibration seeds only: op1 = min selective risk s.t. coverage >= 0.7; op2 = max coverage s.t. selective risk <= 0.1 (if achievable)"
+ },
+ "files": {
+  "compose.yaml": "e8bab19731a6d663397a90b20b6b4c5ee66102809e43d45b525df7d297b2e8d4",
+  "uv.lock": "b370dbcc370c822bf6e16ce78135a0d99cb9e0182a76e5b9453951161da90bab",
+  "pyproject.toml": "49f3bfb1c1449ac98bf8f86cee60191c0aeef68ee9ae4a430adb0be32eb5cd68",
+  "testbed/Dockerfile": "f160bcf5808fef7840030e13d6c789e4e7e94f87e6c530545c92e9b5f72237ee",
+  "testbed/requirements.lock": "fb63abed16ab0fe46aa11ee3f02a3efe184c2e34da21005f8c77b5eea1d7196e",
+  "testbed/otel-collector.yaml": "936cd3c5808d1488db8100a68b968eea687c8dd2157e8a777e297ab4002cac21",
+  "testbed/postgres/init.sql": "cbb3fe89dad0a33b0c562d11293de955de445561f9652bb6294208679bf41b0f",
+  "testbed/app/__init__.py": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+  "testbed/app/common.py": "2b5bf5ab5d92ef597921d581551b8187c373b489df07a6da5bb30e2db84069f2",
+  "testbed/app/control.py": "0ea973f4b31e8b99e33d552d168f6fb3b30821f7c1b287001d6ecddc2d3e7116",
+  "testbed/app/gateway.py": "828cb5bbb968993fbaf046ed5422b099646b6e1cdc3804120ddeadbda4d42cc3",
+  "testbed/app/inventory.py": "788733eae9e315802d46ae7c38095b72b24e7d6b95a97f2b146ccb37bdfb2fbe",
+  "testbed/app/order.py": "3f259c980911dfe5034004cd66d0497723e58f03c9baadee9c70da366ba09490",
+  "testbed/app/payment.py": "cc62d85a9772d0436dd9cf7a81d7dcc4186a4a5f85e9f79c558e0acdc62df933",
+  "testbed/app/telemetry.py": "02082a61ebc1175d068a20fd4f39e2d777ea1b5965979d19f318a85165405573",
+  "harness/__init__.py": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+  "harness/case.py": "6d0b2bcdc92c8875e7fbc04a00852ba4066eaae1a11f2da43477a426394d5051",
+  "harness/docker_ops.py": "26c1beaebdd3af4cda9509da7ab89b04ef568d69c85da43ebe23233b4b324459",
+  "harness/faults.py": "1e14d4fc7f93d738664abdac0836799640a49e582bad03d4ef0287749a5d817f",
+  "harness/leakage.py": "0dd7b7d2395b2f90b53086cdf28995eec09bbcc10c04fe99d7eee47fb261e43c",
+  "harness/monitor.py": "1cf1ce469b9676752611218241c787b65f9fd0366458c8183430fb94965caa1f",
+  "harness/reevaluate.py": "af420927149b1c19ccc02c40e25595dfd9c7d0fd895479f3d1addc7d608c3099",
+  "harness/schedule.py": "3cfcaec91c3ef9c9084ef000f571a1abe917131c2a2f77e48579b12f3f681b2b",
+  "harness/telemetry_check.py": "0ffc42cc6a36c7c9e924ab74cc5cff025e1e69c14e7fea0b2f5d5408e3c00847",
+  "harness/validate.py": "381d1ac5e423f22f99a163ce19b5b3fe38eab1006e6b38edba3ad726d441dba2",
+  "harness/vm/workload.py": "c5c91dcf6ef54e67608d842d0a0b31e71fc482eb9b841a4bfa7a827004005cf4",
+  "scripts/run_phase2.py": "86bf29a8646f9655ff606b4268bd1aaccb3a2fdba748d28c8cf0eb967193f45e",
+  "evidencerca/__init__.py": "d747ac2d3113c8d6bd18daeb7b2f2cfcb34129646370ba950f2a8e97511c4e89",
+  "evidencerca/abstention.py": "f7e628802437e3c2fab7223971d3c50754cde171d3d13f4dc0d5afbe63d9e50a",
+  "evidencerca/core.py": "3c4388271238cc5e5d0462f28e8d1de22fc6e48128e5b117d295c1ab4f859401",
+  "evidencerca/evidence.py": "4a9e7bc885e1b0d7b7e73d8c4422f9b17d1c044c8b3efa05555277deff4a3abd",
+  "evidencerca/paths.py": "3ae5535173d2eaa95bd217645515e310f34683f0ef1f0b1bf93ff3a94df22026",
+  "evidencerca/rca_input.py": "c1a67ee86ac48971ef3f755fe131fde8f5568d0060b870d6293546c1338bfe35",
+  "evidencerca/signals.py": "1b169a46bad2584cd3c6eeace513746f03c294313a556357ecb7240ceb2ed09c",
+  "evidencerca/verifier.py": "bca76f2dd56a413cef2bbd9c3f2badbfd3655a2e457964603c2626294014052a",
+  "evidencerca/methods/__init__.py": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+  "evidencerca/methods/baselines.py": "db456708d08d307a0494db5127bd13d3436ab73699268d4b05d7c235a50f61fe",
+  "evidencerca/methods/diagnosis.py": "bbe480ab6384e97018904e26b1819203dc54adf643d5b678fa6428b1c19c0ad3",
+  "evidencerca/methods/evidencerca_e0.py": "546dfa27518a522095b59d59e4c2d45aab9bc4004662dce0396673da7e1cfb77",
+  "evaluation/views.py": "c94a95e73f3d0f6a1265d707a6f0ceafdffe48cd239ac219fb86e19a728fd84d",
+  "evaluation/run_dev.py": "5f33d2b3c38769f6a0c25c2edfc411ad2343fc2aa5969290b9dd49fd0f0b2722",
+  "evaluation/run_final.py": "aad6d734842aa62c7c2feab8e7940b536e7d5dd7c88e91292afba42dfa882ea6",
+  "evaluation/freeze.py": "b4964e0f73d52808d5a95a234fc5e9785901c822d683f541e689cfa3bd9774cf",
+  "docs/experiment_protocol.md": "b23a253c00b5145b90d22bf50f94cb87bab133d550728cc29378633d50c2e375",
+  "docs/frozen/frozen_protocol.md": "5270ef5729f1a4e2d13725bb64e1a15c24ffeed7bccb7ccf01f6065d33954dce"
+ }
+}

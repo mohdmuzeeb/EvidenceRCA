@@ -59,19 +59,22 @@ def cmd_pilot(args) -> int:
 def cmd_matrix(args) -> int:
     """Capture the single-fault + control matrix of one seed (dev only unless explicitly allowed), skipping
     scenarios that already have a valid protocol-timeline capture in the experiment index."""
-    split = split_of(args.seed, allow_non_dev=False)
+    split = split_of(args.seed, allow_non_dev=args.allow_non_dev_seed)
+    if split != "dev":
+        from evaluation.freeze import verify_frozen   # capture of calibration/test data requires the frozen code
+        verify_frozen()
     done = set()
     if INDEX.exists():
         for line in INDEX.read_text().splitlines():
             e = json.loads(line)
-            if e["group"] in ("pilot", "matrix") and e["case_valid"]:
+            if e["group"] in ("pilot", "matrix", "calibration", "test") and e["case_valid"]:
                 done.add(e["scenario"])
-    todo = [s for s in single_fault_matrix(args.seed) if s.key not in done]
+    todo = [s for s in single_fault_matrix(args.seed, args.allow_non_dev_seed, args.cpu_variant) if s.key not in done]
     log(f"matrix: seed {args.seed} ({split}): {len(todo)} scenarios to capture, {len(done)} already captured")
     rc = 0
     for sc in todo:
         gt = run_case(sc, PROTOCOL_TIMELINE, CASES_ROOT, GROUND_TRUTH_ROOT, rate=args.rate, log=log)
-        record("matrix", args.label, gt)
+        record("matrix" if split == "dev" else split, args.label, gt)
         rc |= not gt["case_valid"]
     return rc
 
@@ -134,6 +137,9 @@ def main() -> int:
     mx.add_argument("--seed", type=int, default=11)
     mx.add_argument("--label", default="dev-matrix")
     mx.add_argument("--rate", type=float, default=10.0)
+    mx.add_argument("--allow-non-dev-seed", action="store_true",
+                    help="required for calibration/test seeds (approved 2026-10-13; frozen code is verified first)")
+    mx.add_argument("--cpu-variant", default="standard", choices=["standard", "strong"])
     cv = sub.add_parser("cpu-variant")
     cv.add_argument("--seed", type=int, default=11)
     cv.add_argument("--label", default="cpu-strong")

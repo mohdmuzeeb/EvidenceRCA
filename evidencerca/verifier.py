@@ -99,6 +99,17 @@ def _related(view, subject):
     return _REL_CACHE[key].get(subject, [])
 
 
+def _onset_side(r, subject, obj) -> str | None:
+    """Relational association for `onset_before` (correction approved 2026-10-13, protocol §13.2):
+    a cited record counts towards the OBJECT only if the object emitted it and it is not a call to the
+    subject; otherwise it counts towards the SUBJECT if associated with it (emitted by it, or a call to it)."""
+    if r["service"] == obj and r.get("peer_service") != subject:
+        return "object"
+    if r["service"] == subject or r.get("peer_service") == subject:
+        return "subject"
+    return None
+
+
 def _population(view, predicate, subject, t0, t1, like=None):
     """All records of the view associated with subject for this predicate in [t0, t1), optionally restricted
     to the same (modality, measurement, kind) family as `like`."""
@@ -212,8 +223,9 @@ def _recompute(claim, view, recs):
     if p == "no_telemetry_from":
         return _periodic_gap(view, subj, w0, w1)[1]
     if p == "onset_before":   # V4 checks the number against the cited records; V5 checks onsets independently
-        subj_t = [r["ts_start"] for r in recs if _assoc(r, p, subj)]
-        obj_t = [r["ts_start"] for r in recs if _assoc(r, p, claim.get("object_service"))]
+        obj = claim.get("object_service")
+        subj_t = [r["ts_start"] for r in recs if _onset_side(r, subj, obj) == "subject"]
+        obj_t = [r["ts_start"] for r in recs if _onset_side(r, subj, obj) == "object"]
         return None if not subj_t or not obj_t else (min(obj_t) - min(subj_t)) / SEC
     return None
 
@@ -295,7 +307,8 @@ def verify_claim(claim: dict, diag: dict, view) -> dict:
     c["V2"] = "pass" if recs and ident and in_time else "fail"
     subj, obj = claim["subject_service"], claim.get("object_service")
     if claim["predicate"] == "onset_before":
-        assoc = any(_assoc(r, "onset_before", subj) for r in recs) and any(_assoc(r, "onset_before", obj) for r in recs)
+        sides = [_onset_side(r, subj, obj) for r in recs]
+        assoc = "subject" in sides and "object" in sides and None not in sides
     elif claim["kind"] == "inferred":
         assoc = all(_assoc(r, "onset_before", subj) for r in recs)
     else:
