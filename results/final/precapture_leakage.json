@@ -1,6 +1,6 @@
 {
   "schema": "evidencerca.phase2.leakage/v1",
-  "generated_at": "2026-10-13T12:34:34+00:00",
+  "generated_at": "2026-10-13T22:53:43+00:00",
   "forbidden_tokens": [
     "/delay",
     "/hold",
@@ -28232,7 +28232,7 @@
   },
   "pytest_tests_test_leakage": {
     "returncode": 0,
-    "summary": "54 passed in 121.31s (0:02:01)"
+    "summary": "54 passed in 110.56s (0:01:50)"
   },
   "passed": true
 }
