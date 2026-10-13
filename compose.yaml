@@ -115,19 +115,63 @@ services:
     depends_on:
       otel-collector: {condition: service_started}
 
+  # Read-only Docker API for docker_stats. Only GET on containers/version/ping/events is allowed (all POST,
+  # exec, images, networks, volumes, ... return 403). The collector no longer mounts docker.sock or runs as root.
+  docker-proxy:
+    image: tecnativa/docker-socket-proxy:v0.5.0@sha256:1f5038b54f06c3e18422902cf00ba21803d1c97805aae032e5e6673d532d3459
+    restart: "no"
+    mem_limit: 64m
+    cpus: 0.5
+    read_only: true
+    tmpfs: ["/run", "/tmp"]
+    environment:
+      CONTAINERS: "1"
+      POST: "0"
+      EVENTS: "1"
+      PING: "1"
+      VERSION: "1"
+      IMAGES: "0"
+      INFO: "0"
+      NETWORKS: "0"
+      VOLUMES: "0"
+      EXEC: "0"
+    volumes:
+      - /var/run/docker.sock:/var/run/docker.sock:ro
+    # no ports: reachable only from the compose network
+
   otel-collector:
     image: otel/opentelemetry-collector-contrib:0.162.0@sha256:39923a8e431bd1f57be82411999d389fcfe40857492e4365456d97a4c1f74be6
     restart: "no"
-    # root is needed to read the VM's docker.sock (docker_stats) and to write the bind mount.
-    user: "0:0"
     mem_limit: 224m
     cpus: 1.0
     command: ["--config=/etc/otelcol/config.yaml"]
+    depends_on:
+      docker-proxy: {condition: service_started}
     volumes:
       - ./testbed/otel-collector.yaml:/etc/otelcol/config.yaml:ro
-      - /var/run/docker.sock:/var/run/docker.sock:ro
       - ${TELEMETRY_DIR:-./runs/scratch/telemetry}:/telemetry
     ports:
       - "127.0.0.1:8888:8888"     # collector self-metrics (Prometheus)
       - "127.0.0.1:13133:13133"   # health_check
       - "127.0.0.1:24224:24224"   # fluentd forward, used by the postgres log driver
+
+  # Phase 2 workload generator + network probes. Same base image under a separate tag, so the collector's
+  # docker_stats receiver excludes it; not instrumented, logs to Docker's json-file driver only, so it adds
+  # nothing to the system-under-test telemetry. Started only by the harness (profile).
+  workload:
+    profiles: ["harness"]
+    image: evidencerca-harness:phase2
+    build:
+      context: .
+      dockerfile: testbed/Dockerfile
+    restart: "no"
+    mem_limit: 192m
+    cpus: 1.0
+    user: "10001"
+    entrypoint: ["python", "/harness/workload.py"]
+    command: ["--help"]
+    volumes:
+      - ./harness/vm:/harness:ro
+      - ${HARNESS_OUT_DIR:-./runs/scratch/harness}:/out
+    depends_on:
+      gateway: {condition: service_healthy}

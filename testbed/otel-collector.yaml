@@ -6,10 +6,14 @@ receivers:
       http:
         endpoint: 0.0.0.0:4318
   docker_stats:
-    endpoint: unix:///var/run/docker.sock
+    # Through the read-only socket proxy (see compose.yaml); harness/infra containers are not observed.
+    endpoint: tcp://docker-proxy:2375
     collection_interval: 5s
     timeout: 5s
-    excluded_images: ["otel/opentelemetry-collector-contrib*"]
+    excluded_images:
+      - "otel/opentelemetry-collector-contrib*"
+      - "tecnativa/docker-socket-proxy*"
+      - "evidencerca-harness*"
     container_labels_to_metric_labels:
       com.docker.compose.service: compose.service
   fluent_forward:

@@ -1,5 +1,6 @@
 """Pieces shared by the four services: app factory, downstream HTTP client, DB engine."""
 
+import asyncio
 import logging
 import os
 import time
@@ -15,6 +16,7 @@ from opentelemetry.instrumentation.sqlalchemy import SQLAlchemyInstrumentor
 from opentelemetry.metrics import Observation
 from sqlalchemy import Engine, create_engine
 
+from app import control
 from app.telemetry import Telemetry
 
 # Uninstrumented: liveness probes would otherwise dominate the telemetry.
@@ -61,7 +63,18 @@ def create_app(service_name: str) -> tuple[FastAPI, Telemetry]:
         if request.url.path in EXCLUDED_PATHS:
             return await call_next(request)
         start = time.perf_counter()
-        response = await call_next(request)
+        added_delay_s = control.delay_for(request.method, request.url.path)
+        if added_delay_s:
+            await asyncio.sleep(added_delay_s)
+        try:
+            response = await call_next(request)
+        except Exception as exc:  # unhandled: make it visible in spans, logs and app metrics, then answer 500
+            span = trace.get_current_span()
+            span.record_exception(exc)
+            span.set_status(trace.Status(trace.StatusCode.ERROR, type(exc).__name__))
+            log.error("unhandled exception", exc_info=exc,
+                      extra={"exception_type": type(exc).__name__, "http_path": request.url.path})
+            response = JSONResponse(status_code=500, content={"detail": "internal server error"})
         elapsed_ms = (time.perf_counter() - start) * 1000.0
         route = getattr(request.scope.get("route"), "path", "unmatched")
         attrs = {"http.route": route, "http.request.method": request.method,
@@ -97,6 +110,7 @@ def create_app(service_name: str) -> tuple[FastAPI, Telemetry]:
         excluded_urls=",".join(EXCLUDED_PATHS),
         exclude_spans=["receive", "send"],
     )
+    control.start()
     return app, tel
 
 
@@ -145,6 +159,7 @@ def create_db_engine(tel: Telemetry) -> Engine:
         engine=engine, tracer_provider=tel.tracer_provider, meter_provider=tel.meter_provider,
         raise_exception_on_conflict=True,
     )
+    control.attach_engine(engine)
     pool = engine.pool
 
     def observe(attr):

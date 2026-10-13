@@ -1,4 +1,5 @@
 -- Schema and seed data for the EvidenceRCA testbed (applied on first start of an empty data dir).
+-- Phase 2: stock raised so that ~5 min of sustained workload never runs an item out (see docs/phase2_validation.md).
 CREATE TABLE items (
     item_id          text PRIMARY KEY,
     name             text NOT NULL,
@@ -24,8 +25,8 @@ CREATE TABLE orders (
 );
 
 INSERT INTO items (item_id, name, unit_price_cents, stock) VALUES
-    ('sku-001', 'widget',   1250, 100),
-    ('sku-002', 'gadget',   4999, 100),
-    ('sku-003', 'gizmo',     799, 100),
-    ('sku-004', 'doohickey', 2500,  50),
-    ('sku-005', 'sprocket',  150, 500);
+    ('sku-001', 'widget',   1250, 1000000),
+    ('sku-002', 'gadget',   4999, 1000000),
+    ('sku-003', 'gizmo',     799, 1000000),
+    ('sku-004', 'doohickey', 2500,      50),  -- kept small: insufficient-stock rejections
+    ('sku-005', 'sprocket',  150, 1000000);

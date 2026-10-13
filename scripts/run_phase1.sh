@@ -6,7 +6,7 @@ cd "$(dirname "$0")/.."
 
 RUN_ID="${RUN_ID:-phase1-$(date -u +%Y%m%dT%H%M%SZ)}"
 RUN_DIR="runs/${RUN_ID}"
-RESULTS="results/phase1"
+RESULTS="${RESULTS:-results/phase1}"   # override to keep the official Phase 1 artifacts untouched
 SETTLE_S="${SETTLE_S:-12}"   # > two metric export intervals (5 s) and one docker_stats interval (5 s)
 mkdir -p "${RUN_DIR}/telemetry" "${RESULTS}"
 export TELEMETRY_DIR="./${RUN_DIR}/telemetry"

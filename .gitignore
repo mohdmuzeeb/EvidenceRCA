@@ -7,3 +7,5 @@ __pycache__/
 Literature/
 # raw telemetry is large; summaries/reports in results/ are committed
 runs/
+# Phase 2 case data: raw bundles, ground truth, harness records (large; summaries go to results/)
+data/
