@@ -1,0 +1,7 @@
+{"BlockIO":"0B / 0B","CPUPerc":"1.59%","Container":"ab70711a55b7","ID":"ab70711a55b7","MemPerc":"30.78%","MemUsage":"59.09MiB / 192MiB","Name":"evidencerca-gateway-1","NetIO":"1.33kB / 2.93kB","PIDs":"6"}
+{"BlockIO":"0B / 0B","CPUPerc":"0.33%","Container":"47b020a44593","ID":"47b020a44593","MemPerc":"37.97%","MemUsage":"72.9MiB / 192MiB","Name":"evidencerca-order-1","NetIO":"1.44kB / 3.15kB","PIDs":"6"}
+{"BlockIO":"0B / 0B","CPUPerc":"17.94%","Container":"d80cff8ba441","ID":"d80cff8ba441","MemPerc":"36.86%","MemUsage":"70.78MiB / 192MiB","Name":"evidencerca-inventory-1","NetIO":"1.73kB / 5.18kB","PIDs":"6"}
+{"BlockIO":"0B / 8.19kB","CPUPerc":"0.06%","Container":"4a426fd5259e","ID":"4a426fd5259e","MemPerc":"23.04%","MemUsage":"58.97MiB / 256MiB","Name":"evidencerca-postgres-1","NetIO":"1.27kB / 0B","PIDs":"6"}
+{"BlockIO":"0B / 0B","CPUPerc":"0.29%","Container":"48dfe42003c3","ID":"48dfe42003c3","MemPerc":"29.92%","MemUsage":"57.45MiB / 192MiB","Name":"evidencerca-payment-1","NetIO":"2.29kB / 4.73kB","PIDs":"6"}
+{"BlockIO":"651kB / 0B","CPUPerc":"0.26%","Container":"d9d2e44a291e","ID":"d9d2e44a291e","MemPerc":"17.53%","MemUsage":"39.28MiB / 224MiB","Name":"evidencerca-otel-collector-1","NetIO":"190kB / 20.5kB","PIDs":"8"}
+{"BlockIO":"0B / 0B","CPUPerc":"0.00%","Container":"fb0b7b8a2e26","ID":"fb0b7b8a2e26","MemPerc":"28.56%","MemUsage":"18.28MiB / 64MiB","Name":"evidencerca-docker-proxy-1","NetIO":"14kB / 150kB","PIDs":"5"}

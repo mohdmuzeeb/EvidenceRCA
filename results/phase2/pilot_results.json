@@ -1,0 +1,2378 @@
+{
+  "schema": "evidencerca.phase2.pilot/v1",
+  "generated_at": "2026-10-13T01:51:37+00:00",
+  "seed": 11,
+  "split": "dev",
+  "protocol_timeline_s": {
+    "warmup_s": 30.0,
+    "baseline_s": 90.0,
+    "injection_s": 120.0,
+    "recovery_s": 60.0,
+    "max_onset_jitter_s": 10.0
+  },
+  "summary": {
+    "pilot_cases": 8,
+    "valid": 8,
+    "all_valid": true,
+    "mechanism_checks": 6,
+    "mechanism_valid": 6,
+    "load_runs": 1
+  },
+  "pilot_runs": {
+    "mechanism": [],
+    "A": [
+      {
+        "case_id": "be737f04-58a1-44de-805e-7eea5b332a97",
+        "scenario": "11:none:-:0",
+        "fault_type": "none",
+        "target": "-",
+        "root_operation": null,
+        "case_valid": true,
+        "fault_occurred": null,
+        "validator_checks_passed": "3/3",
+        "recovered": true,
+        "observable_impact": false,
+        "propagated_symptom_services": [],
+        "workload_by_window": {
+          "baseline": {
+            "n": 915,
+            "shed": 0,
+            "throughput_rps": 9.739,
+            "unexpected_rate": 0.0,
+            "transport_errors": 0,
+            "status_5xx": 0,
+            "p50_ms": 15.671,
+            "p95_ms": 56.804
+          },
+          "injection_steady": {
+            "n": 1050,
+            "shed": 0,
+            "throughput_rps": 10.0,
+            "unexpected_rate": 0.0,
+            "transport_errors": 0,
+            "status_5xx": 0,
+            "p50_ms": 15.363,
+            "p95_ms": 40.303
+          },
+          "recovery_last_30s": {
+            "n": 319,
+            "shed": 0,
+            "throughput_rps": 10.633,
+            "unexpected_rate": 0.0,
+            "transport_errors": 0,
+            "status_5xx": 0,
+            "p50_ms": 14.524,
+            "p95_ms": 36.309
+          }
+        },
+        "workload": {
+          "schedule_sha256": "8fa56f5da3911f3d121ff747125933ca3141914d143720e58cb721a699a3cdc7",
+          "offered_rate_rps": 10.0,
+          "achieved_rate_rps": 9.98,
+          "scheduled": 3033,
+          "sent": 3033,
+          "shed": 0,
+          "unexpected_outcome_rate": 0.0,
+          "p50_ms": 15.493,
+          "p95_ms": 46.38,
+          "status_counts": {
+            "422": 103,
+            "200": 1361,
+            "201": 1368,
+            "404": 104,
+            "409": 97
+          }
+        },
+        "telemetry": {
+          "passed": true,
+          "checks": {
+            "collector_to_disk_lossless": true,
+            "collector_refused_or_failed_zero": true,
+            "every_responded_request_has_its_trace": true,
+            "every_answered_inbound_call_has_its_server_span": true,
+            "all_modalities_present_per_service_per_window": true,
+            "no_sdk_export_drops_logged": true
+          },
+          "records": {
+            "spans": 33905,
+            "log_records": 17723,
+            "metric_points": 11749
+          },
+          "throughput_per_s": {
+            "spans": 111.55,
+            "log_records": 58.31,
+            "metric_points": 38.65
+          },
+          "raw_mb": 41.27,
+          "trace_completeness": {
+            "responses_with_trace_id": 3033,
+            "missing_root_spans": 0,
+            "missing_sample": [],
+            "requests_without_response": 0
+          },
+          "unexpected_gaps": [],
+          "expected_gap": null
+        },
+        "durations_s": {
+          "baseline": 93.95,
+          "injection": 120.0,
+          "recovery": 60.0,
+          "onset_vs_plan_ms": 0.0
+        },
+        "clock_offsets_vm_minus_host": {
+          "start": {
+            "offset_ns": 155786857,
+            "uncertainty_ns": 162824000,
+            "host_ns": 1791852580686040000
+          },
+          "end": {
+            "offset_ns": 112035788,
+            "uncertainty_ns": 123021500,
+            "host_ns": 1791853516325192500
+          },
+          "note": "offset = VM clock - host clock; all timeline values are VM clock"
+        },
+        "monitor_errors": 0,
+        "wall_clock_s": 939.3,
+        "resources": {
+          "peak_container_mem_mib": {
+            "docker-proxy": 18.4,
+            "gateway": 74.2,
+            "inventory": 84.6,
+            "order": 88.3,
+            "otel-collector": 55.5,
+            "payment": 70.5,
+            "postgres": 87.8,
+            "workload": 32.5
+          },
+          "peak_container_cpu_pct": {
+            "docker-proxy": 1.6,
+            "gateway": 53.6,
+            "inventory": 33.0,
+            "order": 61.1,
+            "otel-collector": 4.2,
+            "payment": 35.1,
+            "postgres": 12.8,
+            "workload": 9.5
+          },
+          "peak_total_container_mem_mib": 511.7,
+          "host_min_memorystatus_free_pct": 32,
+          "vm_min_mem_available_mib": 1984.3,
+          "clock_offset_ms_range": [
+            111.1,
+            658.8
+          ]
+        }
+      },
+      {
+        "case_id": "a4f3f9b6-8b93-4f4f-8bad-d4c1c81d67e7",
+        "scenario": "11:processing_latency:inventory:0",
+        "fault_type": "processing_latency",
+        "target": "inventory",
+        "root_operation": "POST /reserve",
+        "case_valid": true,
+        "fault_occurred": true,
+        "validator_checks_passed": "5/5",
+        "recovered": true,
+        "observable_impact": true,
+        "propagated_symptom_services": [
+          "gateway",
+          "order"
+        ],
+        "workload_by_window": {
+          "baseline": {
+            "n": 912,
+            "shed": 0,
+            "throughput_rps": 9.848,
+            "unexpected_rate": 0.0,
+            "transport_errors": 0,
+            "status_5xx": 0,
+            "p50_ms": 14.628,
+            "p95_ms": 37.053
+          },
+          "injection_steady": {
+            "n": 1098,
+            "shed": 0,
+            "throughput_rps": 10.428,
+            "unexpected_rate": 0.0,
+            "transport_errors": 0,
+            "status_5xx": 0,
+            "p50_ms": 15.835,
+            "p95_ms": 546.514
+          },
+          "recovery_last_30s": {
+            "n": 296,
+            "shed": 0,
+            "throughput_rps": 9.867,
+            "unexpected_rate": 0.0,
+            "transport_errors": 0,
+            "status_5xx": 0,
+            "p50_ms": 15.144,
+            "p95_ms": 36.681
+          }
+        },
+        "workload": {
+          "schedule_sha256": "cdc576bcb9f339c31e55b90075274c0d693d5ba438d090c5f7d769cd749df2cd",
+          "offered_rate_rps": 10.0,
+          "achieved_rate_rps": 10.052,
+          "scheduled": 3038,
+          "sent": 3038,
+          "shed": 0,
+          "unexpected_outcome_rate": 0.0,
+          "p50_ms": 15.031,
+          "p95_ms": 539.131,
+          "status_counts": {
+            "200": 1405,
+            "201": 1320,
+            "422": 90,
+            "404": 117,
+            "409": 106
+          }
+        },
+        "telemetry": {
+          "passed": true,
+          "checks": {
+            "collector_to_disk_lossless": true,
+            "collector_refused_or_failed_zero": true,
+            "every_responded_request_has_its_trace": true,
+            "every_answered_inbound_call_has_its_server_span": true,
+            "all_modalities_present_per_service_per_window": true,
+            "no_sdk_export_drops_logged": true
+          },
+          "records": {
+            "spans": 33310,
+            "log_records": 17349,
+            "metric_points": 11605
+          },
+          "throughput_per_s": {
+            "spans": 109.97,
+            "log_records": 57.28,
+            "metric_points": 38.31
+          },
+          "raw_mb": 40.5,
+          "trace_completeness": {
+            "responses_with_trace_id": 3038,
+            "missing_root_spans": 0,
+            "missing_sample": [],
+            "requests_without_response": 0
+          },
+          "unexpected_gaps": [],
+          "expected_gap": null
+        },
+        "durations_s": {
+          "baseline": 92.61,
+          "injection": 120.29,
+          "recovery": 60.0,
+          "onset_vs_plan_ms": 282.1
+        },
+        "clock_offsets_vm_minus_host": {
+          "start": {
+            "offset_ns": 120336339,
+            "uncertainty_ns": 131043000,
+            "host_ns": 1791853518777325000
+          },
+          "end": {
+            "offset_ns": 132941889,
+            "uncertainty_ns": 150892000,
+            "host_ns": 1791853852045401000
+          },
+          "note": "offset = VM clock - host clock; all timeline values are VM clock"
+        },
+        "monitor_errors": 0,
+        "wall_clock_s": 335.7,
+        "resources": {
+          "peak_container_mem_mib": {
+            "docker-proxy": 18.4,
+            "gateway": 72.3,
+            "inventory": 83.1,
+            "order": 86.9,
+            "otel-collector": 55.9,
+            "payment": 68.2,
+            "postgres": 80.3,
+            "workload": 32.4
+          },
+          "peak_container_cpu_pct": {
+            "docker-proxy": 0.1,
+            "gateway": 22.9,
+            "inventory": 22.9,
+            "order": 23.5,
+            "otel-collector": 8.6,
+            "payment": 20.1,
+            "postgres": 3.9,
+            "workload": 3.9
+          },
+          "peak_total_container_mem_mib": 497.5,
+          "host_min_memorystatus_free_pct": 32,
+          "vm_min_mem_available_mib": 1986.2,
+          "clock_offset_ms_range": [
+            105.2,
+            218.2
+          ]
+        }
+      },
+      {
+        "case_id": "70a3e296-764a-47fb-be3b-5d9611a74383",
+        "scenario": "11:service_crash:inventory:0",
+        "fault_type": "service_crash",
+        "target": "inventory",
+        "root_operation": null,
+        "case_valid": true,
+        "fault_occurred": true,
+        "validator_checks_passed": "4/4",
+        "recovered": true,
+        "observable_impact": true,
+        "propagated_symptom_services": [
+          "gateway",
+          "payment"
+        ],
+        "workload_by_window": {
+          "baseline": {
+            "n": 959,
+            "shed": 0,
+            "throughput_rps": 9.81,
+            "unexpected_rate": 0.0,
+            "transport_errors": 0,
+            "status_5xx": 0,
+            "p50_ms": 15.114,
+            "p95_ms": 39.143
+          },
+          "injection_steady": {
+            "n": 1070,
+            "shed": 0,
+            "throughput_rps": 10.186,
+            "unexpected_rate": 0.8626,
+            "transport_errors": 0,
+            "status_5xx": 923,
+            "p50_ms": 118.018,
+            "p95_ms": 133.266
+          },
+          "recovery_last_30s": {
+            "n": 360,
+            "shed": 0,
+            "throughput_rps": 12.0,
+            "unexpected_rate": 0.0,
+            "transport_errors": 0,
+            "status_5xx": 0,
+            "p50_ms": 13.976,
+            "p95_ms": 39.133
+          }
+        },
+        "workload": {
+          "schedule_sha256": "30f2cd3387cbbcdfa29c914f28412725fabca49fe2c19e8e6264e5bd87384f7f",
+          "offered_rate_rps": 10.0,
+          "achieved_rate_rps": 10.031,
+          "scheduled": 3087,
+          "sent": 3087,
+          "shed": 0,
+          "unexpected_outcome_rate": 0.34338,
+          "p50_ms": 23.84,
+          "p95_ms": 129.179,
+          "status_counts": {
+            "201": 809,
+            "409": 77,
+            "200": 981,
+            "422": 94,
+            "404": 66,
+            "503": 1060
+          }
+        },
+        "telemetry": {
+          "passed": true,
+          "checks": {
+            "collector_to_disk_lossless": true,
+            "collector_refused_or_failed_zero": true,
+            "every_responded_request_has_its_trace": true,
+            "every_answered_inbound_call_has_its_server_span": true,
+            "all_modalities_present_per_service_per_window": true,
+            "no_sdk_export_drops_logged": true
+          },
+          "records": {
+            "spans": 24236,
+            "log_records": 14373,
+            "metric_points": 11208
+          },
+          "throughput_per_s": {
+            "spans": 78.74,
+            "log_records": 46.7,
+            "metric_points": 36.41
+          },
+          "raw_mb": 39.24,
+          "trace_completeness": {
+            "responses_with_trace_id": 3087,
+            "missing_root_spans": 0,
+            "missing_sample": [],
+            "requests_without_response": 0
+          },
+          "unexpected_gaps": [],
+          "expected_gap": "inventory"
+        },
+        "durations_s": {
+          "baseline": 97.76,
+          "injection": 120.04,
+          "recovery": 60.0,
+          "onset_vs_plan_ms": -66.7
+        },
+        "clock_offsets_vm_minus_host": {
+          "start": {
+            "offset_ns": 104902614,
+            "uncertainty_ns": 123421500,
+            "host_ns": 1791853855265540500
+          },
+          "end": {
+            "offset_ns": 99540667,
+            "uncertainty_ns": 135153500,
+            "host_ns": 1791854198156420500
+          },
+          "note": "offset = VM clock - host clock; all timeline values are VM clock"
+        },
+        "monitor_errors": 0,
+        "wall_clock_s": 345.6,
+        "resources": {
+          "peak_container_mem_mib": {
+            "docker-proxy": 18.4,
+            "gateway": 75.0,
+            "inventory": 73.7,
+            "order": 85.7,
+            "otel-collector": 55.6,
+            "payment": 67.9,
+            "postgres": 83.7,
+            "workload": 32.4
+          },
+          "peak_container_cpu_pct": {
+            "docker-proxy": 0.7,
+            "gateway": 26.0,
+            "inventory": 25.2,
+            "order": 21.9,
+            "otel-collector": 5.1,
+            "payment": 20.8,
+            "postgres": 3.7,
+            "workload": 4.4
+          },
+          "peak_total_container_mem_mib": 492.3,
+          "host_min_memorystatus_free_pct": 32,
+          "vm_min_mem_available_mib": 1864.5,
+          "clock_offset_ms_range": [
+            101.9,
+            222.3
+          ]
+        }
+      },
+      {
+        "case_id": "c4a78010-46e9-4f59-a403-5321e0ec3a86",
+        "scenario": "11:db_pool_exhaustion:inventory:0",
+        "fault_type": "db_pool_exhaustion",
+        "target": "inventory",
+        "root_operation": "database connection pool",
+        "case_valid": true,
+        "fault_occurred": true,
+        "validator_checks_passed": "3/3",
+        "recovered": true,
+        "observable_impact": true,
+        "propagated_symptom_services": [
+          "gateway",
+          "payment"
+        ],
+        "workload_by_window": {
+          "baseline": {
+            "n": 1082,
+            "shed": 0,
+            "throughput_rps": 10.848,
+            "unexpected_rate": 0.0,
+            "transport_errors": 0,
+            "status_5xx": 0,
+            "p50_ms": 14.35,
+            "p95_ms": 37.235
+          },
+          "injection_steady": {
+            "n": 856,
+            "shed": 229,
+            "throughput_rps": 8.134,
+            "unexpected_rate": 0.8294,
+            "transport_errors": 0,
+            "status_5xx": 710,
+            "p50_ms": 4120.715,
+            "p95_ms": 4138.77
+          },
+          "recovery_last_30s": {
+            "n": 271,
+            "shed": 0,
+            "throughput_rps": 9.033,
+            "unexpected_rate": 0.0,
+            "transport_errors": 0,
+            "status_5xx": 0,
+            "p50_ms": 15.723,
+            "p95_ms": 46.253
+          }
+        },
+        "workload": {
+          "schedule_sha256": "ca8756cef721e26686c68668caca85fa183f756d53a6348b734e1d127e71792c",
+          "offered_rate_rps": 10.0,
+          "achieved_rate_rps": 9.529,
+          "scheduled": 3183,
+          "sent": 2948,
+          "shed": 235,
+          "unexpected_outcome_rate": 0.27408,
+          "p50_ms": 19.942,
+          "p95_ms": 4129.845,
+          "status_counts": {
+            "422": 99,
+            "200": 1018,
+            "201": 907,
+            "404": 50,
+            "409": 66,
+            "503": 808
+          }
+        },
+        "telemetry": {
+          "passed": true,
+          "checks": {
+            "collector_to_disk_lossless": true,
+            "collector_refused_or_failed_zero": true,
+            "every_responded_request_has_its_trace": true,
+            "every_answered_inbound_call_has_its_server_span": true,
+            "all_modalities_present_per_service_per_window": true,
+            "no_sdk_export_drops_logged": true
+          },
+          "records": {
+            "spans": 28709,
+            "log_records": 17884,
+            "metric_points": 12532
+          },
+          "throughput_per_s": {
+            "spans": 92.62,
+            "log_records": 57.69,
+            "metric_points": 40.43
+          },
+          "raw_mb": 66.3,
+          "trace_completeness": {
+            "responses_with_trace_id": 2948,
+            "missing_root_spans": 0,
+            "missing_sample": [],
+            "requests_without_response": 0
+          },
+          "unexpected_gaps": [],
+          "expected_gap": null
+        },
+        "durations_s": {
+          "baseline": 99.74,
+          "injection": 120.23,
+          "recovery": 60.0,
+          "onset_vs_plan_ms": 232.9
+        },
+        "clock_offsets_vm_minus_host": {
+          "start": {
+            "offset_ns": 94966137,
+            "uncertainty_ns": 131258500,
+            "host_ns": 1791854200385320500
+          },
+          "end": {
+            "offset_ns": 127027991,
+            "uncertainty_ns": 116575000,
+            "host_ns": 1791854542555742000
+          },
+          "note": "offset = VM clock - host clock; all timeline values are VM clock"
+        },
+        "monitor_errors": 0,
+        "wall_clock_s": 345.5,
+        "resources": {
+          "peak_container_mem_mib": {
+            "docker-proxy": 18.4,
+            "gateway": 78.4,
+            "inventory": 107.6,
+            "order": 78.4,
+            "otel-collector": 57.2,
+            "payment": 70.5,
+            "postgres": 87.4,
+            "workload": 32.4
+          },
+          "peak_container_cpu_pct": {
+            "docker-proxy": 1.4,
+            "gateway": 34.7,
+            "inventory": 31.8,
+            "order": 22.9,
+            "otel-collector": 14.4,
+            "payment": 21.2,
+            "postgres": 4.6,
+            "workload": 4.3
+          },
+          "peak_total_container_mem_mib": 530.3,
+          "host_min_memorystatus_free_pct": 34,
+          "vm_min_mem_available_mib": 1910.0,
+          "clock_offset_ms_range": [
+            90.8,
+            231.4
+          ]
+        }
+      }
+    ],
+    "B": [
+      {
+        "case_id": "77092a17-0dbe-41e4-aefa-77f96d53b805",
+        "scenario": "11:none:-:0",
+        "fault_type": "none",
+        "target": "-",
+        "root_operation": null,
+        "case_valid": true,
+        "fault_occurred": null,
+        "validator_checks_passed": "3/3",
+        "recovered": true,
+        "observable_impact": false,
+        "propagated_symptom_services": [],
+        "workload_by_window": {
+          "baseline": {
+            "n": 914,
+            "shed": 0,
+            "throughput_rps": 9.729,
+            "unexpected_rate": 0.0,
+            "transport_errors": 0,
+            "status_5xx": 0,
+            "p50_ms": 14.487,
+            "p95_ms": 36.854
+          },
+          "injection_steady": {
+            "n": 1050,
+            "shed": 0,
+            "throughput_rps": 10.0,
+            "unexpected_rate": 0.0,
+            "transport_errors": 0,
+            "status_5xx": 0,
+            "p50_ms": 15.049,
+            "p95_ms": 40.137
+          },
+          "recovery_last_30s": {
+            "n": 319,
+            "shed": 0,
+            "throughput_rps": 10.633,
+            "unexpected_rate": 0.0,
+            "transport_errors": 0,
+            "status_5xx": 0,
+            "p50_ms": 14.965,
+            "p95_ms": 40.865
+          }
+        },
+        "workload": {
+          "schedule_sha256": "8fa56f5da3911f3d121ff747125933ca3141914d143720e58cb721a699a3cdc7",
+          "offered_rate_rps": 10.0,
+          "achieved_rate_rps": 9.98,
+          "scheduled": 3033,
+          "sent": 3033,
+          "shed": 0,
+          "unexpected_outcome_rate": 0.0,
+          "p50_ms": 14.866,
+          "p95_ms": 38.374,
+          "status_counts": {
+            "422": 103,
+            "200": 1361,
+            "201": 1368,
+            "404": 104,
+            "409": 97
+          }
+        },
+        "telemetry": {
+          "passed": true,
+          "checks": {
+            "collector_to_disk_lossless": true,
+            "collector_refused_or_failed_zero": true,
+            "every_responded_request_has_its_trace": true,
+            "every_answered_inbound_call_has_its_server_span": true,
+            "all_modalities_present_per_service_per_window": true,
+            "no_sdk_export_drops_logged": true
+          },
+          "records": {
+            "spans": 33905,
+            "log_records": 17698,
+            "metric_points": 11705
+          },
+          "throughput_per_s": {
+            "spans": 111.55,
+            "log_records": 58.23,
+            "metric_points": 38.51
+          },
+          "raw_mb": 41.19,
+          "trace_completeness": {
+            "responses_with_trace_id": 3033,
+            "missing_root_spans": 0,
+            "missing_sample": [],
+            "requests_without_response": 0
+          },
+          "unexpected_gaps": [],
+          "expected_gap": null
+        },
+        "durations_s": {
+          "baseline": 93.95,
+          "injection": 120.0,
+          "recovery": 60.0,
+          "onset_vs_plan_ms": 0.0
+        },
+        "clock_offsets_vm_minus_host": {
+          "start": {
+            "offset_ns": 135517313,
+            "uncertainty_ns": 126101500,
+            "host_ns": 1791854546302376500
+          },
+          "end": {
+            "offset_ns": 115944655,
+            "uncertainty_ns": 116678000,
+            "host_ns": 1791854881406414000
+          },
+          "note": "offset = VM clock - host clock; all timeline values are VM clock"
+        },
+        "monitor_errors": 0,
+        "wall_clock_s": 337.6,
+        "resources": {
+          "peak_container_mem_mib": {
+            "docker-proxy": 18.4,
+            "gateway": 61.8,
+            "inventory": 73.9,
+            "order": 76.3,
+            "otel-collector": 55.5,
+            "payment": 58.0,
+            "postgres": 82.2,
+            "workload": 32.1
+          },
+          "peak_container_cpu_pct": {
+            "docker-proxy": 1.4,
+            "gateway": 29.8,
+            "inventory": 28.9,
+            "order": 28.4,
+            "otel-collector": 3.6,
+            "payment": 24.6,
+            "postgres": 4.3,
+            "workload": 3.3
+          },
+          "peak_total_container_mem_mib": 458.2,
+          "host_min_memorystatus_free_pct": 34,
+          "vm_min_mem_available_mib": 1977.2,
+          "clock_offset_ms_range": [
+            124.8,
+            270.8
+          ]
+        }
+      },
+      {
+        "case_id": "21cca7a8-bf4c-4548-baca-f7849b94c8c4",
+        "scenario": "11:processing_latency:inventory:0",
+        "fault_type": "processing_latency",
+        "target": "inventory",
+        "root_operation": "POST /reserve",
+        "case_valid": true,
+        "fault_occurred": true,
+        "validator_checks_passed": "5/5",
+        "recovered": true,
+        "observable_impact": true,
+        "propagated_symptom_services": [
+          "gateway",
+          "order"
+        ],
+        "workload_by_window": {
+          "baseline": {
+            "n": 912,
+            "shed": 0,
+            "throughput_rps": 9.845,
+            "unexpected_rate": 0.0,
+            "transport_errors": 0,
+            "status_5xx": 0,
+            "p50_ms": 14.106,
+            "p95_ms": 37.803
+          },
+          "injection_steady": {
+            "n": 1097,
+            "shed": 0,
+            "throughput_rps": 10.424,
+            "unexpected_rate": 0.0,
+            "transport_errors": 0,
+            "status_5xx": 0,
+            "p50_ms": 14.748,
+            "p95_ms": 544.421
+          },
+          "recovery_last_30s": {
+            "n": 296,
+            "shed": 0,
+            "throughput_rps": 9.867,
+            "unexpected_rate": 0.0,
+            "transport_errors": 0,
+            "status_5xx": 0,
+            "p50_ms": 14.991,
+            "p95_ms": 36.283
+          }
+        },
+        "workload": {
+          "schedule_sha256": "cdc576bcb9f339c31e55b90075274c0d693d5ba438d090c5f7d769cd749df2cd",
+          "offered_rate_rps": 10.0,
+          "achieved_rate_rps": 10.052,
+          "scheduled": 3038,
+          "sent": 3038,
+          "shed": 0,
+          "unexpected_outcome_rate": 0.0,
+          "p50_ms": 14.428,
+          "p95_ms": 537.184,
+          "status_counts": {
+            "200": 1405,
+            "201": 1320,
+            "422": 90,
+            "404": 117,
+            "409": 106
+          }
+        },
+        "telemetry": {
+          "passed": true,
+          "checks": {
+            "collector_to_disk_lossless": true,
+            "collector_refused_or_failed_zero": true,
+            "every_responded_request_has_its_trace": true,
+            "every_answered_inbound_call_has_its_server_span": true,
+            "all_modalities_present_per_service_per_window": true,
+            "no_sdk_export_drops_logged": true
+          },
+          "records": {
+            "spans": 33310,
+            "log_records": 17377,
+            "metric_points": 11600
+          },
+          "throughput_per_s": {
+            "spans": 109.98,
+            "log_records": 57.37,
+            "metric_points": 38.3
+          },
+          "raw_mb": 40.52,
+          "trace_completeness": {
+            "responses_with_trace_id": 3038,
+            "missing_root_spans": 0,
+            "missing_sample": [],
+            "requests_without_response": 0
+          },
+          "unexpected_gaps": [],
+          "expected_gap": null
+        },
+        "durations_s": {
+          "baseline": 92.63,
+          "injection": 120.24,
+          "recovery": 60.0,
+          "onset_vs_plan_ms": 303.3
+        },
+        "clock_offsets_vm_minus_host": {
+          "start": {
+            "offset_ns": 150728196,
+            "uncertainty_ns": 151348500,
+            "host_ns": 1791854884260019500
+          },
+          "end": {
+            "offset_ns": 145109143,
+            "uncertainty_ns": 157991500,
+            "host_ns": 1791855216813546500
+          },
+          "note": "offset = VM clock - host clock; all timeline values are VM clock"
+        },
+        "monitor_errors": 0,
+        "wall_clock_s": 335.7,
+        "resources": {
+          "peak_container_mem_mib": {
+            "docker-proxy": 18.4,
+            "gateway": 75.5,
+            "inventory": 74.3,
+            "order": 89.4,
+            "otel-collector": 55.1,
+            "payment": 71.6,
+            "postgres": 85.9,
+            "workload": 32.0
+          },
+          "peak_container_cpu_pct": {
+            "docker-proxy": 0.8,
+            "gateway": 25.3,
+            "inventory": 25.2,
+            "order": 22.7,
+            "otel-collector": 6.9,
+            "payment": 21.5,
+            "postgres": 4.0,
+            "workload": 4.3
+          },
+          "peak_total_container_mem_mib": 502.2,
+          "host_min_memorystatus_free_pct": 32,
+          "vm_min_mem_available_mib": 1977.7,
+          "clock_offset_ms_range": [
+            119.2,
+            231.3
+          ]
+        }
+      },
+      {
+        "case_id": "ce9aaa1b-db02-4e84-9e66-87aff3be6321",
+        "scenario": "11:service_crash:inventory:0",
+        "fault_type": "service_crash",
+        "target": "inventory",
+        "root_operation": null,
+        "case_valid": true,
+        "fault_occurred": true,
+        "validator_checks_passed": "4/4",
+        "recovered": true,
+        "observable_impact": true,
+        "propagated_symptom_services": [
+          "gateway",
+          "payment"
+        ],
+        "workload_by_window": {
+          "baseline": {
+            "n": 959,
+            "shed": 0,
+            "throughput_rps": 9.814,
+            "unexpected_rate": 0.001,
+            "transport_errors": 0,
+            "status_5xx": 1,
+            "p50_ms": 14.889,
+            "p95_ms": 38.578
+          },
+          "injection_steady": {
+            "n": 1069,
+            "shed": 0,
+            "throughput_rps": 10.185,
+            "unexpected_rate": 0.8634,
+            "transport_errors": 0,
+            "status_5xx": 923,
+            "p50_ms": 117.16,
+            "p95_ms": 131.554
+          },
+          "recovery_last_30s": {
+            "n": 359,
+            "shed": 0,
+            "throughput_rps": 11.967,
+            "unexpected_rate": 0.0,
+            "transport_errors": 0,
+            "status_5xx": 0,
+            "p50_ms": 13.604,
+            "p95_ms": 36.009
+          }
+        },
+        "workload": {
+          "schedule_sha256": "30f2cd3387cbbcdfa29c914f28412725fabca49fe2c19e8e6264e5bd87384f7f",
+          "offered_rate_rps": 10.0,
+          "achieved_rate_rps": 10.031,
+          "scheduled": 3087,
+          "sent": 3087,
+          "shed": 0,
+          "unexpected_outcome_rate": 0.34564,
+          "p50_ms": 22.482,
+          "p95_ms": 127.589,
+          "status_counts": {
+            "201": 806,
+            "409": 75,
+            "200": 980,
+            "422": 94,
+            "404": 65,
+            "503": 1067
+          }
+        },
+        "telemetry": {
+          "passed": true,
+          "checks": {
+            "collector_to_disk_lossless": true,
+            "collector_refused_or_failed_zero": true,
+            "every_responded_request_has_its_trace": true,
+            "every_answered_inbound_call_has_its_server_span": true,
+            "all_modalities_present_per_service_per_window": true,
+            "no_sdk_export_drops_logged": true
+          },
+          "records": {
+            "spans": 24184,
+            "log_records": 14337,
+            "metric_points": 11296
+          },
+          "throughput_per_s": {
+            "spans": 78.6,
+            "log_records": 46.6,
+            "metric_points": 36.71
+          },
+          "raw_mb": 39.27,
+          "trace_completeness": {
+            "responses_with_trace_id": 3087,
+            "missing_root_spans": 0,
+            "missing_sample": [],
+            "requests_without_response": 0
+          },
+          "unexpected_gaps": [],
+          "expected_gap": "inventory"
+        },
+        "durations_s": {
+          "baseline": 97.72,
+          "injection": 119.96,
+          "recovery": 60.0,
+          "onset_vs_plan_ms": -108.4
+        },
+        "clock_offsets_vm_minus_host": {
+          "start": {
+            "offset_ns": 150219821,
+            "uncertainty_ns": 162995500,
+            "host_ns": 1791855219748161500
+          },
+          "end": {
+            "offset_ns": 115557015,
+            "uncertainty_ns": 117635000,
+            "host_ns": 1791855559923595000
+          },
+          "note": "offset = VM clock - host clock; all timeline values are VM clock"
+        },
+        "monitor_errors": 0,
+        "wall_clock_s": 342.6,
+        "resources": {
+          "peak_container_mem_mib": {
+            "docker-proxy": 18.4,
+            "gateway": 77.8,
+            "inventory": 73.5,
+            "order": 76.1,
+            "otel-collector": 55.2,
+            "payment": 70.4,
+            "postgres": 78.1,
+            "workload": 32.2
+          },
+          "peak_container_cpu_pct": {
+            "docker-proxy": 0.8,
+            "gateway": 33.0,
+            "inventory": 22.4,
+            "order": 23.1,
+            "otel-collector": 12.9,
+            "payment": 20.8,
+            "postgres": 3.5,
+            "workload": 4.0
+          },
+          "peak_total_container_mem_mib": 481.6,
+          "host_min_memorystatus_free_pct": 35,
+          "vm_min_mem_available_mib": 1881.6,
+          "clock_offset_ms_range": [
+            127.1,
+            234.1
+          ]
+        }
+      },
+      {
+        "case_id": "3e64441f-66f1-4331-87c7-b7d1d45b250d",
+        "scenario": "11:db_pool_exhaustion:inventory:0",
+        "fault_type": "db_pool_exhaustion",
+        "target": "inventory",
+        "root_operation": "database connection pool",
+        "case_valid": true,
+        "fault_occurred": true,
+        "validator_checks_passed": "3/3",
+        "recovered": true,
+        "observable_impact": true,
+        "propagated_symptom_services": [
+          "gateway",
+          "payment"
+        ],
+        "workload_by_window": {
+          "baseline": {
+            "n": 1082,
+            "shed": 0,
+            "throughput_rps": 10.837,
+            "unexpected_rate": 0.0,
+            "transport_errors": 0,
+            "status_5xx": 0,
+            "p50_ms": 14.768,
+            "p95_ms": 36.979
+          },
+          "injection_steady": {
+            "n": 852,
+            "shed": 235,
+            "throughput_rps": 8.088,
+            "unexpected_rate": 0.8322,
+            "transport_errors": 0,
+            "status_5xx": 709,
+            "p50_ms": 4123.017,
+            "p95_ms": 4142.012
+          },
+          "recovery_last_30s": {
+            "n": 271,
+            "shed": 0,
+            "throughput_rps": 9.033,
+            "unexpected_rate": 0.0,
+            "transport_errors": 0,
+            "status_5xx": 0,
+            "p50_ms": 17.143,
+            "p95_ms": 62.219
+          }
+        },
+        "workload": {
+          "schedule_sha256": "ca8756cef721e26686c68668caca85fa183f756d53a6348b734e1d127e71792c",
+          "offered_rate_rps": 10.0,
+          "achieved_rate_rps": 9.51,
+          "scheduled": 3183,
+          "sent": 2942,
+          "shed": 241,
+          "unexpected_outcome_rate": 0.2743,
+          "p50_ms": 20.898,
+          "p95_ms": 4134.134,
+          "status_counts": {
+            "200": 1014,
+            "201": 907,
+            "422": 98,
+            "404": 50,
+            "409": 66,
+            "503": 807
+          }
+        },
+        "telemetry": {
+          "passed": true,
+          "checks": {
+            "collector_to_disk_lossless": true,
+            "collector_refused_or_failed_zero": true,
+            "every_responded_request_has_its_trace": true,
+            "every_answered_inbound_call_has_its_server_span": true,
+            "all_modalities_present_per_service_per_window": true,
+            "no_sdk_export_drops_logged": true
+          },
+          "records": {
+            "spans": 28685,
+            "log_records": 17870,
+            "metric_points": 12499
+          },
+          "throughput_per_s": {
+            "spans": 92.48,
+            "log_records": 57.61,
+            "metric_points": 40.3
+          },
+          "raw_mb": 66.23,
+          "trace_completeness": {
+            "responses_with_trace_id": 2942,
+            "missing_root_spans": 0,
+            "missing_sample": [],
+            "requests_without_response": 0
+          },
+          "unexpected_gaps": [],
+          "expected_gap": null
+        },
+        "durations_s": {
+          "baseline": 99.85,
+          "injection": 120.34,
+          "recovery": 60.0,
+          "onset_vs_plan_ms": 334.3
+        },
+        "clock_offsets_vm_minus_host": {
+          "start": {
+            "offset_ns": 133649724,
+            "uncertainty_ns": 136330500,
+            "host_ns": 1791855562676037500
+          },
+          "end": {
+            "offset_ns": 154909721,
+            "uncertainty_ns": 156880500,
+            "host_ns": 1791855903810533500
+          },
+          "note": "offset = VM clock - host clock; all timeline values are VM clock"
+        },
+        "monitor_errors": 0,
+        "wall_clock_s": 344.6,
+        "resources": {
+          "peak_container_mem_mib": {
+            "docker-proxy": 18.4,
+            "gateway": 78.5,
+            "inventory": 96.1,
+            "order": 78.9,
+            "otel-collector": 57.7,
+            "payment": 57.9,
+            "postgres": 87.4,
+            "workload": 32.4
+          },
+          "peak_container_cpu_pct": {
+            "docker-proxy": 0.9,
+            "gateway": 27.9,
+            "inventory": 35.3,
+            "order": 27.4,
+            "otel-collector": 11.1,
+            "payment": 23.0,
+            "postgres": 5.1,
+            "workload": 10.7
+          },
+          "peak_total_container_mem_mib": 507.2,
+          "host_min_memorystatus_free_pct": 37,
+          "vm_min_mem_available_mib": 1914.3,
+          "clock_offset_ms_range": [
+            127.0,
+            256.0
+          ]
+        }
+      }
+    ],
+    "rate-20": []
+  },
+  "repeatability": [
+    {
+      "scenario": "11:db_pool_exhaustion:inventory:0",
+      "labels": [
+        "A",
+        "B"
+      ],
+      "case_ids": [
+        "c4a78010-46e9-4f59-a403-5321e0ec3a86",
+        "3e64441f-66f1-4331-87c7-b7d1d45b250d"
+      ],
+      "identical_offered_schedule": true,
+      "same_validation_outcome": true,
+      "same_recovery_outcome": true,
+      "same_observable_impact": true,
+      "same_propagated_symptoms": true,
+      "injection_unexpected_rate": [
+        0.8294,
+        0.8322
+      ],
+      "injection_p95_ms": [
+        4138.77,
+        4142.012
+      ],
+      "injection_p95_rel_diff": 0.001,
+      "span_count_rel_diff": 0.001
+    },
+    {
+      "scenario": "11:none:-:0",
+      "labels": [
+        "A",
+        "B"
+      ],
+      "case_ids": [
+        "be737f04-58a1-44de-805e-7eea5b332a97",
+        "77092a17-0dbe-41e4-aefa-77f96d53b805"
+      ],
+      "identical_offered_schedule": true,
+      "same_validation_outcome": true,
+      "same_recovery_outcome": true,
+      "same_observable_impact": true,
+      "same_propagated_symptoms": true,
+      "injection_unexpected_rate": [
+        0.0,
+        0.0
+      ],
+      "injection_p95_ms": [
+        40.303,
+        40.137
+      ],
+      "injection_p95_rel_diff": 0.004,
+      "span_count_rel_diff": 0.0
+    },
+    {
+      "scenario": "11:processing_latency:inventory:0",
+      "labels": [
+        "A",
+        "B"
+      ],
+      "case_ids": [
+        "a4f3f9b6-8b93-4f4f-8bad-d4c1c81d67e7",
+        "21cca7a8-bf4c-4548-baca-f7849b94c8c4"
+      ],
+      "identical_offered_schedule": true,
+      "same_validation_outcome": true,
+      "same_recovery_outcome": true,
+      "same_observable_impact": true,
+      "same_propagated_symptoms": true,
+      "injection_unexpected_rate": [
+        0.0,
+        0.0
+      ],
+      "injection_p95_ms": [
+        546.514,
+        544.421
+      ],
+      "injection_p95_rel_diff": 0.004,
+      "span_count_rel_diff": 0.0
+    },
+    {
+      "scenario": "11:service_crash:inventory:0",
+      "labels": [
+        "A",
+        "B"
+      ],
+      "case_ids": [
+        "70a3e296-764a-47fb-be3b-5d9611a74383",
+        "ce9aaa1b-db02-4e84-9e66-87aff3be6321"
+      ],
+      "identical_offered_schedule": true,
+      "same_validation_outcome": true,
+      "same_recovery_outcome": true,
+      "same_observable_impact": true,
+      "same_propagated_symptoms": true,
+      "injection_unexpected_rate": [
+        0.8626,
+        0.8634
+      ],
+      "injection_p95_ms": [
+        133.266,
+        131.554
+      ],
+      "injection_p95_rel_diff": 0.013,
+      "span_count_rel_diff": 0.002
+    }
+  ],
+  "mechanism_checks": {
+    "timeline_s": {
+      "warmup_s": 15,
+      "baseline_s": 40,
+      "injection_s": 45,
+      "recovery_s": 40,
+      "max_onset_jitter_s": 0
+    },
+    "note": "Short-timeline runs of every fault type to verify injector, independent validator and cleanup. Not experiment data.",
+    "cases": [
+      {
+        "case_id": "bf256e6a-97e0-49f7-b666-c04062f70cf2",
+        "scenario": "11:processing_latency:payment:900",
+        "fault_type": "processing_latency",
+        "target": "payment",
+        "root_operation": "POST /charge",
+        "case_valid": true,
+        "fault_occurred": true,
+        "validator_checks_passed": "5/5",
+        "recovered": true,
+        "observable_impact": true,
+        "propagated_symptom_services": [
+          "gateway",
+          "order"
+        ],
+        "workload_by_window": {
+          "baseline": {
+            "n": 409,
+            "shed": 0,
+            "throughput_rps": 10.157,
+            "unexpected_rate": 0.0,
+            "transport_errors": 0,
+            "status_5xx": 0,
+            "p50_ms": 14.655,
+            "p95_ms": 43.494
+          },
+          "injection_steady": {
+            "n": 292,
+            "shed": 0,
+            "throughput_rps": 9.602,
+            "unexpected_rate": 0.0,
+            "transport_errors": 0,
+            "status_5xx": 0,
+            "p50_ms": 41.623,
+            "p95_ms": 564.24
+          },
+          "recovery_last_30s": {
+            "n": 258,
+            "shed": 0,
+            "throughput_rps": 8.6,
+            "unexpected_rate": 0.0,
+            "transport_errors": 0,
+            "status_5xx": 0,
+            "p50_ms": 17.368,
+            "p95_ms": 56.897
+          }
+        },
+        "workload": {
+          "schedule_sha256": "1a0bc26ca208e980b140d3826d05607735228eaf3859d69d60d301b6a6f24409",
+          "offered_rate_rps": 10.0,
+          "achieved_rate_rps": 9.631,
+          "scheduled": 1347,
+          "sent": 1347,
+          "shed": 0,
+          "unexpected_outcome_rate": 0.0,
+          "p50_ms": 16.625,
+          "p95_ms": 537.882,
+          "status_counts": {
+            "200": 582,
+            "201": 613,
+            "404": 42,
+            "422": 49,
+            "409": 61
+          }
+        },
+        "telemetry": {
+          "passed": true,
+          "checks": {
+            "collector_to_disk_lossless": true,
+            "collector_refused_or_failed_zero": true,
+            "every_responded_request_has_its_trace": true,
+            "every_answered_inbound_call_has_its_server_span": true,
+            "all_modalities_present_per_service_per_window": true,
+            "no_sdk_export_drops_logged": true
+          },
+          "records": {
+            "spans": 15121,
+            "log_records": 8025,
+            "metric_points": 5743
+          },
+          "throughput_per_s": {
+            "spans": 107.49,
+            "log_records": 57.05,
+            "metric_points": 40.82
+          },
+          "raw_mb": 18.72,
+          "trace_completeness": {
+            "responses_with_trace_id": 1347,
+            "missing_root_spans": 0,
+            "missing_sample": [],
+            "requests_without_response": 0
+          },
+          "unexpected_gaps": [],
+          "expected_gap": null
+        },
+        "durations_s": {
+          "baseline": 40.27,
+          "injection": 45.41,
+          "recovery": 40.0,
+          "onset_vs_plan_ms": 267.8
+        },
+        "clock_offsets_vm_minus_host": {
+          "start": {
+            "offset_ns": 228116577,
+            "uncertainty_ns": 132992000,
+            "host_ns": 1791850153794338000
+          },
+          "end": {
+            "offset_ns": 224886157,
+            "uncertainty_ns": 125450500,
+            "host_ns": 1791850324522760500
+          },
+          "note": "offset = VM clock - host clock; all timeline values are VM clock"
+        },
+        "monitor_errors": 0,
+        "wall_clock_s": 174.0,
+        "resources": {
+          "peak_container_mem_mib": {
+            "docker-proxy": 18.4,
+            "gateway": 62.5,
+            "inventory": 73.7,
+            "order": 76.8,
+            "otel-collector": 54.0,
+            "payment": 58.0,
+            "postgres": 86.9,
+            "workload": 29.1
+          },
+          "peak_container_cpu_pct": {
+            "docker-proxy": 0.9,
+            "gateway": 28.7,
+            "inventory": 27.6,
+            "order": 27.6,
+            "otel-collector": 10.8,
+            "payment": 25.4,
+            "postgres": 4.8,
+            "workload": 3.2
+          },
+          "peak_total_container_mem_mib": 459.3,
+          "host_min_memorystatus_free_pct": 32,
+          "vm_min_mem_available_mib": 1996.2,
+          "clock_offset_ms_range": [
+            225.0,
+            379.9
+          ]
+        }
+      },
+      {
+        "case_id": "915ee773-599a-4217-8b6d-99a1e5319d1a",
+        "scenario": "11:cpu_pressure:order:900",
+        "fault_type": "cpu_pressure",
+        "target": "order",
+        "root_operation": null,
+        "case_valid": true,
+        "fault_occurred": true,
+        "validator_checks_passed": "3/3",
+        "recovered": true,
+        "observable_impact": false,
+        "propagated_symptom_services": [
+          "gateway"
+        ],
+        "workload_by_window": {
+          "baseline": {
+            "n": 401,
+            "shed": 0,
+            "throughput_rps": 10.026,
+            "unexpected_rate": 0.0,
+            "transport_errors": 0,
+            "status_5xx": 0,
+            "p50_ms": 15.056,
+            "p95_ms": 40.042
+          },
+          "injection_steady": {
+            "n": 294,
+            "shed": 0,
+            "throughput_rps": 9.7,
+            "unexpected_rate": 0.0,
+            "transport_errors": 0,
+            "status_5xx": 0,
+            "p50_ms": 12.5,
+            "p95_ms": 79.447
+          },
+          "recovery_last_30s": {
+            "n": 302,
+            "shed": 0,
+            "throughput_rps": 10.067,
+            "unexpected_rate": 0.0,
+            "transport_errors": 0,
+            "status_5xx": 0,
+            "p50_ms": 15.232,
+            "p95_ms": 38.085
+          }
+        },
+        "workload": {
+          "schedule_sha256": "76b63eeaedbe1fab15eea7eb91fe524780554f0dc207ded655bbaf4505a105a5",
+          "offered_rate_rps": 10.0,
+          "achieved_rate_rps": 10.155,
+          "scheduled": 1421,
+          "sent": 1421,
+          "shed": 0,
+          "unexpected_outcome_rate": 0.0,
+          "p50_ms": 13.905,
+          "p95_ms": 56.743,
+          "status_counts": {
+            "200": 662,
+            "201": 609,
+            "404": 53,
+            "422": 50,
+            "409": 47
+          }
+        },
+        "telemetry": {
+          "passed": true,
+          "checks": {
+            "collector_to_disk_lossless": true,
+            "collector_refused_or_failed_zero": true,
+            "every_responded_request_has_its_trace": true,
+            "every_answered_inbound_call_has_its_server_span": true,
+            "all_modalities_present_per_service_per_window": true,
+            "no_sdk_export_drops_logged": true
+          },
+          "records": {
+            "spans": 15431,
+            "log_records": 8121,
+            "metric_points": 5744
+          },
+          "throughput_per_s": {
+            "spans": 109.98,
+            "log_records": 57.88,
+            "metric_points": 40.94
+          },
+          "raw_mb": 19.02,
+          "trace_completeness": {
+            "responses_with_trace_id": 1421,
+            "missing_root_spans": 0,
+            "missing_sample": [],
+            "requests_without_response": 0
+          },
+          "unexpected_gaps": [],
+          "expected_gap": null
+        },
+        "durations_s": {
+          "baseline": 40.0,
+          "injection": 45.31,
+          "recovery": 40.0,
+          "onset_vs_plan_ms": -2.7
+        },
+        "clock_offsets_vm_minus_host": {
+          "start": {
+            "offset_ns": 128266974,
+            "uncertainty_ns": 125701500,
+            "host_ns": 1791852232895775500
+          },
+          "end": {
+            "offset_ns": 113982789,
+            "uncertainty_ns": 115033000,
+            "host_ns": 1791852404015291000
+          },
+          "note": "offset = VM clock - host clock; all timeline values are VM clock"
+        },
+        "monitor_errors": 0,
+        "wall_clock_s": 172.9,
+        "resources": {
+          "peak_container_mem_mib": {
+            "docker-proxy": 18.4,
+            "gateway": 61.9,
+            "inventory": 86.4,
+            "order": 89.2,
+            "otel-collector": 51.8,
+            "payment": 57.9,
+            "postgres": 79.7,
+            "workload": 29.3
+          },
+          "peak_container_cpu_pct": {
+            "docker-proxy": 1.0,
+            "gateway": 22.0,
+            "inventory": 29.3,
+            "order": 101.7,
+            "otel-collector": 3.4,
+            "payment": 20.9,
+            "postgres": 5.2,
+            "workload": 2.9
+          },
+          "peak_total_container_mem_mib": 474.6,
+          "host_min_memorystatus_free_pct": 33,
+          "vm_min_mem_available_mib": 1986.1,
+          "clock_offset_ms_range": [
+            144.8,
+            286.8
+          ]
+        }
+      },
+      {
+        "case_id": "638e4132-8680-4946-8e60-cc6a4db0e46f",
+        "scenario": "11:service_crash:order:900",
+        "fault_type": "service_crash",
+        "target": "order",
+        "root_operation": null,
+        "case_valid": true,
+        "fault_occurred": true,
+        "validator_checks_passed": "4/4",
+        "recovered": true,
+        "observable_impact": true,
+        "propagated_symptom_services": [
+          "gateway",
+          "payment"
+        ],
+        "workload_by_window": {
+          "baseline": {
+            "n": 378,
+            "shed": 0,
+            "throughput_rps": 9.466,
+            "unexpected_rate": 0.0,
+            "transport_errors": 0,
+            "status_5xx": 0,
+            "p50_ms": 16.986,
+            "p95_ms": 67.879
+          },
+          "injection_steady": {
+            "n": 308,
+            "shed": 0,
+            "throughput_rps": 10.274,
+            "unexpected_rate": 0.5747,
+            "transport_errors": 0,
+            "status_5xx": 177,
+            "p50_ms": 113.92,
+            "p95_ms": 135.72
+          },
+          "recovery_last_30s": {
+            "n": 293,
+            "shed": 0,
+            "throughput_rps": 9.767,
+            "unexpected_rate": 0.0,
+            "transport_errors": 0,
+            "status_5xx": 0,
+            "p50_ms": 15.01,
+            "p95_ms": 42.076
+          }
+        },
+        "workload": {
+          "schedule_sha256": "dff5ee8bcf5c757ed7901f2ff2feb35018c443cef1ec83910d275970c67a4982",
+          "offered_rate_rps": 10.0,
+          "achieved_rate_rps": 9.768,
+          "scheduled": 1366,
+          "sent": 1366,
+          "shed": 0,
+          "unexpected_outcome_rate": 0.19766,
+          "p50_ms": 17.711,
+          "p95_ms": 128.562,
+          "status_counts": {
+            "201": 393,
+            "200": 557,
+            "409": 44,
+            "404": 54,
+            "422": 48,
+            "503": 270
+          }
+        },
+        "telemetry": {
+          "passed": true,
+          "checks": {
+            "collector_to_disk_lossless": true,
+            "collector_refused_or_failed_zero": true,
+            "every_responded_request_has_its_trace": true,
+            "every_answered_inbound_call_has_its_server_span": true,
+            "all_modalities_present_per_service_per_window": true,
+            "no_sdk_export_drops_logged": true
+          },
+          "records": {
+            "spans": 12480,
+            "log_records": 6780,
+            "metric_points": 5586
+          },
+          "throughput_per_s": {
+            "spans": 89.2,
+            "log_records": 48.46,
+            "metric_points": 39.93
+          },
+          "raw_mb": 17.9,
+          "trace_completeness": {
+            "responses_with_trace_id": 1366,
+            "missing_root_spans": 0,
+            "missing_sample": [],
+            "requests_without_response": 0
+          },
+          "unexpected_gaps": [],
+          "expected_gap": "order"
+        },
+        "durations_s": {
+          "baseline": 39.93,
+          "injection": 44.98,
+          "recovery": 40.0,
+          "onset_vs_plan_ms": -65.9
+        },
+        "clock_offsets_vm_minus_host": {
+          "start": {
+            "offset_ns": 226895670,
+            "uncertainty_ns": 127424500,
+            "host_ns": 1791850327504245500
+          },
+          "end": {
+            "offset_ns": 247600545,
+            "uncertainty_ns": 159294500,
+            "host_ns": 1791850498696585500
+          },
+          "note": "offset = VM clock - host clock; all timeline values are VM clock"
+        },
+        "monitor_errors": 0,
+        "wall_clock_s": 173.9,
+        "resources": {
+          "peak_container_mem_mib": {
+            "docker-proxy": 18.3,
+            "gateway": 71.1,
+            "inventory": 76.1,
+            "order": 75.3,
+            "otel-collector": 52.6,
+            "payment": 58.9,
+            "postgres": 80.0,
+            "workload": 29.3
+          },
+          "peak_container_cpu_pct": {
+            "docker-proxy": 1.3,
+            "gateway": 24.8,
+            "inventory": 22.3,
+            "order": 33.8,
+            "otel-collector": 16.3,
+            "payment": 19.9,
+            "postgres": 4.8,
+            "workload": 3.1
+          },
+          "peak_total_container_mem_mib": 461.7,
+          "host_min_memorystatus_free_pct": 32,
+          "vm_min_mem_available_mib": 1978.6,
+          "clock_offset_ms_range": [
+            222.8,
+            463.4
+          ]
+        }
+      },
+      {
+        "case_id": "2be489f1-27f9-4303-884c-d3c0b53021f5",
+        "scenario": "11:db_pool_exhaustion:order:900",
+        "fault_type": "db_pool_exhaustion",
+        "target": "order",
+        "root_operation": "database connection pool",
+        "case_valid": true,
+        "fault_occurred": true,
+        "validator_checks_passed": "3/3",
+        "recovered": true,
+        "observable_impact": true,
+        "propagated_symptom_services": [
+          "gateway",
+          "inventory",
+          "payment"
+        ],
+        "workload_by_window": {
+          "baseline": {
+            "n": 386,
+            "shed": 0,
+            "throughput_rps": 9.581,
+            "unexpected_rate": 0.0,
+            "transport_errors": 0,
+            "status_5xx": 0,
+            "p50_ms": 18.44,
+            "p95_ms": 55.147
+          },
+          "injection_steady": {
+            "n": 322,
+            "shed": 10,
+            "throughput_rps": 10.625,
+            "unexpected_rate": 0.4379,
+            "transport_errors": 0,
+            "status_5xx": 141,
+            "p50_ms": 943.341,
+            "p95_ms": 4170.432
+          },
+          "recovery_last_30s": {
+            "n": 315,
+            "shed": 0,
+            "throughput_rps": 10.5,
+            "unexpected_rate": 0.0,
+            "transport_errors": 0,
+            "status_5xx": 0,
+            "p50_ms": 17.294,
+            "p95_ms": 115.835
+          }
+        },
+        "workload": {
+          "schedule_sha256": "8c4a715020a0688d86fc746ce9647d0129f11f96b799286bc08c2503e9fe59ca",
+          "offered_rate_rps": 10.0,
+          "achieved_rate_rps": 10.121,
+          "scheduled": 1427,
+          "sent": 1417,
+          "shed": 10,
+          "unexpected_outcome_rate": 0.14326,
+          "p50_ms": 19.274,
+          "p95_ms": 4138.135,
+          "status_counts": {
+            "201": 449,
+            "200": 610,
+            "409": 61,
+            "422": 46,
+            "404": 48,
+            "503": 203
+          }
+        },
+        "telemetry": {
+          "passed": true,
+          "checks": {
+            "collector_to_disk_lossless": true,
+            "collector_refused_or_failed_zero": true,
+            "every_responded_request_has_its_trace": true,
+            "every_answered_inbound_call_has_its_server_span": true,
+            "all_modalities_present_per_service_per_window": true,
+            "no_sdk_export_drops_logged": true
+          },
+          "records": {
+            "spans": 14323,
+            "log_records": 8088,
+            "metric_points": 6167
+          },
+          "throughput_per_s": {
+            "spans": 101.88,
+            "log_records": 57.53,
+            "metric_points": 43.86
+          },
+          "raw_mb": 25.94,
+          "trace_completeness": {
+            "responses_with_trace_id": 1417,
+            "missing_root_spans": 0,
+            "missing_sample": [],
+            "requests_without_response": 0
+          },
+          "unexpected_gaps": [],
+          "expected_gap": null
+        },
+        "durations_s": {
+          "baseline": 40.29,
+          "injection": 45.3,
+          "recovery": 40.0,
+          "onset_vs_plan_ms": 289.1
+        },
+        "clock_offsets_vm_minus_host": {
+          "start": {
+            "offset_ns": 138313595,
+            "uncertainty_ns": 142818500,
+            "host_ns": 1791856110710830500
+          },
+          "end": {
+            "offset_ns": 155265537,
+            "uncertainty_ns": 162962500,
+            "host_ns": 1791856283189089500
+          },
+          "note": "offset = VM clock - host clock; all timeline values are VM clock"
+        },
+        "monitor_errors": 0,
+        "wall_clock_s": 174.9,
+        "resources": {
+          "peak_container_mem_mib": {
+            "docker-proxy": 18.4,
+            "gateway": 84.5,
+            "inventory": 84.7,
+            "order": 104.1,
+            "otel-collector": 55.4,
+            "payment": 68.0,
+            "postgres": 86.9,
+            "workload": 29.3
+          },
+          "peak_container_cpu_pct": {
+            "docker-proxy": 1.2,
+            "gateway": 40.2,
+            "inventory": 30.3,
+            "order": 39.4,
+            "otel-collector": 19.2,
+            "payment": 50.0,
+            "postgres": 8.9,
+            "workload": 7.2
+          },
+          "peak_total_container_mem_mib": 531.3,
+          "host_min_memorystatus_free_pct": 30,
+          "vm_min_mem_available_mib": 1947.4,
+          "clock_offset_ms_range": [
+            120.6,
+            351.2
+          ]
+        }
+      },
+      {
+        "case_id": "d0d96d34-ec30-4272-b6eb-3865f4e7f41e",
+        "scenario": "11:network_timeout:payment:900",
+        "fault_type": "network_timeout",
+        "target": "payment",
+        "root_operation": null,
+        "case_valid": true,
+        "fault_occurred": true,
+        "validator_checks_passed": "4/4",
+        "recovered": true,
+        "observable_impact": true,
+        "propagated_symptom_services": [
+          "gateway",
+          "order"
+        ],
+        "workload_by_window": {
+          "baseline": {
+            "n": 397,
+            "shed": 0,
+            "throughput_rps": 9.827,
+            "unexpected_rate": 0.0,
+            "transport_errors": 0,
+            "status_5xx": 0,
+            "p50_ms": 14.609,
+            "p95_ms": 36.941
+          },
+          "injection_steady": {
+            "n": 293,
+            "shed": 0,
+            "throughput_rps": 9.691,
+            "unexpected_rate": 0.3959,
+            "transport_errors": 0,
+            "status_5xx": 116,
+            "p50_ms": 17.48,
+            "p95_ms": 4133.69
+          },
+          "recovery_last_30s": {
+            "n": 275,
+            "shed": 0,
+            "throughput_rps": 9.167,
+            "unexpected_rate": 0.0,
+            "transport_errors": 0,
+            "status_5xx": 0,
+            "p50_ms": 14.527,
+            "p95_ms": 38.96
+          }
+        },
+        "workload": {
+          "schedule_sha256": "3b8e78a91b92fdb59e96ae1ef9e31f0d3f389c1457e626bcb677bd16dda30c4e",
+          "offered_rate_rps": 10.0,
+          "achieved_rate_rps": 9.839,
+          "scheduled": 1377,
+          "sent": 1377,
+          "shed": 0,
+          "unexpected_outcome_rate": 0.13725,
+          "p50_ms": 15.088,
+          "p95_ms": 4126.225,
+          "status_counts": {
+            "200": 605,
+            "201": 446,
+            "422": 50,
+            "404": 53,
+            "409": 34,
+            "503": 189
+          }
+        },
+        "telemetry": {
+          "passed": true,
+          "checks": {
+            "collector_to_disk_lossless": true,
+            "collector_refused_or_failed_zero": true,
+            "every_responded_request_has_its_trace": true,
+            "every_answered_inbound_call_has_its_server_span": true,
+            "all_modalities_present_per_service_per_window": true,
+            "no_sdk_export_drops_logged": true
+          },
+          "records": {
+            "spans": 17663,
+            "log_records": 9474,
+            "metric_points": 5908
+          },
+          "throughput_per_s": {
+            "spans": 125.6,
+            "log_records": 67.37,
+            "metric_points": 42.01
+          },
+          "raw_mb": 25.17,
+          "trace_completeness": {
+            "responses_with_trace_id": 1377,
+            "missing_root_spans": 0,
+            "missing_sample": [],
+            "requests_without_response": 0
+          },
+          "unexpected_gaps": [],
+          "expected_gap": null
+        },
+        "durations_s": {
+          "baseline": 40.4,
+          "injection": 45.23,
+          "recovery": 40.0,
+          "onset_vs_plan_ms": 398.7
+        },
+        "clock_offsets_vm_minus_host": {
+          "start": {
+            "offset_ns": 144923041,
+            "uncertainty_ns": 123403500,
+            "host_ns": 1791852059514388500
+          },
+          "end": {
+            "offset_ns": 161227871,
+            "uncertainty_ns": 158683000,
+            "host_ns": 1791852230653638000
+          },
+          "note": "offset = VM clock - host clock; all timeline values are VM clock"
+        },
+        "monitor_errors": 0,
+        "wall_clock_s": 173.8,
+        "resources": {
+          "peak_container_mem_mib": {
+            "docker-proxy": 18.4,
+            "gateway": 73.8,
+            "inventory": 73.7,
+            "order": 103.8,
+            "otel-collector": 57.3,
+            "payment": 58.0,
+            "postgres": 81.6,
+            "workload": 29.4
+          },
+          "peak_container_cpu_pct": {
+            "docker-proxy": 0.9,
+            "gateway": 23.3,
+            "inventory": 25.8,
+            "order": 21.5,
+            "otel-collector": 1.9,
+            "payment": 20.8,
+            "postgres": 4.5,
+            "workload": 4.0
+          },
+          "peak_total_container_mem_mib": 496.0,
+          "host_min_memorystatus_free_pct": 33,
+          "vm_min_mem_available_mib": 1950.7,
+          "clock_offset_ms_range": [
+            136.1,
+            281.8
+          ]
+        }
+      },
+      {
+        "case_id": "a2d0582d-8aa5-49f1-a597-7568a5c24e85",
+        "scenario": "11:cascading_failure:postgres:900",
+        "fault_type": "cascading_failure",
+        "target": "postgres",
+        "root_operation": "table lock on items",
+        "case_valid": true,
+        "fault_occurred": true,
+        "validator_checks_passed": "3/3",
+        "recovered": true,
+        "observable_impact": true,
+        "propagated_symptom_services": [
+          "gateway",
+          "inventory",
+          "payment"
+        ],
+        "workload_by_window": {
+          "baseline": {
+            "n": 387,
+            "shed": 0,
+            "throughput_rps": 9.704,
+            "unexpected_rate": 0.0,
+            "transport_errors": 0,
+            "status_5xx": 0,
+            "p50_ms": 14.958,
+            "p95_ms": 35.505
+          },
+          "injection_steady": {
+            "n": 244,
+            "shed": 67,
+            "throughput_rps": 8.166,
+            "unexpected_rate": 0.7541,
+            "transport_errors": 0,
+            "status_5xx": 184,
+            "p50_ms": 4120.524,
+            "p95_ms": 4138.907
+          },
+          "recovery_last_30s": {
+            "n": 319,
+            "shed": 0,
+            "throughput_rps": 10.633,
+            "unexpected_rate": 0.0,
+            "transport_errors": 0,
+            "status_5xx": 0,
+            "p50_ms": 14.224,
+            "p95_ms": 37.723
+          }
+        },
+        "workload": {
+          "schedule_sha256": "ae4298fb23544c699615cb1b5176958f128b830a31c03d51719a25ddce7daef3",
+          "offered_rate_rps": 10.0,
+          "achieved_rate_rps": 9.557,
+          "scheduled": 1426,
+          "sent": 1338,
+          "shed": 88,
+          "unexpected_outcome_rate": 0.21674,
+          "p50_ms": 17.881,
+          "p95_ms": 4129.778,
+          "status_counts": {
+            "200": 520,
+            "404": 39,
+            "201": 432,
+            "409": 29,
+            "422": 28,
+            "503": 289,
+            "500": 1
+          }
+        },
+        "telemetry": {
+          "passed": true,
+          "checks": {
+            "collector_to_disk_lossless": true,
+            "collector_refused_or_failed_zero": true,
+            "every_responded_request_has_its_trace": true,
+            "every_answered_inbound_call_has_its_server_span": true,
+            "all_modalities_present_per_service_per_window": true,
+            "no_sdk_export_drops_logged": true
+          },
+          "records": {
+            "spans": 13253,
+            "log_records": 8037,
+            "metric_points": 6167
+          },
+          "throughput_per_s": {
+            "spans": 94.83,
+            "log_records": 57.51,
+            "metric_points": 44.13
+          },
+          "raw_mb": 27.83,
+          "trace_completeness": {
+            "responses_with_trace_id": 1338,
+            "missing_root_spans": 0,
+            "missing_sample": [],
+            "requests_without_response": 0
+          },
+          "unexpected_gaps": [],
+          "expected_gap": null
+        },
+        "durations_s": {
+          "baseline": 39.88,
+          "injection": 44.88,
+          "recovery": 40.0,
+          "onset_vs_plan_ms": -120.2
+        },
+        "clock_offsets_vm_minus_host": {
+          "start": {
+            "offset_ns": 120641639,
+            "uncertainty_ns": 122423500,
+            "host_ns": 1791852405769623500
+          },
+          "end": {
+            "offset_ns": 114148944,
+            "uncertainty_ns": 121099000,
+            "host_ns": 1791852576660726000
+          },
+          "note": "offset = VM clock - host clock; all timeline values are VM clock"
+        },
+        "monitor_errors": 0,
+        "wall_clock_s": 173.3,
+        "resources": {
+          "peak_container_mem_mib": {
+            "docker-proxy": 18.4,
+            "gateway": 77.4,
+            "inventory": 95.9,
+            "order": 77.7,
+            "otel-collector": 56.3,
+            "payment": 57.9,
+            "postgres": 87.1,
+            "workload": 29.3
+          },
+          "peak_container_cpu_pct": {
+            "docker-proxy": 1.9,
+            "gateway": 25.8,
+            "inventory": 30.0,
+            "order": 23.7,
+            "otel-collector": 7.2,
+            "payment": 19.9,
+            "postgres": 3.9,
+            "workload": 3.5
+          },
+          "peak_total_container_mem_mib": 500.0,
+          "host_min_memorystatus_free_pct": 32,
+          "vm_min_mem_available_mib": 1947.9,
+          "clock_offset_ms_range": [
+            129.6,
+            233.6
+          ]
+        }
+      }
+    ],
+    "superseded_development_runs": [
+      {
+        "case_id": "3de274a6-8e40-48c4-a160-5128a9e13fad",
+        "scenario": "11:processing_latency:payment:900",
+        "case_valid": false,
+        "reason": "development iteration before a harness fix; rerun with the final harness"
+      },
+      {
+        "case_id": "986be649-97d1-4f2f-8e15-63ccb23dfc5e",
+        "scenario": "11:cpu_pressure:order:900",
+        "case_valid": true,
+        "reason": "development iteration before a harness fix; rerun with the final harness"
+      },
+      {
+        "case_id": "2af8716f-9b0f-43a4-a28b-6c1628c28878",
+        "scenario": "11:processing_latency:payment:900",
+        "case_valid": true,
+        "reason": "development iteration before a harness fix; rerun with the final harness"
+      },
+      {
+        "case_id": "09ee2049-9656-44f6-84da-fd786f121ca7",
+        "scenario": "11:service_crash:order:900",
+        "case_valid": false,
+        "reason": "development iteration before a harness fix; rerun with the final harness"
+      },
+      {
+        "case_id": "d354f90c-0b26-43df-963f-b3bbd22625e1",
+        "scenario": "11:db_pool_exhaustion:order:900",
+        "case_valid": false,
+        "reason": "development iteration before a harness fix; rerun with the final harness"
+      },
+      {
+        "case_id": "93aaf08d-adb2-4366-bb14-e6f16bc8910b",
+        "scenario": "11:db_pool_exhaustion:order:900",
+        "case_valid": false,
+        "reason": "development iteration before a harness fix; rerun with the final harness"
+      }
+    ]
+  },
+  "sustained_load": [
+    {
+      "case_id": "1a432d7c-9d31-4e4e-b8c6-f3a21119f620",
+      "scenario": "11:none:-:970",
+      "fault_type": "none",
+      "target": "-",
+      "root_operation": null,
+      "case_valid": true,
+      "fault_occurred": null,
+      "validator_checks_passed": "3/3",
+      "recovered": true,
+      "observable_impact": false,
+      "propagated_symptom_services": [],
+      "workload_by_window": {
+        "baseline": {
+          "n": 1177,
+          "shed": 0,
+          "throughput_rps": 19.617,
+          "unexpected_rate": 0.0,
+          "transport_errors": 0,
+          "status_5xx": 0,
+          "p50_ms": 13.242,
+          "p95_ms": 45.386
+        },
+        "injection_steady": {
+          "n": 892,
+          "shed": 0,
+          "throughput_rps": 19.822,
+          "unexpected_rate": 0.0,
+          "transport_errors": 0,
+          "status_5xx": 0,
+          "p50_ms": 12.961,
+          "p95_ms": 39.075
+        },
+        "recovery_last_30s": {
+          "n": 614,
+          "shed": 0,
+          "throughput_rps": 20.467,
+          "unexpected_rate": 0.0,
+          "transport_errors": 0,
+          "status_5xx": 0,
+          "p50_ms": 14.046,
+          "p95_ms": 41.412
+        }
+      },
+      "workload": {
+        "schedule_sha256": "017ae003820eaf4ad51e06e69af7945d8d784c2d909c710d6224f54ba24997a3",
+        "offered_rate_rps": 20.0,
+        "achieved_rate_rps": 19.722,
+        "scheduled": 3155,
+        "sent": 3155,
+        "shed": 0,
+        "unexpected_outcome_rate": 0.0,
+        "p50_ms": 13.335,
+        "p95_ms": 41.718,
+        "status_counts": {
+          "200": 1449,
+          "201": 1392,
+          "404": 100,
+          "409": 100,
+          "422": 114
+        }
+      },
+      "telemetry": {
+        "passed": true,
+        "checks": {
+          "collector_to_disk_lossless": true,
+          "collector_refused_or_failed_zero": true,
+          "every_responded_request_has_its_trace": true,
+          "every_answered_inbound_call_has_its_server_span": true,
+          "all_modalities_present_per_service_per_window": true,
+          "no_sdk_export_drops_logged": true
+        },
+        "records": {
+          "spans": 34807,
+          "log_records": 17935,
+          "metric_points": 6484
+        },
+        "throughput_per_s": {
+          "spans": 217.54,
+          "log_records": 112.09,
+          "metric_points": 40.52
+        },
+        "raw_mb": 38.45,
+        "trace_completeness": {
+          "responses_with_trace_id": 3155,
+          "missing_root_spans": 0,
+          "missing_sample": [],
+          "requests_without_response": 0
+        },
+        "unexpected_gaps": [],
+        "expected_gap": null
+      },
+      "durations_s": {
+        "baseline": 60.0,
+        "injection": 60.0,
+        "recovery": 20.0,
+        "onset_vs_plan_ms": 0.0
+      },
+      "clock_offsets_vm_minus_host": {
+        "start": {
+          "offset_ns": 126690296,
+          "uncertainty_ns": 129230000,
+          "host_ns": 1791855906368246000
+        },
+        "end": {
+          "offset_ns": 115967363,
+          "uncertainty_ns": 120286000,
+          "host_ns": 1791856098386464000
+        },
+        "note": "offset = VM clock - host clock; all timeline values are VM clock"
+      },
+      "monitor_errors": 0,
+      "wall_clock_s": 194.8,
+      "resources": {
+        "peak_container_mem_mib": {
+          "docker-proxy": 18.4,
+          "gateway": 63.2,
+          "inventory": 74.8,
+          "order": 77.2,
+          "otel-collector": 56.0,
+          "payment": 58.4,
+          "postgres": 87.4,
+          "workload": 32.4
+        },
+        "peak_container_cpu_pct": {
+          "docker-proxy": 1.2,
+          "gateway": 23.1,
+          "inventory": 25.5,
+          "order": 24.7,
+          "otel-collector": 11.7,
+          "payment": 21.9,
+          "postgres": 4.6,
+          "workload": 5.8
+        },
+        "peak_total_container_mem_mib": 467.8,
+        "host_min_memorystatus_free_pct": 34,
+        "vm_min_mem_available_mib": 1962.5,
+        "clock_offset_ms_range": [
+          126.7,
+          381.0
+        ]
+      }
+    }
+  ]
+}

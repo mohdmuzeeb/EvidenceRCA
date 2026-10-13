@@ -162,6 +162,19 @@ If a metric cannot be computed, it is reported as **N/A (reason)**.
 Raw bundles are written once and set read-only. Views are recomputed from raw + spec rather than stored. Only per-trial outputs are written to `results/raw/`; aggregates go to `results/processed/`, and figures are regenerated from those by script.
 
 ## 12. Deviation log
+
+All entries below were recorded on 2026-10-12, before the Phase 2 pilot was captured. No final (calibration or test) data had been collected.
+
 | Date | Change | Reason |
 |---|---|---|
-| — | — | — |
+| 2026-10-12 | **Warm-up fixed at 30 s.** It was unspecified before. | Covers pool connection setup and first-request cold start (Phase 1: the first order took 89 ms vs ~13 ms warm). |
+| 2026-10-12 | **Onset jitter: uniform 0–10 s** added to the 90 s baseline, drawn from the scenario's seed. | Makes "seed controls injection-onset jitter" concrete; keeps onset times from being a fixed offset. |
+| 2026-10-12 | **Fault parameters fixed:** processing delay +500 ms (below the 2 s caller timeout); netem egress delay 2500 ms (above it); pool exhaustion holds 5/5 connections in open transactions; CPU pressure uses 2 busy loops in a 1.0-CPU-capped container; the cascade is an ACCESS EXCLUSIVE lock on `items`. | Needed to implement §3. Chosen so that each fault is unambiguous in kind (latency vs timeout) and bounded by the existing limits. |
+| 2026-10-12 | **Injection start/end = the mechanism's own VM-clock timestamp** (Docker state times, the control-channel clock, VM-host `date`, Postgres `clock_timestamp()`). The injection window lasts 120 s from that start, and recovery 60 s from the cleanup timestamp. | Item 4 of the Phase 2 instructions: use VM-clock timestamps. Host↔VM offsets are recorded per case. |
+| 2026-10-12 | **Raw and ground-truth locations:** `data/cases/<case_id>/` (raw, sealed read-only with a hash manifest) and `data/ground_truth/<case_id>/` (sibling root). They replace `results/raw/<case_id>/` and `ground_truth/<case_id>.json`. | Keeps large raw data out of git and makes the separation enforceable by an allowlist (`evidencerca/rca_input.py`). |
+| 2026-10-12 | **Independent validator** made concrete per fault (`docs/fault_catalog.md`). Every detector is evaluated in every case, and each fault must be absent before injection and after recovery. | §2 required a validator "through a different mechanism"; this pins down which one. |
+| 2026-10-12 | **Observable impact** is defined on the workload's client-side records: unexpected-outcome rate +5 pp, or p95 ×2, in steady injection vs baseline. | §2 said "gateway SLO deviated" without thresholds. It is used for reporting only, never by RCA methods. The agent's own alert detector (§2) is unaffected and is still to be built in Phase 3. |
+| 2026-10-12 | **Workload:** open-loop Poisson at 10 req/s, max 32 in flight (excess arrivals shed and recorded). Mix: 35 % stock lookups, 45 % orders, 10 % order lookups, 10 % invalid orders (unknown item → 404, insufficient stock → 409, quantity 0 → 422). The workload seed is derived from (master seed, scenario). | §4.1 of the research plan specified a seeded Poisson mix without numbers. |
+| 2026-10-12 | **Seed stock raised** to 1,000,000 for sku-001/002/003/005 (sku-004 stays at 50 for insufficient-stock rejections). | 10 req/s for ~5 min would otherwise exhaust stock and turn every case into a 409 storm. |
+| 2026-10-12 | **Pilot targets drawn by a seeded rule** (`harness/schedule.py: pilot()`) from the seed-11 matrix. Mechanism checks use fixed, different targets and a shorter timeline (15/40/45/40 s), and are **not** experiment data. | Pilot scope from the Phase 2 instructions. |
+

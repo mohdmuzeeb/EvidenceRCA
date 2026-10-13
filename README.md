@@ -2,13 +2,14 @@
 
 EvidenceRCA is the research prototype for ICICYTA 2026 Paper 3: an evidence-verification and abstention layer for root-cause analysis (RCA) in microservices, evaluated with a matched-perturbation protocol. The plan, literature and protocol are in [`docs/`](docs/).
 
-Work proceeds in approval-gated phases. Phase 0 (design) and Phase 1 (testbed and telemetry validation) are done. **No fault injection or RCA code exists yet.**
+Work proceeds in approval-gated phases. Phases 0–2 are done (design; testbed and telemetry validation; workload, fault injection, ground truth and leakage controls). **No RCA, verifier or LLM code exists yet.**
 
 | Phase | Status | Report |
 |---|---|---|
 | 0: research plan, literature matrix, experiment protocol | done | [`docs/research_plan.md`](docs/research_plan.md) |
 | 1: microservice testbed and telemetry validation | done | [`docs/phase1_validation.md`](docs/phase1_validation.md) |
-| 2+: fault injection, RCA, evaluation | not started (needs approval) | — |
+| 2: workload, fault injection, ground truth, leakage prevention, pilot | done | [`docs/phase2_validation.md`](docs/phase2_validation.md), [`docs/fault_catalog.md`](docs/fault_catalog.md) |
+| 3+: evidence store, baselines, verifier, RCA, evaluation | not started (needs approval) | — |
 
 ## Repository layout
 
@@ -25,8 +26,21 @@ scripts/
   smoke_test.py               real transactions through the gateway + direct DB state checks
   validate_telemetry.py       22 checks over the persisted traces/logs/metrics files
   collect_env.py              reproducibility manifest (versions, digests, limits, resources)
-tests/                        validator self-test (corrupted copies must fail)
-results/phase1/               committed reports and evidence from the recorded run
+  app/control.py              loopback-only, uninstrumented control channel (Phase 2 fault hooks)
+harness/                      Phase 2 capture side (may read ground truth)
+  vm/workload.py              seeded open-loop workload + TCP probes (runs in the VM, uninstrumented)
+  faults.py                   six fault injectors with explicit cleanup
+  monitor.py                  symmetric ground-truth monitor (Docker, VM cgroups/netns, pg_stat_activity/pg_locks)
+  validate.py                 independent validation, recovery verification, observable impact
+  telemetry_check.py          per-case completeness, loss, throughput
+  case.py, schedule.py        case runner (opaque UUID4 ids, sealing), seed splits and scenario matrix
+  leakage.py, reevaluate.py   label-leakage checks; recompute verdicts from recorded files
+evidencerca/                  agent side (never reads ground truth)
+  rca_input.py                the only sanctioned case reader: allowlisted, symlink-safe, hash-verified
+scripts/run_phase2.py         pilot / mechanism / load captures; leakage_check.py; summarize_phase2.py
+tests/                        validator self-test, leakage tests
+results/phase1/, phase2/      committed reports and evidence
+data/                         cases/ (raw, read-only), ground_truth/, mechanism/, load/ (gitignored)
 runs/                         raw per-run data (gitignored)
 ```
 
@@ -104,6 +118,26 @@ curl -s -X POST localhost:8080/api/orders -H 'content-type: application/json' \
      -d '{"item_id":"sku-001","quantity":1}' -i   # response header x-trace-id = the trace to look up
 docker compose down                               # stop and remove containers
 ```
+
+## Phase 2: workload, faults, ground truth, leakage
+
+```bash
+colima start                                     # the VM from above; Ollama must not run at the same time
+uv sync --frozen
+docker compose --profile harness build           # service image + harness image tag
+uv run python -m scripts.run_phase2 mechanism    # all six faults, short timeline (~18 min; not experiment data)
+uv run python -m scripts.run_phase2 pilot --label A   # 4 pilot cases, protocol timeline, seed 11 = dev (~23 min)
+uv run python -m scripts.run_phase2 pilot --label B   # same seed again: repeatability
+uv run python -m scripts.run_phase2 load --rate 20    # sustained no-fault load (collector headroom)
+uv run python -m scripts.summarize_phase2        # -> results/phase2/pilot_results.json, ground_truth_validation.json
+uv run python -m scripts.leakage_check           # -> results/phase2/leakage_test_results.json
+uv run pytest -q                                 # all tests (validator self-test, leakage tests)
+```
+
+- Wrap long captures in one `caffeinate -dims …`, keep the lid open and use AC power: macOS sleep pauses the VM. A case spanning a sleep is detected (`capture_continuity`) and must be rerun.
+- Non-dev seeds (calibration 23/37, test 41/53/67) are refused unless explicitly allowed; the full matrix is not run in Phase 2.
+- Raw bundles in `data/cases/` are sealed read-only. To delete data, run `chmod -R u+w data` first.
+- Phase 1 regression on the Phase 2 testbed: `RUN_ID=x RESULTS=results/phase2/phase1_regression ./scripts/run_phase1.sh`.
 
 ## Constraints and integrity rules
 
