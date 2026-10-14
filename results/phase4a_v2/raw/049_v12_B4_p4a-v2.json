@@ -1,0 +1,617 @@
+{
+ "k": 49,
+ "view_index": 12,
+ "condition": "B4",
+ "version": "p4a-v2",
+ "view": {
+  "index": 12,
+  "category": "control",
+  "case_id": "be737f04-58a1-44de-805e-7eea5b332a97",
+  "scenario_key": "11:none:-:0",
+  "spec": "C0",
+  "perturbation_seed": 1,
+  "version_order": [
+   "p4a-v1",
+   "p4a-v2"
+  ]
+ },
+ "view_id": "vw-1e3774b270751e2b",
+ "alert_fired": false,
+ "window_anchor": "fixed-median",
+ "end_to_end_wall_s": 75.95,
+ "ollama_rss_peak_mb": 3798.9,
+ "system_after": {
+  "free_mb": 56,
+  "inactive_mb": 506,
+  "compressed_mb": 1635,
+  "swap": "total = 17408.00M  used = 16249.50M  free = 1158.50M  (encrypted)",
+  "pressure_free_pct": "14%"
+ },
+ "call_record": {
+  "settings": {
+   "model": "qwen3:4b",
+   "temperature": 0.0,
+   "seed": 20261014,
+   "num_ctx": 6144,
+   "num_predict": 1024,
+   "think": false,
+   "timeout_s": 300.0,
+   "max_retries": 1,
+   "keep_alive": "15m"
+  },
+  "model_digest": "359d7dd4bcdab3d86b87d73ac27966f4dbb9f5efdfcc75d34a8764a09474fae7",
+  "ollama_version": "0.34.2",
+  "prompt_meta": {
+   "prompt_version": "p4a-v2",
+   "schema_version": "p4a-v2-typed",
+   "condition": "B4",
+   "system_sha256": "8734f28d8568014e80d0698d61b30073497eb7d7b2ff6ff4a0d05d45187c4052",
+   "task_sha256": "06aff5899b76a2263d4a446db237eea7e10e94ab3ab9bbe964814ac5902c8875",
+   "case_text_sha256": "3db4f97934086d7f5b546d5a901188ea298d69edf9d225eb2520b42bab36949f",
+   "case_text_chars": 6872,
+   "system_chars": 5956,
+   "n_records": 36
+  },
+  "request_sha256": "0d8dc8761ed5c342ad1ec808a374c12260baed65556a38c73c18fe02f058ad7c",
+  "attempts": [
+   {
+    "attempt": 0,
+    "outcome": "ok",
+    "http": 200,
+    "wall_s": 75.351,
+    "thinking_chars": 0
+   }
+  ],
+  "outcome": "ok",
+  "raw_text": "{\n  \"claims\": [\n    {\n      \"evidence\": [\n        {\n          \"emitter\": \"inventory\",\n          \"id\": \"E04\",\n          \"record\": \"server\"\n        }\n      ],\n      \"kind\": \"observed\",\n      \"measure\": \"duration\",\n      \"object_service\": \"none\",\n      \"predicate\": \"latency_above_baseline\",\n      \"subject_service\": \"inventory\",\n      \"unit\": \"ms\",\n      \"value\": 10.6\n    },\n    {\n      \"evidence\": [\n        {\n          \"emitter\": \"gateway\",\n          \"id\": \"E02\",\n          \"record\": \"call\"\n        }\n      ],\n      \"kind\": \"observed\",\n      \"measure\": \"duration\",\n      \"object_service\": \"none\",\n      \"predicate\": \"latency_above_baseline\",\n      \"subject_service\": \"gateway\",\n      \"unit\": \"ms\",\n      \"value\": 2.8\n    },\n    {\n      \"evidence\": [\n        {\n          \"emitter\": \"gateway\",\n          \"id\": \"E11\",\n          \"record\": \"metric\"\n        }\n      ],\n      \"kind\": \"observed\",\n      \"measure\": \"ratio\",\n      \"object_service\": \"none\",\n      \"predicate\": \"error_rate_above_baseline\",\n      \"subject_service\": \"gateway\",\n      \"unit\": \"1\",\n      \"value\": 0.186\n    },\n    {\n      \"evidence\": [\n        {\n          \"emitter\": \"inventory\",\n          \"id\": \"E05\",\n          \"record\": \"connect\"\n        }\n      ],\n      \"kind\": \"observed\",\n      \"measure\": \"duration\",\n      \"object_service\": \"none\",\n      \"predicate\": \"latency_above_baseline\",\n      \"subject_service\": \"inventory\",\n      \"unit\": \"ms\",\n      \"value\": 1.9\n    },\n    {\n      \"evidence\": [\n        {\n          \"emitter\": \"order\",\n          \"id\": \"E03\",\n          \"record\": \"connect\"\n        }\n      ],\n      \"kind\": \"observed\",\n      \"measure\": \"duration\",\n      \"object_service\": \"none\",\n      \"predicate\": \"latency_above_baseline\",\n      \"subject_service\": \"order\",\n      \"unit\": \"ms\",\n      \"value\": 1.4\n    }\n  ],\n  \"decision\": \"DIAGNOSE\",\n  \"evidence_strength\": \"clear_anomaly\",\n  \"explanation\": \"The inventory service has a high error rate (2.7%) and slow server spans (median 10.6ms vs baseline 3.8ms), while gateway has a high error rate (18.6%) and slow server spans (median 11.3ms vs baseline 14.4ms). The error rate in gateway is a clear anomaly that persists across the analysis window.\",\n  \"propagation_path\": [\n    {\n      \"evidence\": [\n        {\n          \"emitter\": \"gateway\",\n          \"id\": \"E11\",\n          \"record\": \"metric\"\n        }\n      ],\n      \"from\": \"gateway\",\n      \"to\": \"inventory\"\n    }\n  ],\n  \"ranked_candidates\": [\n    \"inventory\",\n    \"gateway\"\n  ],\n  \"suspected_fault_type\": \"cascading_failure\",\n  \"suspected_service\": \"inventory\",\n  \"uncertainty_reasons\": [\n    \"The error rate in gateway is high but the root cause is not clear from the evidence\",\n    \"The inventory service has slow server spans but the error rate is low\"\n  ]\n}",
+  "done_reason": "stop",
+  "prompt_tokens": 4094,
+  "output_tokens": 757,
+  "load_s": 0.0348,
+  "prompt_eval_s": 18.8675,
+  "eval_s": 50.5592,
+  "total_s": 75.3165,
+  "wall_s": 75.352,
+  "started_at": 1791996619.208619,
+  "prompt_tokens_per_s": 216.99,
+  "output_tokens_per_s": 14.97,
+  "context_overflow_risk": false,
+  "truncated_at_token_limit": false
+ },
+ "output": {
+  "condition": "B4",
+  "prompt_version": "p4a-v2",
+  "view_id": "vw-1e3774b270751e2b",
+  "windows": {
+   "triggered": true,
+   "anchor": "fixed-median",
+   "alert_ns": 1791853352028078080,
+   "analysis": [
+    1791853292028078080,
+    1791853412028078080
+   ],
+   "baseline": [
+    1791853202028078080,
+    1791853292028078080
+   ],
+   "detector_source": null,
+   "reason": "label-free: median record timestamp"
+  },
+  "called": true,
+  "prompt_meta": {
+   "prompt_version": "p4a-v2",
+   "schema_version": "p4a-v2-typed",
+   "condition": "B4",
+   "system_sha256": "8734f28d8568014e80d0698d61b30073497eb7d7b2ff6ff4a0d05d45187c4052",
+   "task_sha256": "06aff5899b76a2263d4a446db237eea7e10e94ab3ab9bbe964814ac5902c8875",
+   "case_text_sha256": "3db4f97934086d7f5b546d5a901188ea298d69edf9d225eb2520b42bab36949f",
+   "case_text_chars": 6872,
+   "system_chars": 5956,
+   "n_records": 36
+  },
+  "alias_map": {
+   "E01": "ev-60f94abd03a73f74da83",
+   "E02": "ev-a9d81c6019748680b7bc",
+   "E03": "ev-f80795d8eae0fddccccb",
+   "E04": "ev-94e937f312e7a4f1d53f",
+   "E05": "ev-eea092cc76582c12eb14",
+   "E06": "ev-6289d7e98f41db6cd3db",
+   "E07": "ev-0cc6fbf1177c2916b8e1",
+   "E08": "ev-164cf0ed774776c066b7",
+   "E09": "ev-cadb0ad4ceef656973bf",
+   "E10": "ev-ef4bbcae8e8ca49b311c",
+   "E11": "ev-8851e11f0db700cc7086",
+   "E12": "ev-282a8d9bfcaf9f9214c8",
+   "E13": "ev-4b0e4bc7dbe536d02017",
+   "E14": "ev-d7b79c510cd55644271b",
+   "E15": "ev-eedcec7ea733189ff3b7",
+   "E16": "ev-9e48360f6a5612472ca0",
+   "E17": "ev-ba69c9dd1607ed965644",
+   "E18": "ev-c770d4180baf2972e3b6",
+   "E19": "ev-d6756d29fcea5d531720",
+   "E20": "ev-7f5be4ba36ad284a1095",
+   "E21": "ev-688055d17b9ce287267e",
+   "E22": "ev-597b5a6513cea42c698d",
+   "E23": "ev-f0db3e4e94e60fe9a925",
+   "E24": "ev-864623ceebde5147e47a",
+   "E25": "ev-c626b19aa5d5aaa0eb9a",
+   "E26": "ev-93a2f0b97f5b85eb3a88",
+   "E27": "ev-1d9b4781808ad7858b61",
+   "E28": "ev-991a7bf8cb30522e34ea",
+   "E29": "ev-711128deee69c74b5317",
+   "E30": "ev-3670a98c211d980581df",
+   "E31": "ev-94e5aabf6858c91af915",
+   "E32": "ev-05086e3d0a4cc93abbb8",
+   "E33": "ev-1156d75f280178a1d610",
+   "E34": "ev-31a88c25f1443ebf5d40",
+   "E35": "ev-9042ceb84cf106d3ee59",
+   "E36": "ev-9733ce2686f8c4b607df"
+  },
+  "parse": {
+   "status": "valid",
+   "errors": []
+  },
+  "semantic_issues": [],
+  "citations": {
+   "n_cited": 5,
+   "n_known_alias": 5,
+   "n_ownership_correct": 5,
+   "rate_known_alias": 1.0,
+   "rate_ownership_correct": 1.0
+  },
+  "typed_checks": {
+   "claims": [
+    {
+     "index": 0,
+     "passed": true,
+     "reasons": []
+    },
+    {
+     "index": 1,
+     "passed": false,
+     "reasons": [
+      "evidence[0]: call gateway->inventory is not a call to the subject gateway"
+     ]
+    },
+    {
+     "index": 2,
+     "passed": true,
+     "reasons": []
+    },
+    {
+     "index": 3,
+     "passed": false,
+     "reasons": [
+      "evidence[0]: connect records are not admissible for latency_above_baseline"
+     ]
+    },
+    {
+     "index": 4,
+     "passed": false,
+     "reasons": [
+      "evidence[0]: connect records are not admissible for latency_above_baseline"
+     ]
+    }
+   ],
+   "edges": [
+    {
+     "index": 0,
+     "edge": "gateway->inventory",
+     "passed": false,
+     "reasons": [
+      "no observed call inventory->gateway; impact from gateway reaches inventory only if inventory calls gateway (edge reversed)",
+      "evidence[0] is not a call inventory->gateway"
+     ]
+    }
+   ]
+  },
+  "llm": {
+   "decision": "DIAGNOSE",
+   "evidence_strength": "clear_anomaly",
+   "suspected_service": "inventory",
+   "suspected_fault_type": "cascading_failure",
+   "ranked_candidates": [
+    "inventory",
+    "gateway"
+   ],
+   "uncertainty_reasons": [
+    "The error rate in gateway is high but the root cause is not clear from the evidence",
+    "The inventory service has slow server spans but the error rate is low"
+   ],
+   "explanation": "The inventory service has a high error rate (2.7%) and slow server spans (median 10.6ms vs baseline 3.8ms), while gateway has a high error rate (18.6%) and slow server spans (median 11.3ms vs baseline 14.4ms). The error rate in gateway is a clear anomaly that persists across the analysis window."
+  },
+  "diagnosis": {
+   "case_id": "be737f04-58a1-44de-805e-7eea5b332a97",
+   "view_id": "vw-1e3774b270751e2b",
+   "method": "B4",
+   "windows": {
+    "triggered": true,
+    "anchor": "fixed-median",
+    "alert_ns": 1791853352028078080,
+    "analysis": [
+     1791853292028078080,
+     1791853412028078080
+    ],
+    "baseline": [
+     1791853202028078080,
+     1791853292028078080
+    ],
+    "detector_source": null,
+    "reason": "label-free: median record timestamp"
+   },
+   "ranked_candidates": [
+    {
+     "service": "inventory",
+     "score": null
+    },
+    {
+     "service": "gateway",
+     "score": null
+    }
+   ],
+   "suspected_service": "inventory",
+   "suspected_operation": null,
+   "suspected_fault_type": "cascading_failure",
+   "evidence_ids": [
+    "ev-8851e11f0db700cc7086",
+    "ev-94e937f312e7a4f1d53f",
+    "ev-a9d81c6019748680b7bc",
+    "ev-eea092cc76582c12eb14",
+    "ev-f80795d8eae0fddccccb"
+   ],
+   "factual_claims": [
+    {
+     "claim_id": "c1",
+     "kind": "observed",
+     "subject_service": "inventory",
+     "object_service": null,
+     "predicate": "latency_above_baseline",
+     "measurement": "span_duration",
+     "value": 10.6,
+     "unit": "ms",
+     "window": [
+      1791853292028078080,
+      1791853412028078080
+     ],
+     "evidence_ids": [
+      "ev-94e937f312e7a4f1d53f"
+     ]
+    },
+    {
+     "claim_id": "c2",
+     "kind": "observed",
+     "subject_service": "gateway",
+     "object_service": null,
+     "predicate": "latency_above_baseline",
+     "measurement": "span_duration",
+     "value": 2.8,
+     "unit": "ms",
+     "window": [
+      1791853292028078080,
+      1791853412028078080
+     ],
+     "evidence_ids": [
+      "ev-a9d81c6019748680b7bc"
+     ]
+    },
+    {
+     "claim_id": "c3",
+     "kind": "observed",
+     "subject_service": "gateway",
+     "object_service": null,
+     "predicate": "error_rate_above_baseline",
+     "measurement": "error_ratio",
+     "value": 0.186,
+     "unit": "1",
+     "window": [
+      1791853292028078080,
+      1791853412028078080
+     ],
+     "evidence_ids": [
+      "ev-8851e11f0db700cc7086"
+     ]
+    },
+    {
+     "claim_id": "c4",
+     "kind": "observed",
+     "subject_service": "inventory",
+     "object_service": null,
+     "predicate": "latency_above_baseline",
+     "measurement": "span_duration",
+     "value": 1.9,
+     "unit": "ms",
+     "window": [
+      1791853292028078080,
+      1791853412028078080
+     ],
+     "evidence_ids": [
+      "ev-eea092cc76582c12eb14"
+     ]
+    },
+    {
+     "claim_id": "c5",
+     "kind": "observed",
+     "subject_service": "order",
+     "object_service": null,
+     "predicate": "latency_above_baseline",
+     "measurement": "span_duration",
+     "value": 1.4,
+     "unit": "ms",
+     "window": [
+      1791853292028078080,
+      1791853412028078080
+     ],
+     "evidence_ids": [
+      "ev-f80795d8eae0fddccccb"
+     ]
+    }
+   ],
+   "propagation_path": [
+    {
+     "from": "gateway",
+     "to": "inventory",
+     "evidence_ids": [
+      "ev-8851e11f0db700cc7086"
+     ]
+    }
+   ],
+   "missing_modalities": [],
+   "uncertainty_reasons": [
+    "The error rate in gateway is high but the root cause is not clear from the evidence",
+    "The inventory service has slow server spans but the error rate is low"
+   ],
+   "decision": "DIAGNOSE",
+   "explanation": "The inventory service has a high error rate (2.7%) and slow server spans (median 10.6ms vs baseline 3.8ms), while gateway has a high error rate (18.6%) and slow server spans (median 11.3ms vs baseline 14.4ms). The error rate in gateway is a clear anomaly that persists across the analysis window."
+  },
+  "decision": "DIAGNOSE",
+  "verification": {
+   "case_id": "be737f04-58a1-44de-805e-7eea5b332a97",
+   "view_id": "vw-1e3774b270751e2b",
+   "method": "B4",
+   "claims": [
+    {
+     "claim_id": "c1",
+     "kind": "observed",
+     "predicate": "latency_above_baseline",
+     "subject_service": "inventory",
+     "checks": {
+      "V0": "pass",
+      "V1": "pass",
+      "V2": "pass",
+      "V3": "pass",
+      "V4": "pass",
+      "V5": "pass"
+     },
+     "notes": {
+      "V1_missing": [],
+      "V4_recomputed": 10.572389,
+      "V5": "1/1 cited records exceed baseline median + 3 MAD"
+     },
+     "verified": true
+    },
+    {
+     "claim_id": "c2",
+     "kind": "observed",
+     "predicate": "latency_above_baseline",
+     "subject_service": "gateway",
+     "checks": {
+      "V0": "pass",
+      "V1": "pass",
+      "V2": "pass",
+      "V3": "fail",
+      "V4": "pass",
+      "V5": "fail"
+     },
+     "notes": {
+      "V1_missing": [],
+      "V4_recomputed": 2.755596,
+      "V5": "insufficient baseline for a cited record"
+     },
+     "verified": false
+    },
+    {
+     "claim_id": "c3",
+     "kind": "observed",
+     "predicate": "error_rate_above_baseline",
+     "subject_service": "gateway",
+     "checks": {
+      "V0": "pass",
+      "V1": "pass",
+      "V2": "pass",
+      "V3": "pass",
+      "V4": "pass",
+      "V5": "fail"
+     },
+     "notes": {
+      "V1_missing": [],
+      "V4_recomputed": 0.186047,
+      "V5": "0/1 cited records exceed baseline median + 3 MAD"
+     },
+     "verified": false
+    },
+    {
+     "claim_id": "c4",
+     "kind": "observed",
+     "predicate": "latency_above_baseline",
+     "subject_service": "inventory",
+     "checks": {
+      "V0": "pass",
+      "V1": "pass",
+      "V2": "pass",
+      "V3": "fail",
+      "V4": "pass",
+      "V5": "fail"
+     },
+     "notes": {
+      "V1_missing": [],
+      "V4_recomputed": 1.937284,
+      "V5": "insufficient baseline for a cited record"
+     },
+     "verified": false
+    },
+    {
+     "claim_id": "c5",
+     "kind": "observed",
+     "predicate": "latency_above_baseline",
+     "subject_service": "order",
+     "checks": {
+      "V0": "pass",
+      "V1": "pass",
+      "V2": "pass",
+      "V3": "fail",
+      "V4": "pass",
+      "V5": "fail"
+     },
+     "notes": {
+      "V1_missing": [],
+      "V4_recomputed": 1.364061,
+      "V5": "insufficient baseline for a cited record"
+     },
+     "verified": false
+    }
+   ],
+   "propagation": [
+    {
+     "edge": "gateway->inventory",
+     "V6": "fail",
+     "evidence": "fail"
+    }
+   ],
+   "summary": {
+    "observed": 5,
+    "observed_verified": 1,
+    "observed_rejected": 4,
+    "inferred": 0,
+    "inferred_premises_valid": 0,
+    "edges": 1,
+    "edges_verified": 0,
+    "verified_claim_coverage": 0.2
+   },
+   "rejected_claim_ids": [
+    "c2",
+    "c3",
+    "c4",
+    "c5"
+   ],
+   "flags": []
+  },
+  "claims": {
+   "pre_filter": [
+    {
+     "claim_id": "c1",
+     "kind": "observed",
+     "subject_service": "inventory",
+     "object_service": null,
+     "predicate": "latency_above_baseline",
+     "measurement": "span_duration",
+     "value": 10.6,
+     "unit": "ms",
+     "window": [
+      1791853292028078080,
+      1791853412028078080
+     ],
+     "evidence_ids": [
+      "ev-94e937f312e7a4f1d53f"
+     ]
+    },
+    {
+     "claim_id": "c2",
+     "kind": "observed",
+     "subject_service": "gateway",
+     "object_service": null,
+     "predicate": "latency_above_baseline",
+     "measurement": "span_duration",
+     "value": 2.8,
+     "unit": "ms",
+     "window": [
+      1791853292028078080,
+      1791853412028078080
+     ],
+     "evidence_ids": [
+      "ev-a9d81c6019748680b7bc"
+     ]
+    },
+    {
+     "claim_id": "c3",
+     "kind": "observed",
+     "subject_service": "gateway",
+     "object_service": null,
+     "predicate": "error_rate_above_baseline",
+     "measurement": "error_ratio",
+     "value": 0.186,
+     "unit": "1",
+     "window": [
+      1791853292028078080,
+      1791853412028078080
+     ],
+     "evidence_ids": [
+      "ev-8851e11f0db700cc7086"
+     ]
+    },
+    {
+     "claim_id": "c4",
+     "kind": "observed",
+     "subject_service": "inventory",
+     "object_service": null,
+     "predicate": "latency_above_baseline",
+     "measurement": "span_duration",
+     "value": 1.9,
+     "unit": "ms",
+     "window": [
+      1791853292028078080,
+      1791853412028078080
+     ],
+     "evidence_ids": [
+      "ev-eea092cc76582c12eb14"
+     ]
+    },
+    {
+     "claim_id": "c5",
+     "kind": "observed",
+     "subject_service": "order",
+     "object_service": null,
+     "predicate": "latency_above_baseline",
+     "measurement": "span_duration",
+     "value": 1.4,
+     "unit": "ms",
+     "window": [
+      1791853292028078080,
+      1791853412028078080
+     ],
+     "evidence_ids": [
+      "ev-f80795d8eae0fddccccb"
+     ]
+    }
+   ],
+   "typed_rejected_ids": [
+    "c2",
+    "c4",
+    "c5"
+   ],
+   "verifier_verified_ids": [
+    "c1"
+   ],
+   "post_filter": [
+    {
+     "claim_id": "c1",
+     "kind": "observed",
+     "subject_service": "inventory",
+     "object_service": null,
+     "predicate": "latency_above_baseline",
+     "measurement": "span_duration",
+     "value": 10.6,
+     "unit": "ms",
+     "window": [
+      1791853292028078080,
+      1791853412028078080
+     ],
+     "evidence_ids": [
+      "ev-94e937f312e7a4f1d53f"
+     ]
+    }
+   ],
+   "edges_post_filter": []
+  }
+ },
+ "user_message": "Analysis window: t=-60s to t=+60s; baseline window: t=-150s to t=-60s (t=0 is the window anchor).\nUnavailable telemetry modalities: none.\n\nPer-service summary (baseline vs analysis window):\ngateway | server spans (ms) | baseline n=868 median=14.4 errors=0 | analysis n=1214 median=11.3 p95=33.7 errors=0 error_ratio=0.0000\ngateway | metric container_cpu (%) | baseline n=18 median=0.346 | analysis n=24 median=0.717 max=0.913 max_gap_s=5.01\ngateway | metric process_cpu (1) | baseline n=18 median=0.013 | analysis n=24 median=0.014 max=0.019 max_gap_s=5.01\ngateway | metric latency_mean (ms) | baseline n=18 median=16.005 | analysis n=24 median=13.682 max=35.673\ngateway | metric error_ratio (1) | baseline n=18 median=0.084 | analysis n=24 median=0.100 max=0.186\norder | server spans (ms) | baseline n=491 median=13.4 errors=0 | analysis n=660 median=12.1 p95=22.7 errors=0 error_ratio=0.0000\norder | inbound calls (ms) | baseline n=491 median=14.6 errors=0 | analysis n=660 median=13.1 p95=25.1 errors=0 error_ratio=0.0000 timeouts=0\norder | pool connect (ms) | baseline n=898 median=0.4 errors=0 | analysis n=1198 median=0.4 p95=0.9 errors=0 error_ratio=0.0000\norder | metric container_cpu (%) | baseline n=18 median=0.382 | analysis n=24 median=0.716 max=0.902 max_gap_s=5.01\norder | metric process_cpu (1) | baseline n=18 median=0.013 | analysis n=24 median=0.011 max=0.025 max_gap_s=5.02\norder | metric latency_mean (ms) | baseline n=18 median=13.536 | analysis n=24 median=11.608 max=25.520\norder | metric error_ratio (1) | baseline n=18 median=0.000 | analysis n=24 median=0.000 max=0.000\norder | metric pool_checked_out ({connection}) | baseline n=18 median=0.000 | analysis n=24 median=0.000 max=0.000\npayment | server spans (ms) | baseline n=407 median=1.8 errors=0 | analysis n=538 median=1.6 p95=3.0 errors=0 error_ratio=0.0000\npayment | inbound calls (ms) | baseline n=407 median=2.7 errors=0 | analysis n=538 median=2.5 p95=5.3 errors=0 error_ratio=0.0000 timeouts=0\npayment | metric container_cpu (%) | baseline n=18 median=0.399 | analysis n=24 median=0.652 max=0.791 max_gap_s=5.01\npayment | metric process_cpu (1) | baseline n=18 median=0.008 | analysis n=24 median=0.005 max=0.011 max_gap_s=5.01\npayment | metric latency_mean (ms) | baseline n=18 median=1.328 | analysis n=24 median=1.085 max=2.905\npayment | metric error_ratio (1) | baseline n=18 median=0.000 | analysis n=24 median=0.000 max=0.000\ninventory | server spans (ms) | baseline n=1161 median=3.8 errors=0 | analysis n=1595 median=3.5 p95=7.3 errors=0 error_ratio=0.0000\ninventory | inbound calls (ms) | baseline n=1161 median=5.0 errors=21 | analysis n=1595 median=4.5 p95=9.0 errors=43 error_ratio=0.0270 timeouts=0\ninventory | pool connect (ms) | baseline n=1161 median=0.4 errors=0 | analysis n=1595 median=0.4 p95=1.0 errors=0 error_ratio=0.0000\ninventory | metric container_cpu (%) | baseline n=18 median=0.509 | analysis n=24 median=0.896 max=1.114 max_gap_s=5.01\ninventory | metric process_cpu (1) | baseline n=18 median=0.016 | analysis n=24 median=0.015 max=0.029 max_gap_s=5.02\ninventory | metric latency_mean (ms) | baseline n=18 median=3.485 | analysis n=24 median=3.044 max=9.410\ninventory | metric error_ratio (1) | baseline n=18 median=0.016 | analysis n=24 median=0.022 max=0.089\ninventory | metric pool_checked_out ({connection}) | baseline n=18 median=0.000 | analysis n=24 median=0.000 max=1.000\npostgres | inbound calls (ms) | baseline n=2873 median=0.5 errors=0 | analysis n=3869 median=0.5 p95=1.2 errors=0 error_ratio=0.0000 timeouts=0\npostgres | metric container_cpu (%) | baseline n=18 median=0.140 | analysis n=24 median=0.208 max=0.248 max_gap_s=5.01\n\nObserved call edges (caller -> callee):\ngateway -> inventory (2627 calls)\ngateway -> order (1671 calls)\ninventory -> postgres (6731 calls)\norder -> inventory (1368 calls)\norder -> payment (1368 calls)\norder -> postgres (3039 calls)\n\nEvidence records (alias [selection] | time | service | type | value | status):\nE01 [first above baseline] t=-59.858s | inventory -> postgres | trace CLIENT SELECT shop | 2.2 ms | ok\nE02 [first error] t=-57.517s | gateway -> inventory | trace CLIENT GET | 2.8 ms | error 404 http=404\nE03 [first above baseline] t=-56.543s | order | trace CLIENT connect | 1.4 ms | ok\nE04 [first above baseline] t=-56.152s | inventory | trace SERVER /reserve | 10.6 ms | ok http=200\nE05 [first above baseline] t=-55.883s | inventory | trace CLIENT connect | 1.9 ms | ok\nE06 [first above baseline] t=-50.794s | gateway | trace SERVER /api/orders | 81.7 ms | ok http=201\nE07 [first above baseline] t=-50.793s | gateway -> inventory | trace CLIENT GET | 70.8 ms | ok http=200\nE08 [max] t=-50.792s | inventory | trace CLIENT connect | 67.1 ms | ok\nE09 [first above baseline] t=-34.455s | payment | trace SERVER /charge | 4.6 ms | ok http=200\nE10 [first above baseline] t=-30.095s | order -> payment | trace CLIENT POST | 8.1 ms | ok http=200\nE11 [max] t=-28.014s | gateway | metric error_ratio | 0.186 1\nE12 [first above baseline] t=-1.297s | gateway -> order | trace CLIENT POST | 42.6 ms | ok http=201\nE13 [first above baseline] t=-1.296s | order | trace SERVER /orders | 41.0 ms | ok http=201\nE14 [max] t=+15.521s | order -> payment | trace CLIENT POST | 88.9 ms | ok http=200\nE15 [max] t=+15.874s | payment | metric latency_mean | 2.905 ms\nE16 [max] t=+17.049s | gateway | metric latency_mean | 35.67 ms\nE17 [max] t=+17.749s | gateway -> order | trace CLIENT POST | 182.7 ms | ok http=201\nE18 [max] t=+17.755s | order | trace SERVER /orders | 177.3 ms | ok http=201\nE19 [max] t=+17.767s | order | trace CLIENT connect | 25.6 ms | ok\nE20 [max] t=+17.791s | inventory -> postgres | trace CLIENT SELECT shop | 19.7 ms | ok\nE21 [max] t=+17.897s | payment | trace SERVER /charge | 26.0 ms | ok http=200\nE22 [max] t=+18.158s | gateway | trace SERVER /api/orders | 352.3 ms | ok http=201\nE23 [max] t=+18.166s | gateway -> inventory | trace CLIENT GET | 188.6 ms | ok http=200\nE24 [max] t=+18.180s | inventory | trace SERVER /stock/{item_id} | 170.8 ms | ok http=200\nE25 [max] t=+18.631s | order | metric process_cpu | 0.0255 1\nE26 [max] t=+20.879s | payment | metric process_cpu | 0.0115 1\nE27 [max] t=+22.054s | gateway | metric process_cpu | 0.0195 1\nE28 [first above baseline] t=+22.093s | gateway | metric container_cpu | 0.7959 %\nE29 [first above baseline] t=+27.085s | postgres | metric container_cpu | 0.2296 %\nE30 [first above baseline] t=+32.084s | order | metric container_cpu | 0.8232 %\nE31 [first above baseline] t=+37.089s | payment | metric container_cpu | 0.7467 %\nE32 [max] t=+57.085s | gateway | metric container_cpu | 0.9129 %\nE33 [max] t=+57.085s | inventory | metric container_cpu | 1.114 %\nE34 [max] t=+57.085s | order | metric container_cpu | 0.9025 %\nE35 [max] t=+57.085s | payment | metric container_cpu | 0.791 %\nE36 [max] t=+57.085s | postgres | metric container_cpu | 0.2484 %\n\nDecide whether the evidence above shows a root cause and, if it does, identify the root-cause service."
+}

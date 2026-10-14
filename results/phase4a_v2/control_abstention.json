@@ -1,0 +1,1644 @@
+{
+ "schema": "evidencerca.phase4a_v2.control_abstention/v1",
+ "generated_at": "2026-10-14T17:28:30+00:00",
+ "split": "dev seed 11 only",
+ "plan": "results/phase4a_v2/pilot_plan.json",
+ "n_records": 80,
+ "model": {
+  "name": "qwen3:4b",
+  "digest": "359d7dd4bcdab3d86b87d73ac27966f4dbb9f5efdfcc75d34a8764a09474fae7",
+  "ollama_version": "0.34.2"
+ },
+ "settings": {
+  "model": "qwen3:4b",
+  "temperature": 0.0,
+  "seed": 20261014,
+  "num_ctx": 6144,
+  "num_predict": 1024,
+  "think": false,
+  "timeout_s": 300.0,
+  "max_retries": 1,
+  "keep_alive": "15m"
+ },
+ "definitions": {
+  "control": "healthy dev case (no root cause); the correct output is ABSTAIN",
+  "decision": "diagnosis-level decision: B4 = the model's; E1 = E0's (unchanged by the model)",
+  "llm_decision": "the model's own decision; for E1 its independent abstention recommendation"
+ },
+ "summary": {
+  "p4a-v1/B4": {
+   "control_views": 4,
+   "control_called": 4,
+   "control_decision_DIAGNOSE": 3,
+   "control_llm_own_DIAGNOSE": 3,
+   "control_llm_own_ABSTAIN": 0,
+   "fault_views_called": 16,
+   "fault_llm_own_ABSTAIN": 0,
+   "conflicting_views_llm_own_ABSTAIN": 0
+  },
+  "p4a-v1/E1": {
+   "control_views": 4,
+   "control_called": 2,
+   "control_decision_DIAGNOSE": 2,
+   "control_llm_own_DIAGNOSE": 2,
+   "control_llm_own_ABSTAIN": 0,
+   "fault_views_called": 16,
+   "fault_llm_own_ABSTAIN": 0,
+   "conflicting_views_llm_own_ABSTAIN": 0
+  },
+  "p4a-v2/B4": {
+   "control_views": 4,
+   "control_called": 4,
+   "control_decision_DIAGNOSE": 4,
+   "control_llm_own_DIAGNOSE": 4,
+   "control_llm_own_ABSTAIN": 0,
+   "fault_views_called": 16,
+   "fault_llm_own_ABSTAIN": 0,
+   "conflicting_views_llm_own_ABSTAIN": 0
+  },
+  "p4a-v2/E1": {
+   "control_views": 4,
+   "control_called": 2,
+   "control_decision_DIAGNOSE": 2,
+   "control_llm_own_DIAGNOSE": 2,
+   "control_llm_own_ABSTAIN": 0,
+   "fault_views_called": 16,
+   "fault_llm_own_ABSTAIN": 1,
+   "conflicting_views_llm_own_ABSTAIN": 0
+  }
+ },
+ "rows": [
+  {
+   "version": "p4a-v1",
+   "condition": "B4",
+   "category": "straightforward",
+   "scenario_key": "11:network_timeout:order:0",
+   "spec": "C0",
+   "fault_present": true,
+   "alert_fired": true,
+   "called": true,
+   "note": null,
+   "decision": "DIAGNOSE",
+   "llm_decision": "DIAGNOSE",
+   "llm_evidence_strength": null,
+   "llm_suspect": "inventory",
+   "e0_decision": null,
+   "uncertainty_reasons": [
+    "conflicting signals from order and payment metrics",
+    "weak deviation in inventory latency"
+   ]
+  },
+  {
+   "version": "p4a-v2",
+   "condition": "B4",
+   "category": "straightforward",
+   "scenario_key": "11:network_timeout:order:0",
+   "spec": "C0",
+   "fault_present": true,
+   "alert_fired": true,
+   "called": true,
+   "note": null,
+   "decision": "DIAGNOSE",
+   "llm_decision": "DIAGNOSE",
+   "llm_evidence_strength": "clear_anomaly",
+   "llm_suspect": "inventory",
+   "e0_decision": null,
+   "uncertainty_reasons": [
+    "Multiple services affected but inventory's latency is stable",
+    "Order service's failure might be due to inventory or payment issues",
+    "Gateway errors could be a symptom rather than root cause"
+   ]
+  },
+  {
+   "version": "p4a-v1",
+   "condition": "E1",
+   "category": "straightforward",
+   "scenario_key": "11:network_timeout:order:0",
+   "spec": "C0",
+   "fault_present": true,
+   "alert_fired": true,
+   "called": true,
+   "note": null,
+   "decision": "DIAGNOSE",
+   "llm_decision": "DIAGNOSE",
+   "llm_evidence_strength": null,
+   "llm_suspect": "order",
+   "e0_decision": "DIAGNOSE",
+   "uncertainty_reasons": [
+    "Conflicting signals: order's latency increased but its pool_checked_out count is low"
+   ]
+  },
+  {
+   "version": "p4a-v2",
+   "condition": "E1",
+   "category": "straightforward",
+   "scenario_key": "11:network_timeout:order:0",
+   "spec": "C0",
+   "fault_present": true,
+   "alert_fired": true,
+   "called": true,
+   "note": null,
+   "decision": "DIAGNOSE",
+   "llm_decision": "DIAGNOSE",
+   "llm_evidence_strength": "clear_anomaly",
+   "llm_suspect": "order",
+   "e0_decision": "DIAGNOSE",
+   "uncertainty_reasons": [
+    "Multiple failure modes could be contributing"
+   ]
+  },
+  {
+   "version": "p4a-v2",
+   "condition": "B4",
+   "category": "straightforward",
+   "scenario_key": "11:processing_latency:order:0",
+   "spec": "C0",
+   "fault_present": true,
+   "alert_fired": true,
+   "called": true,
+   "note": null,
+   "decision": "DIAGNOSE",
+   "llm_decision": "DIAGNOSE",
+   "llm_evidence_strength": "clear_anomaly",
+   "llm_suspect": "inventory",
+   "e0_decision": null,
+   "uncertainty_reasons": [
+    "The error rate is only 1 call (E06) but the CPU spike is high"
+   ]
+  },
+  {
+   "version": "p4a-v1",
+   "condition": "B4",
+   "category": "straightforward",
+   "scenario_key": "11:processing_latency:order:0",
+   "spec": "C0",
+   "fault_present": true,
+   "alert_fired": true,
+   "called": true,
+   "note": null,
+   "decision": "DIAGNOSE",
+   "llm_decision": "DIAGNOSE",
+   "llm_evidence_strength": null,
+   "llm_suspect": "inventory",
+   "e0_decision": null,
+   "uncertainty_reasons": [
+    "Conflicting signals: inventory latency spikes but error_ratio is low"
+   ]
+  },
+  {
+   "version": "p4a-v2",
+   "condition": "E1",
+   "category": "straightforward",
+   "scenario_key": "11:processing_latency:order:0",
+   "spec": "C0",
+   "fault_present": true,
+   "alert_fired": true,
+   "called": true,
+   "note": null,
+   "decision": "DIAGNOSE",
+   "llm_decision": "DIAGNOSE",
+   "llm_evidence_strength": "clear_anomaly",
+   "llm_suspect": "inventory",
+   "e0_decision": "DIAGNOSE",
+   "uncertainty_reasons": [
+    "Multiple slow records in inventory service",
+    "Failed calls from gateway to inventory"
+   ]
+  },
+  {
+   "version": "p4a-v1",
+   "condition": "E1",
+   "category": "straightforward",
+   "scenario_key": "11:processing_latency:order:0",
+   "spec": "C0",
+   "fault_present": true,
+   "alert_fired": true,
+   "called": true,
+   "note": null,
+   "decision": "DIAGNOSE",
+   "llm_decision": "DIAGNOSE",
+   "llm_evidence_strength": null,
+   "llm_suspect": "order",
+   "e0_decision": "DIAGNOSE",
+   "uncertainty_reasons": [
+    "Conflicting signals: order's latency_mean shows high values but error_ratio remains 0"
+   ]
+  },
+  {
+   "version": "p4a-v1",
+   "condition": "B4",
+   "category": "straightforward",
+   "scenario_key": "11:service_crash:payment:0",
+   "spec": "C0",
+   "fault_present": true,
+   "alert_fired": true,
+   "called": true,
+   "note": null,
+   "decision": "DIAGNOSE",
+   "llm_decision": "DIAGNOSE",
+   "llm_evidence_strength": null,
+   "llm_suspect": "order",
+   "e0_decision": null,
+   "uncertainty_reasons": [
+    "Conflicting signals: order's CPU usage is stable but latency spikes"
+   ]
+  },
+  {
+   "version": "p4a-v2",
+   "condition": "B4",
+   "category": "straightforward",
+   "scenario_key": "11:service_crash:payment:0",
+   "spec": "C0",
+   "fault_present": true,
+   "alert_fired": true,
+   "called": true,
+   "note": null,
+   "decision": "DIAGNOSE",
+   "llm_decision": "DIAGNOSE",
+   "llm_evidence_strength": "clear_anomaly",
+   "llm_suspect": "order",
+   "e0_decision": null,
+   "uncertainty_reasons": [
+    "The order service's error rate is high but the cause is not clear from the evidence",
+    "The gateway service is failing to route requests to the order service, but the order service is the root cause"
+   ]
+  },
+  {
+   "version": "p4a-v1",
+   "condition": "E1",
+   "category": "straightforward",
+   "scenario_key": "11:service_crash:payment:0",
+   "spec": "C0",
+   "fault_present": true,
+   "alert_fired": true,
+   "called": true,
+   "note": null,
+   "decision": "DIAGNOSE",
+   "llm_decision": "DIAGNOSE",
+   "llm_evidence_strength": null,
+   "llm_suspect": "payment",
+   "e0_decision": "DIAGNOSE",
+   "uncertainty_reasons": [
+    "Conflicting signals: payment's CPU usage is high but not the primary issue",
+    "Weak deviation in latency metrics for payment",
+    "Insufficient evidence for direct pool exhaustion"
+   ]
+  },
+  {
+   "version": "p4a-v2",
+   "condition": "E1",
+   "category": "straightforward",
+   "scenario_key": "11:service_crash:payment:0",
+   "spec": "C0",
+   "fault_present": true,
+   "alert_fired": true,
+   "called": true,
+   "note": null,
+   "decision": "DIAGNOSE",
+   "llm_decision": "DIAGNOSE",
+   "llm_evidence_strength": "clear_anomaly",
+   "llm_suspect": "order",
+   "e0_decision": "DIAGNOSE",
+   "uncertainty_reasons": [
+    "Multiple error patterns observed but not fully explained"
+   ]
+  },
+  {
+   "version": "p4a-v2",
+   "condition": "B4",
+   "category": "straightforward",
+   "scenario_key": "11:db_pool_exhaustion:inventory:0",
+   "spec": "C0",
+   "fault_present": true,
+   "alert_fired": true,
+   "called": true,
+   "note": null,
+   "decision": "DIAGNOSE",
+   "llm_decision": "DIAGNOSE",
+   "llm_evidence_strength": "clear_anomaly",
+   "llm_suspect": "inventory",
+   "e0_decision": null,
+   "uncertainty_reasons": [
+    "High error rate in inventory but unclear if it's due to DB pool exhaustion",
+    "Gateway errors might be a symptom rather than the root cause"
+   ]
+  },
+  {
+   "version": "p4a-v1",
+   "condition": "B4",
+   "category": "straightforward",
+   "scenario_key": "11:db_pool_exhaustion:inventory:0",
+   "spec": "C0",
+   "fault_present": true,
+   "alert_fired": true,
+   "called": true,
+   "note": null,
+   "decision": "DIAGNOSE",
+   "llm_decision": "DIAGNOSE",
+   "llm_evidence_strength": null,
+   "llm_suspect": "inventory",
+   "e0_decision": null,
+   "uncertainty_reasons": [
+    "conflicting signals from latency and error metrics",
+    "weak deviation in error logs"
+   ]
+  },
+  {
+   "version": "p4a-v2",
+   "condition": "E1",
+   "category": "straightforward",
+   "scenario_key": "11:db_pool_exhaustion:inventory:0",
+   "spec": "C0",
+   "fault_present": true,
+   "alert_fired": true,
+   "called": true,
+   "note": null,
+   "decision": "DIAGNOSE",
+   "llm_decision": "DIAGNOSE",
+   "llm_evidence_strength": "clear_anomaly",
+   "llm_suspect": "inventory",
+   "e0_decision": "DIAGNOSE",
+   "uncertainty_reasons": [
+    "Multiple error logs indicate unhandled exceptions but no specific cause"
+   ]
+  },
+  {
+   "version": "p4a-v1",
+   "condition": "E1",
+   "category": "straightforward",
+   "scenario_key": "11:db_pool_exhaustion:inventory:0",
+   "spec": "C0",
+   "fault_present": true,
+   "alert_fired": true,
+   "called": true,
+   "note": null,
+   "decision": "DIAGNOSE",
+   "llm_decision": "DIAGNOSE",
+   "llm_evidence_strength": null,
+   "llm_suspect": "inventory",
+   "e0_decision": "DIAGNOSE",
+   "uncertainty_reasons": [
+    "Conflicting signals: inventory's error_ratio spikes but latency_mean is stable at 2013ms"
+   ]
+  },
+  {
+   "version": "p4a-v1",
+   "condition": "B4",
+   "category": "missing_trace",
+   "scenario_key": "11:network_timeout:order:0",
+   "spec": "MT",
+   "fault_present": true,
+   "alert_fired": true,
+   "called": true,
+   "note": null,
+   "decision": "DIAGNOSE",
+   "llm_decision": "DIAGNOSE",
+   "llm_evidence_strength": null,
+   "llm_suspect": "inventory",
+   "e0_decision": null,
+   "uncertainty_reasons": [
+    "missing telemetry for payment service",
+    "conflicting signals in order service"
+   ]
+  },
+  {
+   "version": "p4a-v2",
+   "condition": "B4",
+   "category": "missing_trace",
+   "scenario_key": "11:network_timeout:order:0",
+   "spec": "MT",
+   "fault_present": true,
+   "alert_fired": true,
+   "called": true,
+   "note": null,
+   "decision": "DIAGNOSE",
+   "llm_decision": "DIAGNOSE",
+   "llm_evidence_strength": "clear_anomaly",
+   "llm_suspect": "order",
+   "e0_decision": null,
+   "uncertainty_reasons": [
+    "No direct call edges observed"
+   ]
+  },
+  {
+   "version": "p4a-v1",
+   "condition": "E1",
+   "category": "missing_trace",
+   "scenario_key": "11:network_timeout:order:0",
+   "spec": "MT",
+   "fault_present": true,
+   "alert_fired": true,
+   "called": true,
+   "note": null,
+   "decision": "DIAGNOSE",
+   "llm_decision": "DIAGNOSE",
+   "llm_evidence_strength": null,
+   "llm_suspect": "inventory",
+   "e0_decision": "DIAGNOSE",
+   "uncertainty_reasons": [
+    "Conflicting signals: inventory's CPU is high but latency is low",
+    "Weak deviation: payment latency is only slightly above baseline",
+    "Missing telemetry: trace data not available"
+   ]
+  },
+  {
+   "version": "p4a-v2",
+   "condition": "E1",
+   "category": "missing_trace",
+   "scenario_key": "11:network_timeout:order:0",
+   "spec": "MT",
+   "fault_present": true,
+   "alert_fired": true,
+   "called": true,
+   "note": null,
+   "decision": "DIAGNOSE",
+   "llm_decision": "DIAGNOSE",
+   "llm_evidence_strength": "clear_anomaly",
+   "llm_suspect": "gateway",
+   "e0_decision": "DIAGNOSE",
+   "uncertainty_reasons": [
+    "No observed call edges to confirm downstream service failures",
+    "Multiple potential causes for gateway latency (e.g., network, CPU)"
+   ]
+  },
+  {
+   "version": "p4a-v2",
+   "condition": "B4",
+   "category": "missing_trace",
+   "scenario_key": "11:processing_latency:order:0",
+   "spec": "MT",
+   "fault_present": true,
+   "alert_fired": true,
+   "called": true,
+   "note": null,
+   "decision": "DIAGNOSE",
+   "llm_decision": "DIAGNOSE",
+   "llm_evidence_strength": "clear_anomaly",
+   "llm_suspect": "order",
+   "e0_decision": null,
+   "uncertainty_reasons": [
+    "Multiple services show latency spikes but order is the most affected",
+    "No direct call edges observed to confirm causality"
+   ]
+  },
+  {
+   "version": "p4a-v1",
+   "condition": "B4",
+   "category": "missing_trace",
+   "scenario_key": "11:processing_latency:order:0",
+   "spec": "MT",
+   "fault_present": true,
+   "alert_fired": true,
+   "called": true,
+   "note": null,
+   "decision": "DIAGNOSE",
+   "llm_decision": "DIAGNOSE",
+   "llm_evidence_strength": null,
+   "llm_suspect": "inventory",
+   "e0_decision": null,
+   "uncertainty_reasons": [
+    "missing telemetry for payment service",
+    "conflicting signals in error ratios",
+    "weak deviation in latency metrics"
+   ]
+  },
+  {
+   "version": "p4a-v2",
+   "condition": "E1",
+   "category": "missing_trace",
+   "scenario_key": "11:processing_latency:order:0",
+   "spec": "MT",
+   "fault_present": true,
+   "alert_fired": true,
+   "called": true,
+   "note": null,
+   "decision": "DIAGNOSE",
+   "llm_decision": "DIAGNOSE",
+   "llm_evidence_strength": "clear_anomaly",
+   "llm_suspect": "order",
+   "e0_decision": "DIAGNOSE",
+   "uncertainty_reasons": [
+    "No call edges observed to confirm dependency chain",
+    "Multiple metrics show high latency but exact cause not isolated"
+   ]
+  },
+  {
+   "version": "p4a-v1",
+   "condition": "E1",
+   "category": "missing_trace",
+   "scenario_key": "11:processing_latency:order:0",
+   "spec": "MT",
+   "fault_present": true,
+   "alert_fired": true,
+   "called": true,
+   "note": null,
+   "decision": "DIAGNOSE",
+   "llm_decision": "DIAGNOSE",
+   "llm_evidence_strength": null,
+   "llm_suspect": "order",
+   "e0_decision": "DIAGNOSE",
+   "uncertainty_reasons": [
+    "missing telemetry for call edges",
+    "conflicting signals in inventory error rate",
+    "weak deviation in payment latency"
+   ]
+  },
+  {
+   "version": "p4a-v1",
+   "condition": "B4",
+   "category": "missing_trace",
+   "scenario_key": "11:service_crash:payment:0",
+   "spec": "MT",
+   "fault_present": true,
+   "alert_fired": true,
+   "called": true,
+   "note": null,
+   "decision": "DIAGNOSE",
+   "llm_decision": "DIAGNOSE",
+   "llm_evidence_strength": null,
+   "llm_suspect": "order",
+   "e0_decision": null,
+   "uncertainty_reasons": [
+    "missing telemetry for call edges",
+    "conflicting signals in error logs",
+    "weak deviation in pool_checked_out metrics"
+   ]
+  },
+  {
+   "version": "p4a-v2",
+   "condition": "B4",
+   "category": "missing_trace",
+   "scenario_key": "11:service_crash:payment:0",
+   "spec": "MT",
+   "fault_present": true,
+   "alert_fired": true,
+   "called": true,
+   "note": null,
+   "decision": "DIAGNOSE",
+   "llm_decision": "DIAGNOSE",
+   "llm_evidence_strength": "clear_anomaly",
+   "llm_suspect": "order",
+   "e0_decision": null,
+   "uncertainty_reasons": [
+    "Multiple services show anomalies",
+    "No direct call edges observed",
+    "Error logs indicate downstream issues"
+   ]
+  },
+  {
+   "version": "p4a-v1",
+   "condition": "E1",
+   "category": "missing_trace",
+   "scenario_key": "11:service_crash:payment:0",
+   "spec": "MT",
+   "fault_present": true,
+   "alert_fired": true,
+   "called": true,
+   "note": null,
+   "decision": "DIAGNOSE",
+   "llm_decision": "DIAGNOSE",
+   "llm_evidence_strength": null,
+   "llm_suspect": "order",
+   "e0_decision": "DIAGNOSE",
+   "uncertainty_reasons": [
+    "missing telemetry for payment service",
+    "conflicting signals in order service metrics"
+   ]
+  },
+  {
+   "version": "p4a-v2",
+   "condition": "E1",
+   "category": "missing_trace",
+   "scenario_key": "11:service_crash:payment:0",
+   "spec": "MT",
+   "fault_present": true,
+   "alert_fired": true,
+   "called": true,
+   "note": null,
+   "decision": "DIAGNOSE",
+   "llm_decision": "ABSTAIN",
+   "llm_evidence_strength": "weak_or_no_deviation",
+   "llm_suspect": "none",
+   "e0_decision": "DIAGNOSE",
+   "uncertainty_reasons": [
+    "No observed call edges to identify downstream service",
+    "Order service is a symptom, not the root cause",
+    "EvidenceRCA ranker's top candidate is not the root cause"
+   ]
+  },
+  {
+   "version": "p4a-v2",
+   "condition": "B4",
+   "category": "missing_trace",
+   "scenario_key": "11:db_pool_exhaustion:inventory:0",
+   "spec": "MT",
+   "fault_present": true,
+   "alert_fired": true,
+   "called": true,
+   "note": null,
+   "decision": "DIAGNOSE",
+   "llm_decision": "DIAGNOSE",
+   "llm_evidence_strength": "clear_anomaly",
+   "llm_suspect": "inventory",
+   "e0_decision": null,
+   "uncertainty_reasons": [
+    "No call edges observed to confirm dependency chain",
+    "Inventory's high error ratio and pool usage suggest database issues"
+   ]
+  },
+  {
+   "version": "p4a-v1",
+   "condition": "B4",
+   "category": "missing_trace",
+   "scenario_key": "11:db_pool_exhaustion:inventory:0",
+   "spec": "MT",
+   "fault_present": true,
+   "alert_fired": true,
+   "called": true,
+   "note": null,
+   "decision": "DIAGNOSE",
+   "llm_decision": "DIAGNOSE",
+   "llm_evidence_strength": null,
+   "llm_suspect": "inventory",
+   "e0_decision": null,
+   "uncertainty_reasons": [
+    "missing telemetry for payment service calls",
+    "conflicting signals in error logs"
+   ]
+  },
+  {
+   "version": "p4a-v2",
+   "condition": "E1",
+   "category": "missing_trace",
+   "scenario_key": "11:db_pool_exhaustion:inventory:0",
+   "spec": "MT",
+   "fault_present": true,
+   "alert_fired": true,
+   "called": true,
+   "note": null,
+   "decision": "DIAGNOSE",
+   "llm_decision": "DIAGNOSE",
+   "llm_evidence_strength": "clear_anomaly",
+   "llm_suspect": "inventory",
+   "e0_decision": "DIAGNOSE",
+   "uncertainty_reasons": []
+  },
+  {
+   "version": "p4a-v1",
+   "condition": "E1",
+   "category": "missing_trace",
+   "scenario_key": "11:db_pool_exhaustion:inventory:0",
+   "spec": "MT",
+   "fault_present": true,
+   "alert_fired": true,
+   "called": true,
+   "note": null,
+   "decision": "DIAGNOSE",
+   "llm_decision": "DIAGNOSE",
+   "llm_evidence_strength": null,
+   "llm_suspect": "inventory",
+   "e0_decision": "DIAGNOSE",
+   "uncertainty_reasons": [
+    "missing telemetry for call edges",
+    "conflicting signals in error logs",
+    "weak deviation in CPU metrics"
+   ]
+  },
+  {
+   "version": "p4a-v1",
+   "condition": "B4",
+   "category": "conflicting",
+   "scenario_key": "11:network_timeout:order:0",
+   "spec": "CF",
+   "fault_present": true,
+   "alert_fired": true,
+   "called": true,
+   "note": null,
+   "decision": "DIAGNOSE",
+   "llm_decision": "DIAGNOSE",
+   "llm_evidence_strength": null,
+   "llm_suspect": "inventory",
+   "e0_decision": null,
+   "uncertainty_reasons": [
+    "Conflicting signals: inventory latency is high but error rate is low",
+    "Weak deviation in payment service metrics",
+    "Insufficient evidence for direct inventory failure"
+   ]
+  },
+  {
+   "version": "p4a-v2",
+   "condition": "B4",
+   "category": "conflicting",
+   "scenario_key": "11:network_timeout:order:0",
+   "spec": "CF",
+   "fault_present": true,
+   "alert_fired": true,
+   "called": true,
+   "note": null,
+   "decision": "DIAGNOSE",
+   "llm_decision": "DIAGNOSE",
+   "llm_evidence_strength": "clear_anomaly",
+   "llm_suspect": "inventory",
+   "e0_decision": null,
+   "uncertainty_reasons": [
+    "High error rate in order service"
+   ]
+  },
+  {
+   "version": "p4a-v1",
+   "condition": "E1",
+   "category": "conflicting",
+   "scenario_key": "11:network_timeout:order:0",
+   "spec": "CF",
+   "fault_present": true,
+   "alert_fired": true,
+   "called": true,
+   "note": null,
+   "decision": "DIAGNOSE",
+   "llm_decision": "DIAGNOSE",
+   "llm_evidence_strength": null,
+   "llm_suspect": "order",
+   "e0_decision": "DIAGNOSE",
+   "uncertainty_reasons": [
+    "Conflicting signals: order's latency increased but its pool_checked_out count is low"
+   ]
+  },
+  {
+   "version": "p4a-v2",
+   "condition": "E1",
+   "category": "conflicting",
+   "scenario_key": "11:network_timeout:order:0",
+   "spec": "CF",
+   "fault_present": true,
+   "alert_fired": true,
+   "called": true,
+   "note": null,
+   "decision": "DIAGNOSE",
+   "llm_decision": "DIAGNOSE",
+   "llm_evidence_strength": "clear_anomaly",
+   "llm_suspect": "order",
+   "e0_decision": "DIAGNOSE",
+   "uncertainty_reasons": [
+    "Multiple error patterns observed but not all are directly tied to the root cause",
+    "The exact cause of the pool exhaustion is not explicitly stated in the evidence"
+   ]
+  },
+  {
+   "version": "p4a-v2",
+   "condition": "B4",
+   "category": "conflicting",
+   "scenario_key": "11:processing_latency:order:0",
+   "spec": "CF",
+   "fault_present": true,
+   "alert_fired": true,
+   "called": true,
+   "note": null,
+   "decision": "DIAGNOSE",
+   "llm_decision": "DIAGNOSE",
+   "llm_evidence_strength": "clear_anomaly",
+   "llm_suspect": "order",
+   "e0_decision": null,
+   "uncertainty_reasons": [
+    "High error rate in inventory calls",
+    "Multiple services show latency spikes"
+   ]
+  },
+  {
+   "version": "p4a-v1",
+   "condition": "B4",
+   "category": "conflicting",
+   "scenario_key": "11:processing_latency:order:0",
+   "spec": "CF",
+   "fault_present": true,
+   "alert_fired": true,
+   "called": true,
+   "note": null,
+   "decision": "DIAGNOSE",
+   "llm_decision": "DIAGNOSE",
+   "llm_evidence_strength": null,
+   "llm_suspect": "inventory",
+   "e0_decision": null,
+   "uncertainty_reasons": [
+    "Conflicting signals: inventory latency spikes but error_ratio is low"
+   ]
+  },
+  {
+   "version": "p4a-v2",
+   "condition": "E1",
+   "category": "conflicting",
+   "scenario_key": "11:processing_latency:order:0",
+   "spec": "CF",
+   "fault_present": true,
+   "alert_fired": true,
+   "called": true,
+   "note": null,
+   "decision": "DIAGNOSE",
+   "llm_decision": "DIAGNOSE",
+   "llm_evidence_strength": "clear_anomaly",
+   "llm_suspect": "order",
+   "e0_decision": "DIAGNOSE",
+   "uncertainty_reasons": [
+    "Multiple services show latency increases but order is most affected",
+    "EvidenceRCA ranked order as top candidate but evidence shows gateway failures"
+   ]
+  },
+  {
+   "version": "p4a-v1",
+   "condition": "E1",
+   "category": "conflicting",
+   "scenario_key": "11:processing_latency:order:0",
+   "spec": "CF",
+   "fault_present": true,
+   "alert_fired": true,
+   "called": true,
+   "note": null,
+   "decision": "DIAGNOSE",
+   "llm_decision": "DIAGNOSE",
+   "llm_evidence_strength": null,
+   "llm_suspect": "order",
+   "e0_decision": "DIAGNOSE",
+   "uncertainty_reasons": [
+    "Conflicting signals: order's latency spikes correlate with inventory's slow responses but not all calls fail"
+   ]
+  },
+  {
+   "version": "p4a-v1",
+   "condition": "B4",
+   "category": "conflicting",
+   "scenario_key": "11:service_crash:payment:0",
+   "spec": "CF",
+   "fault_present": true,
+   "alert_fired": true,
+   "called": true,
+   "note": null,
+   "decision": "DIAGNOSE",
+   "llm_decision": "DIAGNOSE",
+   "llm_evidence_strength": null,
+   "llm_suspect": "order",
+   "e0_decision": null,
+   "uncertainty_reasons": [
+    "Conflicting signals: order's CPU usage is stable but latency spikes"
+   ]
+  },
+  {
+   "version": "p4a-v2",
+   "condition": "B4",
+   "category": "conflicting",
+   "scenario_key": "11:service_crash:payment:0",
+   "spec": "CF",
+   "fault_present": true,
+   "alert_fired": true,
+   "called": true,
+   "note": null,
+   "decision": "DIAGNOSE",
+   "llm_decision": "DIAGNOSE",
+   "llm_evidence_strength": "clear_anomaly",
+   "llm_suspect": "order",
+   "e0_decision": null,
+   "uncertainty_reasons": [
+    "Multiple services affected but order is the primary failure point",
+    "Error logs indicate downstream issues but not the exact cause"
+   ]
+  },
+  {
+   "version": "p4a-v1",
+   "condition": "E1",
+   "category": "conflicting",
+   "scenario_key": "11:service_crash:payment:0",
+   "spec": "CF",
+   "fault_present": true,
+   "alert_fired": true,
+   "called": true,
+   "note": null,
+   "decision": "DIAGNOSE",
+   "llm_decision": "DIAGNOSE",
+   "llm_evidence_strength": null,
+   "llm_suspect": "payment",
+   "e0_decision": "DIAGNOSE",
+   "uncertainty_reasons": [
+    "Conflicting signals: payment's CPU usage is high but error_ratio is 0",
+    "Weak deviation: payment's latency is high but error_ratio is 0",
+    "Missing telemetry: no direct evidence of postgres connection issues"
+   ]
+  },
+  {
+   "version": "p4a-v2",
+   "condition": "E1",
+   "category": "conflicting",
+   "scenario_key": "11:service_crash:payment:0",
+   "spec": "CF",
+   "fault_present": true,
+   "alert_fired": true,
+   "called": true,
+   "note": null,
+   "decision": "DIAGNOSE",
+   "llm_decision": "DIAGNOSE",
+   "llm_evidence_strength": "clear_anomaly",
+   "llm_suspect": "order",
+   "e0_decision": "DIAGNOSE",
+   "uncertainty_reasons": [
+    "Multiple error patterns observed"
+   ]
+  },
+  {
+   "version": "p4a-v2",
+   "condition": "B4",
+   "category": "conflicting",
+   "scenario_key": "11:db_pool_exhaustion:inventory:0",
+   "spec": "CF",
+   "fault_present": true,
+   "alert_fired": true,
+   "called": true,
+   "note": null,
+   "decision": "DIAGNOSE",
+   "llm_decision": "DIAGNOSE",
+   "llm_evidence_strength": "clear_anomaly",
+   "llm_suspect": "gateway",
+   "e0_decision": null,
+   "uncertainty_reasons": [
+    "Multiple services show high latency but gateway is the primary source of errors"
+   ]
+  },
+  {
+   "version": "p4a-v1",
+   "condition": "B4",
+   "category": "conflicting",
+   "scenario_key": "11:db_pool_exhaustion:inventory:0",
+   "spec": "CF",
+   "fault_present": true,
+   "alert_fired": true,
+   "called": true,
+   "note": null,
+   "decision": "DIAGNOSE",
+   "llm_decision": "DIAGNOSE",
+   "llm_evidence_strength": null,
+   "llm_suspect": "gateway",
+   "e0_decision": null,
+   "uncertainty_reasons": [
+    "Conflicting signals: gateway shows high latency but inventory errors are the primary symptom",
+    "Weak deviation in CPU metrics (only 0.376% vs baseline 0.144%)",
+    "Insufficient evidence for direct inventory failure cause"
+   ]
+  },
+  {
+   "version": "p4a-v2",
+   "condition": "E1",
+   "category": "conflicting",
+   "scenario_key": "11:db_pool_exhaustion:inventory:0",
+   "spec": "CF",
+   "fault_present": true,
+   "alert_fired": true,
+   "called": true,
+   "note": null,
+   "decision": "DIAGNOSE",
+   "llm_decision": "DIAGNOSE",
+   "llm_evidence_strength": "clear_anomaly",
+   "llm_suspect": "inventory",
+   "e0_decision": "DIAGNOSE",
+   "uncertainty_reasons": [
+    "Multiple error logs indicate unhandled exceptions but no specific root cause"
+   ]
+  },
+  {
+   "version": "p4a-v1",
+   "condition": "E1",
+   "category": "conflicting",
+   "scenario_key": "11:db_pool_exhaustion:inventory:0",
+   "spec": "CF",
+   "fault_present": true,
+   "alert_fired": true,
+   "called": true,
+   "note": null,
+   "decision": "DIAGNOSE",
+   "llm_decision": "DIAGNOSE",
+   "llm_evidence_strength": null,
+   "llm_suspect": "inventory",
+   "e0_decision": "DIAGNOSE",
+   "uncertainty_reasons": [
+    "Conflicting signals: inventory's error_ratio spikes but latency_mean is stable at 2013ms"
+   ]
+  },
+  {
+   "version": "p4a-v1",
+   "condition": "B4",
+   "category": "control",
+   "scenario_key": "11:none:-:0",
+   "spec": "C0",
+   "fault_present": false,
+   "alert_fired": false,
+   "called": true,
+   "note": null,
+   "decision": "DIAGNOSE",
+   "llm_decision": "DIAGNOSE",
+   "llm_evidence_strength": null,
+   "llm_suspect": "inventory",
+   "e0_decision": null,
+   "uncertainty_reasons": [
+    "Conflicting signals: inventory latency is high but error_ratio is low"
+   ]
+  },
+  {
+   "version": "p4a-v2",
+   "condition": "B4",
+   "category": "control",
+   "scenario_key": "11:none:-:0",
+   "spec": "C0",
+   "fault_present": false,
+   "alert_fired": false,
+   "called": true,
+   "note": null,
+   "decision": "DIAGNOSE",
+   "llm_decision": "DIAGNOSE",
+   "llm_evidence_strength": "clear_anomaly",
+   "llm_suspect": "inventory",
+   "e0_decision": null,
+   "uncertainty_reasons": [
+    "The error rate in gateway is high but the root cause is not clear from the evidence",
+    "The inventory service has slow server spans but the error rate is low"
+   ]
+  },
+  {
+   "version": "p4a-v1",
+   "condition": "E1",
+   "category": "control",
+   "scenario_key": "11:none:-:0",
+   "spec": "C0",
+   "fault_present": false,
+   "alert_fired": false,
+   "called": false,
+   "note": "no LLM call: E0 has no candidate with a positive score",
+   "decision": "ABSTAIN",
+   "llm_decision": null,
+   "llm_evidence_strength": null,
+   "llm_suspect": null,
+   "e0_decision": "ABSTAIN",
+   "uncertainty_reasons": null
+  },
+  {
+   "version": "p4a-v2",
+   "condition": "E1",
+   "category": "control",
+   "scenario_key": "11:none:-:0",
+   "spec": "C0",
+   "fault_present": false,
+   "alert_fired": false,
+   "called": false,
+   "note": "no LLM call: E0 has no candidate with a positive score",
+   "decision": "ABSTAIN",
+   "llm_decision": null,
+   "llm_evidence_strength": null,
+   "llm_suspect": null,
+   "e0_decision": "ABSTAIN",
+   "uncertainty_reasons": null
+  },
+  {
+   "version": "p4a-v2",
+   "condition": "B4",
+   "category": "control",
+   "scenario_key": "11:none:-:0",
+   "spec": "R40",
+   "fault_present": false,
+   "alert_fired": false,
+   "called": true,
+   "note": null,
+   "decision": "DIAGNOSE",
+   "llm_decision": "DIAGNOSE",
+   "llm_evidence_strength": "clear_anomaly",
+   "llm_suspect": "inventory",
+   "e0_decision": null,
+   "uncertainty_reasons": [
+    "Multiple services show high latency but inventory has the most direct evidence of failure",
+    "Order service has high CPU but no direct failure evidence"
+   ]
+  },
+  {
+   "version": "p4a-v1",
+   "condition": "B4",
+   "category": "control",
+   "scenario_key": "11:none:-:0",
+   "spec": "R40",
+   "fault_present": false,
+   "alert_fired": false,
+   "called": true,
+   "note": null,
+   "decision": "DIAGNOSE",
+   "llm_decision": "DIAGNOSE",
+   "llm_evidence_strength": null,
+   "llm_suspect": "gateway",
+   "e0_decision": null,
+   "uncertainty_reasons": [
+    "Conflicting signals: inventory shows latency spikes but gateway error is the first symptom",
+    "Weak deviation in order and payment services"
+   ]
+  },
+  {
+   "version": "p4a-v2",
+   "condition": "E1",
+   "category": "control",
+   "scenario_key": "11:none:-:0",
+   "spec": "R40",
+   "fault_present": false,
+   "alert_fired": false,
+   "called": true,
+   "note": null,
+   "decision": "DIAGNOSE",
+   "llm_decision": "DIAGNOSE",
+   "llm_evidence_strength": "clear_anomaly",
+   "llm_suspect": "gateway",
+   "e0_decision": "DIAGNOSE",
+   "uncertainty_reasons": [
+    "Multiple anomalies but not all are directly linked to a single cause",
+    "High CPU usage may be a symptom rather than the root cause"
+   ]
+  },
+  {
+   "version": "p4a-v1",
+   "condition": "E1",
+   "category": "control",
+   "scenario_key": "11:none:-:0",
+   "spec": "R40",
+   "fault_present": false,
+   "alert_fired": false,
+   "called": true,
+   "note": null,
+   "decision": "DIAGNOSE",
+   "llm_decision": "DIAGNOSE",
+   "llm_evidence_strength": null,
+   "llm_suspect": "gateway",
+   "e0_decision": "DIAGNOSE",
+   "uncertainty_reasons": [
+    "Conflicting signals: gateway shows high error rate but no direct error logs",
+    "Weak deviation: latency spike is 1.5x baseline but error rate is low"
+   ]
+  },
+  {
+   "version": "p4a-v1",
+   "condition": "B4",
+   "category": "control",
+   "scenario_key": "11:none:-:1",
+   "spec": "C0",
+   "fault_present": false,
+   "alert_fired": false,
+   "called": true,
+   "note": null,
+   "decision": "ABSTAIN",
+   "llm_decision": null,
+   "llm_evidence_strength": null,
+   "llm_suspect": null,
+   "e0_decision": null,
+   "uncertainty_reasons": null
+  },
+  {
+   "version": "p4a-v2",
+   "condition": "B4",
+   "category": "control",
+   "scenario_key": "11:none:-:1",
+   "spec": "C0",
+   "fault_present": false,
+   "alert_fired": false,
+   "called": true,
+   "note": null,
+   "decision": "DIAGNOSE",
+   "llm_decision": "DIAGNOSE",
+   "llm_evidence_strength": "clear_anomaly",
+   "llm_suspect": "inventory",
+   "e0_decision": null,
+   "uncertainty_reasons": [
+    "High CPU usage in multiple services",
+    "Multiple slow call edges",
+    "Inconsistent timing of anomalies"
+   ]
+  },
+  {
+   "version": "p4a-v1",
+   "condition": "E1",
+   "category": "control",
+   "scenario_key": "11:none:-:1",
+   "spec": "C0",
+   "fault_present": false,
+   "alert_fired": false,
+   "called": false,
+   "note": "no LLM call: E0 has no candidate with a positive score",
+   "decision": "ABSTAIN",
+   "llm_decision": null,
+   "llm_evidence_strength": null,
+   "llm_suspect": null,
+   "e0_decision": "ABSTAIN",
+   "uncertainty_reasons": null
+  },
+  {
+   "version": "p4a-v2",
+   "condition": "E1",
+   "category": "control",
+   "scenario_key": "11:none:-:1",
+   "spec": "C0",
+   "fault_present": false,
+   "alert_fired": false,
+   "called": false,
+   "note": "no LLM call: E0 has no candidate with a positive score",
+   "decision": "ABSTAIN",
+   "llm_decision": null,
+   "llm_evidence_strength": null,
+   "llm_suspect": null,
+   "e0_decision": "ABSTAIN",
+   "uncertainty_reasons": null
+  },
+  {
+   "version": "p4a-v2",
+   "condition": "B4",
+   "category": "control",
+   "scenario_key": "11:none:-:1",
+   "spec": "R40",
+   "fault_present": false,
+   "alert_fired": false,
+   "called": true,
+   "note": null,
+   "decision": "DIAGNOSE",
+   "llm_decision": "DIAGNOSE",
+   "llm_evidence_strength": "clear_anomaly",
+   "llm_suspect": "order",
+   "e0_decision": null,
+   "uncertainty_reasons": [
+    "Multiple services show latency increases but order has the highest impact on gateway",
+    "Inventory errors are present but not directly tied to the latency spike"
+   ]
+  },
+  {
+   "version": "p4a-v1",
+   "condition": "B4",
+   "category": "control",
+   "scenario_key": "11:none:-:1",
+   "spec": "R40",
+   "fault_present": false,
+   "alert_fired": false,
+   "called": true,
+   "note": null,
+   "decision": "DIAGNOSE",
+   "llm_decision": "DIAGNOSE",
+   "llm_evidence_strength": null,
+   "llm_suspect": "inventory",
+   "e0_decision": null,
+   "uncertainty_reasons": [
+    "Conflicting signals: inventory's latency is high but error_ratio is low"
+   ]
+  },
+  {
+   "version": "p4a-v2",
+   "condition": "E1",
+   "category": "control",
+   "scenario_key": "11:none:-:1",
+   "spec": "R40",
+   "fault_present": false,
+   "alert_fired": false,
+   "called": true,
+   "note": null,
+   "decision": "DIAGNOSE",
+   "llm_decision": "DIAGNOSE",
+   "llm_evidence_strength": "clear_anomaly",
+   "llm_suspect": "gateway",
+   "e0_decision": "DIAGNOSE",
+   "uncertainty_reasons": [
+    "The error ratio in gateway is high but not directly tied to a specific service failure"
+   ]
+  },
+  {
+   "version": "p4a-v1",
+   "condition": "E1",
+   "category": "control",
+   "scenario_key": "11:none:-:1",
+   "spec": "R40",
+   "fault_present": false,
+   "alert_fired": false,
+   "called": true,
+   "note": null,
+   "decision": "DIAGNOSE",
+   "llm_decision": "DIAGNOSE",
+   "llm_evidence_strength": null,
+   "llm_suspect": "order",
+   "e0_decision": "DIAGNOSE",
+   "uncertainty_reasons": [
+    "Conflicting signals: order shows high latency but low error rate",
+    "Weak deviation in CPU usage for order (1.187% vs baseline 0.506%)",
+    "Insufficient evidence for direct causation of gateway latency"
+   ]
+  },
+  {
+   "version": "p4a-v1",
+   "condition": "B4",
+   "category": "cascade",
+   "scenario_key": "11:cascading_failure:postgres:0",
+   "spec": "C0",
+   "fault_present": true,
+   "alert_fired": true,
+   "called": true,
+   "note": null,
+   "decision": "DIAGNOSE",
+   "llm_decision": "DIAGNOSE",
+   "llm_evidence_strength": null,
+   "llm_suspect": "inventory",
+   "e0_decision": null,
+   "uncertainty_reasons": [
+    "Conflicting signals: inventory's error rate is high but its latency spikes are not the primary issue",
+    "Weak deviation: inventory's latency spikes are not the most severe metric",
+    "Missing telemetry: No direct evidence of inventory's database connection issues"
+   ]
+  },
+  {
+   "version": "p4a-v2",
+   "condition": "B4",
+   "category": "cascade",
+   "scenario_key": "11:cascading_failure:postgres:0",
+   "spec": "C0",
+   "fault_present": true,
+   "alert_fired": true,
+   "called": true,
+   "note": null,
+   "decision": "DIAGNOSE",
+   "llm_decision": "DIAGNOSE",
+   "llm_evidence_strength": "clear_anomaly",
+   "llm_suspect": "inventory",
+   "e0_decision": null,
+   "uncertainty_reasons": [
+    "Multiple error logs in gateway indicate downstream issues but not the exact cause",
+    "Inventory's high error rate (47.65%) suggests database problems",
+    "Gateway's high latency may be a symptom of inventory's failure"
+   ]
+  },
+  {
+   "version": "p4a-v1",
+   "condition": "E1",
+   "category": "cascade",
+   "scenario_key": "11:cascading_failure:postgres:0",
+   "spec": "C0",
+   "fault_present": true,
+   "alert_fired": true,
+   "called": true,
+   "note": null,
+   "decision": "DIAGNOSE",
+   "llm_decision": "DIAGNOSE",
+   "llm_evidence_strength": null,
+   "llm_suspect": "inventory",
+   "e0_decision": "DIAGNOSE",
+   "uncertainty_reasons": [
+    "Conflicting signals in latency metrics",
+    "Weak deviation in error rates"
+   ]
+  },
+  {
+   "version": "p4a-v2",
+   "condition": "E1",
+   "category": "cascade",
+   "scenario_key": "11:cascading_failure:postgres:0",
+   "spec": "C0",
+   "fault_present": true,
+   "alert_fired": true,
+   "called": true,
+   "note": null,
+   "decision": "DIAGNOSE",
+   "llm_decision": "DIAGNOSE",
+   "llm_evidence_strength": "clear_anomaly",
+   "llm_suspect": "inventory",
+   "e0_decision": "DIAGNOSE",
+   "uncertainty_reasons": [
+    "Multiple error logs indicate unhandled exceptions but no specific root cause"
+   ]
+  },
+  {
+   "version": "p4a-v2",
+   "condition": "B4",
+   "category": "cascade",
+   "scenario_key": "11:cascading_failure:postgres:0",
+   "spec": "R40",
+   "fault_present": true,
+   "alert_fired": true,
+   "called": true,
+   "note": null,
+   "decision": "DIAGNOSE",
+   "llm_decision": "DIAGNOSE",
+   "llm_evidence_strength": "clear_anomaly",
+   "llm_suspect": "inventory",
+   "e0_decision": null,
+   "uncertainty_reasons": [
+    "Multiple error types observed in inventory"
+   ]
+  },
+  {
+   "version": "p4a-v1",
+   "condition": "B4",
+   "category": "cascade",
+   "scenario_key": "11:cascading_failure:postgres:0",
+   "spec": "R40",
+   "fault_present": true,
+   "alert_fired": true,
+   "called": true,
+   "note": null,
+   "decision": "DIAGNOSE",
+   "llm_decision": "DIAGNOSE",
+   "llm_evidence_strength": null,
+   "llm_suspect": "inventory",
+   "e0_decision": null,
+   "uncertainty_reasons": [
+    "Conflicting signals: inventory latency spikes but payment latency is also elevated"
+   ]
+  },
+  {
+   "version": "p4a-v2",
+   "condition": "E1",
+   "category": "cascade",
+   "scenario_key": "11:cascading_failure:postgres:0",
+   "spec": "R40",
+   "fault_present": true,
+   "alert_fired": true,
+   "called": true,
+   "note": null,
+   "decision": "DIAGNOSE",
+   "llm_decision": "DIAGNOSE",
+   "llm_evidence_strength": "clear_anomaly",
+   "llm_suspect": "inventory",
+   "e0_decision": "DIAGNOSE",
+   "uncertainty_reasons": [
+    "Multiple error logs indicate unhandled exceptions but no specific cause",
+    "High error ratio in inventory but not all errors are timeouts",
+    "Gateway shows high latency but may be a symptom"
+   ]
+  },
+  {
+   "version": "p4a-v1",
+   "condition": "E1",
+   "category": "cascade",
+   "scenario_key": "11:cascading_failure:postgres:0",
+   "spec": "R40",
+   "fault_present": true,
+   "alert_fired": true,
+   "called": true,
+   "note": null,
+   "decision": "DIAGNOSE",
+   "llm_decision": "DIAGNOSE",
+   "llm_evidence_strength": null,
+   "llm_suspect": "inventory",
+   "e0_decision": "DIAGNOSE",
+   "uncertainty_reasons": [
+    "Conflicting signals: inventory's error_ratio jumps to 1.0 but latency_mean is stable at 2012ms",
+    "Weak deviation: latency_mean is 2012ms vs baseline 2.825ms, but error_ratio is 1.0 vs baseline 0.041"
+   ]
+  },
+  {
+   "version": "p4a-v1",
+   "condition": "B4",
+   "category": "cascade",
+   "scenario_key": "11:cascading_failure:postgres:0",
+   "spec": "MT",
+   "fault_present": true,
+   "alert_fired": true,
+   "called": true,
+   "note": null,
+   "decision": "DIAGNOSE",
+   "llm_decision": "DIAGNOSE",
+   "llm_evidence_strength": null,
+   "llm_suspect": "inventory",
+   "e0_decision": null,
+   "uncertainty_reasons": [
+    "missing telemetry for call edges",
+    "conflicting signals in error logs"
+   ]
+  },
+  {
+   "version": "p4a-v2",
+   "condition": "B4",
+   "category": "cascade",
+   "scenario_key": "11:cascading_failure:postgres:0",
+   "spec": "MT",
+   "fault_present": true,
+   "alert_fired": true,
+   "called": true,
+   "note": null,
+   "decision": "DIAGNOSE",
+   "llm_decision": "DIAGNOSE",
+   "llm_evidence_strength": "clear_anomaly",
+   "llm_suspect": "inventory",
+   "e0_decision": null,
+   "uncertainty_reasons": [
+    "inventory latency spikes correlate with gateway errors",
+    "order latency is high but not directly linked to inventory"
+   ]
+  },
+  {
+   "version": "p4a-v1",
+   "condition": "E1",
+   "category": "cascade",
+   "scenario_key": "11:cascading_failure:postgres:0",
+   "spec": "MT",
+   "fault_present": true,
+   "alert_fired": true,
+   "called": true,
+   "note": null,
+   "decision": "DIAGNOSE",
+   "llm_decision": "DIAGNOSE",
+   "llm_evidence_strength": null,
+   "llm_suspect": "inventory",
+   "e0_decision": "DIAGNOSE",
+   "uncertainty_reasons": [
+    "missing telemetry for call edges",
+    "conflicting signals in error logs",
+    "weak deviation in CPU metrics"
+   ]
+  },
+  {
+   "version": "p4a-v2",
+   "condition": "E1",
+   "category": "cascade",
+   "scenario_key": "11:cascading_failure:postgres:0",
+   "spec": "MT",
+   "fault_present": true,
+   "alert_fired": true,
+   "called": true,
+   "note": null,
+   "decision": "DIAGNOSE",
+   "llm_decision": "DIAGNOSE",
+   "llm_evidence_strength": "clear_anomaly",
+   "llm_suspect": "inventory",
+   "e0_decision": "DIAGNOSE",
+   "uncertainty_reasons": [
+    "No call edges observed to confirm dependency chain"
+   ]
+  },
+  {
+   "version": "p4a-v2",
+   "condition": "B4",
+   "category": "cascade",
+   "scenario_key": "11:cascading_failure:postgres:0",
+   "spec": "CF",
+   "fault_present": true,
+   "alert_fired": true,
+   "called": true,
+   "note": null,
+   "decision": "DIAGNOSE",
+   "llm_decision": "DIAGNOSE",
+   "llm_evidence_strength": "clear_anomaly",
+   "llm_suspect": "inventory",
+   "e0_decision": null,
+   "uncertainty_reasons": [
+    "High error rate in inventory service",
+    "Multiple error logs in gateway"
+   ]
+  },
+  {
+   "version": "p4a-v1",
+   "condition": "B4",
+   "category": "cascade",
+   "scenario_key": "11:cascading_failure:postgres:0",
+   "spec": "CF",
+   "fault_present": true,
+   "alert_fired": true,
+   "called": true,
+   "note": null,
+   "decision": "DIAGNOSE",
+   "llm_decision": "DIAGNOSE",
+   "llm_evidence_strength": null,
+   "llm_suspect": "gateway",
+   "e0_decision": null,
+   "uncertainty_reasons": [
+    "Conflicting signals: gateway shows high latency but order service latency decreased"
+   ]
+  },
+  {
+   "version": "p4a-v2",
+   "condition": "E1",
+   "category": "cascade",
+   "scenario_key": "11:cascading_failure:postgres:0",
+   "spec": "CF",
+   "fault_present": true,
+   "alert_fired": true,
+   "called": true,
+   "note": null,
+   "decision": "DIAGNOSE",
+   "llm_decision": "DIAGNOSE",
+   "llm_evidence_strength": "clear_anomaly",
+   "llm_suspect": "inventory",
+   "e0_decision": "DIAGNOSE",
+   "uncertainty_reasons": [
+    "Multiple error logs indicate unhandled exceptions but no specific root cause"
+   ]
+  },
+  {
+   "version": "p4a-v1",
+   "condition": "E1",
+   "category": "cascade",
+   "scenario_key": "11:cascading_failure:postgres:0",
+   "spec": "CF",
+   "fault_present": true,
+   "alert_fired": true,
+   "called": true,
+   "note": null,
+   "decision": "DIAGNOSE",
+   "llm_decision": "DIAGNOSE",
+   "llm_evidence_strength": null,
+   "llm_suspect": "inventory",
+   "e0_decision": "DIAGNOSE",
+   "uncertainty_reasons": [
+    "Conflicting signals in latency metrics",
+    "Weak deviation in error rates"
+   ]
+  }
+ ]
+}

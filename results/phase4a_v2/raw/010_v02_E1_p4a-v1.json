@@ -1,0 +1,771 @@
+{
+ "k": 10,
+ "view_index": 2,
+ "condition": "E1",
+ "version": "p4a-v1",
+ "view": {
+  "index": 2,
+  "category": "straightforward",
+  "case_id": "ef763608-bea4-4f8f-a65a-7ef3fc640efc",
+  "scenario_key": "11:service_crash:payment:0",
+  "spec": "C0",
+  "perturbation_seed": 1,
+  "version_order": [
+   "p4a-v1",
+   "p4a-v2"
+  ]
+ },
+ "view_id": "vw-eb0521a9f7d39db5",
+ "alert_fired": true,
+ "window_anchor": "alert",
+ "end_to_end_wall_s": 66.83,
+ "ollama_rss_peak_mb": 3741.4,
+ "system_after": {
+  "free_mb": 58,
+  "inactive_mb": 492,
+  "compressed_mb": 1671,
+  "swap": "total = 13312.00M  used = 12339.06M  free = 972.94M  (encrypted)",
+  "pressure_free_pct": "14%"
+ },
+ "call_record": {
+  "settings": {
+   "model": "qwen3:4b",
+   "temperature": 0.0,
+   "seed": 20261014,
+   "num_ctx": 6144,
+   "num_predict": 1024,
+   "think": false,
+   "timeout_s": 300.0,
+   "max_retries": 1,
+   "keep_alive": "15m"
+  },
+  "model_digest": "359d7dd4bcdab3d86b87d73ac27966f4dbb9f5efdfcc75d34a8764a09474fae7",
+  "ollama_version": "0.34.2",
+  "prompt_meta": {
+   "prompt_version": "p4a-v1",
+   "condition": "E1",
+   "system_sha256": "86edf89620e033f1eb4303c1d4a8c843d36e4565ae8592c756c37f663f2c7aa8",
+   "task_sha256": "18c78418af469d5455f5c1d279ff0f2c342af8fc635c4dee003f028e1327f5f8",
+   "case_text_sha256": "0199ef74c45ddadc04e7a6905feb17de8751aca6630eb99cb48390ff916b829d",
+   "case_text_chars": 7632,
+   "system_chars": 2897,
+   "n_records": 36
+  },
+  "request_sha256": "b891e80f9d1b4d2b14c23af4973d0fded9169a0b7068b1efededfcd5b1cd12de",
+  "attempts": [
+   {
+    "attempt": 0,
+    "outcome": "ok",
+    "http": 200,
+    "wall_s": 65.75,
+    "thinking_chars": 0
+   }
+  ],
+  "outcome": "ok",
+  "raw_text": "{\n  \"claims\": [\n    {\n      \"evidence\": [\n        \"E03\",\n        \"E07\"\n      ],\n      \"kind\": \"observed\",\n      \"object_service\": \"gateway\",\n      \"predicate\": \"latency_above_baseline\",\n      \"subject_service\": \"order\",\n      \"unit\": \"ms\",\n      \"value\": 309.5\n    },\n    {\n      \"evidence\": [\n        \"E07\"\n      ],\n      \"kind\": \"observed\",\n      \"object_service\": \"inventory\",\n      \"predicate\": \"latency_above_baseline\",\n      \"subject_service\": \"order\",\n      \"unit\": \"ms\",\n      \"value\": 254.8\n    },\n    {\n      \"evidence\": [\n        \"E09\",\n        \"E10\"\n      ],\n      \"kind\": \"observed\",\n      \"object_service\": \"payment\",\n      \"predicate\": \"latency_above_baseline\",\n      \"subject_service\": \"order\",\n      \"unit\": \"ms\",\n      \"value\": 20.2\n    },\n    {\n      \"evidence\": [\n        \"E11\",\n        \"E12\"\n      ],\n      \"kind\": \"observed\",\n      \"object_service\": \"payment\",\n      \"predicate\": \"latency_above_baseline\",\n      \"subject_service\": \"order\",\n      \"unit\": \"ms\",\n      \"value\": 68.9\n    },\n    {\n      \"evidence\": [\n        \"E13\",\n        \"E14\"\n      ],\n      \"kind\": \"observed\",\n      \"object_service\": \"gateway\",\n      \"predicate\": \"cpu_above_baseline\",\n      \"subject_service\": \"gateway\",\n      \"unit\": \"%\",\n      \"value\": 0.645\n    },\n    {\n      \"evidence\": [\n        \"E18\",\n        \"E19\"\n      ],\n      \"kind\": \"observed\",\n      \"object_service\": \"payment\",\n      \"predicate\": \"cpu_above_baseline\",\n      \"subject_service\": \"payment\",\n      \"unit\": \"1\",\n      \"value\": 0.004\n    }\n  ],\n  \"decision\": \"DIAGNOSE\",\n  \"explanation\": \"The evidence shows payment service is failing to handle orders due to connection errors, causing cascading failures in order and gateway services. Payment's connection errors (E23-E33) indicate a pool exhaustion issue, which is the root cause.\",\n  \"propagation_path\": [\n    {\n      \"evidence\": [\n        \"E23\"\n      ],\n      \"from\": \"order\",\n      \"to\": \"payment\"\n    },\n    {\n      \"evidence\": [\n        \"E24\"\n      ],\n      \"from\": \"order\",\n      \"to\": \"payment\"\n    },\n    {\n      \"evidence\": [\n        \"E25\"\n      ],\n      \"from\": \"order\",\n      \"to\": \"payment\"\n    },\n    {\n      \"evidence\": [\n        \"E26\"\n      ],\n      \"from\": \"order\",\n      \"to\": \"payment\"\n    }\n  ],\n  \"ranked_candidates\": [\n    \"payment\",\n    \"order\",\n    \"gateway\",\n    \"inventory\",\n    \"postgres\"\n  ],\n  \"suspected_fault_type\": \"db_pool_exhaustion\",\n  \"suspected_service\": \"payment\",\n  \"uncertainty_reasons\": [\n    \"Conflicting signals: payment's CPU usage is high but not the primary issue\",\n    \"Weak deviation in latency metrics for payment\",\n    \"Insufficient evidence for direct pool exhaustion\"\n  ]\n}",
+  "done_reason": "stop",
+  "prompt_tokens": 3852,
+  "output_tokens": 760,
+  "load_s": 0.0282,
+  "prompt_eval_s": 11.0875,
+  "eval_s": 49.4411,
+  "total_s": 65.6836,
+  "wall_s": 65.752,
+  "started_at": 1791994045.281004,
+  "prompt_tokens_per_s": 347.42,
+  "output_tokens_per_s": 15.37,
+  "context_overflow_risk": false,
+  "truncated_at_token_limit": false
+ },
+ "output": {
+  "condition": "E1",
+  "view_id": "vw-eb0521a9f7d39db5",
+  "windows": {
+   "triggered": true,
+   "anchor": "alert",
+   "alert_ns": 1791863363000000000,
+   "analysis": [
+    1791863303000000000,
+    1791863423000000000
+   ],
+   "baseline": [
+    1791863253000000000,
+    1791863303000000000
+   ],
+   "detector_source": "gateway SERVER spans",
+   "reason": "gateway err>=0.050 or p95>=107.1ms in 3 consecutive buckets"
+  },
+  "called": true,
+  "e0": {
+   "decision": "DIAGNOSE",
+   "suspected_service": "payment",
+   "suspected_fault_type": "service_crash",
+   "ranked_candidates": [
+    {
+     "service": "payment",
+     "score": 52.0
+    },
+    {
+     "service": "gateway",
+     "score": 0.0
+    },
+    {
+     "service": "inventory",
+     "score": 0.0
+    },
+    {
+     "service": "order",
+     "score": 0.0
+    },
+    {
+     "service": "postgres",
+     "score": 0.0
+    }
+   ],
+   "propagation_path": [
+    {
+     "from": "payment",
+     "to": "order",
+     "evidence_ids": [
+      "ev-174ec5a29ec529cfc404",
+      "ev-e228095aba5ac23dd9d5",
+      "ev-84b4baa18fe0f50ab6b7"
+     ]
+    },
+    {
+     "from": "order",
+     "to": "gateway",
+     "evidence_ids": [
+      "ev-2c6673d32372d1022d0b",
+      "ev-27d950cee70d43f2d505",
+      "ev-a32a9c4bc9381fa7e23b"
+     ]
+    }
+   ]
+  },
+  "e0_abstention": {
+   "S": 0.666667,
+   "S_margin": 1.0,
+   "components": {
+    "margin": 1.0,
+    "sufficiency": 1.0,
+    "agreement": 0.0,
+    "per_modality_top": {
+     "trace": "order",
+     "log": "order",
+     "metric": "order"
+    },
+    "coverage": 0.6666666666666666
+   },
+   "signals_used": [
+    "sufficiency",
+    "agreement",
+    "margin",
+    "coverage"
+   ],
+   "decision": "DIAGNOSE",
+   "decision_margin": "DIAGNOSE",
+   "tau": 0.5,
+   "note": "S is a heuristic ordering score, not a probability"
+  },
+  "prompt_meta": {
+   "prompt_version": "p4a-v1",
+   "condition": "E1",
+   "system_sha256": "86edf89620e033f1eb4303c1d4a8c843d36e4565ae8592c756c37f663f2c7aa8",
+   "task_sha256": "18c78418af469d5455f5c1d279ff0f2c342af8fc635c4dee003f028e1327f5f8",
+   "case_text_sha256": "0199ef74c45ddadc04e7a6905feb17de8751aca6630eb99cb48390ff916b829d",
+   "case_text_chars": 7632,
+   "system_chars": 2897,
+   "n_records": 36
+  },
+  "alias_map": {
+   "E01": "ev-1605c6f761749bdcbf4b",
+   "E02": "ev-0c0ed3a7a2eceb5f314e",
+   "E03": "ev-a98fe1a51088cdf8e0cc",
+   "E04": "ev-26ee245b28b8ae31e6f0",
+   "E05": "ev-949acbfef3fa310c44a3",
+   "E06": "ev-b3eba349df1a3e8cd01c",
+   "E07": "ev-4fcc307b8c8abe358834",
+   "E08": "ev-560846a31b36d35b500e",
+   "E09": "ev-27f8ac980611bb5471f1",
+   "E10": "ev-7aea8b767b9e2b0c12ec",
+   "E11": "ev-bc52fa87f966ba4d7bbe",
+   "E12": "ev-c19587c02f930c5f15a7",
+   "E13": "ev-56c9ae5f70780a3f3d57",
+   "E14": "ev-b1c7bc67667b9ccf1265",
+   "E15": "ev-2da94bd9e3a34e9cfb2a",
+   "E16": "ev-68c312a5db2159c4665b",
+   "E17": "ev-299d91df2832234c37bc",
+   "E18": "ev-0cf7b561c3647ac1f715",
+   "E19": "ev-91d47c344d74923ca36b",
+   "E20": "ev-4d55d51daebfbd9b5114",
+   "E21": "ev-4c3703b255c7c4fe6737",
+   "E22": "ev-af4c59e87f3b6a4076ac",
+   "E23": "ev-84b4baa18fe0f50ab6b7",
+   "E24": "ev-ff5d00c5de6501cc6fd6",
+   "E25": "ev-f228a570b2f1d5bf6628",
+   "E26": "ev-4b6e9fb25ad2a2c9ac33",
+   "E27": "ev-be2e4be24868dd29563c",
+   "E28": "ev-27d950cee70d43f2d505",
+   "E29": "ev-2c6673d32372d1022d0b",
+   "E30": "ev-8f81c89d9dd55ed66400",
+   "E31": "ev-a32a9c4bc9381fa7e23b",
+   "E32": "ev-e228095aba5ac23dd9d5",
+   "E33": "ev-174ec5a29ec529cfc404",
+   "E34": "ev-5eafcd54b0ca349970e3",
+   "E35": "ev-48b2fc6df1b7ed28f2f6",
+   "E36": "ev-ddfc997d9798c57f9bd3"
+  },
+  "parse": {
+   "status": "valid",
+   "errors": []
+  },
+  "semantic_issues": [],
+  "citations": {
+   "n_cited": 11,
+   "n_known_alias": 11,
+   "n_in_view": 11,
+   "rate_known_alias": 1.0
+  },
+  "llm": {
+   "decision": "DIAGNOSE",
+   "suspected_service": "payment",
+   "suspected_fault_type": "db_pool_exhaustion",
+   "ranked_candidates": [
+    "payment",
+    "order",
+    "gateway",
+    "inventory",
+    "postgres"
+   ],
+   "uncertainty_reasons": [
+    "Conflicting signals: payment's CPU usage is high but not the primary issue",
+    "Weak deviation in latency metrics for payment",
+    "Insufficient evidence for direct pool exhaustion"
+   ],
+   "explanation": "The evidence shows payment service is failing to handle orders due to connection errors, causing cascading failures in order and gateway services. Payment's connection errors (E23-E33) indicate a pool exhaustion issue, which is the root cause.",
+   "agrees_with_e0_top1": true
+  },
+  "diagnosis": {
+   "case_id": "ef763608-bea4-4f8f-a65a-7ef3fc640efc",
+   "view_id": "vw-eb0521a9f7d39db5",
+   "method": "E1",
+   "windows": {
+    "triggered": true,
+    "anchor": "alert",
+    "alert_ns": 1791863363000000000,
+    "analysis": [
+     1791863303000000000,
+     1791863423000000000
+    ],
+    "baseline": [
+     1791863253000000000,
+     1791863303000000000
+    ],
+    "detector_source": "gateway SERVER spans",
+    "reason": "gateway err>=0.050 or p95>=107.1ms in 3 consecutive buckets"
+   },
+   "ranked_candidates": [
+    {
+     "service": "payment",
+     "score": 52.0
+    },
+    {
+     "service": "gateway",
+     "score": 0.0
+    },
+    {
+     "service": "inventory",
+     "score": 0.0
+    },
+    {
+     "service": "order",
+     "score": 0.0
+    },
+    {
+     "service": "postgres",
+     "score": 0.0
+    }
+   ],
+   "suspected_service": "payment",
+   "suspected_operation": null,
+   "suspected_fault_type": "service_crash",
+   "evidence_ids": [
+    "ev-0cf7b561c3647ac1f715",
+    "ev-27f8ac980611bb5471f1",
+    "ev-4fcc307b8c8abe358834",
+    "ev-56c9ae5f70780a3f3d57",
+    "ev-7aea8b767b9e2b0c12ec",
+    "ev-91d47c344d74923ca36b",
+    "ev-a98fe1a51088cdf8e0cc",
+    "ev-b1c7bc67667b9ccf1265",
+    "ev-bc52fa87f966ba4d7bbe",
+    "ev-c19587c02f930c5f15a7"
+   ],
+   "factual_claims": [
+    {
+     "claim_id": "c1",
+     "kind": "observed",
+     "subject_service": "order",
+     "object_service": "gateway",
+     "predicate": "latency_above_baseline",
+     "measurement": "span_duration",
+     "value": 309.5,
+     "unit": "ms",
+     "window": [
+      1791863303000000000,
+      1791863423000000000
+     ],
+     "evidence_ids": [
+      "ev-a98fe1a51088cdf8e0cc",
+      "ev-4fcc307b8c8abe358834"
+     ]
+    },
+    {
+     "claim_id": "c2",
+     "kind": "observed",
+     "subject_service": "order",
+     "object_service": "inventory",
+     "predicate": "latency_above_baseline",
+     "measurement": "span_duration",
+     "value": 254.8,
+     "unit": "ms",
+     "window": [
+      1791863303000000000,
+      1791863423000000000
+     ],
+     "evidence_ids": [
+      "ev-4fcc307b8c8abe358834"
+     ]
+    },
+    {
+     "claim_id": "c3",
+     "kind": "observed",
+     "subject_service": "order",
+     "object_service": "payment",
+     "predicate": "latency_above_baseline",
+     "measurement": "span_duration",
+     "value": 20.2,
+     "unit": "ms",
+     "window": [
+      1791863303000000000,
+      1791863423000000000
+     ],
+     "evidence_ids": [
+      "ev-27f8ac980611bb5471f1",
+      "ev-7aea8b767b9e2b0c12ec"
+     ]
+    },
+    {
+     "claim_id": "c4",
+     "kind": "observed",
+     "subject_service": "order",
+     "object_service": "payment",
+     "predicate": "latency_above_baseline",
+     "measurement": "span_duration",
+     "value": 68.9,
+     "unit": "ms",
+     "window": [
+      1791863303000000000,
+      1791863423000000000
+     ],
+     "evidence_ids": [
+      "ev-bc52fa87f966ba4d7bbe",
+      "ev-c19587c02f930c5f15a7"
+     ]
+    },
+    {
+     "claim_id": "c5",
+     "kind": "observed",
+     "subject_service": "gateway",
+     "object_service": "gateway",
+     "predicate": "cpu_above_baseline",
+     "measurement": "container_cpu",
+     "value": 0.645,
+     "unit": "%",
+     "window": [
+      1791863303000000000,
+      1791863423000000000
+     ],
+     "evidence_ids": [
+      "ev-56c9ae5f70780a3f3d57",
+      "ev-b1c7bc67667b9ccf1265"
+     ]
+    },
+    {
+     "claim_id": "c6",
+     "kind": "observed",
+     "subject_service": "payment",
+     "object_service": "payment",
+     "predicate": "cpu_above_baseline",
+     "measurement": null,
+     "value": 0.004,
+     "unit": "1",
+     "window": [
+      1791863303000000000,
+      1791863423000000000
+     ],
+     "evidence_ids": [
+      "ev-0cf7b561c3647ac1f715",
+      "ev-91d47c344d74923ca36b"
+     ]
+    }
+   ],
+   "propagation_path": [
+    {
+     "from": "order",
+     "to": "payment",
+     "evidence_ids": [
+      "ev-84b4baa18fe0f50ab6b7"
+     ]
+    },
+    {
+     "from": "order",
+     "to": "payment",
+     "evidence_ids": [
+      "ev-ff5d00c5de6501cc6fd6"
+     ]
+    },
+    {
+     "from": "order",
+     "to": "payment",
+     "evidence_ids": [
+      "ev-f228a570b2f1d5bf6628"
+     ]
+    },
+    {
+     "from": "order",
+     "to": "payment",
+     "evidence_ids": [
+      "ev-4b6e9fb25ad2a2c9ac33"
+     ]
+    }
+   ],
+   "missing_modalities": [],
+   "uncertainty_reasons": [
+    "Conflicting signals: payment's CPU usage is high but not the primary issue",
+    "Weak deviation in latency metrics for payment",
+    "Insufficient evidence for direct pool exhaustion"
+   ],
+   "decision": "DIAGNOSE",
+   "explanation": "The evidence shows payment service is failing to handle orders due to connection errors, causing cascading failures in order and gateway services. Payment's connection errors (E23-E33) indicate a pool exhaustion issue, which is the root cause."
+  },
+  "decision": "DIAGNOSE",
+  "verification": {
+   "case_id": "ef763608-bea4-4f8f-a65a-7ef3fc640efc",
+   "view_id": "vw-eb0521a9f7d39db5",
+   "method": "E1",
+   "claims": [
+    {
+     "claim_id": "c1",
+     "kind": "observed",
+     "predicate": "latency_above_baseline",
+     "subject_service": "order",
+     "checks": {
+      "V0": "pass",
+      "V1": "pass",
+      "V2": "pass",
+      "V3": "fail",
+      "V4": "fail",
+      "V5": "fail"
+     },
+     "notes": {
+      "V1_missing": [],
+      "V4_recomputed": 254.769276,
+      "V5": "1/2 cited records exceed baseline median + 3 MAD"
+     },
+     "verified": false
+    },
+    {
+     "claim_id": "c2",
+     "kind": "observed",
+     "predicate": "latency_above_baseline",
+     "subject_service": "order",
+     "checks": {
+      "V0": "pass",
+      "V1": "pass",
+      "V2": "pass",
+      "V3": "fail",
+      "V4": "pass",
+      "V5": "pass"
+     },
+     "notes": {
+      "V1_missing": [],
+      "V4_recomputed": 254.769276,
+      "V5": "1/1 cited records exceed baseline median + 3 MAD"
+     },
+     "verified": false
+    },
+    {
+     "claim_id": "c3",
+     "kind": "observed",
+     "predicate": "latency_above_baseline",
+     "subject_service": "order",
+     "checks": {
+      "V0": "pass",
+      "V1": "pass",
+      "V2": "pass",
+      "V3": "fail",
+      "V4": "pass",
+      "V5": "fail"
+     },
+     "notes": {
+      "V1_missing": [],
+      "V4_recomputed": 20.192605,
+      "V5": "0/2 cited records exceed baseline median + 3 MAD"
+     },
+     "verified": false
+    },
+    {
+     "claim_id": "c4",
+     "kind": "observed",
+     "predicate": "latency_above_baseline",
+     "subject_service": "order",
+     "checks": {
+      "V0": "pass",
+      "V1": "pass",
+      "V2": "pass",
+      "V3": "fail",
+      "V4": "pass",
+      "V5": "pass"
+     },
+     "notes": {
+      "V1_missing": [],
+      "V4_recomputed": 68.921215,
+      "V5": "2/2 cited records exceed baseline median + 3 MAD"
+     },
+     "verified": false
+    },
+    {
+     "claim_id": "c5",
+     "kind": "observed",
+     "predicate": "cpu_above_baseline",
+     "subject_service": "gateway",
+     "checks": {
+      "V0": "pass",
+      "V1": "pass",
+      "V2": "pass",
+      "V3": "fail",
+      "V4": "pass",
+      "V5": "fail"
+     },
+     "notes": {
+      "V1_missing": [],
+      "V4_recomputed": 0.6449985106899367,
+      "V5": "1/2 cited records exceed baseline median + 3 MAD"
+     },
+     "verified": false
+    },
+    {
+     "claim_id": "c6",
+     "kind": "observed",
+     "predicate": "cpu_above_baseline",
+     "subject_service": "payment",
+     "checks": {
+      "V0": "pass",
+      "V1": "pass",
+      "V2": "pass",
+      "V3": "pass",
+      "V4": "fail",
+      "V5": "fail"
+     },
+     "notes": {
+      "V1_missing": [],
+      "V4_recomputed": 0.6329826646371078,
+      "V5": "1/2 cited records exceed baseline median + 3 MAD"
+     },
+     "verified": false
+    }
+   ],
+   "propagation": [
+    {
+     "edge": "order->payment",
+     "V6": "fail",
+     "evidence": "fail"
+    },
+    {
+     "edge": "order->payment",
+     "V6": "fail",
+     "evidence": "fail"
+    },
+    {
+     "edge": "order->payment",
+     "V6": "fail",
+     "evidence": "fail"
+    },
+    {
+     "edge": "order->payment",
+     "V6": "fail",
+     "evidence": "fail"
+    }
+   ],
+   "summary": {
+    "observed": 6,
+    "observed_verified": 0,
+    "observed_rejected": 6,
+    "inferred": 0,
+    "inferred_premises_valid": 0,
+    "edges": 4,
+    "edges_verified": 0,
+    "verified_claim_coverage": 0.0
+   },
+   "rejected_claim_ids": [
+    "c1",
+    "c2",
+    "c3",
+    "c4",
+    "c5",
+    "c6"
+   ],
+   "flags": [
+    "DIAGNOSE without a verified observed claim about the suspected service"
+   ]
+  },
+  "claims": {
+   "pre_filter": [
+    {
+     "claim_id": "c1",
+     "kind": "observed",
+     "subject_service": "order",
+     "object_service": "gateway",
+     "predicate": "latency_above_baseline",
+     "measurement": "span_duration",
+     "value": 309.5,
+     "unit": "ms",
+     "window": [
+      1791863303000000000,
+      1791863423000000000
+     ],
+     "evidence_ids": [
+      "ev-a98fe1a51088cdf8e0cc",
+      "ev-4fcc307b8c8abe358834"
+     ]
+    },
+    {
+     "claim_id": "c2",
+     "kind": "observed",
+     "subject_service": "order",
+     "object_service": "inventory",
+     "predicate": "latency_above_baseline",
+     "measurement": "span_duration",
+     "value": 254.8,
+     "unit": "ms",
+     "window": [
+      1791863303000000000,
+      1791863423000000000
+     ],
+     "evidence_ids": [
+      "ev-4fcc307b8c8abe358834"
+     ]
+    },
+    {
+     "claim_id": "c3",
+     "kind": "observed",
+     "subject_service": "order",
+     "object_service": "payment",
+     "predicate": "latency_above_baseline",
+     "measurement": "span_duration",
+     "value": 20.2,
+     "unit": "ms",
+     "window": [
+      1791863303000000000,
+      1791863423000000000
+     ],
+     "evidence_ids": [
+      "ev-27f8ac980611bb5471f1",
+      "ev-7aea8b767b9e2b0c12ec"
+     ]
+    },
+    {
+     "claim_id": "c4",
+     "kind": "observed",
+     "subject_service": "order",
+     "object_service": "payment",
+     "predicate": "latency_above_baseline",
+     "measurement": "span_duration",
+     "value": 68.9,
+     "unit": "ms",
+     "window": [
+      1791863303000000000,
+      1791863423000000000
+     ],
+     "evidence_ids": [
+      "ev-bc52fa87f966ba4d7bbe",
+      "ev-c19587c02f930c5f15a7"
+     ]
+    },
+    {
+     "claim_id": "c5",
+     "kind": "observed",
+     "subject_service": "gateway",
+     "object_service": "gateway",
+     "predicate": "cpu_above_baseline",
+     "measurement": "container_cpu",
+     "value": 0.645,
+     "unit": "%",
+     "window": [
+      1791863303000000000,
+      1791863423000000000
+     ],
+     "evidence_ids": [
+      "ev-56c9ae5f70780a3f3d57",
+      "ev-b1c7bc67667b9ccf1265"
+     ]
+    },
+    {
+     "claim_id": "c6",
+     "kind": "observed",
+     "subject_service": "payment",
+     "object_service": "payment",
+     "predicate": "cpu_above_baseline",
+     "measurement": null,
+     "value": 0.004,
+     "unit": "1",
+     "window": [
+      1791863303000000000,
+      1791863423000000000
+     ],
+     "evidence_ids": [
+      "ev-0cf7b561c3647ac1f715",
+      "ev-91d47c344d74923ca36b"
+     ]
+    }
+   ],
+   "post_filter": [],
+   "rejected_ids": [
+    "c1",
+    "c2",
+    "c3",
+    "c4",
+    "c5",
+    "c6"
+   ]
+  },
+  "e1_abstention_descriptive": {
+   "S": 0.5,
+   "S_margin": 1.0,
+   "components": {
+    "margin": 1.0,
+    "sufficiency": 1.0,
+    "agreement": 0.0,
+    "per_modality_top": {
+     "trace": "order",
+     "log": "order",
+     "metric": "order"
+    },
+    "coverage": 0.0
+   },
+   "signals_used": [
+    "sufficiency",
+    "agreement",
+    "margin",
+    "coverage"
+   ],
+   "decision": "DIAGNOSE",
+   "decision_margin": "DIAGNOSE",
+   "tau": 0.5,
+   "note": "S is a heuristic ordering score, not a probability"
+  }
+ },
+ "user_message": "Analysis window: t=-60s to t=+60s; baseline window: t=-110s to t=-60s (t=0 is the window anchor).\nUnavailable telemetry modalities: none.\n\nPer-service summary (baseline vs analysis window):\ngateway | server spans (ms) | baseline n=489 median=12.3 errors=0 | analysis n=1189 median=11.5 p95=364.2 errors=268 error_ratio=0.2254\ngateway | metric container_cpu (%) | baseline n=10 median=0.293 | analysis n=24 median=0.794 max=1.085 max_gap_s=5.01\ngateway | metric process_cpu (1) | baseline n=10 median=0.012 | analysis n=24 median=0.013 max=0.018 max_gap_s=5.14\ngateway | metric latency_mean (ms) | baseline n=10 median=14.168 | analysis n=24 median=70.010 max=211.746\ngateway | metric error_ratio (1) | baseline n=10 median=0.074 | analysis n=24 median=0.288 max=0.658\norder | server spans (ms) | baseline n=272 median=11.7 errors=0 | analysis n=930 median=114.3 p95=130.4 errors=535 error_ratio=0.5753\norder | inbound calls (ms) | baseline n=272 median=12.7 errors=0 | analysis n=930 median=115.1 p95=132.3 errors=535 error_ratio=0.5753 timeouts=0\norder | pool connect (ms) | baseline n=494 median=0.4 errors=0 | analysis n=1209 median=0.4 p95=1.1 errors=0 error_ratio=0.0000\norder | error logs | baseline n=0 | analysis n=535\norder | metric container_cpu (%) | baseline n=10 median=0.302 | analysis n=24 median=0.755 max=1.153 max_gap_s=5.01\norder | metric process_cpu (1) | baseline n=10 median=0.011 | analysis n=24 median=0.013 max=0.027 max_gap_s=5.01\norder | metric latency_mean (ms) | baseline n=10 median=12.061 | analysis n=24 median=61.770 max=119.895\norder | metric error_ratio (1) | baseline n=10 median=0.000 | analysis n=24 median=0.439 max=0.963\norder | metric pool_checked_out ({connection}) | baseline n=10 median=0.000 | analysis n=24 median=0.000 max=0.000\npayment | server spans (ms) | baseline n=222 median=1.5 errors=0 | analysis n=273 median=1.6 p95=3.6 errors=0 error_ratio=0.0000\npayment | inbound calls (ms) | baseline n=222 median=2.4 errors=0 | analysis n=1349 median=3.7 p95=7.1 errors=1070 error_ratio=0.7932 timeouts=0\npayment | metric container_cpu (%) | baseline n=10 median=0.270 | analysis n=13 median=0.526 max=0.633 max_gap_s=58.66\npayment | metric process_cpu (1) | baseline n=10 median=0.005 | analysis n=13 median=0.005 max=0.008 max_gap_s=58.27\npayment | metric latency_mean (ms) | baseline n=10 median=1.131 | analysis n=12 median=1.073 max=4.392\npayment | metric error_ratio (1) | baseline n=10 median=0.000 | analysis n=12 median=0.000 max=0.000\ninventory | server spans (ms) | baseline n=650 median=3.4 errors=0 | analysis n=1844 median=3.3 p95=6.6 errors=0 error_ratio=0.0000\ninventory | inbound calls (ms) | baseline n=650 median=4.3 errors=12 | analysis n=1844 median=4.2 p95=8.4 errors=32 error_ratio=0.0174 timeouts=0\ninventory | pool connect (ms) | baseline n=650 median=0.4 errors=0 | analysis n=1844 median=0.4 p95=0.9 errors=0 error_ratio=0.0000\ninventory | metric container_cpu (%) | baseline n=10 median=0.344 | analysis n=24 median=0.858 max=1.192 max_gap_s=5.01\ninventory | metric process_cpu (1) | baseline n=10 median=0.014 | analysis n=24 median=0.015 max=0.025 max_gap_s=5.02\ninventory | metric latency_mean (ms) | baseline n=10 median=3.086 | analysis n=24 median=3.081 max=5.392\ninventory | metric error_ratio (1) | baseline n=10 median=0.016 | analysis n=24 median=0.015 max=0.048\ninventory | metric pool_checked_out ({connection}) | baseline n=10 median=0.000 | analysis n=24 median=0.000 max=0.000\npostgres | inbound calls (ms) | baseline n=1588 median=0.4 errors=0 | analysis n=4681 median=0.4 p95=1.1 errors=0 error_ratio=0.0000 timeouts=0\npostgres | metric container_cpu (%) | baseline n=10 median=0.109 | analysis n=24 median=0.205 max=0.262 max_gap_s=5.01\n\nObserved call edges (caller -> callee):\ngateway -> inventory (2647 calls)\ngateway -> order (2182 calls)\ninventory -> postgres (8314 calls)\norder -> inventory (1889 calls)\norder -> payment (2959 calls)\norder -> postgres (3002 calls)\n\nEvidenceRCA ranking (score): payment (52.00), gateway (0.00), inventory (0.00), order (0.00), postgres (0.00)\nEvidenceRCA fault type: service_crash; propagation: payment->order, order->gateway\n\nEvidence records (alias [selection] | time | service | type | value | status):\nE01 [first above baseline] t=-58.808s | order -> postgres | trace CLIENT INSERT shop | 3.2 ms | ok\nE02 [first above baseline] t=-56.458s | inventory | trace SERVER /reserve | 10.0 ms | ok http=200\nE03 [first error] t=-55.591s | gateway -> inventory | trace CLIENT GET | 5.2 ms | error 404 http=404\nE04 [first above baseline] t=-53.922s | gateway | trace SERVER /api/orders | 347.2 ms | ok http=201\nE05 [max] t=-53.897s | gateway -> order | trace CLIENT POST | 317.9 ms | ok http=201\nE06 [max] t=-53.890s | order | trace SERVER /orders | 309.5 ms | ok http=201\nE07 [max] t=-53.863s | order -> inventory | trace CLIENT POST | 254.8 ms | ok http=200\nE08 [max] t=-53.782s | inventory | trace SERVER /reserve | 160.0 ms | ok http=200\nE09 [first above baseline] t=-53.605s | order -> payment | trace CLIENT POST | 20.2 ms | ok http=200\nE10 [first above baseline] t=-53.597s | payment | trace SERVER /charge | 12.7 ms | ok http=200\nE11 [max] t=-42.537s | order -> payment | trace CLIENT POST | 68.9 ms | ok http=200\nE12 [max] t=-42.537s | payment | trace SERVER /charge | 68.4 ms | ok http=200\nE13 [first above baseline] t=-28.649s | gateway | metric container_cpu | 0.645 %\nE14 [first above baseline] t=-28.649s | postgres | metric container_cpu | 0.1773 %\nE15 [max] t=-12.268s | inventory -> postgres | trace CLIENT SELECT shop | 98.5 ms | ok\nE16 [retrieved by EvidenceRCA] t=+0.027s | gateway -> order | trace CLIENT POST | 13.3 ms | ok http=201\nE17 [retrieved by EvidenceRCA] t=+0.036s | order -> payment | trace CLIENT POST | 2.6 ms | ok http=200\nE18 [retrieved by EvidenceRCA] t=+1.344s | payment | metric container_cpu | 0.633 %\nE19 [retrieved by EvidenceRCA] t=+1.734s | payment | metric process_cpu | 0.004 1\nE20 [first error] t=+2.186s | gateway | trace SERVER /api/orders | 377.6 ms | error 503 http=503\nE21 [first error] t=+2.191s | gateway -> order | trace CLIENT POST | 141.0 ms | error 503 http=503\nE22 [first error] t=+2.191s | order | trace SERVER /orders | 140.2 ms | error 503 http=503\nE23 [retrieved by EvidenceRCA] t=+2.208s | order -> payment | trace CLIENT POST | 14.7 ms | error ConnectError\nE24 [retrieved by EvidenceRCA] t=+2.327s | order -> payment | trace CLIENT POST | 3.8 ms | error ConnectError\nE25 [retrieved by EvidenceRCA] t=+2.443s | order -> payment | trace CLIENT POST | 4.6 ms | error ConnectError\nE26 [retrieved by EvidenceRCA] t=+2.554s | order -> payment | trace CLIENT POST | 7.1 ms | error ConnectError\nE27 [retrieved by EvidenceRCA] t=+2.655s | order -> payment | trace CLIENT POST | 7.6 ms | error ConnectError\nE28 [retrieved by EvidenceRCA] t=+38.695s | gateway -> order | trace CLIENT POST | 174.9 ms | error 503 http=503\nE29 [retrieved by EvidenceRCA] t=+38.696s | gateway -> order | trace CLIENT POST | 175.4 ms | error 503 http=503\nE30 [max] t=+38.697s | order | trace CLIENT connect | 55.6 ms | ok\nE31 [retrieved by EvidenceRCA] t=+38.713s | gateway -> order | trace CLIENT POST | 158.7 ms | error 503 http=503\nE32 [retrieved by EvidenceRCA] t=+44.307s | order -> payment | trace CLIENT POST | 15.0 ms | error ConnectError\nE33 [retrieved by EvidenceRCA] t=+55.628s | order -> payment | trace CLIENT POST | 16.1 ms | error ConnectError\nE34 [max] t=+55.964s | gateway | trace SERVER /api/orders | 443.4 ms | error 503 http=503\nE35 [max] t=+56.345s | gateway | metric container_cpu | 1.085 %\nE36 [max] t=+56.345s | postgres | metric container_cpu | 0.262 %\n\nEvidenceRCA (a deterministic ranker) produced the ranking above and retrieved the records marked 'retrieved by EvidenceRCA'. Explain the diagnosis of its top candidate with verifiable claims. If the evidence does not support that candidate, say so in uncertainty_reasons and choose ABSTAIN."
+}

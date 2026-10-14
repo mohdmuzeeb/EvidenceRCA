@@ -1,0 +1,62 @@
+{
+ "purpose": "dev-pilot dry run of the blinded audit instrument (protocol section 9); also the pool for the rubric's worked examples. Not the Phase 4B audit sample.",
+ "n_claims": 200,
+ "target": 200,
+ "per_stratum": {
+  "p4a-v1/B4": 50,
+  "p4a-v1/E1": 50,
+  "p4a-v2/B4": 50,
+  "p4a-v2/E1": 50
+ },
+ "stratum_fill": {
+  "p4a-v1/B4": {
+   "verified_available": 33,
+   "rejected_available": 80,
+   "taken_verified": 25,
+   "taken_rejected": 25
+  },
+  "p4a-v1/E1": {
+   "verified_available": 25,
+   "rejected_available": 79,
+   "taken_verified": 25,
+   "taken_rejected": 25
+  },
+  "p4a-v2/B4": {
+   "verified_available": 25,
+   "rejected_available": 73,
+   "taken_verified": 25,
+   "taken_rejected": 25
+  },
+  "p4a-v2/E1": {
+   "verified_available": 26,
+   "rejected_available": 62,
+   "taken_verified": 25,
+   "taken_rejected": 25
+  }
+ },
+ "per_predicate_group": {
+  "errors/calls/timeouts/logs": 40,
+  "latency/cpu/pool": 151,
+  "onset": 4,
+  "inferred": 2,
+  "silence": 3
+ },
+ "context_records_max_per_window": 30,
+ "verifier_verified_share": 0.5,
+ "labels": [
+  "supported",
+  "unsupported",
+  "partially_supported",
+  "not_assessable"
+ ],
+ "blinded_fields_removed": [
+  "prompt version",
+  "condition",
+  "selection tags",
+  "LLM wording and explanation",
+  "verifier verdict and statistics",
+  "typed-check verdict",
+  "case and view ids",
+  "ground truth"
+ ]
+}

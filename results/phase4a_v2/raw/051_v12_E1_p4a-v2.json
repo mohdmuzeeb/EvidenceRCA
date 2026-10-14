@@ -1,0 +1,90 @@
+{
+ "k": 51,
+ "view_index": 12,
+ "condition": "E1",
+ "version": "p4a-v2",
+ "view": {
+  "index": 12,
+  "category": "control",
+  "case_id": "be737f04-58a1-44de-805e-7eea5b332a97",
+  "scenario_key": "11:none:-:0",
+  "spec": "C0",
+  "perturbation_seed": 1,
+  "version_order": [
+   "p4a-v1",
+   "p4a-v2"
+  ]
+ },
+ "view_id": "vw-1e3774b270751e2b",
+ "alert_fired": false,
+ "window_anchor": "fixed-median",
+ "end_to_end_wall_s": 0.22,
+ "ollama_rss_peak_mb": 3258.6,
+ "system_after": {
+  "free_mb": 56,
+  "inactive_mb": 501,
+  "compressed_mb": 1678,
+  "swap": "total = 17408.00M  used = 16190.00M  free = 1218.00M  (encrypted)",
+  "pressure_free_pct": "14%"
+ },
+ "call_record": null,
+ "output": {
+  "condition": "E1",
+  "prompt_version": "p4a-v2",
+  "view_id": "vw-1e3774b270751e2b",
+  "windows": {
+   "triggered": true,
+   "anchor": "fixed-median",
+   "alert_ns": 1791853352028078080,
+   "analysis": [
+    1791853292028078080,
+    1791853412028078080
+   ],
+   "baseline": [
+    1791853202028078080,
+    1791853292028078080
+   ],
+   "detector_source": null,
+   "reason": "label-free: median record timestamp"
+  },
+  "called": false,
+  "e0": {
+   "decision": "ABSTAIN",
+   "suspected_service": null,
+   "suspected_fault_type": null,
+   "ranked_candidates": [
+    {
+     "service": "gateway",
+     "score": 0.0
+    },
+    {
+     "service": "inventory",
+     "score": 0.0
+    },
+    {
+     "service": "order",
+     "score": 0.0
+    },
+    {
+     "service": "payment",
+     "score": 0.0
+    },
+    {
+     "service": "postgres",
+     "score": 0.0
+    }
+   ],
+   "propagation_path": []
+  },
+  "e0_abstention": {
+   "S": 0.0,
+   "S_margin": 0.0,
+   "components": null,
+   "decision": "ABSTAIN",
+   "decision_margin": "ABSTAIN",
+   "reason": "no candidate"
+  },
+  "note": "no LLM call: E0 has no candidate with a positive score",
+  "decision": "ABSTAIN"
+ }
+}
