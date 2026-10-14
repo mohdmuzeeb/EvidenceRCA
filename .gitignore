@@ -10,3 +10,7 @@ runs/
 # Phase 2 case data: raw bundles, ground truth, harness records (large; summaries go to results/)
 data/
 results/final/*_trials.jsonl
+
+# Phase 4B per-call raw records (packed into results/phase4b/llm_trials.jsonl.gz)
+results/phase4b/raw/
+results/phase4b/raw_repro/
