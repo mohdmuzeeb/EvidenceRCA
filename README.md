@@ -2,7 +2,7 @@
 
 EvidenceRCA is the research prototype for ICICYTA 2026 Paper 3: an evidence-verification and abstention layer for root-cause analysis (RCA) in microservices, evaluated with a matched-perturbation protocol. The plan, literature and protocol are in [`docs/`](docs/).
 
-Work proceeds in approval-gated phases. Phases 0–3 and the frozen deterministic evaluation are done. Phase 4A (local LLM setup, the post-study B4/E1 conditions, and a five-call dev benchmark) is done on branch `phase4a`, in the separate package `phase4/`. It never modifies the frozen study. Phase 4B (the full LLM evaluation) needs approval.
+Work proceeds in approval-gated phases. Phases 0–3 and the frozen deterministic evaluation are done. Phase 4A (local LLM setup, the post-study B4/E1 conditions, and a five-call dev benchmark) is done on branch `phase4a`, in the separate package `phase4/`. It never modifies the frozen study. Phase 4A-v2 (a typed, ownership-aware prompt p4a-v2 compared with p4a-v1 on a pre-registered dev pilot) is on branch `phase4a-v2`. Phase 4B (the full LLM evaluation) needs approval.
 
 | Phase | Status | Report |
 |---|---|---|
@@ -194,5 +194,18 @@ uv run pytest -q tests/test_phase4.py
 ollama pull qwen3:4b                                # 2.4 GiB, digest 359d7dd4bcda...
 OLLAMA_HOST=127.0.0.1:11434 OLLAMA_NUM_PARALLEL=1 OLLAMA_MAX_LOADED_MODELS=1 ollama serve &
 caffeinate -dims uv run python -m phase4.eval.benchmark   # -> results/phase4a/five_call_benchmark.json, raw/
+pkill -f "ollama serve"
+```
+
+## Reproduce Phase 4A-v2 (prompt revision p4a-v2; dev seed 11 only)
+
+p4a-v1 and its results stay unchanged; `tests/test_phase4_v2.py` checks their hashes. The rationale and the pre-registered pilot rule are in `docs/prompt_revision_rationale.md`. The results are in `docs/phase4a_v2_validation.md`.
+
+```bash
+uv run python -m phase4.eval.structured_tests_v2    # typed-schema mock scenarios + leakage scan (no model)
+uv run python -m phase4.eval.pilot_v2 plan          # predeclared selection rule -> results/phase4a_v2/pilot_plan.json
+OLLAMA_HOST=127.0.0.1:11434 OLLAMA_NUM_PARALLEL=1 OLLAMA_MAX_LOADED_MODELS=1 ollama serve &
+caffeinate -dims uv run python -m phase4.eval.pilot_v2 run       # <= 80 calls, resumable, AC power required
+uv run python -m phase4.eval.pilot_v2 analyze       # dev_comparison / claim_analysis / control_abstention + audit sheet
 pkill -f "ollama serve"
 ```

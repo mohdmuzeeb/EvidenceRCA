@@ -184,3 +184,36 @@ The frozen S and A-margin stay the primary scores. An E1-specific score, for exa
 **Tooling** (to be written in Phase 4B):
 - `phase4/eval/audit_sampler.py` implements the sampling and blinding above. It writes `audit_sheet.json` and a separate `audit_key_DO_NOT_SHOW_ANNOTATOR.json`. It never produces labels.
 - `evaluation/audit_sample.py` is the Phase 3 prototype. It is kept unchanged.
+
+### 9.1 Audit sampling plan, recorded before Phase 4B (added in Phase 4A-v2, 2026-10-14)
+
+This section fixes the Phase 4B audit sample before any Phase 4B output exists. It refines §9 and does not relax it.
+
+**Population.** Every pre-filter claim, observed and inferred, from the Phase 4B trials of three conditions on the same base cases and views:
+- **E0:** frozen test outputs, read-only.
+- **E1 and B4:** run with the prompt version approved for Phase 4B. If both p4a-v1 and p4a-v2 are run, each version is its own stratum and the per-stratum size below applies to each.
+
+**Size and strata.**
+- 80 claims per condition (or per condition × version), so ≥ 240 in total, which leaves a margin above 200 for not-assessable items.
+- Within each stratum: 40 verifier-verified and 40 rejected. A shortfall is filled from the other half and recorded.
+- At least 4 per predicate group when available. The groups are latency/cpu/pool, errors/calls/timeouts/logs, silence, onset and inferred.
+- At most 3 claims per base case and condition.
+- Typed-rejected claims (p4a-v2) are eligible like any other claim. Their typed verdict is part of the sealed key only.
+
+**Seed.**
+- The Phase 4B sample uses seed 20261101. It is fixed now and is different from the dev dry-run seed 20261015.
+- The sampler is `phase4/eval/pilot_v2.py:audit`, generalized to the Phase 4B strata. It adds no label and changes no blinding.
+
+**Blinding.** As in §9 and as implemented in the dev dry run (`results/phase4a_v2/audit/`):
+- the claim is shown in a canonical rendering;
+- cited records are shown as displayed to the model, with selection tags removed;
+- each item shows up to 30 same-family baseline and analysis records, plus the observed call edges;
+- the key is sealed.
+
+Displayed values carry the evidence pack's precision (0.1 ms for spans, 4 significant digits for metrics). The rubric tells annotators to judge values at that precision.
+
+**Rubric examples.** The 10 worked examples come from the dev dry-run sheet, never from the Phase 4B sample.
+
+**What is never done.**
+- The verifier's verdicts are never used as labels.
+- Verifier precision and recall are reported only against adjudicated human labels.

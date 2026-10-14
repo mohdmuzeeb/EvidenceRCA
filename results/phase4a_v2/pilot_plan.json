@@ -1,0 +1,670 @@
+{
+ "schema": "evidencerca.phase4a_v2.pilot_plan/v1",
+ "split": "dev seed 11 only",
+ "selection_rule": "(fixed in code and committed before any pilot call; uses scenario metadata only,\nnever any method's performance; no calibration or test case is opened):\n  pool             dev seed 11 primary cases (evaluation.run_dev.dev_cases)\n  straightforward  single-service, non-\"strong\" cases, fault type not cascading/none, ordered by\n                   sha256(\"p4a-v2-pilot|\" + scenario key); walk that order and keep the first case of each new\n                   fault type until 4 types are covered. View C0.\n  missing_trace    the same 4 cases, view MT (traces removed)\n  conflicting      the same 4 cases, view CF (a decoy service, not a root and not adjacent to one, whose CPU and\n                   latency metrics are shifted in the analysis window)\n  control          both healthy cases (no root cause) x views C0 and R40 seed 1\n  cascade          the only dev cascading case x views C0, R40 seed 1, MT, CF\n  = 20 views; each view runs B4 and E1 under p4a-v1 and p4a-v2 (<= 80 calls). Calls are ordered view by view,\n  B4 then E1, with the version order alternating per view (even index v1 first, odd index v2 first).\nWindow rule (label-free, identical for every view and both versions): the shared detector's alert window if it\nalerts, else a window anchored at the median record timestamp (phase4.agent.evidence_pack.median_time).",
+ "salt": "p4a-v2-pilot|",
+ "settings": {
+  "model": "qwen3:4b",
+  "temperature": 0.0,
+  "seed": 20261014,
+  "num_ctx": 6144,
+  "num_predict": 1024,
+  "think": false,
+  "timeout_s": 300.0,
+  "max_retries": 1,
+  "keep_alive": "15m"
+ },
+ "views": [
+  {
+   "index": 0,
+   "category": "straightforward",
+   "case_id": "b30ed23c-7742-4994-89ed-bffb5da3ffec",
+   "scenario_key": "11:network_timeout:order:0",
+   "spec": "C0",
+   "perturbation_seed": 1,
+   "version_order": [
+    "p4a-v1",
+    "p4a-v2"
+   ]
+  },
+  {
+   "index": 1,
+   "category": "straightforward",
+   "case_id": "f5aa4147-8081-4246-918c-215fe8f3b6b2",
+   "scenario_key": "11:processing_latency:order:0",
+   "spec": "C0",
+   "perturbation_seed": 1,
+   "version_order": [
+    "p4a-v2",
+    "p4a-v1"
+   ]
+  },
+  {
+   "index": 2,
+   "category": "straightforward",
+   "case_id": "ef763608-bea4-4f8f-a65a-7ef3fc640efc",
+   "scenario_key": "11:service_crash:payment:0",
+   "spec": "C0",
+   "perturbation_seed": 1,
+   "version_order": [
+    "p4a-v1",
+    "p4a-v2"
+   ]
+  },
+  {
+   "index": 3,
+   "category": "straightforward",
+   "case_id": "c4a78010-46e9-4f59-a403-5321e0ec3a86",
+   "scenario_key": "11:db_pool_exhaustion:inventory:0",
+   "spec": "C0",
+   "perturbation_seed": 1,
+   "version_order": [
+    "p4a-v2",
+    "p4a-v1"
+   ]
+  },
+  {
+   "index": 4,
+   "category": "missing_trace",
+   "case_id": "b30ed23c-7742-4994-89ed-bffb5da3ffec",
+   "scenario_key": "11:network_timeout:order:0",
+   "spec": "MT",
+   "perturbation_seed": 1,
+   "version_order": [
+    "p4a-v1",
+    "p4a-v2"
+   ]
+  },
+  {
+   "index": 5,
+   "category": "missing_trace",
+   "case_id": "f5aa4147-8081-4246-918c-215fe8f3b6b2",
+   "scenario_key": "11:processing_latency:order:0",
+   "spec": "MT",
+   "perturbation_seed": 1,
+   "version_order": [
+    "p4a-v2",
+    "p4a-v1"
+   ]
+  },
+  {
+   "index": 6,
+   "category": "missing_trace",
+   "case_id": "ef763608-bea4-4f8f-a65a-7ef3fc640efc",
+   "scenario_key": "11:service_crash:payment:0",
+   "spec": "MT",
+   "perturbation_seed": 1,
+   "version_order": [
+    "p4a-v1",
+    "p4a-v2"
+   ]
+  },
+  {
+   "index": 7,
+   "category": "missing_trace",
+   "case_id": "c4a78010-46e9-4f59-a403-5321e0ec3a86",
+   "scenario_key": "11:db_pool_exhaustion:inventory:0",
+   "spec": "MT",
+   "perturbation_seed": 1,
+   "version_order": [
+    "p4a-v2",
+    "p4a-v1"
+   ]
+  },
+  {
+   "index": 8,
+   "category": "conflicting",
+   "case_id": "b30ed23c-7742-4994-89ed-bffb5da3ffec",
+   "scenario_key": "11:network_timeout:order:0",
+   "spec": "CF",
+   "perturbation_seed": 1,
+   "version_order": [
+    "p4a-v1",
+    "p4a-v2"
+   ]
+  },
+  {
+   "index": 9,
+   "category": "conflicting",
+   "case_id": "f5aa4147-8081-4246-918c-215fe8f3b6b2",
+   "scenario_key": "11:processing_latency:order:0",
+   "spec": "CF",
+   "perturbation_seed": 1,
+   "version_order": [
+    "p4a-v2",
+    "p4a-v1"
+   ]
+  },
+  {
+   "index": 10,
+   "category": "conflicting",
+   "case_id": "ef763608-bea4-4f8f-a65a-7ef3fc640efc",
+   "scenario_key": "11:service_crash:payment:0",
+   "spec": "CF",
+   "perturbation_seed": 1,
+   "version_order": [
+    "p4a-v1",
+    "p4a-v2"
+   ]
+  },
+  {
+   "index": 11,
+   "category": "conflicting",
+   "case_id": "c4a78010-46e9-4f59-a403-5321e0ec3a86",
+   "scenario_key": "11:db_pool_exhaustion:inventory:0",
+   "spec": "CF",
+   "perturbation_seed": 1,
+   "version_order": [
+    "p4a-v2",
+    "p4a-v1"
+   ]
+  },
+  {
+   "index": 12,
+   "category": "control",
+   "case_id": "be737f04-58a1-44de-805e-7eea5b332a97",
+   "scenario_key": "11:none:-:0",
+   "spec": "C0",
+   "perturbation_seed": 1,
+   "version_order": [
+    "p4a-v1",
+    "p4a-v2"
+   ]
+  },
+  {
+   "index": 13,
+   "category": "control",
+   "case_id": "be737f04-58a1-44de-805e-7eea5b332a97",
+   "scenario_key": "11:none:-:0",
+   "spec": "R40",
+   "perturbation_seed": 1,
+   "version_order": [
+    "p4a-v2",
+    "p4a-v1"
+   ]
+  },
+  {
+   "index": 14,
+   "category": "control",
+   "case_id": "60bab075-6b5d-4d8c-8015-b7f4d71c56b3",
+   "scenario_key": "11:none:-:1",
+   "spec": "C0",
+   "perturbation_seed": 1,
+   "version_order": [
+    "p4a-v1",
+    "p4a-v2"
+   ]
+  },
+  {
+   "index": 15,
+   "category": "control",
+   "case_id": "60bab075-6b5d-4d8c-8015-b7f4d71c56b3",
+   "scenario_key": "11:none:-:1",
+   "spec": "R40",
+   "perturbation_seed": 1,
+   "version_order": [
+    "p4a-v2",
+    "p4a-v1"
+   ]
+  },
+  {
+   "index": 16,
+   "category": "cascade",
+   "case_id": "ac2a7c4f-5755-492e-a623-36db384cf8c4",
+   "scenario_key": "11:cascading_failure:postgres:0",
+   "spec": "C0",
+   "perturbation_seed": 1,
+   "version_order": [
+    "p4a-v1",
+    "p4a-v2"
+   ]
+  },
+  {
+   "index": 17,
+   "category": "cascade",
+   "case_id": "ac2a7c4f-5755-492e-a623-36db384cf8c4",
+   "scenario_key": "11:cascading_failure:postgres:0",
+   "spec": "R40",
+   "perturbation_seed": 1,
+   "version_order": [
+    "p4a-v2",
+    "p4a-v1"
+   ]
+  },
+  {
+   "index": 18,
+   "category": "cascade",
+   "case_id": "ac2a7c4f-5755-492e-a623-36db384cf8c4",
+   "scenario_key": "11:cascading_failure:postgres:0",
+   "spec": "MT",
+   "perturbation_seed": 1,
+   "version_order": [
+    "p4a-v1",
+    "p4a-v2"
+   ]
+  },
+  {
+   "index": 19,
+   "category": "cascade",
+   "case_id": "ac2a7c4f-5755-492e-a623-36db384cf8c4",
+   "scenario_key": "11:cascading_failure:postgres:0",
+   "spec": "CF",
+   "perturbation_seed": 1,
+   "version_order": [
+    "p4a-v2",
+    "p4a-v1"
+   ]
+  }
+ ],
+ "calls": [
+  {
+   "view_index": 0,
+   "condition": "B4",
+   "version": "p4a-v1"
+  },
+  {
+   "view_index": 0,
+   "condition": "B4",
+   "version": "p4a-v2"
+  },
+  {
+   "view_index": 0,
+   "condition": "E1",
+   "version": "p4a-v1"
+  },
+  {
+   "view_index": 0,
+   "condition": "E1",
+   "version": "p4a-v2"
+  },
+  {
+   "view_index": 1,
+   "condition": "B4",
+   "version": "p4a-v2"
+  },
+  {
+   "view_index": 1,
+   "condition": "B4",
+   "version": "p4a-v1"
+  },
+  {
+   "view_index": 1,
+   "condition": "E1",
+   "version": "p4a-v2"
+  },
+  {
+   "view_index": 1,
+   "condition": "E1",
+   "version": "p4a-v1"
+  },
+  {
+   "view_index": 2,
+   "condition": "B4",
+   "version": "p4a-v1"
+  },
+  {
+   "view_index": 2,
+   "condition": "B4",
+   "version": "p4a-v2"
+  },
+  {
+   "view_index": 2,
+   "condition": "E1",
+   "version": "p4a-v1"
+  },
+  {
+   "view_index": 2,
+   "condition": "E1",
+   "version": "p4a-v2"
+  },
+  {
+   "view_index": 3,
+   "condition": "B4",
+   "version": "p4a-v2"
+  },
+  {
+   "view_index": 3,
+   "condition": "B4",
+   "version": "p4a-v1"
+  },
+  {
+   "view_index": 3,
+   "condition": "E1",
+   "version": "p4a-v2"
+  },
+  {
+   "view_index": 3,
+   "condition": "E1",
+   "version": "p4a-v1"
+  },
+  {
+   "view_index": 4,
+   "condition": "B4",
+   "version": "p4a-v1"
+  },
+  {
+   "view_index": 4,
+   "condition": "B4",
+   "version": "p4a-v2"
+  },
+  {
+   "view_index": 4,
+   "condition": "E1",
+   "version": "p4a-v1"
+  },
+  {
+   "view_index": 4,
+   "condition": "E1",
+   "version": "p4a-v2"
+  },
+  {
+   "view_index": 5,
+   "condition": "B4",
+   "version": "p4a-v2"
+  },
+  {
+   "view_index": 5,
+   "condition": "B4",
+   "version": "p4a-v1"
+  },
+  {
+   "view_index": 5,
+   "condition": "E1",
+   "version": "p4a-v2"
+  },
+  {
+   "view_index": 5,
+   "condition": "E1",
+   "version": "p4a-v1"
+  },
+  {
+   "view_index": 6,
+   "condition": "B4",
+   "version": "p4a-v1"
+  },
+  {
+   "view_index": 6,
+   "condition": "B4",
+   "version": "p4a-v2"
+  },
+  {
+   "view_index": 6,
+   "condition": "E1",
+   "version": "p4a-v1"
+  },
+  {
+   "view_index": 6,
+   "condition": "E1",
+   "version": "p4a-v2"
+  },
+  {
+   "view_index": 7,
+   "condition": "B4",
+   "version": "p4a-v2"
+  },
+  {
+   "view_index": 7,
+   "condition": "B4",
+   "version": "p4a-v1"
+  },
+  {
+   "view_index": 7,
+   "condition": "E1",
+   "version": "p4a-v2"
+  },
+  {
+   "view_index": 7,
+   "condition": "E1",
+   "version": "p4a-v1"
+  },
+  {
+   "view_index": 8,
+   "condition": "B4",
+   "version": "p4a-v1"
+  },
+  {
+   "view_index": 8,
+   "condition": "B4",
+   "version": "p4a-v2"
+  },
+  {
+   "view_index": 8,
+   "condition": "E1",
+   "version": "p4a-v1"
+  },
+  {
+   "view_index": 8,
+   "condition": "E1",
+   "version": "p4a-v2"
+  },
+  {
+   "view_index": 9,
+   "condition": "B4",
+   "version": "p4a-v2"
+  },
+  {
+   "view_index": 9,
+   "condition": "B4",
+   "version": "p4a-v1"
+  },
+  {
+   "view_index": 9,
+   "condition": "E1",
+   "version": "p4a-v2"
+  },
+  {
+   "view_index": 9,
+   "condition": "E1",
+   "version": "p4a-v1"
+  },
+  {
+   "view_index": 10,
+   "condition": "B4",
+   "version": "p4a-v1"
+  },
+  {
+   "view_index": 10,
+   "condition": "B4",
+   "version": "p4a-v2"
+  },
+  {
+   "view_index": 10,
+   "condition": "E1",
+   "version": "p4a-v1"
+  },
+  {
+   "view_index": 10,
+   "condition": "E1",
+   "version": "p4a-v2"
+  },
+  {
+   "view_index": 11,
+   "condition": "B4",
+   "version": "p4a-v2"
+  },
+  {
+   "view_index": 11,
+   "condition": "B4",
+   "version": "p4a-v1"
+  },
+  {
+   "view_index": 11,
+   "condition": "E1",
+   "version": "p4a-v2"
+  },
+  {
+   "view_index": 11,
+   "condition": "E1",
+   "version": "p4a-v1"
+  },
+  {
+   "view_index": 12,
+   "condition": "B4",
+   "version": "p4a-v1"
+  },
+  {
+   "view_index": 12,
+   "condition": "B4",
+   "version": "p4a-v2"
+  },
+  {
+   "view_index": 12,
+   "condition": "E1",
+   "version": "p4a-v1"
+  },
+  {
+   "view_index": 12,
+   "condition": "E1",
+   "version": "p4a-v2"
+  },
+  {
+   "view_index": 13,
+   "condition": "B4",
+   "version": "p4a-v2"
+  },
+  {
+   "view_index": 13,
+   "condition": "B4",
+   "version": "p4a-v1"
+  },
+  {
+   "view_index": 13,
+   "condition": "E1",
+   "version": "p4a-v2"
+  },
+  {
+   "view_index": 13,
+   "condition": "E1",
+   "version": "p4a-v1"
+  },
+  {
+   "view_index": 14,
+   "condition": "B4",
+   "version": "p4a-v1"
+  },
+  {
+   "view_index": 14,
+   "condition": "B4",
+   "version": "p4a-v2"
+  },
+  {
+   "view_index": 14,
+   "condition": "E1",
+   "version": "p4a-v1"
+  },
+  {
+   "view_index": 14,
+   "condition": "E1",
+   "version": "p4a-v2"
+  },
+  {
+   "view_index": 15,
+   "condition": "B4",
+   "version": "p4a-v2"
+  },
+  {
+   "view_index": 15,
+   "condition": "B4",
+   "version": "p4a-v1"
+  },
+  {
+   "view_index": 15,
+   "condition": "E1",
+   "version": "p4a-v2"
+  },
+  {
+   "view_index": 15,
+   "condition": "E1",
+   "version": "p4a-v1"
+  },
+  {
+   "view_index": 16,
+   "condition": "B4",
+   "version": "p4a-v1"
+  },
+  {
+   "view_index": 16,
+   "condition": "B4",
+   "version": "p4a-v2"
+  },
+  {
+   "view_index": 16,
+   "condition": "E1",
+   "version": "p4a-v1"
+  },
+  {
+   "view_index": 16,
+   "condition": "E1",
+   "version": "p4a-v2"
+  },
+  {
+   "view_index": 17,
+   "condition": "B4",
+   "version": "p4a-v2"
+  },
+  {
+   "view_index": 17,
+   "condition": "B4",
+   "version": "p4a-v1"
+  },
+  {
+   "view_index": 17,
+   "condition": "E1",
+   "version": "p4a-v2"
+  },
+  {
+   "view_index": 17,
+   "condition": "E1",
+   "version": "p4a-v1"
+  },
+  {
+   "view_index": 18,
+   "condition": "B4",
+   "version": "p4a-v1"
+  },
+  {
+   "view_index": 18,
+   "condition": "B4",
+   "version": "p4a-v2"
+  },
+  {
+   "view_index": 18,
+   "condition": "E1",
+   "version": "p4a-v1"
+  },
+  {
+   "view_index": 18,
+   "condition": "E1",
+   "version": "p4a-v2"
+  },
+  {
+   "view_index": 19,
+   "condition": "B4",
+   "version": "p4a-v2"
+  },
+  {
+   "view_index": 19,
+   "condition": "B4",
+   "version": "p4a-v1"
+  },
+  {
+   "view_index": 19,
+   "condition": "E1",
+   "version": "p4a-v2"
+  },
+  {
+   "view_index": 19,
+   "condition": "E1",
+   "version": "p4a-v1"
+  }
+ ],
+ "n_views": 20,
+ "n_calls_max": 80,
+ "prompt_system_sha256": {
+  "p4a-v1": "86edf89620e033f1eb4303c1d4a8c843d36e4565ae8592c756c37f663f2c7aa8",
+  "p4a-v2": "8734f28d8568014e80d0698d61b30073497eb7d7b2ff6ff4a0d05d45187c4052"
+ },
+ "schema_sha256": {
+  "p4a-v2": "5d6611a61cbe6dc6d99437f9fd7cee39ccbb6ffeca244ef5eb4caab297d23c13"
+ }
+}

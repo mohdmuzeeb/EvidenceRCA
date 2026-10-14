@@ -1,0 +1,402 @@
+{
+ "schema": "evidencerca.phase4a_v2.structured_output_tests/v1",
+ "prompt_version": "p4a-v2",
+ "schema_version": "p4a-v2-typed",
+ "split": "dev seed 11 only",
+ "model_calls": 0,
+ "scenarios": [
+  {
+   "name": "typed answer: server and call ownership, backwards edge",
+   "expected": {
+    "parse": "valid",
+    "typed_claims_passed": [
+     true,
+     true
+    ],
+    "typed_edges_passed": [
+     true
+    ],
+    "n_pre": 2,
+    "request_format_has_anyOf": true,
+    "semantic_issues": []
+   },
+   "observed": {
+    "parse": "valid",
+    "decision": "DIAGNOSE",
+    "typed_claims_passed": [
+     true,
+     true
+    ],
+    "typed_edges_passed": [
+     true
+    ],
+    "semantic_issues": [],
+    "n_pre": 2,
+    "n_post": 2,
+    "edge_V6": [
+     "pass"
+    ],
+    "request_format_has_anyOf": true
+   },
+   "passed": true
+  },
+  {
+   "name": "schema: count unit on latency",
+   "expected": {
+    "parse": "schema_noncompliant",
+    "decision": "ABSTAIN",
+    "n_pre": 0
+   },
+   "observed": {
+    "parse": "schema_noncompliant",
+    "decision": "ABSTAIN",
+    "typed_claims_passed": [],
+    "typed_edges_passed": [],
+    "semantic_issues": [],
+    "n_pre": 0,
+    "n_post": 0,
+    "request_format_has_anyOf": true
+   },
+   "passed": true
+  },
+  {
+   "name": "schema: flag value unit '1' for call_failed",
+   "expected": {
+    "parse": "schema_noncompliant",
+    "decision": "ABSTAIN",
+    "n_pre": 0
+   },
+   "observed": {
+    "parse": "schema_noncompliant",
+    "decision": "ABSTAIN",
+    "typed_claims_passed": [],
+    "typed_edges_passed": [],
+    "semantic_issues": [],
+    "n_pre": 0,
+    "n_post": 0,
+    "request_format_has_anyOf": true
+   },
+   "passed": true
+  },
+  {
+   "name": "schema: measure class mismatch",
+   "expected": {
+    "parse": "schema_noncompliant",
+    "decision": "ABSTAIN",
+    "n_pre": 0
+   },
+   "observed": {
+    "parse": "schema_noncompliant",
+    "decision": "ABSTAIN",
+    "typed_claims_passed": [],
+    "typed_edges_passed": [],
+    "semantic_issues": [],
+    "n_pre": 0,
+    "n_post": 0,
+    "request_format_has_anyOf": true
+   },
+   "passed": true
+  },
+  {
+   "name": "schema: object_service on a non-relational predicate",
+   "expected": {
+    "parse": "schema_noncompliant",
+    "decision": "ABSTAIN",
+    "n_pre": 0
+   },
+   "observed": {
+    "parse": "schema_noncompliant",
+    "decision": "ABSTAIN",
+    "typed_claims_passed": [],
+    "typed_edges_passed": [],
+    "semantic_issues": [],
+    "n_pre": 0,
+    "n_post": 0,
+    "request_format_has_anyOf": true
+   },
+   "passed": true
+  },
+  {
+   "name": "schema: citation without emitter",
+   "expected": {
+    "parse": "schema_noncompliant",
+    "decision": "ABSTAIN",
+    "n_pre": 0
+   },
+   "observed": {
+    "parse": "schema_noncompliant",
+    "decision": "ABSTAIN",
+    "typed_claims_passed": [],
+    "typed_edges_passed": [],
+    "semantic_issues": [],
+    "n_pre": 0,
+    "n_post": 0,
+    "request_format_has_anyOf": true
+   },
+   "passed": true
+  },
+  {
+   "name": "schema: alias outside the table range",
+   "expected": {
+    "parse": "schema_noncompliant",
+    "decision": "ABSTAIN",
+    "n_pre": 0
+   },
+   "observed": {
+    "parse": "schema_noncompliant",
+    "decision": "ABSTAIN",
+    "typed_claims_passed": [],
+    "typed_edges_passed": [],
+    "semantic_issues": [],
+    "n_pre": 0,
+    "n_post": 0,
+    "request_format_has_anyOf": true
+   },
+   "passed": true
+  },
+  {
+   "name": "schema: four citations",
+   "expected": {
+    "parse": "schema_noncompliant",
+    "decision": "ABSTAIN",
+    "n_pre": 0
+   },
+   "observed": {
+    "parse": "schema_noncompliant",
+    "decision": "ABSTAIN",
+    "typed_claims_passed": [],
+    "typed_edges_passed": [],
+    "semantic_issues": [],
+    "n_pre": 0,
+    "n_post": 0,
+    "request_format_has_anyOf": true
+   },
+   "passed": true
+  },
+  {
+   "name": "schema: six claims",
+   "expected": {
+    "parse": "schema_noncompliant",
+    "decision": "ABSTAIN",
+    "n_pre": 0
+   },
+   "observed": {
+    "parse": "schema_noncompliant",
+    "decision": "ABSTAIN",
+    "typed_claims_passed": [],
+    "typed_edges_passed": [],
+    "semantic_issues": [],
+    "n_pre": 0,
+    "n_post": 0,
+    "request_format_has_anyOf": true
+   },
+   "passed": true
+  },
+  {
+   "name": "wrong declared emitter: typed-rejected, still verified and kept",
+   "expected": {
+    "parse": "valid",
+    "n_pre": 2,
+    "c1_typed": false,
+    "c1_in_post": false,
+    "c1_verifier_ran": true
+   },
+   "observed": {
+    "parse": "valid",
+    "decision": "DIAGNOSE",
+    "typed_claims_passed": [
+     false,
+     true
+    ],
+    "typed_edges_passed": [
+     true
+    ],
+    "semantic_issues": [],
+    "n_pre": 2,
+    "n_post": 1,
+    "c1_typed": false,
+    "c1_in_post": false,
+    "c1_verifier_ran": true,
+    "request_format_has_anyOf": true
+   },
+   "passed": true
+  },
+  {
+   "name": "call record used as evidence about the caller",
+   "expected": {
+    "parse": "valid",
+    "caller_claim_typed": false
+   },
+   "observed": {
+    "parse": "valid",
+    "decision": "DIAGNOSE",
+    "typed_claims_passed": [
+     false,
+     true
+    ],
+    "typed_edges_passed": [
+     true
+    ],
+    "semantic_issues": [],
+    "n_pre": 2,
+    "n_post": 1,
+    "caller_claim_typed": false,
+    "request_format_has_anyOf": true
+   },
+   "passed": true
+  },
+  {
+   "name": "reversed propagation edge",
+   "expected": {
+    "parse": "valid",
+    "typed_edges_passed": [
+     false
+    ],
+    "reversed_named": true
+   },
+   "observed": {
+    "parse": "valid",
+    "decision": "DIAGNOSE",
+    "typed_claims_passed": [
+     true,
+     true
+    ],
+    "typed_edges_passed": [
+     false
+    ],
+    "semantic_issues": [],
+    "n_pre": 2,
+    "n_post": 2,
+    "reversed_named": true,
+    "request_format_has_anyOf": true
+   },
+   "passed": true
+  },
+  {
+   "name": "edge absent from the observed graph",
+   "expected": {
+    "parse": "valid",
+    "typed_edges_passed": [
+     false
+    ]
+   },
+   "observed": {
+    "parse": "valid",
+    "decision": "DIAGNOSE",
+    "typed_claims_passed": [
+     true,
+     true
+    ],
+    "typed_edges_passed": [
+     false
+    ],
+    "semantic_issues": [],
+    "n_pre": 2,
+    "n_post": 2,
+    "request_format_has_anyOf": true
+   },
+   "passed": true
+  },
+  {
+   "name": "ABSTAIN with no suspected service",
+   "expected": {
+    "parse": "valid",
+    "decision": "ABSTAIN",
+    "semantic_issues": [],
+    "n_pre": 0
+   },
+   "observed": {
+    "parse": "valid",
+    "decision": "ABSTAIN",
+    "typed_claims_passed": [],
+    "typed_edges_passed": [],
+    "semantic_issues": [],
+    "n_pre": 0,
+    "n_post": 0,
+    "request_format_has_anyOf": true
+   },
+   "passed": true
+  },
+  {
+   "name": "DIAGNOSE with weak evidence is flagged, not changed",
+   "expected": {
+    "parse": "valid",
+    "decision": "DIAGNOSE",
+    "semantic_issues": [
+     "DIAGNOSE with evidence_strength weak_or_no_deviation"
+    ]
+   },
+   "observed": {
+    "parse": "valid",
+    "decision": "DIAGNOSE",
+    "typed_claims_passed": [
+     true,
+     true
+    ],
+    "typed_edges_passed": [
+     true
+    ],
+    "semantic_issues": [
+     "DIAGNOSE with evidence_strength weak_or_no_deviation"
+    ],
+    "n_pre": 2,
+    "n_post": 2,
+    "request_format_has_anyOf": true
+   },
+   "passed": true
+  },
+  {
+   "name": "truncated output",
+   "expected": {
+    "parse": "malformed_json",
+    "decision": "ABSTAIN",
+    "n_pre": 0
+   },
+   "observed": {
+    "parse": "malformed_json",
+    "decision": "ABSTAIN",
+    "typed_claims_passed": [],
+    "typed_edges_passed": [],
+    "semantic_issues": [],
+    "n_pre": 0,
+    "n_post": 0,
+    "request_format_has_anyOf": true
+   },
+   "passed": true
+  },
+  {
+   "name": "E1: LLM recommends ABSTAIN; E0's decision kept, recommendation recorded",
+   "expected": {
+    "parse": "valid",
+    "decision": "DIAGNOSE",
+    "recommends_abstain": true,
+    "e1_is_e0": true
+   },
+   "observed": {
+    "parse": "valid",
+    "decision": "DIAGNOSE",
+    "typed_claims_passed": [
+     true,
+     true
+    ],
+    "typed_edges_passed": [
+     true
+    ],
+    "semantic_issues": [],
+    "n_pre": 2,
+    "n_post": 2,
+    "recommends_abstain": true,
+    "e1_is_e0": true,
+    "request_format_has_anyOf": true
+   },
+   "passed": true
+  }
+ ],
+ "prompt_leakage": {
+  "prompts_scanned": 38,
+  "violations": [],
+  "distinct_system_prompts": 1,
+  "passed": true
+ },
+ "passed": true
+}

@@ -1,0 +1,27 @@
+{
+ "source_commit": "eeb18fc",
+ "note": "p4a-v1 code, prompt, benchmark and results as committed in Phase 4A; must stay byte-identical. docs/llm_evaluation_protocol.md is excluded: it is a living protocol draft and gains the audit sampling plan.",
+ "files": {
+  "docs/phase4a_validation.md": "a36fa8a1d93bc2d3530959e2e4135ebd7c0eb2bd728319d059d37b5d7853552c",
+  "phase4/__init__.py": "0963d766a61318fc0bbb3ecc51c990f2be26cd186cab798c6f25a150c7d001ba",
+  "phase4/agent/__init__.py": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+  "phase4/agent/conditions.py": "3025bc1b28538b4cfa0f392a52e6f1fe6b9adf5cab339e1ddfcdc0966890f8b0",
+  "phase4/agent/evidence_pack.py": "cc3b9ccaa6d6b88b758a3a06e516b2f644826c6c44d7a0214f2d84f4ace2abb3",
+  "phase4/agent/llm_client.py": "ce5c24bfb90b344acb49ce401eb33e682421746a5c22d092ab788b91191df832",
+  "phase4/agent/output_schema.py": "56fd1ff98b6974d2872b7459d4439e4efe607f4b1678ea0021554fba3a818a22",
+  "phase4/agent/prompts.py": "d1304b27940e133df85cce09e806f64df349f96bd60074c0c47b9a0dbde0725e",
+  "phase4/eval/__init__.py": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+  "phase4/eval/benchmark.py": "747768f87da685d6cb58d31d707d6b424f7190118356cf99f53175dd4227a232",
+  "phase4/eval/structured_tests.py": "1865404f90df6aec22fcc52bb9df641c71f8bb36b3beb519c07d31babc92d7e0",
+  "results/phase4a/five_call_benchmark.json": "314ed7eb5c729cca6a4e0ccaacbbacbe6f9932a9d04572c9942006d00656bdd5",
+  "results/phase4a/raw/call1_E1.json": "fe41113a12a3ec5a14ad5dd468d6fe4cdef50614db3c5f573d5981a1ffafeb32",
+  "results/phase4a/raw/call2_B4.json": "f2f970b401a845b398733544c9a698c09f8c0730b12a870034cf107a447115a4",
+  "results/phase4a/raw/call3_E1.json": "2858140b79ec3f47e5ae0def346a3f87eb744d1f8bb5cd55e59c6e648fc3a894",
+  "results/phase4a/raw/call4_B4.json": "99f3f87963f310424bc0fe4e3f68236c36c99288a5f767a7810881c46bed9661",
+  "results/phase4a/raw/call5_B4.json": "87c93e56d598918cccf60c1a5408c042192cb9a206a64e6fd365ede1710ae1fb",
+  "results/phase4a/run_logs/benchmark.log": "ccff43b3ec0ca1ee4fe369e922865062be9435538b3de39ca6ed01c7f31ab834",
+  "results/phase4a/run_logs/pytest.log": "0ebb79fc0658532cfc708ab862811b085307dd97bd8a4fd1a90b2363d7eb941a",
+  "results/phase4a/structured_output_tests.json": "07ff26ff566e71e7bbefdbcf83c5bf03354fc5fbbccb3616bc00b1831baaf535",
+  "tests/test_phase4.py": "91f92cce590b43128801681b9ddbe1ae597733c46973ef61be4fd35d3d39633d"
+ }
+}
