@@ -2,7 +2,7 @@
 
 EvidenceRCA is the research prototype for ICICYTA 2026 Paper 3: an evidence-verification and abstention layer for root-cause analysis (RCA) in microservices, evaluated with a matched-perturbation protocol. The plan, literature and protocol are in [`docs/`](docs/).
 
-Work proceeds in approval-gated phases. Phases 0–3 and the frozen deterministic evaluation are done. Phase 4A (local LLM setup, the post-study B4/E1 conditions, and a five-call dev benchmark) is done on branch `phase4a`, in the separate package `phase4/`. It never modifies the frozen study. Phase 4A-v2 (a typed, ownership-aware prompt p4a-v2 compared with p4a-v1 on a pre-registered dev pilot) is on branch `phase4a-v2`. Phase 4B (the full LLM evaluation) needs approval.
+Work proceeds in approval-gated phases. Phases 0–3 and the frozen deterministic evaluation are done. Phase 4A (local LLM setup, the post-study B4/E1 conditions, and a five-call dev benchmark) is done on branch `phase4a`, in the separate package `phase4/`. It never modifies the frozen study. Phase 4A-v2 (a typed, ownership-aware prompt p4a-v2 compared with p4a-v1 on a pre-registered dev pilot) is on branch `phase4a-v2`. Phase 4A-v3 (E2 deterministic evidence ownership and the B4-G detector gate) is on branch `phase4a-v3`. Phase 4B (the full LLM evaluation) needs approval.
 
 | Phase | Status | Report |
 |---|---|---|
@@ -208,4 +208,16 @@ OLLAMA_HOST=127.0.0.1:11434 OLLAMA_NUM_PARALLEL=1 OLLAMA_MAX_LOADED_MODELS=1 oll
 caffeinate -dims uv run python -m phase4.eval.pilot_v2 run       # <= 80 calls, resumable, AC power required
 uv run python -m phase4.eval.pilot_v2 analyze       # dev_comparison / claim_analysis / control_abstention + audit sheet
 pkill -f "ollama serve"
+```
+
+## Reproduce Phase 4A-v3 (E2 evidence ownership, B4-G detector gate; dev seed 11 only)
+
+The design and pre-registration are in `docs/evidence_ownership_design.md`; the results are in `docs/phase4a_v3_validation.md`. E2 and B4-G reuse the hash-documented p4a-v1 calls from the Phase 4A-v2 pilot. Only a predeclared 9-call re-execution check makes new calls.
+
+```bash
+uv run python -m phase4.eval.pilot_v3 plan
+OLLAMA_HOST=127.0.0.1:11434 OLLAMA_NUM_PARALLEL=1 OLLAMA_MAX_LOADED_MODELS=1 ollama serve &
+caffeinate -dims uv run python -m phase4.eval.pilot_v3 reverify
+pkill -f "ollama serve"
+uv run python -m phase4.eval.pilot_v3 analyze
 ```
