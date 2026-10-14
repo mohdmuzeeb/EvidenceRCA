@@ -1,0 +1,76 @@
+{
+ "schema": "evidencerca.precapture/v1",
+ "checked_at": "2026-10-13T22:58:03+00:00",
+ "checks": {
+  "git_clean_tracked": {
+   "passed": true,
+   "head": "5a9fd02dec4f6dc4acf4596578f27a83422ad4d5"
+  },
+  "freeze_verified": {
+   "passed": true,
+   "frozen_files": 45,
+   "frozen_at": "2026-10-13T13:07:18+00:00"
+  },
+  "testbed_and_pipeline_unchanged_since_phase2_capture": {
+   "passed": true,
+   "differences": [
+    "uv.lock"
+   ],
+   "files_compared": 14,
+   "note": "uv.lock differs only by the host-side 'analysis' group; the service image lock is unchanged"
+  },
+  "no_labels_in_agent_visible_evidence": {
+   "passed": true,
+   "case_sets": {
+    "experiment": 27,
+    "mechanism": 12,
+    "load": 1
+   }
+  },
+  "tests": {
+   "passed": true,
+   "summary": "118 passed in 132.86s (0:02:12)"
+  },
+  "phase1_regression": {
+   "passed": true,
+   "telemetry_checks": "22/22"
+  },
+  "disk_space": {
+   "passed": true,
+   "free_gb": 33.6,
+   "needed_estimate_gb": "~4.5 (90 cases x ~45 MB) + headroom"
+  },
+  "ac_power": {
+   "passed": true,
+   "pmset": "Now drawing from 'AC Power'"
+  },
+  "colima_configuration": {
+   "passed": true,
+   "vm": {
+    "name": "default",
+    "status": "Running",
+    "arch": "aarch64",
+    "cpus": 4,
+    "memory": 3221225472,
+    "disk": 32212254720,
+    "runtime": "docker"
+   }
+  },
+  "clock_alignment": {
+   "passed": true,
+   "vm_minus_host_ms": 103.3,
+   "uncertainty_ms": 122.3,
+   "note": "all ground-truth times use the VM clock; offsets are also recorded per case"
+  },
+  "ollama_not_running": {
+   "passed": true,
+   "processes": ""
+  },
+  "development_results_preserved": {
+   "passed": true,
+   "indexed_valid_cases": 32,
+   "weak_cpu_cases_kept": "dev matrix cpu_pressure standard (3) unchanged"
+  }
+ },
+ "all_passed": true
+}

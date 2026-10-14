@@ -1,0 +1,98 @@
+{
+ "schema": "evidencerca.final.calibration/v1",
+ "created_at": "2026-10-14T08:13:36+00:00",
+ "freeze_manifest_sha256": "acd9f26ab3196d758aa4eadfcce57f59e303d3581575bbfa1df663abc56e4dca",
+ "seeds": [
+  23,
+  37
+ ],
+ "n_cases": 36,
+ "n_trials": 6480,
+ "tau": {
+  "E0:S": {
+   "op1": {
+    "tau": 0.567529,
+    "coverage": 0.7009,
+    "selective_risk": 0.273
+   },
+   "op2": {
+    "tau": 0.958333,
+    "coverage": 0.0017,
+    "selective_risk": 0.0
+   },
+   "n_diagnosed_fault_trials": 575
+  },
+  "E0:A-margin": {
+   "op1": {
+    "tau": 0.103448,
+    "coverage": 0.7078,
+    "selective_risk": 0.2555
+   },
+   "op2": {
+    "tau": 1.0,
+    "coverage": 0.4487,
+    "selective_risk": 0.0969
+   },
+   "n_diagnosed_fault_trials": 575
+  },
+  "E0:A-ver": {
+   "op1": {
+    "tau": 0.445029,
+    "coverage": 0.7026,
+    "selective_risk": 0.2599
+   },
+   "op2": {
+    "tau": 0.888889,
+    "coverage": 0.0017,
+    "selective_risk": 0.0
+   },
+   "n_diagnosed_fault_trials": 575
+  },
+  "E0-A-graph:S": {
+   "op1": {
+    "tau": 0.333333,
+    "coverage": 1.0,
+    "selective_risk": 0.5896
+   },
+   "op2": null,
+   "n_diagnosed_fault_trials": 575
+  },
+  "B1:margin": {
+   "op1": {
+    "tau": 0.279758,
+    "coverage": 0.833,
+    "selective_risk": 0.7578
+   },
+   "op2": {
+    "tau": 1.0,
+    "coverage": 0.0017,
+    "selective_risk": 0.0
+   },
+   "n_diagnosed_fault_trials": 575
+  },
+  "B2:margin": {
+   "op1": {
+    "tau": 0.15,
+    "coverage": 0.8818,
+    "selective_risk": 0.2758
+   },
+   "op2": {
+    "tau": 0.293392,
+    "coverage": 0.2841,
+    "selective_risk": 0.088
+   },
+   "n_diagnosed_fault_trials": 440
+  },
+  "B3:margin": {
+   "op1": {
+    "tau": 0.0,
+    "coverage": 1.0,
+    "selective_risk": 0.9466
+   },
+   "op2": null,
+   "n_diagnosed_fault_trials": 543
+  }
+ },
+ "runtime_s": 568.8,
+ "rule": "on calibration seeds only: op1 = min selective risk s.t. coverage >= 0.7; op2 = max coverage s.t. selective risk <= 0.1 (if achievable)"
+}
