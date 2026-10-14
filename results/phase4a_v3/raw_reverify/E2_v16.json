@@ -1,0 +1,1431 @@
+{
+ "entry": {
+  "condition": "E2",
+  "view_index": 16,
+  "category": "cascade",
+  "spec": "C0",
+  "new_call": true,
+  "outcome": "ok",
+  "wall_s": 72.45,
+  "prompt_tokens": 3954,
+  "output_tokens": 661,
+  "ollama_rss_peak_mb": 3564.3,
+  "request_sha256": "b6955633086aa681d450b22f9c24b77b64d6555331b1e527a8982f94044af732",
+  "same_request_as_pilot": true,
+  "identical_raw_text": true,
+  "model_digest": "359d7dd4bcdab3d86b87d73ac27966f4dbb9f5efdfcc75d34a8764a09474fae7"
+ },
+ "call_record": {
+  "settings": {
+   "model": "qwen3:4b",
+   "temperature": 0.0,
+   "seed": 20261014,
+   "num_ctx": 6144,
+   "num_predict": 1024,
+   "think": false,
+   "timeout_s": 300.0,
+   "max_retries": 1,
+   "keep_alive": "15m"
+  },
+  "model_digest": "359d7dd4bcdab3d86b87d73ac27966f4dbb9f5efdfcc75d34a8764a09474fae7",
+  "ollama_version": "0.34.2",
+  "prompt_meta": {
+   "prompt_version": "p4a-v1",
+   "condition": "E1",
+   "system_sha256": "86edf89620e033f1eb4303c1d4a8c843d36e4565ae8592c756c37f663f2c7aa8",
+   "task_sha256": "18c78418af469d5455f5c1d279ff0f2c342af8fc635c4dee003f028e1327f5f8",
+   "case_text_sha256": "0b7a1e05fb138d8ddae834158a21c3da2a32bd9a415e556f61f4da0eb22e239a",
+   "case_text_chars": 8028,
+   "system_chars": 2897,
+   "n_records": 36
+  },
+  "request_sha256": "b6955633086aa681d450b22f9c24b77b64d6555331b1e527a8982f94044af732",
+  "attempts": [
+   {
+    "attempt": 0,
+    "outcome": "ok",
+    "http": 200,
+    "wall_s": 71.114,
+    "thinking_chars": 0
+   }
+  ],
+  "outcome": "ok",
+  "raw_text": "{\n  \"claims\": [\n    {\n      \"evidence\": [\"E01\", \"E02\", \"E03\", \"E04\"],\n      \"kind\": \"observed\",\n      \"object_service\": \"inventory\",\n      \"predicate\": \"latency_above_baseline\",\n      \"subject_service\": \"gateway\",\n      \"unit\": \"ms\",\n      \"value\": 24.2\n    },\n    {\n      \"evidence\": [\"E05\", \"E06\", \"E07\", \"E08\", \"E09\"],\n      \"kind\": \"observed\",\n      \"object_service\": \"inventory\",\n      \"predicate\": \"latency_above_baseline\",\n      \"subject_service\": \"gateway\",\n      \"unit\": \"ms\",\n      \"value\": 2009.7\n    },\n    {\n      \"evidence\": [\"E15\", \"E16\", \"E17\"],\n      \"kind\": \"observed\",\n      \"object_service\": \"inventory\",\n      \"predicate\": \"error_rate_above_baseline\",\n      \"subject_service\": \"inventory\",\n      \"unit\": \"1\",\n      \"value\": 0.528\n    },\n    {\n      \"evidence\": [\"E18\", \"E19\"],\n      \"kind\": \"observed\",\n      \"object_service\": \"inventory\",\n      \"predicate\": \"log_error_pattern\",\n      \"subject_service\": \"inventory\",\n      \"unit\": \"1\",\n      \"value\": 2\n    },\n    {\n      \"evidence\": [\"E20\", \"E21\", \"E22\", \"E23\", \"E24\"],\n      \"kind\": \"observed\",\n      \"object_service\": \"inventory\",\n      \"predicate\": \"latency_above_baseline\",\n      \"subject_service\": \"inventory\",\n      \"unit\": \"ms\",\n      \"value\": 2014\n    },\n    {\n      \"evidence\": [\"E25\", \"E26\", \"E27\", \"E28\", \"E29\"],\n      \"kind\": \"observed\",\n      \"object_service\": \"inventory\",\n      \"predicate\": \"latency_above_baseline\",\n      \"subject_service\": \"inventory\",\n      \"unit\": \"ms\",\n      \"value\": 2026\n    }\n  ],\n  \"decision\": \"DIAGNOSE\",\n  \"explanation\": \"Inventory service shows high latency and error rates with evidence of database pool exhaustion and timeouts.\",\n  \"propagation_path\": [\n    {\n      \"evidence\": [\"E01\", \"E02\", \"E03\", \"E04\", \"E05\"],\n      \"from\": \"inventory\",\n      \"to\": \"gateway\"\n    }\n  ],\n  \"ranked_candidates\": [\n    \"inventory\",\n    \"gateway\",\n    \"order\",\n    \"payment\",\n    \"postgres\"\n  ],\n  \"suspected_fault_type\": \"db_pool_exhaustion\",\n  \"suspected_service\": \"inventory\",\n  \"uncertainty_reasons\": [\n    \"Conflicting signals in latency metrics\",\n    \"Weak deviation in error rates\"\n  ]\n}",
+  "done_reason": "stop",
+  "prompt_tokens": 3954,
+  "output_tokens": 661,
+  "load_s": 0.0469,
+  "prompt_eval_s": 22.6562,
+  "eval_s": 47.8733,
+  "total_s": 71.0214,
+  "wall_s": 71.118,
+  "started_at": 1792001245.113388,
+  "prompt_tokens_per_s": 174.52,
+  "output_tokens_per_s": 13.81,
+  "context_overflow_risk": false,
+  "truncated_at_token_limit": false
+ },
+ "output": {
+  "view_id": "vw-d422cbc5a1e2eba0",
+  "windows": {
+   "triggered": true,
+   "anchor": "alert",
+   "alert_ns": 1791864382000000000,
+   "analysis": [
+    1791864322000000000,
+    1791864442000000000
+   ],
+   "baseline": [
+    1791864272000000000,
+    1791864322000000000
+   ],
+   "detector_source": "gateway SERVER spans",
+   "reason": "gateway err>=0.050 or p95>=91.2ms in 3 consecutive buckets"
+  },
+  "called": true,
+  "e0": {
+   "decision": "DIAGNOSE",
+   "suspected_service": "inventory",
+   "suspected_fault_type": "db_pool_exhaustion",
+   "ranked_candidates": [
+    {
+     "service": "inventory",
+     "score": 68.0
+    },
+    {
+     "service": "gateway",
+     "score": 0.0
+    },
+    {
+     "service": "order",
+     "score": 0.0
+    },
+    {
+     "service": "payment",
+     "score": 0.0
+    },
+    {
+     "service": "postgres",
+     "score": 0.0
+    }
+   ],
+   "propagation_path": [
+    {
+     "from": "inventory",
+     "to": "gateway",
+     "evidence_ids": [
+      "ev-0da90a97e0844e87009e",
+      "ev-709ea506c9f6ca1e30c0",
+      "ev-0fec5dea159601bbe24d"
+     ]
+    }
+   ]
+  },
+  "e0_abstention": {
+   "S": 0.75,
+   "S_margin": 1.0,
+   "components": {
+    "margin": 1.0,
+    "sufficiency": 1.0,
+    "agreement": 0.0,
+    "per_modality_top": {
+     "trace": "gateway",
+     "log": "gateway",
+     "metric": "gateway"
+    },
+    "coverage": 1.0
+   },
+   "signals_used": [
+    "sufficiency",
+    "agreement",
+    "margin",
+    "coverage"
+   ],
+   "decision": "DIAGNOSE",
+   "decision_margin": "DIAGNOSE",
+   "tau": 0.5,
+   "note": "S is a heuristic ordering score, not a probability"
+  },
+  "prompt_meta": {
+   "prompt_version": "p4a-v1",
+   "condition": "E1",
+   "system_sha256": "86edf89620e033f1eb4303c1d4a8c843d36e4565ae8592c756c37f663f2c7aa8",
+   "task_sha256": "18c78418af469d5455f5c1d279ff0f2c342af8fc635c4dee003f028e1327f5f8",
+   "case_text_sha256": "0b7a1e05fb138d8ddae834158a21c3da2a32bd9a415e556f61f4da0eb22e239a",
+   "case_text_chars": 8028,
+   "system_chars": 2897,
+   "n_records": 36
+  },
+  "alias_map": {
+   "E01": "ev-1ac312d37b9767a53988",
+   "E02": "ev-619c2557c923a6b9bcf4",
+   "E03": "ev-959593968c705bbec908",
+   "E04": "ev-4aa7c5ff806b4515aa77",
+   "E05": "ev-9b603d5e9aadb7e08447",
+   "E06": "ev-4c6a71b34afe64327959",
+   "E07": "ev-1817481ebbc05257d5a1",
+   "E08": "ev-1f915b54f0070d885c18",
+   "E09": "ev-681ee0d05454a8228656",
+   "E10": "ev-040e03ac8d57c48cca97",
+   "E11": "ev-5de4042247a760e96024",
+   "E12": "ev-6c684493026f5f9bc154",
+   "E13": "ev-09d265274a8a92438553",
+   "E14": "ev-73245e60a92f704a0693",
+   "E15": "ev-0e39c3e7790621735f4b",
+   "E16": "ev-064519e51f67db36e140",
+   "E17": "ev-739f5cb1d66cc30295c1",
+   "E18": "ev-59eb2cb1486118189b9c",
+   "E19": "ev-0df2d7779a75cb6659af",
+   "E20": "ev-005f7525fd7634b8e98f",
+   "E21": "ev-1c7438ce60be11b3c33f",
+   "E22": "ev-5be918ebeb97efacfcd8",
+   "E23": "ev-600eaaea8a8f37b8822c",
+   "E24": "ev-0da90a97e0844e87009e",
+   "E25": "ev-0fec5dea159601bbe24d",
+   "E26": "ev-9504623e5c3d74767c6c",
+   "E27": "ev-709ea506c9f6ca1e30c0",
+   "E28": "ev-23c9d29f553c7410c0cb",
+   "E29": "ev-69e2522147dcda0d8b68",
+   "E30": "ev-477a5fd7d6afd0a22108",
+   "E31": "ev-6112ea15320306e1a5c0",
+   "E32": "ev-00ce98ce509b0b2af2dd",
+   "E33": "ev-1ca2d2fb039984cd7593",
+   "E34": "ev-0d0461ae1213b15a84a9",
+   "E35": "ev-2dd8eaea362055ce4b71",
+   "E36": "ev-986b924fd7374bc0c762"
+  },
+  "parse": {
+   "status": "valid",
+   "errors": []
+  },
+  "semantic_issues": [],
+  "citations": {
+   "n_cited": 24,
+   "n_known_alias": 24,
+   "n_in_view": 24,
+   "rate_known_alias": 1.0
+  },
+  "llm": {
+   "decision": "DIAGNOSE",
+   "suspected_service": "inventory",
+   "suspected_fault_type": "db_pool_exhaustion",
+   "ranked_candidates": [
+    "inventory",
+    "gateway",
+    "order",
+    "payment",
+    "postgres"
+   ],
+   "uncertainty_reasons": [
+    "Conflicting signals in latency metrics",
+    "Weak deviation in error rates"
+   ],
+   "explanation": "Inventory service shows high latency and error rates with evidence of database pool exhaustion and timeouts.",
+   "agrees_with_e0_top1": true
+  },
+  "diagnosis": {
+   "case_id": "ac2a7c4f-5755-492e-a623-36db384cf8c4",
+   "view_id": "vw-d422cbc5a1e2eba0",
+   "method": "E1",
+   "windows": {
+    "triggered": true,
+    "anchor": "alert",
+    "alert_ns": 1791864382000000000,
+    "analysis": [
+     1791864322000000000,
+     1791864442000000000
+    ],
+    "baseline": [
+     1791864272000000000,
+     1791864322000000000
+    ],
+    "detector_source": "gateway SERVER spans",
+    "reason": "gateway err>=0.050 or p95>=91.2ms in 3 consecutive buckets"
+   },
+   "ranked_candidates": [
+    {
+     "service": "inventory",
+     "score": 68.0
+    },
+    {
+     "service": "gateway",
+     "score": 0.0
+    },
+    {
+     "service": "order",
+     "score": 0.0
+    },
+    {
+     "service": "payment",
+     "score": 0.0
+    },
+    {
+     "service": "postgres",
+     "score": 0.0
+    }
+   ],
+   "suspected_service": "inventory",
+   "suspected_operation": null,
+   "suspected_fault_type": "db_pool_exhaustion",
+   "evidence_ids": [
+    "ev-005f7525fd7634b8e98f",
+    "ev-064519e51f67db36e140",
+    "ev-0da90a97e0844e87009e",
+    "ev-0df2d7779a75cb6659af",
+    "ev-0e39c3e7790621735f4b",
+    "ev-0fec5dea159601bbe24d",
+    "ev-1817481ebbc05257d5a1",
+    "ev-1ac312d37b9767a53988",
+    "ev-1c7438ce60be11b3c33f",
+    "ev-1f915b54f0070d885c18",
+    "ev-23c9d29f553c7410c0cb",
+    "ev-4aa7c5ff806b4515aa77",
+    "ev-4c6a71b34afe64327959",
+    "ev-59eb2cb1486118189b9c",
+    "ev-5be918ebeb97efacfcd8",
+    "ev-600eaaea8a8f37b8822c",
+    "ev-619c2557c923a6b9bcf4",
+    "ev-681ee0d05454a8228656",
+    "ev-69e2522147dcda0d8b68",
+    "ev-709ea506c9f6ca1e30c0",
+    "ev-739f5cb1d66cc30295c1",
+    "ev-9504623e5c3d74767c6c",
+    "ev-959593968c705bbec908",
+    "ev-9b603d5e9aadb7e08447"
+   ],
+   "factual_claims": [
+    {
+     "claim_id": "c1",
+     "kind": "observed",
+     "subject_service": "gateway",
+     "object_service": "inventory",
+     "predicate": "latency_above_baseline",
+     "measurement": "span_duration",
+     "value": 24.2,
+     "unit": "ms",
+     "window": [
+      1791864322000000000,
+      1791864442000000000
+     ],
+     "evidence_ids": [
+      "ev-1ac312d37b9767a53988",
+      "ev-619c2557c923a6b9bcf4",
+      "ev-959593968c705bbec908",
+      "ev-4aa7c5ff806b4515aa77"
+     ]
+    },
+    {
+     "claim_id": "c2",
+     "kind": "observed",
+     "subject_service": "gateway",
+     "object_service": "inventory",
+     "predicate": "latency_above_baseline",
+     "measurement": "span_duration",
+     "value": 2009.7,
+     "unit": "ms",
+     "window": [
+      1791864322000000000,
+      1791864442000000000
+     ],
+     "evidence_ids": [
+      "ev-9b603d5e9aadb7e08447",
+      "ev-4c6a71b34afe64327959",
+      "ev-1817481ebbc05257d5a1",
+      "ev-1f915b54f0070d885c18",
+      "ev-681ee0d05454a8228656"
+     ]
+    },
+    {
+     "claim_id": "c3",
+     "kind": "observed",
+     "subject_service": "inventory",
+     "object_service": "inventory",
+     "predicate": "error_rate_above_baseline",
+     "measurement": "span_error_ratio",
+     "value": 0.528,
+     "unit": "1",
+     "window": [
+      1791864322000000000,
+      1791864442000000000
+     ],
+     "evidence_ids": [
+      "ev-0e39c3e7790621735f4b",
+      "ev-064519e51f67db36e140",
+      "ev-739f5cb1d66cc30295c1"
+     ]
+    },
+    {
+     "claim_id": "c4",
+     "kind": "observed",
+     "subject_service": "inventory",
+     "object_service": "inventory",
+     "predicate": "log_error_pattern",
+     "measurement": "log_record",
+     "value": 2,
+     "unit": "1",
+     "window": [
+      1791864322000000000,
+      1791864442000000000
+     ],
+     "evidence_ids": [
+      "ev-59eb2cb1486118189b9c",
+      "ev-0df2d7779a75cb6659af"
+     ]
+    },
+    {
+     "claim_id": "c5",
+     "kind": "observed",
+     "subject_service": "inventory",
+     "object_service": "inventory",
+     "predicate": "latency_above_baseline",
+     "measurement": null,
+     "value": 2014,
+     "unit": "ms",
+     "window": [
+      1791864322000000000,
+      1791864442000000000
+     ],
+     "evidence_ids": [
+      "ev-005f7525fd7634b8e98f",
+      "ev-1c7438ce60be11b3c33f",
+      "ev-5be918ebeb97efacfcd8",
+      "ev-600eaaea8a8f37b8822c",
+      "ev-0da90a97e0844e87009e"
+     ]
+    },
+    {
+     "claim_id": "c6",
+     "kind": "observed",
+     "subject_service": "inventory",
+     "object_service": "inventory",
+     "predicate": "latency_above_baseline",
+     "measurement": null,
+     "value": 2026,
+     "unit": "ms",
+     "window": [
+      1791864322000000000,
+      1791864442000000000
+     ],
+     "evidence_ids": [
+      "ev-0fec5dea159601bbe24d",
+      "ev-9504623e5c3d74767c6c",
+      "ev-709ea506c9f6ca1e30c0",
+      "ev-23c9d29f553c7410c0cb",
+      "ev-69e2522147dcda0d8b68"
+     ]
+    }
+   ],
+   "propagation_path": [
+    {
+     "from": "inventory",
+     "to": "gateway",
+     "evidence_ids": [
+      "ev-1ac312d37b9767a53988",
+      "ev-619c2557c923a6b9bcf4",
+      "ev-959593968c705bbec908",
+      "ev-4aa7c5ff806b4515aa77",
+      "ev-9b603d5e9aadb7e08447"
+     ]
+    }
+   ],
+   "missing_modalities": [],
+   "uncertainty_reasons": [
+    "Conflicting signals in latency metrics",
+    "Weak deviation in error rates"
+   ],
+   "decision": "DIAGNOSE",
+   "explanation": "Inventory service shows high latency and error rates with evidence of database pool exhaustion and timeouts."
+  },
+  "decision": "DIAGNOSE",
+  "verification": {
+   "case_id": "ac2a7c4f-5755-492e-a623-36db384cf8c4",
+   "view_id": "vw-d422cbc5a1e2eba0",
+   "method": "E1",
+   "claims": [
+    {
+     "claim_id": "c1",
+     "kind": "observed",
+     "predicate": "latency_above_baseline",
+     "subject_service": "gateway",
+     "checks": {
+      "V0": "pass",
+      "V1": "pass",
+      "V2": "pass",
+      "V3": "fail",
+      "V4": "fail",
+      "V5": "fail"
+     },
+     "notes": {
+      "V1_missing": [],
+      "V4_recomputed": 4.456124,
+      "V5": "insufficient baseline for a cited record"
+     },
+     "verified": false
+    },
+    {
+     "claim_id": "c2",
+     "kind": "observed",
+     "predicate": "latency_above_baseline",
+     "subject_service": "gateway",
+     "checks": {
+      "V0": "pass",
+      "V1": "pass",
+      "V2": "pass",
+      "V3": "fail",
+      "V4": "pass",
+      "V5": "fail"
+     },
+     "notes": {
+      "V1_missing": [],
+      "V4_recomputed": 2009.747742,
+      "V5": "insufficient baseline for a cited record"
+     },
+     "verified": false
+    },
+    {
+     "claim_id": "c3",
+     "kind": "observed",
+     "predicate": "error_rate_above_baseline",
+     "subject_service": "inventory",
+     "checks": {
+      "V0": "pass",
+      "V1": "pass",
+      "V2": "pass",
+      "V3": "pass",
+      "V4": "fail",
+      "V5": "pass"
+     },
+     "notes": {
+      "V1_missing": [],
+      "V4_recomputed": 0.47652733118971063,
+      "V5": "window 0.477 vs baseline 0.000"
+     },
+     "verified": false
+    },
+    {
+     "claim_id": "c4",
+     "kind": "observed",
+     "predicate": "log_error_pattern",
+     "subject_service": "inventory",
+     "checks": {
+      "V0": "fail"
+     },
+     "notes": {},
+     "verified": false
+    },
+    {
+     "claim_id": "c5",
+     "kind": "observed",
+     "predicate": "latency_above_baseline",
+     "subject_service": "inventory",
+     "checks": {
+      "V0": "pass",
+      "V1": "pass",
+      "V2": "pass",
+      "V3": "fail",
+      "V4": "fail",
+      "V5": "fail"
+     },
+     "notes": {
+      "V1_missing": [],
+      "V4_recomputed": 5.0,
+      "V5": "insufficient baseline for a cited record"
+     },
+     "verified": false
+    },
+    {
+     "claim_id": "c6",
+     "kind": "observed",
+     "predicate": "latency_above_baseline",
+     "subject_service": "inventory",
+     "checks": {
+      "V0": "pass",
+      "V1": "pass",
+      "V2": "pass",
+      "V3": "fail",
+      "V4": "fail",
+      "V5": "fail"
+     },
+     "notes": {
+      "V1_missing": [],
+      "V4_recomputed": 2142.148066,
+      "V5": "insufficient baseline for a cited record"
+     },
+     "verified": false
+    }
+   ],
+   "propagation": [
+    {
+     "edge": "inventory->gateway",
+     "V6": "pass",
+     "evidence": "pass"
+    }
+   ],
+   "summary": {
+    "observed": 6,
+    "observed_verified": 0,
+    "observed_rejected": 6,
+    "inferred": 0,
+    "inferred_premises_valid": 0,
+    "edges": 1,
+    "edges_verified": 1,
+    "verified_claim_coverage": 0.0
+   },
+   "rejected_claim_ids": [
+    "c1",
+    "c2",
+    "c3",
+    "c4",
+    "c5",
+    "c6"
+   ],
+   "flags": [
+    "DIAGNOSE without a verified observed claim about the suspected service"
+   ]
+  },
+  "claims": {
+   "original_pre_filter": [
+    {
+     "claim_id": "c1",
+     "kind": "observed",
+     "subject_service": "gateway",
+     "object_service": "inventory",
+     "predicate": "latency_above_baseline",
+     "measurement": "span_duration",
+     "value": 24.2,
+     "unit": "ms",
+     "window": [
+      1791864322000000000,
+      1791864442000000000
+     ],
+     "evidence_ids": [
+      "ev-1ac312d37b9767a53988",
+      "ev-619c2557c923a6b9bcf4",
+      "ev-959593968c705bbec908",
+      "ev-4aa7c5ff806b4515aa77"
+     ]
+    },
+    {
+     "claim_id": "c2",
+     "kind": "observed",
+     "subject_service": "gateway",
+     "object_service": "inventory",
+     "predicate": "latency_above_baseline",
+     "measurement": "span_duration",
+     "value": 2009.7,
+     "unit": "ms",
+     "window": [
+      1791864322000000000,
+      1791864442000000000
+     ],
+     "evidence_ids": [
+      "ev-9b603d5e9aadb7e08447",
+      "ev-4c6a71b34afe64327959",
+      "ev-1817481ebbc05257d5a1",
+      "ev-1f915b54f0070d885c18",
+      "ev-681ee0d05454a8228656"
+     ]
+    },
+    {
+     "claim_id": "c3",
+     "kind": "observed",
+     "subject_service": "inventory",
+     "object_service": "inventory",
+     "predicate": "error_rate_above_baseline",
+     "measurement": "span_error_ratio",
+     "value": 0.528,
+     "unit": "1",
+     "window": [
+      1791864322000000000,
+      1791864442000000000
+     ],
+     "evidence_ids": [
+      "ev-0e39c3e7790621735f4b",
+      "ev-064519e51f67db36e140",
+      "ev-739f5cb1d66cc30295c1"
+     ]
+    },
+    {
+     "claim_id": "c4",
+     "kind": "observed",
+     "subject_service": "inventory",
+     "object_service": "inventory",
+     "predicate": "log_error_pattern",
+     "measurement": "log_record",
+     "value": 2,
+     "unit": "1",
+     "window": [
+      1791864322000000000,
+      1791864442000000000
+     ],
+     "evidence_ids": [
+      "ev-59eb2cb1486118189b9c",
+      "ev-0df2d7779a75cb6659af"
+     ]
+    },
+    {
+     "claim_id": "c5",
+     "kind": "observed",
+     "subject_service": "inventory",
+     "object_service": "inventory",
+     "predicate": "latency_above_baseline",
+     "measurement": null,
+     "value": 2014,
+     "unit": "ms",
+     "window": [
+      1791864322000000000,
+      1791864442000000000
+     ],
+     "evidence_ids": [
+      "ev-005f7525fd7634b8e98f",
+      "ev-1c7438ce60be11b3c33f",
+      "ev-5be918ebeb97efacfcd8",
+      "ev-600eaaea8a8f37b8822c",
+      "ev-0da90a97e0844e87009e"
+     ]
+    },
+    {
+     "claim_id": "c6",
+     "kind": "observed",
+     "subject_service": "inventory",
+     "object_service": "inventory",
+     "predicate": "latency_above_baseline",
+     "measurement": null,
+     "value": 2026,
+     "unit": "ms",
+     "window": [
+      1791864322000000000,
+      1791864442000000000
+     ],
+     "evidence_ids": [
+      "ev-0fec5dea159601bbe24d",
+      "ev-9504623e5c3d74767c6c",
+      "ev-709ea506c9f6ca1e30c0",
+      "ev-23c9d29f553c7410c0cb",
+      "ev-69e2522147dcda0d8b68"
+     ]
+    }
+   ],
+   "original_verified": [],
+   "canonical_candidates": [
+    {
+     "claim_id": "c1~canon",
+     "kind": "observed",
+     "subject_service": "inventory",
+     "object_service": null,
+     "predicate": "latency_above_baseline",
+     "measurement": "span_duration",
+     "value": 24.2,
+     "unit": "ms",
+     "window": [
+      1791864322000000000,
+      1791864442000000000
+     ],
+     "evidence_ids": [
+      "ev-1ac312d37b9767a53988",
+      "ev-619c2557c923a6b9bcf4",
+      "ev-959593968c705bbec908",
+      "ev-4aa7c5ff806b4515aa77"
+     ]
+    },
+    {
+     "claim_id": "c2~canon",
+     "kind": "observed",
+     "subject_service": "inventory",
+     "object_service": null,
+     "predicate": "latency_above_baseline",
+     "measurement": "span_duration",
+     "value": 2009.7,
+     "unit": "ms",
+     "window": [
+      1791864322000000000,
+      1791864442000000000
+     ],
+     "evidence_ids": [
+      "ev-9b603d5e9aadb7e08447",
+      "ev-4c6a71b34afe64327959",
+      "ev-1817481ebbc05257d5a1",
+      "ev-1f915b54f0070d885c18",
+      "ev-681ee0d05454a8228656"
+     ]
+    },
+    {
+     "claim_id": "c4~canon",
+     "kind": "observed",
+     "subject_service": "inventory",
+     "object_service": null,
+     "predicate": "log_error_pattern",
+     "measurement": "log_record",
+     "value": 2,
+     "unit": "{record}",
+     "window": [
+      1791864322000000000,
+      1791864442000000000
+     ],
+     "evidence_ids": [
+      "ev-59eb2cb1486118189b9c",
+      "ev-0df2d7779a75cb6659af"
+     ]
+    }
+   ],
+   "canonical_verified": [],
+   "rejected_ids": [
+    "c5",
+    "c6"
+   ]
+  },
+  "e1_abstention_descriptive": {
+   "S": 0.5,
+   "S_margin": 1.0,
+   "components": {
+    "margin": 1.0,
+    "sufficiency": 1.0,
+    "agreement": 0.0,
+    "per_modality_top": {
+     "trace": "gateway",
+     "log": "gateway",
+     "metric": "gateway"
+    },
+    "coverage": 0.0
+   },
+   "signals_used": [
+    "sufficiency",
+    "agreement",
+    "margin",
+    "coverage"
+   ],
+   "decision": "DIAGNOSE",
+   "decision_margin": "DIAGNOSE",
+   "tau": 0.5,
+   "note": "S is a heuristic ordering score, not a probability"
+  },
+  "condition": "E2",
+  "derived_from": {
+   "condition": "E1",
+   "prompt_version": "p4a-v1"
+  },
+  "ownership": {
+   "transform_version": "own-v1",
+   "assessments": [
+    {
+     "claim_id": "c1",
+     "predicate": "latency_above_baseline",
+     "kind": "observed",
+     "original_subject": "gateway",
+     "cited_provenance": [
+      {
+       "evidence_id": "ev-1ac312d37b9767a53988",
+       "emitter": "gateway",
+       "modality": "trace",
+       "span_kind": "CLIENT",
+       "callee": "inventory",
+       "operation": "GET",
+       "measurement": "span_duration",
+       "unit": "ms",
+       "family": "call"
+      },
+      {
+       "evidence_id": "ev-619c2557c923a6b9bcf4",
+       "emitter": "gateway",
+       "modality": "trace",
+       "span_kind": "CLIENT",
+       "callee": "inventory",
+       "operation": "GET",
+       "measurement": "span_duration",
+       "unit": "ms",
+       "family": "call"
+      },
+      {
+       "evidence_id": "ev-959593968c705bbec908",
+       "emitter": "gateway",
+       "modality": "trace",
+       "span_kind": "CLIENT",
+       "callee": "inventory",
+       "operation": "GET",
+       "measurement": "span_duration",
+       "unit": "ms",
+       "family": "call"
+      },
+      {
+       "evidence_id": "ev-4aa7c5ff806b4515aa77",
+       "emitter": "gateway",
+       "modality": "trace",
+       "span_kind": "CLIENT",
+       "callee": "inventory",
+       "operation": "GET",
+       "measurement": "span_duration",
+       "unit": "ms",
+       "family": "call"
+      }
+     ],
+     "stray_object_service": "inventory",
+     "implied_subject": "inventory",
+     "disposition": "transformed",
+     "reason": "object_service, subject_service",
+     "canonical": {
+      "claim_id": "c1~canon",
+      "kind": "observed",
+      "subject_service": "inventory",
+      "object_service": null,
+      "predicate": "latency_above_baseline",
+      "measurement": "span_duration",
+      "value": 24.2,
+      "unit": "ms",
+      "window": [
+       1791864322000000000,
+       1791864442000000000
+      ],
+      "evidence_ids": [
+       "ev-1ac312d37b9767a53988",
+       "ev-619c2557c923a6b9bcf4",
+       "ev-959593968c705bbec908",
+       "ev-4aa7c5ff806b4515aa77"
+      ]
+     },
+     "audit": {
+      "transform_version": "own-v1",
+      "derived_from": "c1",
+      "changes": {
+       "subject_service": [
+        "gateway",
+        "inventory"
+       ],
+       "object_service": [
+        "inventory",
+        null
+       ]
+      },
+      "rules": {
+       "subject_service": "subject := callee of the cited calls",
+       "object_service": "object_service := none (only onset_before is relational)"
+      },
+      "unchanged": [
+       "predicate",
+       "value",
+       "window",
+       "evidence_ids",
+       "kind",
+       "measurement"
+      ],
+      "original_sha256": "667ebea09d4f0ba6793c580577ff55dfeb57c8872a7b6ef72ff0c946434fcc60"
+     }
+    },
+    {
+     "claim_id": "c2",
+     "predicate": "latency_above_baseline",
+     "kind": "observed",
+     "original_subject": "gateway",
+     "cited_provenance": [
+      {
+       "evidence_id": "ev-9b603d5e9aadb7e08447",
+       "emitter": "gateway",
+       "modality": "trace",
+       "span_kind": "CLIENT",
+       "callee": "inventory",
+       "operation": "GET",
+       "measurement": "span_duration",
+       "unit": "ms",
+       "family": "call"
+      },
+      {
+       "evidence_id": "ev-4c6a71b34afe64327959",
+       "emitter": "gateway",
+       "modality": "trace",
+       "span_kind": "CLIENT",
+       "callee": "inventory",
+       "operation": "GET",
+       "measurement": "span_duration",
+       "unit": "ms",
+       "family": "call"
+      },
+      {
+       "evidence_id": "ev-1817481ebbc05257d5a1",
+       "emitter": "inventory",
+       "modality": "trace",
+       "span_kind": "SERVER",
+       "callee": null,
+       "operation": "/stock/{item_id}",
+       "measurement": "span_duration",
+       "unit": "ms",
+       "family": "server"
+      },
+      {
+       "evidence_id": "ev-1f915b54f0070d885c18",
+       "emitter": "gateway",
+       "modality": "trace",
+       "span_kind": "CLIENT",
+       "callee": "inventory",
+       "operation": "GET",
+       "measurement": "span_duration",
+       "unit": "ms",
+       "family": "call"
+      },
+      {
+       "evidence_id": "ev-681ee0d05454a8228656",
+       "emitter": "inventory",
+       "modality": "trace",
+       "span_kind": "SERVER",
+       "callee": null,
+       "operation": "/stock/{item_id}",
+       "measurement": "span_duration",
+       "unit": "ms",
+       "family": "server"
+      }
+     ],
+     "stray_object_service": "inventory",
+     "implied_subject": "inventory",
+     "disposition": "transformed",
+     "reason": "object_service, subject_service",
+     "canonical": {
+      "claim_id": "c2~canon",
+      "kind": "observed",
+      "subject_service": "inventory",
+      "object_service": null,
+      "predicate": "latency_above_baseline",
+      "measurement": "span_duration",
+      "value": 2009.7,
+      "unit": "ms",
+      "window": [
+       1791864322000000000,
+       1791864442000000000
+      ],
+      "evidence_ids": [
+       "ev-9b603d5e9aadb7e08447",
+       "ev-4c6a71b34afe64327959",
+       "ev-1817481ebbc05257d5a1",
+       "ev-1f915b54f0070d885c18",
+       "ev-681ee0d05454a8228656"
+      ]
+     },
+     "audit": {
+      "transform_version": "own-v1",
+      "derived_from": "c2",
+      "changes": {
+       "subject_service": [
+        "gateway",
+        "inventory"
+       ],
+       "object_service": [
+        "inventory",
+        null
+       ]
+      },
+      "rules": {
+       "subject_service": "subject := provenance-implied subject",
+       "object_service": "object_service := none (only onset_before is relational)"
+      },
+      "unchanged": [
+       "predicate",
+       "value",
+       "window",
+       "evidence_ids",
+       "kind",
+       "measurement"
+      ],
+      "original_sha256": "9d888c1ea505edaa22635e60c31bbf20539e641fe60dbf9a607c8895336fd144"
+     }
+    },
+    {
+     "claim_id": "c3",
+     "predicate": "error_rate_above_baseline",
+     "kind": "observed",
+     "original_subject": "inventory",
+     "cited_provenance": [
+      {
+       "evidence_id": "ev-0e39c3e7790621735f4b",
+       "emitter": "inventory",
+       "modality": "trace",
+       "span_kind": "SERVER",
+       "callee": null,
+       "operation": "/stock/{item_id}",
+       "measurement": "span_duration",
+       "unit": "ms",
+       "family": "server"
+      },
+      {
+       "evidence_id": "ev-064519e51f67db36e140",
+       "emitter": "inventory",
+       "modality": "trace",
+       "span_kind": "SERVER",
+       "callee": null,
+       "operation": "/stock/{item_id}",
+       "measurement": "span_duration",
+       "unit": "ms",
+       "family": "server"
+      },
+      {
+       "evidence_id": "ev-739f5cb1d66cc30295c1",
+       "emitter": "inventory",
+       "modality": "trace",
+       "span_kind": "SERVER",
+       "callee": null,
+       "operation": "/stock/{item_id}",
+       "measurement": "span_duration",
+       "unit": "ms",
+       "family": "server"
+      }
+     ],
+     "stray_object_service": "inventory",
+     "implied_subject": "inventory",
+     "disposition": "consistent"
+    },
+    {
+     "claim_id": "c4",
+     "predicate": "log_error_pattern",
+     "kind": "observed",
+     "original_subject": "inventory",
+     "cited_provenance": [
+      {
+       "evidence_id": "ev-59eb2cb1486118189b9c",
+       "emitter": "inventory",
+       "modality": "log",
+       "span_kind": null,
+       "callee": null,
+       "operation": "evidencerca.common",
+       "measurement": "log_record",
+       "unit": "severity",
+       "family": "log"
+      },
+      {
+       "evidence_id": "ev-0df2d7779a75cb6659af",
+       "emitter": "inventory",
+       "modality": "log",
+       "span_kind": null,
+       "callee": null,
+       "operation": "evidencerca.common",
+       "measurement": "log_record",
+       "unit": "severity",
+       "family": "log"
+      }
+     ],
+     "stray_object_service": "inventory",
+     "implied_subject": "inventory",
+     "disposition": "transformed",
+     "reason": "object_service, unit",
+     "canonical": {
+      "claim_id": "c4~canon",
+      "kind": "observed",
+      "subject_service": "inventory",
+      "object_service": null,
+      "predicate": "log_error_pattern",
+      "measurement": "log_record",
+      "value": 2,
+      "unit": "{record}",
+      "window": [
+       1791864322000000000,
+       1791864442000000000
+      ],
+      "evidence_ids": [
+       "ev-59eb2cb1486118189b9c",
+       "ev-0df2d7779a75cb6659af"
+      ]
+     },
+     "audit": {
+      "transform_version": "own-v1",
+      "derived_from": "c4",
+      "changes": {
+       "unit": [
+        "1",
+        "{record}"
+       ],
+       "object_service": [
+        "inventory",
+        null
+       ]
+      },
+      "rules": {
+       "unit": "unit := the unit fixed by the cited record family (value NOT rescaled)",
+       "object_service": "object_service := none (only onset_before is relational)"
+      },
+      "unchanged": [
+       "predicate",
+       "value",
+       "window",
+       "evidence_ids",
+       "kind",
+       "measurement"
+      ],
+      "original_sha256": "f8d28223184f140a29e432f387c06b598bdf36c0744573f8fdb560975ebd6656"
+     }
+    },
+    {
+     "claim_id": "c5",
+     "predicate": "latency_above_baseline",
+     "kind": "observed",
+     "original_subject": "inventory",
+     "cited_provenance": [
+      {
+       "evidence_id": "ev-005f7525fd7634b8e98f",
+       "emitter": "inventory",
+       "modality": "metric",
+       "span_kind": null,
+       "callee": null,
+       "operation": "app.errors",
+       "measurement": "error_ratio",
+       "unit": "1",
+       "family": "metric:error_ratio"
+      },
+      {
+       "evidence_id": "ev-1c7438ce60be11b3c33f",
+       "emitter": "inventory",
+       "modality": "metric",
+       "span_kind": null,
+       "callee": null,
+       "operation": "app.db.pool.checked_out",
+       "measurement": "pool_checked_out",
+       "unit": "{connection}",
+       "family": "metric:pool_checked_out"
+      },
+      {
+       "evidence_id": "ev-5be918ebeb97efacfcd8",
+       "emitter": "inventory",
+       "modality": "metric",
+       "span_kind": null,
+       "callee": null,
+       "operation": "app.request.duration",
+       "measurement": "latency_mean",
+       "unit": "ms",
+       "family": "metric:latency_mean"
+      },
+      {
+       "evidence_id": "ev-600eaaea8a8f37b8822c",
+       "emitter": "inventory",
+       "modality": "metric",
+       "span_kind": null,
+       "callee": null,
+       "operation": "app.db.pool.checked_out",
+       "measurement": "pool_checked_out",
+       "unit": "{connection}",
+       "family": "metric:pool_checked_out"
+      },
+      {
+       "evidence_id": "ev-0da90a97e0844e87009e",
+       "emitter": "gateway",
+       "modality": "trace",
+       "span_kind": "CLIENT",
+       "callee": "inventory",
+       "operation": "GET",
+       "measurement": "span_duration",
+       "unit": "ms",
+       "family": "call"
+      }
+     ],
+     "disposition": "rejected",
+     "reason": "record family ['metric:error_ratio', 'metric:pool_checked_out'] is not admissible for latency_above_baseline"
+    },
+    {
+     "claim_id": "c6",
+     "predicate": "latency_above_baseline",
+     "kind": "observed",
+     "original_subject": "inventory",
+     "cited_provenance": [
+      {
+       "evidence_id": "ev-0fec5dea159601bbe24d",
+       "emitter": "gateway",
+       "modality": "trace",
+       "span_kind": "CLIENT",
+       "callee": "inventory",
+       "operation": "GET",
+       "measurement": "span_duration",
+       "unit": "ms",
+       "family": "call"
+      },
+      {
+       "evidence_id": "ev-9504623e5c3d74767c6c",
+       "emitter": "inventory",
+       "modality": "trace",
+       "span_kind": "CLIENT",
+       "callee": null,
+       "operation": "connect",
+       "measurement": "span_duration",
+       "unit": "ms",
+       "family": "connect"
+      },
+      {
+       "evidence_id": "ev-709ea506c9f6ca1e30c0",
+       "emitter": "gateway",
+       "modality": "trace",
+       "span_kind": "CLIENT",
+       "callee": "inventory",
+       "operation": "GET",
+       "measurement": "span_duration",
+       "unit": "ms",
+       "family": "call"
+      },
+      {
+       "evidence_id": "ev-23c9d29f553c7410c0cb",
+       "emitter": "inventory",
+       "modality": "metric",
+       "span_kind": null,
+       "callee": null,
+       "operation": "app.errors",
+       "measurement": "error_ratio",
+       "unit": "1",
+       "family": "metric:error_ratio"
+      },
+      {
+       "evidence_id": "ev-69e2522147dcda0d8b68",
+       "emitter": "inventory",
+       "modality": "metric",
+       "span_kind": null,
+       "callee": null,
+       "operation": "app.request.duration",
+       "measurement": "latency_mean",
+       "unit": "ms",
+       "family": "metric:latency_mean"
+      }
+     ],
+     "disposition": "rejected",
+     "reason": "record family ['connect', 'metric:error_ratio'] is not admissible for latency_above_baseline"
+    }
+   ],
+   "canonical_claims": [
+    {
+     "claim_id": "c1~canon",
+     "kind": "observed",
+     "subject_service": "inventory",
+     "object_service": null,
+     "predicate": "latency_above_baseline",
+     "measurement": "span_duration",
+     "value": 24.2,
+     "unit": "ms",
+     "window": [
+      1791864322000000000,
+      1791864442000000000
+     ],
+     "evidence_ids": [
+      "ev-1ac312d37b9767a53988",
+      "ev-619c2557c923a6b9bcf4",
+      "ev-959593968c705bbec908",
+      "ev-4aa7c5ff806b4515aa77"
+     ]
+    },
+    {
+     "claim_id": "c2~canon",
+     "kind": "observed",
+     "subject_service": "inventory",
+     "object_service": null,
+     "predicate": "latency_above_baseline",
+     "measurement": "span_duration",
+     "value": 2009.7,
+     "unit": "ms",
+     "window": [
+      1791864322000000000,
+      1791864442000000000
+     ],
+     "evidence_ids": [
+      "ev-9b603d5e9aadb7e08447",
+      "ev-4c6a71b34afe64327959",
+      "ev-1817481ebbc05257d5a1",
+      "ev-1f915b54f0070d885c18",
+      "ev-681ee0d05454a8228656"
+     ]
+    },
+    {
+     "claim_id": "c4~canon",
+     "kind": "observed",
+     "subject_service": "inventory",
+     "object_service": null,
+     "predicate": "log_error_pattern",
+     "measurement": "log_record",
+     "value": 2,
+     "unit": "{record}",
+     "window": [
+      1791864322000000000,
+      1791864442000000000
+     ],
+     "evidence_ids": [
+      "ev-59eb2cb1486118189b9c",
+      "ev-0df2d7779a75cb6659af"
+     ]
+    }
+   ]
+  },
+  "canonical_verification": {
+   "case_id": "ac2a7c4f-5755-492e-a623-36db384cf8c4",
+   "view_id": "vw-d422cbc5a1e2eba0",
+   "method": "E1",
+   "claims": [
+    {
+     "claim_id": "c1~canon",
+     "kind": "observed",
+     "predicate": "latency_above_baseline",
+     "subject_service": "inventory",
+     "checks": {
+      "V0": "pass",
+      "V1": "pass",
+      "V2": "pass",
+      "V3": "pass",
+      "V4": "fail",
+      "V5": "fail"
+     },
+     "notes": {
+      "V1_missing": [],
+      "V4_recomputed": 4.456124,
+      "V5": "0/4 cited records exceed baseline median + 3 MAD"
+     },
+     "verified": false
+    },
+    {
+     "claim_id": "c2~canon",
+     "kind": "observed",
+     "predicate": "latency_above_baseline",
+     "subject_service": "inventory",
+     "checks": {
+      "V0": "pass",
+      "V1": "pass",
+      "V2": "pass",
+      "V3": "pass",
+      "V4": "pass",
+      "V5": "fail"
+     },
+     "notes": {
+      "V1_missing": [],
+      "V4_recomputed": 2009.747742,
+      "V5": "4/5 cited records exceed baseline median + 3 MAD"
+     },
+     "verified": false
+    },
+    {
+     "claim_id": "c4~canon",
+     "kind": "observed",
+     "predicate": "log_error_pattern",
+     "subject_service": "inventory",
+     "checks": {
+      "V0": "pass",
+      "V1": "pass",
+      "V2": "pass",
+      "V3": "pass",
+      "V4": "fail",
+      "V5": "pass"
+     },
+     "notes": {
+      "V1_missing": [],
+      "V4_recomputed": 714.0,
+      "V5": "714 vs 0.0"
+     },
+     "verified": false
+    }
+   ],
+   "propagation": [],
+   "summary": {
+    "observed": 3,
+    "observed_verified": 0,
+    "observed_rejected": 3,
+    "inferred": 0,
+    "inferred_premises_valid": 0,
+    "edges": 0,
+    "edges_verified": 0,
+    "verified_claim_coverage": 0.0
+   },
+   "rejected_claim_ids": [
+    "c1~canon",
+    "c2~canon",
+    "c4~canon"
+   ],
+   "flags": [
+    "DIAGNOSE without a verified observed claim about the suspected service"
+   ]
+  }
+ }
+}

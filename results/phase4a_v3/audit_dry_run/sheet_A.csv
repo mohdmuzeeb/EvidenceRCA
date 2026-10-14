@@ -1,0 +1,56 @@
+item_id,context_id,claim,cited_records_metadata,label,origin_guess,notes
+A01,1dc05ddfb6,"OBSERVED: error_rate_above_baseline(subject=gateway, object=gateway) = 0.186 1",gateway | metric app.errors | unit 1,,,
+A02,0d24e2e98f,"OBSERVED: latency_above_baseline(subject=order, object=inventory) = 254.8 ms",order -> inventory | trace CLIENT POST | unit ms,,,
+A03,f815ed61c0,"OBSERVED: latency_above_baseline(subject=gateway, object=gateway) = 623.0 ms",gateway | trace SERVER /api/orders | unit ms,,,
+A04,1726c30981,OBSERVED: latency_above_baseline(subject=gateway) = 3.8 ms,gateway -> inventory | trace CLIENT GET | unit ms,,,
+A05,1dc05ddfb6,"OBSERVED: call_failed(subject=gateway, object=inventory) = 1 1",gateway -> inventory | trace CLIENT GET | unit ms,,,
+A06,c5868f8901,OBSERVED: latency_above_baseline(subject=inventory) = 24.2 ms,"gateway -> inventory | trace CLIENT GET | unit ms
+gateway -> inventory | trace CLIENT GET | unit ms
+gateway -> inventory | trace CLIENT GET | unit ms
+gateway -> inventory | trace CLIENT GET | unit ms",,,
+A07,0d24e2e98f,"OBSERVED: latency_above_baseline(subject=order, object=payment) = 20.2 ms","order -> payment | trace CLIENT POST | unit ms
+payment | trace SERVER /charge | unit ms",,,
+A08,99f861f272,OBSERVED: log_error_pattern(subject=inventory) = 2 {record},"inventory | log evidencerca.common | unit severity
+inventory | log evidencerca.common | unit severity",,,
+A09,f06813b29c,OBSERVED: latency_above_baseline(subject=gateway) = 3.8 ms,gateway -> inventory | trace CLIENT GET | unit ms,,,
+A10,2e709f3cb4,"OBSERVED: latency_above_baseline(subject=order, object=order) = 29.7 ms",order | trace SERVER /orders | unit ms,,,
+A11,2e709f3cb4,"OBSERVED: latency_above_baseline(subject=order, object=order) = 547.6 ms",gateway -> order | trace CLIENT POST | unit ms,,,
+A12,f06813b29c,OBSERVED: latency_above_baseline(subject=postgres) = 1.3 ms,order -> postgres | trace CLIENT SELECT shop | unit ms,,,
+A13,f815ed61c0,"OBSERVED: latency_above_baseline(subject=gateway, object=order) = 551.5 ms",gateway -> order | trace CLIENT POST | unit ms,,,
+A14,f06813b29c,OBSERVED: latency_above_baseline(subject=payment) = 8.6 ms,order -> payment | trace CLIENT POST | unit ms,,,
+A15,77b5ef5d63,"OBSERVED: latency_above_baseline(subject=order, object=gateway) = 309.5 ms","gateway -> inventory | trace CLIENT GET | unit ms
+order -> inventory | trace CLIENT POST | unit ms",,,
+A16,2e709f3cb4,"OBSERVED: latency_above_baseline(subject=order, object=order) = 549.4 ms",order | trace SERVER /orders | unit ms,,,
+A17,77b5ef5d63,OBSERVED: latency_above_baseline(subject=payment) = 68.9 ms,"order -> payment | trace CLIENT POST | unit ms
+payment | trace SERVER /charge | unit ms",,,
+A18,0d24e2e98f,"OBSERVED: latency_above_baseline(subject=order, object=payment) = 68.9 ms","order -> payment | trace CLIENT POST | unit ms
+payment | trace SERVER /charge | unit ms",,,
+A19,1726c30981,OBSERVED: latency_above_baseline(subject=payment) = 8.6 ms,order -> payment | trace CLIENT POST | unit ms,,,
+A20,03e10df3aa,OBSERVED: latency_above_baseline(subject=inventory) = 2009.16 ms,"inventory | metric app.request.duration | unit ms
+inventory | metric app.request.duration | unit ms
+inventory | metric app.request.duration | unit ms
+inventory | metric app.request.duration | unit ms
+inventory | metric app.request.duration | unit ms",,,
+A21,03e10df3aa,OBSERVED: pool_wait_above_baseline(subject=inventory) = 2009.16 ms,"inventory | metric app.db.pool.checked_out | unit {connection}
+inventory | metric app.db.pool.checked_out | unit {connection}
+inventory | metric app.db.pool.checked_out | unit {connection}
+inventory | metric app.db.pool.checked_out | unit {connection}
+inventory | metric app.db.pool.checked_out | unit {connection}",,,
+A22,375722cc12,OBSERVED: error_rate_above_baseline(subject=inventory) = 0.06154 1,inventory | metric app.errors | unit 1,,,
+A23,03e10df3aa,OBSERVED: log_error_pattern(subject=inventory) = 1 {record},inventory | log evidencerca.common | unit severity,,,
+A24,2e709f3cb4,"OBSERVED: latency_above_baseline(subject=order, object=order) = 462.2 ms",order | metric app.request.duration | unit ms,,,
+A25,2e709f3cb4,OBSERVED: call_failed(subject=inventory) = 1 {call},gateway -> inventory | trace CLIENT GET | unit ms,,,
+A26,c5868f8901,OBSERVED: log_error_pattern(subject=inventory) = 2 {record},"inventory | log evidencerca.common | unit severity
+inventory | log evidencerca.common | unit severity",,,
+A27,1dc05ddfb6,OBSERVED: latency_above_baseline(subject=order) = 182.7 ms,gateway -> order | trace CLIENT POST | unit ms,,,
+A28,0ff57002b1,OBSERVED: log_error_pattern(subject=gateway) = 5 {record},"gateway | log evidencerca.common | unit severity
+gateway | log evidencerca.common | unit severity
+gateway | log evidencerca.common | unit severity
+gateway | log evidencerca.common | unit severity
+gateway | log evidencerca.common | unit severity",,,
+A29,57a38271bb,"OBSERVED: pool_wait_above_baseline(subject=inventory, object=inventory) = 2038.5 ms","inventory | metric app.db.pool.checked_out | unit {connection}
+inventory | metric app.db.pool.checked_out | unit {connection}
+inventory | metric app.db.pool.checked_out | unit {connection}
+inventory | metric app.db.pool.checked_out | unit {connection}
+inventory | metric app.db.pool.checked_out | unit {connection}",,,
+A30,1726c30981,OBSERVED: latency_above_baseline(subject=postgres) = 1.3 ms,order -> postgres | trace CLIENT SELECT shop | unit ms,,,

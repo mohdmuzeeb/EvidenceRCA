@@ -1,0 +1,21 @@
+{
+ "purpose": "dev dry run: can blinded annotators tell model-written claims from provenance-derived canonical transformations? Not the Phase 4B audit; protocol section 9 is unchanged.",
+ "pairs": 20,
+ "consistent_distractors": 20,
+ "items_per_sheet": {
+  "A": 30,
+  "B": 30
+ },
+ "design": "each pair split across sheets A/B (never both members on one sheet); one annotator per sheet or both sheets with a washout; analysis: origin-guess accuracy vs chance, and support labels for original vs canonical within pairs (McNemar), after unsealing",
+ "labels": [
+  "supported",
+  "unsupported",
+  "partially_supported",
+  "not_assessable"
+ ],
+ "origin_guess": [
+  "model-written",
+  "system-derived",
+  "cannot tell"
+ ]
+}
