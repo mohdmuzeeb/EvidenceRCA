@@ -1,0 +1,122 @@
+[1/36] 23:processing_latency:gateway:0
+[2/36] 23:network_timeout:payment:0
+[3/36] 23:processing_latency:order:0
+[4/36] 23:none:-:0
+[5/36] 23:network_timeout:order:0
+[6/36] 23:cpu_pressure:order:0:strong
+[7/36] 23:processing_latency:payment:0
+[8/36] 23:service_crash:order:0
+[9/36] 23:cpu_pressure:inventory:0:strong
+[10/36] 23:processing_latency:inventory:0
+[11/36] 23:cpu_pressure:payment:0:strong
+[12/36] 23:service_crash:inventory:0
+[13/36] 23:db_pool_exhaustion:inventory:0
+[14/36] 23:none:-:1
+[15/36] 23:db_pool_exhaustion:order:0
+[16/36] 23:cascading_failure:postgres:0
+[17/36] 23:network_timeout:inventory:0
+[18/36] 23:service_crash:payment:0
+[19/36] 37:processing_latency:gateway:0
+[20/36] 37:cascading_failure:postgres:0
+[21/36] 37:service_crash:payment:0
+[22/36] 37:cpu_pressure:order:0:strong
+[23/36] 37:none:-:1
+[24/36] 37:network_timeout:order:0
+[25/36] 37:processing_latency:payment:0
+[26/36] 37:network_timeout:inventory:0
+[27/36] 37:db_pool_exhaustion:inventory:0
+[28/36] 37:cpu_pressure:payment:0:strong
+[29/36] 37:service_crash:order:0
+[30/36] 37:processing_latency:inventory:0
+[31/36] 37:service_crash:inventory:0
+[32/36] 37:db_pool_exhaustion:order:0
+[33/36] 37:none:-:0
+[34/36] 37:network_timeout:payment:0
+[35/36] 37:cpu_pressure:inventory:0:strong
+[36/36] 37:processing_latency:order:0
+{
+ "E0:S": {
+  "op1": {
+   "tau": 0.567529,
+   "coverage": 0.7009,
+   "selective_risk": 0.273
+  },
+  "op2": {
+   "tau": 0.958333,
+   "coverage": 0.0017,
+   "selective_risk": 0.0
+  },
+  "n_diagnosed_fault_trials": 575
+ },
+ "E0:A-margin": {
+  "op1": {
+   "tau": 0.103448,
+   "coverage": 0.7078,
+   "selective_risk": 0.2555
+  },
+  "op2": {
+   "tau": 1.0,
+   "coverage": 0.4487,
+   "selective_risk": 0.0969
+  },
+  "n_diagnosed_fault_trials": 575
+ },
+ "E0:A-ver": {
+  "op1": {
+   "tau": 0.445029,
+   "coverage": 0.7026,
+   "selective_risk": 0.2599
+  },
+  "op2": {
+   "tau": 0.888889,
+   "coverage": 0.0017,
+   "selective_risk": 0.0
+  },
+  "n_diagnosed_fault_trials": 575
+ },
+ "E0-A-graph:S": {
+  "op1": {
+   "tau": 0.333333,
+   "coverage": 1.0,
+   "selective_risk": 0.5896
+  },
+  "op2": null,
+  "n_diagnosed_fault_trials": 575
+ },
+ "B1:margin": {
+  "op1": {
+   "tau": 0.279758,
+   "coverage": 0.833,
+   "selective_risk": 0.7578
+  },
+  "op2": {
+   "tau": 1.0,
+   "coverage": 0.0017,
+   "selective_risk": 0.0
+  },
+  "n_diagnosed_fault_trials": 575
+ },
+ "B2:margin": {
+  "op1": {
+   "tau": 0.15,
+   "coverage": 0.8818,
+   "selective_risk": 0.2758
+  },
+  "op2": {
+   "tau": 0.293392,
+   "coverage": 0.2841,
+   "selective_risk": 0.088
+  },
+  "n_diagnosed_fault_trials": 440
+ },
+ "B3:margin": {
+  "op1": {
+   "tau": 0.0,
+   "coverage": 1.0,
+   "selective_risk": 0.9466
+  },
+  "op2": null,
+  "n_diagnosed_fault_trials": 543
+ }
+}
+CAL_EXIT 0

@@ -10,7 +10,8 @@ Work proceeds in approval-gated phases. Phases 0–3 are done (design; testbed a
 | 1: microservice testbed and telemetry validation | done | [`docs/phase1_validation.md`](docs/phase1_validation.md) |
 | 2: workload, fault injection, ground truth, leakage prevention, pilot | done | [`docs/phase2_validation.md`](docs/phase2_validation.md), [`docs/fault_catalog.md`](docs/fault_catalog.md) |
 | 3: baselines B1–B3, EvidenceRCA (no LLM), verifier V0–V6, abstention, dev evaluation | done | [`docs/phase3_validation.md`](docs/phase3_validation.md), [`docs/baseline_implementation.md`](docs/baseline_implementation.md), [`docs/evidence_verifier_spec.md`](docs/evidence_verifier_spec.md) |
-| 4+: LLM provider, B4/E1, calibration/test capture, evaluation | not started (needs approval) | — |
+| Frozen calibration/test evaluation (deterministic methods) | done | [`docs/final_results.md`](docs/final_results.md), [`docs/frozen/frozen_protocol.md`](docs/frozen/frozen_protocol.md) |
+| 4+: LLM provider, B4/E1 | not started (needs approval) | — |
 
 ## Repository layout
 
@@ -162,6 +163,16 @@ uv run pytest -q                                  # all tests (Phase 1-3)
 
 - Methods only see a `View` (opaque `view_id`, records, unavailable modalities, time tolerance). The view builder (evaluation side) may read ground truth for the CS/RL/CF perturbations; its transform log never enters a View.
 - Calibration/test seeds remain refused by default. tau (abstention) is not calibrated in Phase 3.
+
+## Frozen calibration and test evaluation
+
+```bash
+uv run python -m evaluation.freeze verify                       # refuses to proceed if any frozen file changed
+caffeinate -dims runs/capture_final.sh                          # seeds 23/37 then 41/53/67 (strong CPU), 2 passes each
+uv run python -m evaluation.run_final calibrate                 # tau from seeds 23/37 only
+uv run python -m evaluation.run_final evaluate                  # held-out test with the hash-checked calibration
+uv run python -m evaluation.sensitivity_adjudicated             # sensitivity: adjudicated excluded scenario
+```
 
 ## Constraints and integrity rules
 

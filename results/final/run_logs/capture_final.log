@@ -1,0 +1,409 @@
+18:58:22 matrix: seed 23 (calibration): 18 scenarios to capture, 18 already captured
+18:58:22 [a188c315] 23:processing_latency:gateway:0: start
+19:00:47 [a188c315] injected (control /delay)
+19:02:47 [a188c315] cleaned up (control /delay/clear)
+19:04:10 [a188c315] done in 348.8 s: valid=True occurred=True recovered=True telemetry=True
+19:04:10 [d5f10bc1] 23:service_crash:inventory:0: start
+19:06:34 [d5f10bc1] injected (docker kill -s KILL)
+19:08:38 [d5f10bc1] cleaned up (docker start; wait healthy)
+19:09:52 [d5f10bc1] done in 341.3 s: valid=False occurred=True recovered=False telemetry=True
+19:09:52 [6d641780] 23:network_timeout:payment:0: start
+19:12:17 [6d641780] injected (nsenter -n tc qdisc add ... netem)
+19:14:17 [6d641780] cleaned up (nsenter -n tc qdisc del)
+19:15:33 [6d641780] done in 341.6 s: valid=True occurred=True recovered=True telemetry=True
+19:15:33 [94bda444] 23:processing_latency:order:0: start
+19:17:58 [94bda444] injected (control /delay)
+19:19:58 [94bda444] cleaned up (control /delay/clear)
+19:21:16 [94bda444] done in 342.3 s: valid=True occurred=True recovered=True telemetry=True
+19:21:16 [1be0b33d] 23:none:-:0: start
+19:23:39 [1be0b33d] injected (none)
+19:25:39 [1be0b33d] cleaned up (none)
+19:27:03 [1be0b33d] done in 347.3 s: valid=True occurred=None recovered=True telemetry=True
+19:27:03 [a34aded6] 23:network_timeout:order:0: start
+19:29:28 [a34aded6] injected (nsenter -n tc qdisc add ... netem)
+19:31:29 [a34aded6] cleaned up (nsenter -n tc qdisc del)
+19:32:47 [a34aded6] done in 344.4 s: valid=True occurred=True recovered=True telemetry=True
+19:32:47 [4ad1b5a8] 23:cpu_pressure:order:0:strong: start
+19:35:05 [4ad1b5a8] injected (docker update --cpus 0.2 + docker exec: 2 busy-loop processes)
+19:37:05 [4ad1b5a8] cleaned up (VM host: kill busy-loop processes in the target cgroup; docker update --cpus 1)
+19:38:23 [4ad1b5a8] done in 336.0 s: valid=True occurred=True recovered=True telemetry=True
+19:38:23 [610608e8] 23:processing_latency:payment:0: start
+19:40:43 [610608e8] injected (control /delay)
+19:42:44 [610608e8] cleaned up (control /delay/clear)
+19:44:01 [610608e8] done in 337.2 s: valid=True occurred=True recovered=True telemetry=True
+19:44:01 [39246b66] 23:service_crash:order:0: start
+19:46:25 [39246b66] injected (docker kill -s KILL)
+19:48:29 [39246b66] cleaned up (docker start; wait healthy)
+19:49:44 [39246b66] done in 343.6 s: valid=True occurred=True recovered=True telemetry=True
+19:49:44 [f2a7563b] 23:cpu_pressure:inventory:0:strong: start
+19:52:11 [f2a7563b] injected (docker update --cpus 0.2 + docker exec: 2 busy-loop processes)
+19:54:12 [f2a7563b] cleaned up (VM host: kill busy-loop processes in the target cgroup; docker update --cpus 1)
+19:55:28 [f2a7563b] done in 343.6 s: valid=True occurred=True recovered=True telemetry=True
+19:55:28 [da1b57bf] 23:processing_latency:inventory:0: start
+19:57:52 [da1b57bf] injected (control /delay)
+19:59:52 [da1b57bf] cleaned up (control /delay/clear)
+20:01:12 [da1b57bf] done in 343.7 s: valid=True occurred=True recovered=True telemetry=True
+20:01:12 [c1ac3391] 23:cpu_pressure:payment:0:strong: start
+20:03:38 [c1ac3391] injected (docker update --cpus 0.2 + docker exec: 2 busy-loop processes)
+20:05:38 [c1ac3391] cleaned up (VM host: kill busy-loop processes in the target cgroup; docker update --cpus 1)
+20:06:54 [c1ac3391] done in 342.6 s: valid=True occurred=True recovered=True telemetry=True
+20:06:54 [5de6d6ef] 23:db_pool_exhaustion:inventory:0: start
+20:09:16 [5de6d6ef] injected (control /hold)
+20:11:16 [5de6d6ef] cleaned up (control /release)
+20:12:35 [5de6d6ef] done in 340.2 s: valid=False occurred=True recovered=False telemetry=True
+20:12:35 [e5f565d6] 23:none:-:1: start
+PAUSED 20:12:40 (AC power lost at 20:10)
+RESUMED 20:13:26
+20:13:26 matrix: seed 23 (calibration): 7 scenarios to capture, 29 already captured
+20:13:26 [6c5af296] 23:service_crash:inventory:0: start
+20:15:49 [6c5af296] injected (docker kill -s KILL)
+20:17:53 [6c5af296] cleaned up (docker start; wait healthy)
+20:19:06 [6c5af296] done in 339.8 s: valid=True occurred=True recovered=True telemetry=True
+20:19:06 [c4ea54ae] 23:db_pool_exhaustion:inventory:0: start
+20:21:28 [c4ea54ae] injected (control /hold)
+20:23:28 [c4ea54ae] cleaned up (control /release)
+20:24:46 [c4ea54ae] done in 339.9 s: valid=True occurred=True recovered=True telemetry=True
+20:24:46 [6d6fc32a] 23:none:-:1: start
+20:27:09 [6d6fc32a] injected (none)
+20:29:09 [6d6fc32a] cleaned up (none)
+20:30:29 [6d6fc32a] done in 342.8 s: valid=True occurred=None recovered=True telemetry=True
+20:30:29 [7795d6c7] 23:db_pool_exhaustion:order:0: start
+20:32:47 [7795d6c7] injected (control /hold)
+20:34:47 [7795d6c7] cleaned up (control /release)
+20:36:05 [7795d6c7] done in 336.3 s: valid=True occurred=True recovered=True telemetry=True
+20:36:05 [0ab2a257] 23:service_crash:payment:0: start
+20:38:28 [0ab2a257] injected (docker kill -s KILL)
+20:40:32 [0ab2a257] cleaned up (docker start; wait healthy)
+20:41:48 [0ab2a257] done in 343.1 s: valid=False occurred=True recovered=True telemetry=False
+20:41:48 [5db61d98] 23:cascading_failure:postgres:0: start
+20:44:08 [5db61d98] injected (psql: BEGIN; LOCK TABLE ... ACCESS EXCLUSIVE)
+20:46:08 [5db61d98] cleaned up (psql: COMMIT)
+20:47:26 [5db61d98] done in 337.7 s: valid=True occurred=True recovered=True telemetry=True
+20:47:26 [bfa24024] 23:network_timeout:inventory:0: start
+20:49:50 [bfa24024] injected (nsenter -n tc qdisc add ... netem)
+20:51:50 [bfa24024] cleaned up (nsenter -n tc qdisc del)
+20:53:09 [bfa24024] done in 343.0 s: valid=True occurred=True recovered=True telemetry=True
+SEED_23_PASS_1_EXIT 1
+20:53:09 matrix: seed 23 (calibration): 1 scenarios to capture, 35 already captured
+20:53:09 [c8de4068] 23:service_crash:payment:0: start
+20:55:33 [c8de4068] injected (docker kill -s KILL)
+20:57:37 [c8de4068] cleaned up (docker start; wait healthy)
+20:58:54 [c8de4068] done in 344.4 s: valid=True occurred=True recovered=True telemetry=True
+SEED_23_PASS_2_EXIT 0
+20:58:54 matrix: seed 37 (calibration): 18 scenarios to capture, 36 already captured
+20:58:54 [c03173f8] 37:processing_latency:gateway:0: start
+21:01:21 [c03173f8] injected (control /delay)
+21:03:21 [c03173f8] cleaned up (control /delay/clear)
+21:04:38 [c03173f8] done in 343.9 s: valid=True occurred=True recovered=True telemetry=True
+21:04:38 [924b0d34] 37:cascading_failure:postgres:0: start
+21:06:55 [924b0d34] injected (psql: BEGIN; LOCK TABLE ... ACCESS EXCLUSIVE)
+21:08:55 [924b0d34] cleaned up (psql: COMMIT)
+21:10:13 [924b0d34] done in 335.0 s: valid=True occurred=True recovered=True telemetry=True
+21:10:13 [f8a14df1] 37:service_crash:payment:0: start
+21:12:34 [f8a14df1] injected (docker kill -s KILL)
+21:14:38 [f8a14df1] cleaned up (docker start; wait healthy)
+21:15:51 [f8a14df1] done in 337.9 s: valid=True occurred=True recovered=True telemetry=True
+21:15:51 [51d8dac3] 37:cpu_pressure:order:0:strong: start
+21:18:12 [51d8dac3] injected (docker update --cpus 0.2 + docker exec: 2 busy-loop processes)
+21:20:13 [51d8dac3] cleaned up (VM host: kill busy-loop processes in the target cgroup; docker update --cpus 1)
+21:21:29 [51d8dac3] done in 338.2 s: valid=True occurred=True recovered=True telemetry=True
+21:21:29 [e2c65ba8] 37:none:-:1: start
+21:23:49 [e2c65ba8] injected (none)
+21:25:49 [e2c65ba8] cleaned up (none)
+21:27:06 [e2c65ba8] done in 336.5 s: valid=True occurred=None recovered=True telemetry=True
+21:27:06 [ebae7d3c] 37:network_timeout:order:0: start
+21:29:26 [ebae7d3c] injected (nsenter -n tc qdisc add ... netem)
+21:31:27 [ebae7d3c] cleaned up (nsenter -n tc qdisc del)
+21:32:43 [ebae7d3c] done in 337.5 s: valid=True occurred=True recovered=True telemetry=True
+21:32:43 [44e59873] 37:processing_latency:order:0: start
+21:35:06 [44e59873] injected (control /delay)
+21:37:06 [44e59873] cleaned up (control /delay/clear)
+21:38:27 [44e59873] done in 343.3 s: valid=False occurred=True recovered=True telemetry=False
+21:38:27 [d7e1126b] 37:processing_latency:payment:0: start
+21:40:48 [d7e1126b] injected (control /delay)
+21:42:48 [d7e1126b] cleaned up (control /delay/clear)
+21:44:05 [d7e1126b] done in 338.4 s: valid=True occurred=True recovered=True telemetry=True
+21:44:05 [2bb84f0b] 37:network_timeout:inventory:0: start
+21:46:24 [2bb84f0b] injected (nsenter -n tc qdisc add ... netem)
+21:48:24 [2bb84f0b] cleaned up (nsenter -n tc qdisc del)
+21:49:41 [2bb84f0b] done in 336.3 s: valid=True occurred=True recovered=True telemetry=True
+21:49:41 [588534ec] 37:db_pool_exhaustion:inventory:0: start
+21:52:01 [588534ec] injected (control /hold)
+21:54:01 [588534ec] cleaned up (control /release)
+21:55:18 [588534ec] done in 336.7 s: valid=True occurred=True recovered=True telemetry=True
+21:55:18 [acb2e699] 37:cpu_pressure:payment:0:strong: start
+21:57:41 [acb2e699] injected (docker update --cpus 0.2 + docker exec: 2 busy-loop processes)
+21:59:41 [acb2e699] cleaned up (VM host: kill busy-loop processes in the target cgroup; docker update --cpus 1)
+22:00:57 [acb2e699] done in 339.2 s: valid=True occurred=True recovered=True telemetry=True
+22:00:57 [042a0c9d] 37:service_crash:order:0: start
+22:03:15 [042a0c9d] injected (docker kill -s KILL)
+22:05:19 [042a0c9d] cleaned up (docker start; wait healthy)
+22:06:32 [042a0c9d] done in 334.4 s: valid=True occurred=True recovered=True telemetry=True
+22:06:32 [4843908d] 37:processing_latency:inventory:0: start
+22:08:50 [4843908d] injected (control /delay)
+22:10:51 [4843908d] cleaned up (control /delay/clear)
+22:12:08 [4843908d] done in 336.3 s: valid=True occurred=True recovered=True telemetry=True
+22:12:08 [db6cf28e] 37:service_crash:inventory:0: start
+22:14:31 [db6cf28e] injected (docker kill -s KILL)
+22:16:35 [db6cf28e] cleaned up (docker start; wait healthy)
+22:17:51 [db6cf28e] done in 343.1 s: valid=True occurred=True recovered=True telemetry=True
+22:17:51 [6ebed624] 37:db_pool_exhaustion:order:0: start
+22:20:13 [6ebed624] injected (control /hold)
+22:22:14 [6ebed624] cleaned up (control /release)
+22:23:32 [6ebed624] done in 340.8 s: valid=True occurred=True recovered=True telemetry=True
+22:23:32 [7d897ab9] 37:none:-:0: start
+22:25:53 [7d897ab9] injected (none)
+22:27:53 [7d897ab9] cleaned up (none)
+22:29:10 [7d897ab9] done in 337.9 s: valid=True occurred=None recovered=True telemetry=True
+22:29:10 [479e5ee6] 37:network_timeout:payment:0: start
+22:31:35 [479e5ee6] injected (nsenter -n tc qdisc add ... netem)
+22:33:36 [479e5ee6] cleaned up (nsenter -n tc qdisc del)
+22:34:53 [479e5ee6] done in 343.5 s: valid=True occurred=True recovered=True telemetry=True
+22:34:53 [59192ed1] 37:cpu_pressure:inventory:0:strong: start
+22:37:15 [59192ed1] injected (docker update --cpus 0.2 + docker exec: 2 busy-loop processes)
+22:39:14 [59192ed1] cleaned up (VM host: kill busy-loop processes in the target cgroup; docker update --cpus 1)
+22:40:31 [59192ed1] done in 337.4 s: valid=True occurred=True recovered=True telemetry=True
+SEED_37_PASS_1_EXIT 1
+22:40:31 matrix: seed 37 (calibration): 1 scenarios to capture, 53 already captured
+22:40:31 [91b5c0ae] 37:processing_latency:order:0: start
+22:42:55 [91b5c0ae] injected (control /delay)
+22:44:56 [91b5c0ae] cleaned up (control /delay/clear)
+22:46:12 [91b5c0ae] done in 340.5 s: valid=True occurred=True recovered=True telemetry=True
+SEED_37_PASS_2_EXIT 0
+22:46:12 matrix: seed 41 (test): 18 scenarios to capture, 54 already captured
+22:46:12 [41c645c7] 41:db_pool_exhaustion:inventory:0: start
+22:48:30 [41c645c7] injected (control /hold)
+22:50:30 [41c645c7] cleaned up (control /release)
+22:51:47 [41c645c7] done in 334.3 s: valid=True occurred=True recovered=True telemetry=True
+22:51:47 [6e476e7d] 41:service_crash:order:0: start
+22:54:12 [6e476e7d] injected (docker kill -s KILL)
+22:56:16 [6e476e7d] cleaned up (docker start; wait healthy)
+22:57:29 [6e476e7d] done in 342.9 s: valid=True occurred=True recovered=True telemetry=True
+22:57:29 [7cffe1a7] 41:processing_latency:order:0: start
+22:59:49 [7cffe1a7] injected (control /delay)
+23:01:50 [7cffe1a7] cleaned up (control /delay/clear)
+23:03:06 [7cffe1a7] done in 336.2 s: valid=True occurred=True recovered=True telemetry=True
+23:03:06 [876a7cef] 41:cpu_pressure:payment:0:strong: start
+23:05:25 [876a7cef] injected (docker update --cpus 0.2 + docker exec: 2 busy-loop processes)
+23:07:25 [876a7cef] cleaned up (VM host: kill busy-loop processes in the target cgroup; docker update --cpus 1)
+23:08:41 [876a7cef] done in 335.6 s: valid=True occurred=True recovered=True telemetry=True
+23:08:41 [ad94d019] 41:processing_latency:gateway:0: start
+23:11:08 [ad94d019] injected (control /delay)
+23:13:08 [ad94d019] cleaned up (control /delay/clear)
+23:14:25 [ad94d019] done in 343.7 s: valid=True occurred=True recovered=True telemetry=True
+23:14:25 [e3aa56b9] 41:cpu_pressure:inventory:0:strong: start
+23:16:48 [e3aa56b9] injected (docker update --cpus 0.2 + docker exec: 2 busy-loop processes)
+23:18:48 [e3aa56b9] cleaned up (VM host: kill busy-loop processes in the target cgroup; docker update --cpus 1)
+23:20:04 [e3aa56b9] done in 339.4 s: valid=True occurred=True recovered=True telemetry=True
+23:20:04 [5c451fbf] 41:processing_latency:payment:0: start
+23:22:29 [5c451fbf] injected (control /delay)
+23:24:29 [5c451fbf] cleaned up (control /delay/clear)
+23:25:48 [5c451fbf] done in 343.6 s: valid=True occurred=True recovered=True telemetry=True
+23:25:48 [0a29b423] 41:network_timeout:order:0: start
+23:28:06 [0a29b423] injected (nsenter -n tc qdisc add ... netem)
+23:30:07 [0a29b423] cleaned up (nsenter -n tc qdisc del)
+23:31:24 [0a29b423] done in 335.6 s: valid=True occurred=True recovered=True telemetry=True
+23:31:24 [f5e8d629] 41:network_timeout:payment:0: start
+23:33:44 [f5e8d629] injected (nsenter -n tc qdisc add ... netem)
+23:35:45 [f5e8d629] cleaned up (nsenter -n tc qdisc del)
+23:37:02 [f5e8d629] done in 337.9 s: valid=True occurred=True recovered=True telemetry=True
+23:37:02 [ab9bb511] 41:network_timeout:inventory:0: start
+23:39:28 [ab9bb511] injected (nsenter -n tc qdisc add ... netem)
+23:41:29 [ab9bb511] cleaned up (nsenter -n tc qdisc del)
+23:42:44 [ab9bb511] done in 342.7 s: valid=False occurred=False recovered=True telemetry=True
+23:42:44 [47fd1eda] 41:none:-:0: start
+23:45:11 [47fd1eda] injected (none)
+23:47:11 [47fd1eda] cleaned up (none)
+23:48:28 [47fd1eda] done in 343.2 s: valid=True occurred=None recovered=True telemetry=True
+23:48:28 [1b1422f2] 41:cascading_failure:postgres:0: start
+23:50:48 [1b1422f2] injected (psql: BEGIN; LOCK TABLE ... ACCESS EXCLUSIVE)
+23:52:48 [1b1422f2] cleaned up (psql: COMMIT)
+23:54:05 [1b1422f2] done in 337.7 s: valid=True occurred=True recovered=True telemetry=True
+23:54:05 [536d8abd] 41:service_crash:payment:0: start
+23:56:29 [536d8abd] injected (docker kill -s KILL)
+23:58:33 [536d8abd] cleaned up (docker start; wait healthy)
+23:59:49 [536d8abd] done in 343.4 s: valid=True occurred=True recovered=True telemetry=True
+23:59:49 [43d702fa] 41:service_crash:inventory:0: start
+00:02:10 [43d702fa] injected (docker kill -s KILL)
+00:04:14 [43d702fa] cleaned up (docker start; wait healthy)
+00:05:26 [43d702fa] done in 337.6 s: valid=True occurred=True recovered=True telemetry=True
+00:05:26 [1f885c04] 41:none:-:1: start
+00:07:46 [1f885c04] injected (none)
+00:09:46 [1f885c04] cleaned up (none)
+00:11:04 [1f885c04] done in 337.4 s: valid=True occurred=None recovered=True telemetry=True
+00:11:04 [dc2e335c] 41:processing_latency:inventory:0: start
+00:13:23 [dc2e335c] injected (control /delay)
+00:15:24 [dc2e335c] cleaned up (control /delay/clear)
+00:16:40 [dc2e335c] done in 336.1 s: valid=True occurred=True recovered=True telemetry=True
+00:16:40 [1bc8539e] 41:db_pool_exhaustion:order:0: start
+00:19:01 [1bc8539e] injected (control /hold)
+00:21:01 [1bc8539e] cleaned up (control /release)
+00:22:18 [1bc8539e] done in 337.4 s: valid=True occurred=True recovered=True telemetry=True
+00:22:18 [26d46cca] 41:cpu_pressure:order:0:strong: start
+00:24:47 [26d46cca] injected (docker update --cpus 0.2 + docker exec: 2 busy-loop processes)
+00:26:47 [26d46cca] cleaned up (VM host: kill busy-loop processes in the target cgroup; docker update --cpus 1)
+00:28:02 [26d46cca] done in 344.1 s: valid=True occurred=True recovered=True telemetry=True
+SEED_41_PASS_1_EXIT 1
+00:28:02 matrix: seed 41 (test): 1 scenarios to capture, 71 already captured
+00:28:02 [e6b597c8] 41:network_timeout:inventory:0: start
+00:30:29 [e6b597c8] injected (nsenter -n tc qdisc add ... netem)
+00:32:29 [e6b597c8] cleaned up (nsenter -n tc qdisc del)
+00:33:46 [e6b597c8] done in 344.1 s: valid=False occurred=False recovered=True telemetry=True
+SEED_41_PASS_2_EXIT 1
+00:33:46 matrix: seed 53 (test): 18 scenarios to capture, 71 already captured
+00:33:46 [b8ca6afd] 53:processing_latency:inventory:0: start
+00:36:05 [b8ca6afd] injected (control /delay)
+00:38:06 [b8ca6afd] cleaned up (control /delay/clear)
+00:39:22 [b8ca6afd] done in 335.8 s: valid=True occurred=True recovered=True telemetry=True
+00:39:22 [8d92b705] 53:cpu_pressure:inventory:0:strong: start
+00:41:49 [8d92b705] injected (docker update --cpus 0.2 + docker exec: 2 busy-loop processes)
+00:43:49 [8d92b705] cleaned up (VM host: kill busy-loop processes in the target cgroup; docker update --cpus 1)
+00:45:05 [8d92b705] done in 342.5 s: valid=True occurred=True recovered=True telemetry=True
+00:45:05 [152683eb] 53:db_pool_exhaustion:inventory:0: start
+00:47:27 [152683eb] injected (control /hold)
+00:49:27 [152683eb] cleaned up (control /release)
+00:50:43 [152683eb] done in 338.5 s: valid=True occurred=True recovered=True telemetry=True
+00:50:43 [8245fa4f] 53:db_pool_exhaustion:order:0: start
+00:53:08 [8245fa4f] injected (control /hold)
+00:55:08 [8245fa4f] cleaned up (control /release)
+00:56:27 [8245fa4f] done in 343.2 s: valid=True occurred=True recovered=True telemetry=True
+00:56:27 [596b90ff] 53:cpu_pressure:order:0:strong: start
+00:58:48 [596b90ff] injected (docker update --cpus 0.2 + docker exec: 2 busy-loop processes)
+01:00:48 [596b90ff] cleaned up (VM host: kill busy-loop processes in the target cgroup; docker update --cpus 1)
+01:02:05 [596b90ff] done in 338.3 s: valid=True occurred=True recovered=True telemetry=True
+01:02:05 [5dcdd36d] 53:network_timeout:payment:0: start
+01:04:29 [5dcdd36d] injected (nsenter -n tc qdisc add ... netem)
+01:06:29 [5dcdd36d] cleaned up (nsenter -n tc qdisc del)
+01:07:48 [5dcdd36d] done in 343.1 s: valid=True occurred=True recovered=True telemetry=True
+01:07:48 [8b70ce86] 53:service_crash:order:0: start
+01:10:08 [8b70ce86] injected (docker kill -s KILL)
+01:12:12 [8b70ce86] cleaned up (docker start; wait healthy)
+01:13:25 [8b70ce86] done in 336.9 s: valid=True occurred=True recovered=True telemetry=True
+01:13:25 [61fd1e61] 53:cpu_pressure:payment:0:strong: start
+01:15:46 [61fd1e61] injected (docker update --cpus 0.2 + docker exec: 2 busy-loop processes)
+01:17:46 [61fd1e61] cleaned up (VM host: kill busy-loop processes in the target cgroup; docker update --cpus 1)
+01:19:03 [61fd1e61] done in 338.1 s: valid=True occurred=True recovered=True telemetry=True
+01:19:03 [c2b8ba6f] 53:service_crash:inventory:0: start
+01:21:27 [c2b8ba6f] injected (docker kill -s KILL)
+01:23:31 [c2b8ba6f] cleaned up (docker start; wait healthy)
+01:24:46 [c2b8ba6f] done in 342.8 s: valid=True occurred=True recovered=True telemetry=True
+01:24:46 [716f5bc7] 53:cascading_failure:postgres:0: start
+01:27:05 [716f5bc7] injected (psql: BEGIN; LOCK TABLE ... ACCESS EXCLUSIVE)
+01:29:05 [716f5bc7] cleaned up (psql: COMMIT)
+01:30:23 [716f5bc7] done in 336.8 s: valid=True occurred=True recovered=True telemetry=True
+01:30:23 [bac0e1cd] 53:none:-:0: start
+01:32:48 [bac0e1cd] injected (none)
+01:34:48 [bac0e1cd] cleaned up (none)
+01:36:06 [bac0e1cd] done in 343.0 s: valid=True occurred=None recovered=True telemetry=True
+01:36:06 [da70a4cd] 53:none:-:1: start
+01:38:22 [da70a4cd] injected (none)
+01:40:22 [da70a4cd] cleaned up (none)
+01:41:40 [da70a4cd] done in 333.8 s: valid=True occurred=None recovered=True telemetry=True
+01:41:40 [a3be03f5] 53:processing_latency:order:0: start
+01:44:01 [a3be03f5] injected (control /delay)
+01:46:01 [a3be03f5] cleaned up (control /delay/clear)
+01:47:18 [a3be03f5] done in 338.6 s: valid=False occurred=True recovered=True telemetry=False
+01:47:18 [4b0dc941] 53:processing_latency:payment:0: start
+01:49:39 [4b0dc941] injected (control /delay)
+01:51:39 [4b0dc941] cleaned up (control /delay/clear)
+01:52:57 [4b0dc941] done in 338.6 s: valid=True occurred=True recovered=True telemetry=True
+01:52:57 [96d9feb0] 53:network_timeout:order:0: start
+01:55:21 [96d9feb0] injected (nsenter -n tc qdisc add ... netem)
+01:57:22 [96d9feb0] cleaned up (nsenter -n tc qdisc del)
+01:58:39 [96d9feb0] done in 342.6 s: valid=True occurred=True recovered=True telemetry=True
+01:58:39 [f24251b2] 53:service_crash:payment:0: start
+02:00:58 [f24251b2] injected (docker kill -s KILL)
+02:03:02 [f24251b2] cleaned up (docker start; wait healthy)
+02:04:15 [f24251b2] done in 335.2 s: valid=True occurred=True recovered=True telemetry=True
+02:04:15 [c40005cb] 53:processing_latency:gateway:0: start
+02:06:38 [c40005cb] injected (control /delay)
+02:08:38 [c40005cb] cleaned up (control /delay/clear)
+02:09:57 [c40005cb] done in 342.6 s: valid=True occurred=True recovered=True telemetry=True
+02:09:57 [c158c0a0] 53:network_timeout:inventory:0: start
+02:12:14 [c158c0a0] injected (nsenter -n tc qdisc add ... netem)
+02:14:14 [c158c0a0] cleaned up (nsenter -n tc qdisc del)
+02:15:30 [c158c0a0] done in 333.1 s: valid=True occurred=True recovered=True telemetry=True
+SEED_53_PASS_1_EXIT 1
+02:15:31 matrix: seed 53 (test): 1 scenarios to capture, 88 already captured
+02:15:31 [7618ca26] 53:processing_latency:order:0: start
+02:17:52 [7618ca26] injected (control /delay)
+02:19:52 [7618ca26] cleaned up (control /delay/clear)
+02:21:08 [7618ca26] done in 337.3 s: valid=True occurred=True recovered=True telemetry=True
+SEED_53_PASS_2_EXIT 0
+02:21:08 matrix: seed 67 (test): 18 scenarios to capture, 89 already captured
+02:21:08 [4a518b7e] 67:processing_latency:order:0: start
+02:23:29 [4a518b7e] injected (control /delay)
+02:25:30 [4a518b7e] cleaned up (control /delay/clear)
+02:26:47 [4a518b7e] done in 338.2 s: valid=True occurred=True recovered=True telemetry=True
+02:26:47 [9c672cd4] 67:processing_latency:payment:0: start
+02:29:07 [9c672cd4] injected (control /delay)
+02:31:08 [9c672cd4] cleaned up (control /delay/clear)
+02:32:25 [9c672cd4] done in 338.0 s: valid=True occurred=True recovered=True telemetry=True
+02:32:25 [7fbd7ede] 67:network_timeout:inventory:0: start
+02:34:48 [7fbd7ede] injected (nsenter -n tc qdisc add ... netem)
+02:36:48 [7fbd7ede] cleaned up (nsenter -n tc qdisc del)
+02:38:07 [7fbd7ede] done in 342.7 s: valid=True occurred=True recovered=True telemetry=True
+02:38:07 [5eac7da9] 67:db_pool_exhaustion:inventory:0: start
+02:40:34 [5eac7da9] injected (control /hold)
+02:42:35 [5eac7da9] cleaned up (control /release)
+02:43:52 [5eac7da9] done in 345.0 s: valid=True occurred=True recovered=True telemetry=True
+02:43:53 [787330a5] 67:cascading_failure:postgres:0: start
+02:46:19 [787330a5] injected (psql: BEGIN; LOCK TABLE ... ACCESS EXCLUSIVE)
+02:48:18 [787330a5] cleaned up (psql: COMMIT)
+02:49:37 [787330a5] done in 344.6 s: valid=True occurred=True recovered=True telemetry=True
+02:49:37 [07eb259f] 67:none:-:1: start
+02:51:59 [07eb259f] injected (none)
+02:53:59 [07eb259f] cleaned up (none)
+02:55:16 [07eb259f] done in 339.1 s: valid=True occurred=None recovered=True telemetry=True
+02:55:16 [a4c826e3] 67:network_timeout:payment:0: start
+02:57:43 [a4c826e3] injected (nsenter -n tc qdisc add ... netem)
+02:59:43 [a4c826e3] cleaned up (nsenter -n tc qdisc del)
+03:01:01 [a4c826e3] done in 344.2 s: valid=True occurred=True recovered=True telemetry=True
+03:01:01 [75d19304] 67:network_timeout:order:0: start
+03:03:24 [75d19304] injected (nsenter -n tc qdisc add ... netem)
+03:05:24 [75d19304] cleaned up (nsenter -n tc qdisc del)
+03:06:43 [75d19304] done in 342.2 s: valid=True occurred=True recovered=True telemetry=True
+03:06:43 [4ea0d220] 67:cpu_pressure:inventory:0:strong: start
+03:09:04 [4ea0d220] injected (docker update --cpus 0.2 + docker exec: 2 busy-loop processes)
+03:11:04 [4ea0d220] cleaned up (VM host: kill busy-loop processes in the target cgroup; docker update --cpus 1)
+03:12:20 [4ea0d220] done in 337.3 s: valid=True occurred=True recovered=True telemetry=True
+03:12:20 [87641afb] 67:none:-:0: start
+03:14:44 [87641afb] injected (none)
+03:16:44 [87641afb] cleaned up (none)
+03:18:03 [87641afb] done in 343.3 s: valid=True occurred=None recovered=True telemetry=True
+03:18:03 [324cbab1] 67:cpu_pressure:payment:0:strong: start
+03:20:25 [324cbab1] injected (docker update --cpus 0.2 + docker exec: 2 busy-loop processes)
+03:22:26 [324cbab1] cleaned up (VM host: kill busy-loop processes in the target cgroup; docker update --cpus 1)
+03:23:42 [324cbab1] done in 338.3 s: valid=True occurred=True recovered=True telemetry=True
+03:23:42 [44980619] 67:service_crash:inventory:0: start
+03:26:06 [44980619] injected (docker kill -s KILL)
+03:28:10 [44980619] cleaned up (docker start; wait healthy)
+03:29:25 [44980619] done in 343.1 s: valid=True occurred=True recovered=True telemetry=True
+03:29:25 [12918f3b] 67:cpu_pressure:order:0:strong: start
+03:31:48 [12918f3b] injected (docker update --cpus 0.2 + docker exec: 2 busy-loop processes)
+03:33:49 [12918f3b] cleaned up (VM host: kill busy-loop processes in the target cgroup; docker update --cpus 1)
+03:35:08 [12918f3b] done in 343.3 s: valid=True occurred=True recovered=True telemetry=True
+03:35:08 [bff4b910] 67:processing_latency:inventory:0: start
+03:37:31 [bff4b910] injected (control /delay)
+03:39:31 [bff4b910] cleaned up (control /delay/clear)
+03:40:48 [bff4b910] done in 339.6 s: valid=True occurred=True recovered=True telemetry=True
+03:40:48 [6da234c4] 67:service_crash:order:0: start
+03:43:05 [6da234c4] injected (docker kill -s KILL)
+03:45:10 [6da234c4] cleaned up (docker start; wait healthy)
+03:46:23 [6da234c4] done in 334.6 s: valid=True occurred=True recovered=True telemetry=True
+03:46:23 [0c529d1b] 67:processing_latency:gateway:0: start
+03:48:49 [0c529d1b] injected (control /delay)
+03:50:49 [0c529d1b] cleaned up (control /delay/clear)
+03:52:06 [0c529d1b] done in 343.7 s: valid=True occurred=True recovered=True telemetry=True
+03:52:06 [c93eeb4f] 67:service_crash:payment:0: start
+03:54:31 [c93eeb4f] injected (docker kill -s KILL)
+03:56:35 [c93eeb4f] cleaned up (docker start; wait healthy)
+03:57:50 [c93eeb4f] done in 343.3 s: valid=True occurred=True recovered=True telemetry=True
+03:57:50 [e116f168] 67:db_pool_exhaustion:order:0: start
+04:00:12 [e116f168] injected (control /hold)
+04:02:12 [e116f168] cleaned up (control /release)
+04:03:30 [e116f168] done in 340.1 s: valid=True occurred=True recovered=True telemetry=True
+SEED_67_PASS_1_EXIT 0
+04:03:30 matrix: seed 67 (test): 0 scenarios to capture, 107 already captured
+SEED_67_PASS_2_EXIT 0
+ALL_CAPTURE_DONE

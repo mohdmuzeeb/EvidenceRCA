@@ -1,0 +1,123 @@
+[1/53] 41:db_pool_exhaustion:inventory:0
+[2/53] 41:service_crash:order:0
+[3/53] 41:processing_latency:order:0
+[4/53] 41:cpu_pressure:payment:0:strong
+[5/53] 41:processing_latency:gateway:0
+[6/53] 41:cpu_pressure:inventory:0:strong
+[7/53] 41:processing_latency:payment:0
+[8/53] 41:network_timeout:order:0
+[9/53] 41:network_timeout:payment:0
+[10/53] 41:none:-:0
+[11/53] 41:cascading_failure:postgres:0
+[12/53] 41:service_crash:payment:0
+[13/53] 41:service_crash:inventory:0
+[14/53] 41:none:-:1
+[15/53] 41:processing_latency:inventory:0
+[16/53] 41:db_pool_exhaustion:order:0
+[17/53] 41:cpu_pressure:order:0:strong
+[18/53] 53:processing_latency:inventory:0
+[19/53] 53:cpu_pressure:inventory:0:strong
+[20/53] 53:db_pool_exhaustion:inventory:0
+[21/53] 53:db_pool_exhaustion:order:0
+[22/53] 53:cpu_pressure:order:0:strong
+[23/53] 53:network_timeout:payment:0
+[24/53] 53:service_crash:order:0
+[25/53] 53:cpu_pressure:payment:0:strong
+[26/53] 53:service_crash:inventory:0
+[27/53] 53:cascading_failure:postgres:0
+[28/53] 53:none:-:0
+[29/53] 53:none:-:1
+[30/53] 53:processing_latency:payment:0
+[31/53] 53:network_timeout:order:0
+[32/53] 53:service_crash:payment:0
+[33/53] 53:processing_latency:gateway:0
+[34/53] 53:network_timeout:inventory:0
+[35/53] 53:processing_latency:order:0
+[36/53] 67:processing_latency:order:0
+[37/53] 67:processing_latency:payment:0
+[38/53] 67:network_timeout:inventory:0
+[39/53] 67:db_pool_exhaustion:inventory:0
+[40/53] 67:cascading_failure:postgres:0
+[41/53] 67:none:-:1
+[42/53] 67:network_timeout:payment:0
+[43/53] 67:network_timeout:order:0
+[44/53] 67:cpu_pressure:inventory:0:strong
+[45/53] 67:none:-:0
+[46/53] 67:cpu_pressure:payment:0:strong
+[47/53] 67:service_crash:inventory:0
+[48/53] 67:cpu_pressure:order:0:strong
+[49/53] 67:processing_latency:inventory:0
+[50/53] 67:service_crash:order:0
+[51/53] 67:processing_latency:gateway:0
+[52/53] 67:service_crash:payment:0
+[53/53] 67:db_pool_exhaustion:order:0
+{
+ "n_cases": 53,
+ "case_counts": {
+  "db_pool_exhaustion": 6,
+  "service_crash": 9,
+  "processing_latency": 12,
+  "cpu_pressure": 9,
+  "network_timeout": 8,
+  "none": 6,
+  "cascading_failure": 3
+ },
+ "n_trials": 9540
+}
+EVAL_EXIT 0
+[1/54] 41:db_pool_exhaustion:inventory:0
+[2/54] 41:service_crash:order:0
+[3/54] 41:processing_latency:order:0
+[4/54] 41:cpu_pressure:payment:0:strong
+[5/54] 41:processing_latency:gateway:0
+[6/54] 41:cpu_pressure:inventory:0:strong
+[7/54] 41:processing_latency:payment:0
+[8/54] 41:network_timeout:order:0
+[9/54] 41:network_timeout:payment:0
+[10/54] 41:none:-:0
+[11/54] 41:cascading_failure:postgres:0
+[12/54] 41:service_crash:payment:0
+[13/54] 41:service_crash:inventory:0
+[14/54] 41:none:-:1
+[15/54] 41:processing_latency:inventory:0
+[16/54] 41:db_pool_exhaustion:order:0
+[17/54] 41:cpu_pressure:order:0:strong
+[18/54] 53:processing_latency:inventory:0
+[19/54] 53:cpu_pressure:inventory:0:strong
+[20/54] 53:db_pool_exhaustion:inventory:0
+[21/54] 53:db_pool_exhaustion:order:0
+[22/54] 53:cpu_pressure:order:0:strong
+[23/54] 53:network_timeout:payment:0
+[24/54] 53:service_crash:order:0
+[25/54] 53:cpu_pressure:payment:0:strong
+[26/54] 53:service_crash:inventory:0
+[27/54] 53:cascading_failure:postgres:0
+[28/54] 53:none:-:0
+[29/54] 53:none:-:1
+[30/54] 53:processing_latency:payment:0
+[31/54] 53:network_timeout:order:0
+[32/54] 53:service_crash:payment:0
+[33/54] 53:processing_latency:gateway:0
+[34/54] 53:network_timeout:inventory:0
+[35/54] 53:processing_latency:order:0
+[36/54] 67:processing_latency:order:0
+[37/54] 67:processing_latency:payment:0
+[38/54] 67:network_timeout:inventory:0
+[39/54] 67:db_pool_exhaustion:inventory:0
+[40/54] 67:cascading_failure:postgres:0
+[41/54] 67:none:-:1
+[42/54] 67:network_timeout:payment:0
+[43/54] 67:network_timeout:order:0
+[44/54] 67:cpu_pressure:inventory:0:strong
+[45/54] 67:none:-:0
+[46/54] 67:cpu_pressure:payment:0:strong
+[47/54] 67:service_crash:inventory:0
+[48/54] 67:cpu_pressure:order:0:strong
+[49/54] 67:processing_latency:inventory:0
+[50/54] 67:service_crash:order:0
+[51/54] 67:processing_latency:gateway:0
+[52/54] 67:service_crash:payment:0
+[53/54] 67:db_pool_exhaustion:order:0
+[54/54] 41:network_timeout:inventory:0
+sensitivity written: 54 cases
+SENS_EXIT 0
