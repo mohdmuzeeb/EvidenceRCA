@@ -1,0 +1,942 @@
+{
+ "schema": "evidencerca.phase4a.five_call_benchmark/v1",
+ "generated_at": "2026-10-14T11:31:20+00:00",
+ "split": "dev seed 11 only",
+ "prompt_version": "p4a-v1",
+ "model": {
+  "name": "qwen3:4b",
+  "digest": "359d7dd4bcdab3d86b87d73ac27966f4dbb9f5efdfcc75d34a8764a09474fae7",
+  "ollama_version": "0.34.2",
+  "quantization": "Q4_K_M",
+  "parameters": "4.0B"
+ },
+ "settings": {
+  "model": "qwen3:4b",
+  "temperature": 0.0,
+  "seed": 20261014,
+  "num_ctx": 6144,
+  "num_predict": 1024,
+  "think": false,
+  "timeout_s": 300.0,
+  "max_retries": 1,
+  "keep_alive": "15m"
+ },
+ "environment_before": {
+  "colima_running": false,
+  "docker_processes": "559 /Library/PrivilegedHelperTools/com.docker.vmnetd\n38265 /opt/homebrew/bin/limactl usernet -p /Users/muzeebmohammad/.colima/_lima/_networks/user-v2/usernet_user-v2.pid -e /Users/muzeebmohammad/.colima/_lima/_networks/user-v2/user-v2_ep.sock --listen-qemu /Users/muzeebmohammad/.colima/_lima/_networks/user-v2/user-v2_qemu.sock --listen /Users/muzeebmohammad/.colima/_lima/_networks/user-v2/user-v2_fd.sock --subnet 192.168.5.0/24\n41375 /opt/homebrew/bin/limactl usernet -p /Users/muzeebmohammad/.colima/_lima/_networks/user-v2/usernet_user-v2.pid -e /Users/muzeebmohammad/.colima/_lima/_networks/user-v2/user-v2_ep.sock --listen-qemu /Users/muzeebmohammad/.colima/_lima/_networks/user-v2/user-v2_qemu.sock --listen /Users/muzeebmohammad/.colima/_lima/_networks/user-v2/user-v2_fd.sock --subnet 192.168.5.0/24\n44133 /opt/homebrew/bin/limactl usernet -p /Users/muzeebmohammad/.colima/_lima/_networks/user-v2/usernet_user-v2.pid -e /Users/muzeebmohammad/.colima/_lima/_networks/user-v2/user-v2_ep.sock --listen-qemu /Users/muzeebmohammad/.colima/_lima/_networks/user-v2/user-v2_qemu.sock --listen /Users/muzeebmohammad/.colima/_lima/_networks/user-v2/user-v2_fd.sock --subnet 192.168.5.0/24",
+  "power": "Now drawing from 'AC Power'",
+  "disk_free_gb": 20.1,
+  "ollama_models_dir_mb": 2381.6,
+  "hw": {
+   "model": "MacBookAir10,1",
+   "memsize_gb": 8.0,
+   "cpu": "Apple M1",
+   "os": "26.5.2"
+  },
+  "git_head": "7b5485019726a323786bd3cea58d14e2295d59da",
+  "git_branch": "phase4a"
+ },
+ "environment_after": {
+  "colima_running": false,
+  "docker_processes": "559 /Library/PrivilegedHelperTools/com.docker.vmnetd\n38265 /opt/homebrew/bin/limactl usernet -p /Users/muzeebmohammad/.colima/_lima/_networks/user-v2/usernet_user-v2.pid -e /Users/muzeebmohammad/.colima/_lima/_networks/user-v2/user-v2_ep.sock --listen-qemu /Users/muzeebmohammad/.colima/_lima/_networks/user-v2/user-v2_qemu.sock --listen /Users/muzeebmohammad/.colima/_lima/_networks/user-v2/user-v2_fd.sock --subnet 192.168.5.0/24\n41375 /opt/homebrew/bin/limactl usernet -p /Users/muzeebmohammad/.colima/_lima/_networks/user-v2/usernet_user-v2.pid -e /Users/muzeebmohammad/.colima/_lima/_networks/user-v2/user-v2_ep.sock --listen-qemu /Users/muzeebmohammad/.colima/_lima/_networks/user-v2/user-v2_qemu.sock --listen /Users/muzeebmohammad/.colima/_lima/_networks/user-v2/user-v2_fd.sock --subnet 192.168.5.0/24\n44133 /opt/homebrew/bin/limactl usernet -p /Users/muzeebmohammad/.colima/_lima/_networks/user-v2/usernet_user-v2.pid -e /Users/muzeebmohammad/.colima/_lima/_networks/user-v2/user-v2_ep.sock --listen-qemu /Users/muzeebmohammad/.colima/_lima/_networks/user-v2/user-v2_qemu.sock --listen /Users/muzeebmohammad/.colima/_lima/_networks/user-v2/user-v2_fd.sock --subnet 192.168.5.0/24",
+  "power": "Now drawing from 'AC Power'",
+  "disk_free_gb": 16.9,
+  "ollama_models_dir_mb": 2381.6,
+  "hw": {
+   "model": "MacBookAir10,1",
+   "memsize_gb": 8.0,
+   "cpu": "Apple M1",
+   "os": "26.5.2"
+  },
+  "git_head": "7b5485019726a323786bd3cea58d14e2295d59da",
+  "git_branch": "phase4a"
+ },
+ "memory_before": {
+  "system": {
+   "free_mb": 62,
+   "inactive_mb": 1260,
+   "compressed_mb": 3299,
+   "swap": "total = 8192.00M  used = 6761.19M  free = 1430.81M  (encrypted)",
+   "pressure_free_pct": "36%"
+  },
+  "ollama_rss_mb_idle": 13.7
+ },
+ "summary": {
+  "calls": 5,
+  "attempts_total": 5,
+  "outcomes": {
+   "ok": 5,
+   "timeout": 0,
+   "model_failure": 0
+  },
+  "parse": {
+   "valid": 5,
+   "schema_noncompliant": 0,
+   "malformed_json": 0,
+   "no_response": 0
+  },
+  "json_valid_rate": 1.0,
+  "schema_compliance_rate": 1.0,
+  "citation_known_alias_rate": 1.0,
+  "observed_claims": 30,
+  "observed_verified": 11,
+  "model_load_s_cold": 13.1785,
+  "per_call_wall_s": [
+   82.777,
+   53.357,
+   63.576,
+   50.278,
+   59.338
+  ],
+  "prompt_tokens": [
+   3847,
+   3536,
+   3954,
+   2674,
+   3553
+  ],
+  "output_tokens": [
+   674,
+   690,
+   661,
+   623,
+   632
+  ],
+  "prompt_tok_per_s": [
+   162.03,
+   380.51,
+   190.2,
+   217.3,
+   192.51
+  ],
+  "output_tok_per_s": [
+   15.25,
+   16.78,
+   15.76,
+   16.7,
+   15.65
+  ],
+  "ollama_rss_peak_mb": 3761.0,
+  "benchmark_wall_s": 349.2,
+  "warm_calls_wall_s_mean": 56.64
+ },
+ "calls": [
+  {
+   "n": 1,
+   "condition": "E1",
+   "case": "a4f3f9b6",
+   "view": "C0",
+   "role": "successful (E0 correct on dev)",
+   "case_id": "a4f3f9b6-8b93-4f4f-8bad-d4c1c81d67e7",
+   "view_id": "vw-ff2c00639428cc7c",
+   "alert_fired": true,
+   "window_anchor": "alert",
+   "end_to_end_wall_s": 86.77,
+   "call": {
+    "outcome": "ok",
+    "attempts": [
+     {
+      "attempt": 0,
+      "outcome": "ok",
+      "http": 200,
+      "wall_s": 82.729,
+      "thinking_chars": 0
+     }
+    ],
+    "done_reason": "stop",
+    "prompt_tokens": 3847,
+    "output_tokens": 674,
+    "load_s": 13.1785,
+    "prompt_eval_s": 23.7429,
+    "eval_s": 44.2028,
+    "total_s": 81.8381,
+    "wall_s": 82.777,
+    "prompt_tokens_per_s": 162.03,
+    "output_tokens_per_s": 15.25,
+    "context_overflow_risk": false,
+    "truncated_at_token_limit": false
+   },
+   "parse": {
+    "status": "valid",
+    "errors": []
+   },
+   "semantic_issues": [],
+   "citations": {
+    "n_cited": 6,
+    "n_known_alias": 6,
+    "n_in_view": 6,
+    "rate_known_alias": 1.0
+   },
+   "prompt_meta": {
+    "prompt_version": "p4a-v1",
+    "condition": "E1",
+    "system_sha256": "86edf89620e033f1eb4303c1d4a8c843d36e4565ae8592c756c37f663f2c7aa8",
+    "task_sha256": "18c78418af469d5455f5c1d279ff0f2c342af8fc635c4dee003f028e1327f5f8",
+    "case_text_sha256": "2705ecbe2bc6d769d5e07ff01397a4d9315e82e148e3fec946611307f50ce5ce",
+    "case_text_chars": 7598,
+    "system_chars": 2897,
+    "n_records": 36
+   },
+   "llm": {
+    "decision": "DIAGNOSE",
+    "suspected_service": "inventory",
+    "suspected_fault_type": "processing_latency",
+    "ranked_candidates": [
+     "inventory",
+     "gateway",
+     "order",
+     "payment",
+     "postgres"
+    ],
+    "uncertainty_reasons": [
+     "Conflicting signals: inventory latency_mean is high but error_ratio is slightly lower than baseline",
+     "Weak deviation: inventory error_ratio (0.026) is only slightly below baseline (0.033)",
+     "Missing telemetry: no direct evidence of inventory's database pool exhaustion"
+    ],
+    "explanation": "Inventory shows high latency_mean (95.895ms vs baseline 3.007ms) and error_ratio (0.026 vs baseline 0.033) with high call latency to postgres. Gateway has 404 errors when calling inventory. EvidenceRCA identified inventory as the top candidate with 54.00 score.",
+    "agrees_with_e0_top1": true
+   },
+   "e0": {
+    "decision": "DIAGNOSE",
+    "suspected_service": "inventory",
+    "suspected_fault_type": "processing_latency",
+    "ranked_candidates": [
+     {
+      "service": "inventory",
+      "score": 54.0
+     },
+     {
+      "service": "gateway",
+      "score": 0.0
+     },
+     {
+      "service": "order",
+      "score": 0.0
+     },
+     {
+      "service": "payment",
+      "score": 0.0
+     },
+     {
+      "service": "postgres",
+      "score": 0.0
+     }
+    ],
+    "propagation_path": [
+     {
+      "from": "inventory",
+      "to": "gateway",
+      "evidence_ids": [
+       "ev-ec61d39f0901c565ade1",
+       "ev-c313ad896157bd9aab6e",
+       "ev-7f8d63be98be7c5d0863"
+      ]
+     },
+     {
+      "from": "inventory",
+      "to": "order",
+      "evidence_ids": [
+       "ev-026de4b5454014c0a4c2",
+       "ev-cbd801e5a624628dbfb7",
+       "ev-d3ba646805df40e15882"
+      ]
+     }
+    ]
+   },
+   "e0_abstention": {
+    "S": 0.7,
+    "S_margin": 1.0,
+    "components": {
+     "margin": 1.0,
+     "sufficiency": 1.0,
+     "agreement": 0.0,
+     "per_modality_top": {
+      "trace": "gateway",
+      "log": null,
+      "metric": "order"
+     },
+     "coverage": 0.8
+    },
+    "signals_used": [
+     "sufficiency",
+     "agreement",
+     "margin",
+     "coverage"
+    ],
+    "decision": "DIAGNOSE",
+    "decision_margin": "DIAGNOSE",
+    "tau": 0.5,
+    "note": "S is a heuristic ordering score, not a probability"
+   },
+   "e1_abstention_descriptive": {
+    "S": 0.625,
+    "S_margin": 1.0,
+    "components": {
+     "margin": 1.0,
+     "sufficiency": 1.0,
+     "agreement": 0.0,
+     "per_modality_top": {
+      "trace": "gateway",
+      "log": null,
+      "metric": "order"
+     },
+     "coverage": 0.5
+    },
+    "signals_used": [
+     "sufficiency",
+     "agreement",
+     "margin",
+     "coverage"
+    ],
+    "decision": "DIAGNOSE",
+    "decision_margin": "DIAGNOSE",
+    "tau": 0.5,
+    "note": "S is a heuristic ordering score, not a probability"
+   },
+   "score": {
+    "fault_present": true,
+    "decision": "DIAGNOSE",
+    "top1_correct": true,
+    "top3_correct": true,
+    "correct_abstention": null,
+    "llm_own_suspect_correct": true,
+    "llm_own_decision": "DIAGNOSE",
+    "fault_type_correct_llm": true,
+    "claims_pre_filter": 6,
+    "observed_claims": 6,
+    "observed_verified": 3,
+    "inferred_claims": 0,
+    "inferred_premises_valid": 0,
+    "failed_checks_observed": {
+     "V3": 2,
+     "V5": 2,
+     "V0": 1
+    },
+    "rejected_predicates": [
+     "call_failed",
+     "latency_above_baseline",
+     "latency_above_baseline"
+    ],
+    "edges": 2,
+    "edges_verified": 0,
+    "verifier_flags": []
+   },
+   "memory": {
+    "ollama_rss_peak_mb": 3302.0,
+    "ollama_ps": [
+     {
+      "name": "qwen3:4b",
+      "digest": "359d7dd4bcdab3d86b87d73ac27966f4dbb9f5efdfcc75d34a8764a09474fae7",
+      "size": 3487815434,
+      "size_vram": 3487815434,
+      "context_length": 6144
+     }
+    ],
+    "system_after": {
+     "free_mb": 58,
+     "inactive_mb": 436,
+     "compressed_mb": 1534,
+     "swap": "total = 10240.00M  used = 9496.19M  free = 743.81M  (encrypted)",
+     "pressure_free_pct": "13%"
+    }
+   }
+  },
+  {
+   "n": 2,
+   "condition": "B4",
+   "case": "a4f3f9b6",
+   "view": "C0",
+   "role": "successful case, LLM-only",
+   "case_id": "a4f3f9b6-8b93-4f4f-8bad-d4c1c81d67e7",
+   "view_id": "vw-ff2c00639428cc7c",
+   "alert_fired": true,
+   "window_anchor": "alert",
+   "end_to_end_wall_s": 54.12,
+   "call": {
+    "outcome": "ok",
+    "attempts": [
+     {
+      "attempt": 0,
+      "outcome": "ok",
+      "http": 200,
+      "wall_s": 53.355,
+      "thinking_chars": 0
+     }
+    ],
+    "done_reason": "stop",
+    "prompt_tokens": 3536,
+    "output_tokens": 690,
+    "load_s": 0.6588,
+    "prompt_eval_s": 9.2928,
+    "eval_s": 41.1094,
+    "total_s": 52.941,
+    "wall_s": 53.357,
+    "prompt_tokens_per_s": 380.51,
+    "output_tokens_per_s": 16.78,
+    "context_overflow_risk": false,
+    "truncated_at_token_limit": false
+   },
+   "parse": {
+    "status": "valid",
+    "errors": []
+   },
+   "semantic_issues": [],
+   "citations": {
+    "n_cited": 6,
+    "n_known_alias": 6,
+    "n_in_view": 6,
+    "rate_known_alias": 1.0
+   },
+   "prompt_meta": {
+    "prompt_version": "p4a-v1",
+    "condition": "B4",
+    "system_sha256": "86edf89620e033f1eb4303c1d4a8c843d36e4565ae8592c756c37f663f2c7aa8",
+    "task_sha256": "9b3cfaedb76f63c32b32329ad33eb4fb094c56277456619b879c2c1418780101",
+    "case_text_sha256": "e62765091fa3d6e789d6b39a268eecdf934c3f01f4b327b921563dc964cc67a4",
+    "case_text_chars": 6881,
+    "system_chars": 2897,
+    "n_records": 36
+   },
+   "llm": {
+    "decision": "DIAGNOSE",
+    "suspected_service": "inventory",
+    "suspected_fault_type": "processing_latency",
+    "ranked_candidates": [
+     "inventory",
+     "payment",
+     "gateway",
+     "order",
+     "postgres"
+    ],
+    "uncertainty_reasons": [
+     "Conflicting signals: inventory has high latency but low error rate"
+    ],
+    "explanation": "The inventory service shows high latency (11.0ms) and error calls (404) from gateway, indicating a bottleneck. Payment service has high latency (4.567ms) and high CPU usage (0.4574%) during the same period, suggesting inventory is the root cause due to its direct impact on payment and gateway."
+   },
+   "e0": null,
+   "e0_abstention": null,
+   "e1_abstention_descriptive": null,
+   "score": {
+    "fault_present": true,
+    "decision": "DIAGNOSE",
+    "top1_correct": true,
+    "top3_correct": true,
+    "correct_abstention": null,
+    "llm_own_suspect_correct": true,
+    "llm_own_decision": "DIAGNOSE",
+    "fault_type_correct_llm": true,
+    "claims_pre_filter": 6,
+    "observed_claims": 6,
+    "observed_verified": 3,
+    "inferred_claims": 0,
+    "inferred_premises_valid": 0,
+    "failed_checks_observed": {
+     "V0": 1,
+     "V3": 2,
+     "V4": 1,
+     "V5": 2
+    },
+    "rejected_predicates": [
+     "call_failed",
+     "latency_above_baseline",
+     "latency_above_baseline"
+    ],
+    "edges": 3,
+    "edges_verified": 1,
+    "verifier_flags": []
+   },
+   "memory": {
+    "ollama_rss_peak_mb": 3353.3,
+    "ollama_ps": [
+     {
+      "name": "qwen3:4b",
+      "digest": "359d7dd4bcdab3d86b87d73ac27966f4dbb9f5efdfcc75d34a8764a09474fae7",
+      "size": 3487815434,
+      "size_vram": 3487815434,
+      "context_length": 6144
+     }
+    ],
+    "system_after": {
+     "free_mb": 56,
+     "inactive_mb": 503,
+     "compressed_mb": 1643,
+     "swap": "total = 11264.00M  used = 9993.31M  free = 1270.69M  (encrypted)",
+     "pressure_free_pct": "14%"
+    }
+   }
+  },
+  {
+   "n": 3,
+   "condition": "E1",
+   "case": "ac2a7c4f",
+   "view": "C0",
+   "role": "difficult (cascade; E0 wrong on dev)",
+   "case_id": "ac2a7c4f-5755-492e-a623-36db384cf8c4",
+   "view_id": "vw-d422cbc5a1e2eba0",
+   "alert_fired": true,
+   "window_anchor": "alert",
+   "end_to_end_wall_s": 64.71,
+   "call": {
+    "outcome": "ok",
+    "attempts": [
+     {
+      "attempt": 0,
+      "outcome": "ok",
+      "http": 200,
+      "wall_s": 63.572,
+      "thinking_chars": 0
+     }
+    ],
+    "done_reason": "stop",
+    "prompt_tokens": 3954,
+    "output_tokens": 661,
+    "load_s": 0.0661,
+    "prompt_eval_s": 20.7885,
+    "eval_s": 41.9471,
+    "total_s": 63.3842,
+    "wall_s": 63.576,
+    "prompt_tokens_per_s": 190.2,
+    "output_tokens_per_s": 15.76,
+    "context_overflow_risk": false,
+    "truncated_at_token_limit": false
+   },
+   "parse": {
+    "status": "valid",
+    "errors": []
+   },
+   "semantic_issues": [],
+   "citations": {
+    "n_cited": 24,
+    "n_known_alias": 24,
+    "n_in_view": 24,
+    "rate_known_alias": 1.0
+   },
+   "prompt_meta": {
+    "prompt_version": "p4a-v1",
+    "condition": "E1",
+    "system_sha256": "86edf89620e033f1eb4303c1d4a8c843d36e4565ae8592c756c37f663f2c7aa8",
+    "task_sha256": "18c78418af469d5455f5c1d279ff0f2c342af8fc635c4dee003f028e1327f5f8",
+    "case_text_sha256": "0b7a1e05fb138d8ddae834158a21c3da2a32bd9a415e556f61f4da0eb22e239a",
+    "case_text_chars": 8028,
+    "system_chars": 2897,
+    "n_records": 36
+   },
+   "llm": {
+    "decision": "DIAGNOSE",
+    "suspected_service": "inventory",
+    "suspected_fault_type": "db_pool_exhaustion",
+    "ranked_candidates": [
+     "inventory",
+     "gateway",
+     "order",
+     "payment",
+     "postgres"
+    ],
+    "uncertainty_reasons": [
+     "Conflicting signals in latency metrics",
+     "Weak deviation in error rates"
+    ],
+    "explanation": "Inventory service shows high latency and error rates with evidence of database pool exhaustion and timeouts.",
+    "agrees_with_e0_top1": true
+   },
+   "e0": {
+    "decision": "DIAGNOSE",
+    "suspected_service": "inventory",
+    "suspected_fault_type": "db_pool_exhaustion",
+    "ranked_candidates": [
+     {
+      "service": "inventory",
+      "score": 68.0
+     },
+     {
+      "service": "gateway",
+      "score": 0.0
+     },
+     {
+      "service": "order",
+      "score": 0.0
+     },
+     {
+      "service": "payment",
+      "score": 0.0
+     },
+     {
+      "service": "postgres",
+      "score": 0.0
+     }
+    ],
+    "propagation_path": [
+     {
+      "from": "inventory",
+      "to": "gateway",
+      "evidence_ids": [
+       "ev-0da90a97e0844e87009e",
+       "ev-709ea506c9f6ca1e30c0",
+       "ev-0fec5dea159601bbe24d"
+      ]
+     }
+    ]
+   },
+   "e0_abstention": {
+    "S": 0.75,
+    "S_margin": 1.0,
+    "components": {
+     "margin": 1.0,
+     "sufficiency": 1.0,
+     "agreement": 0.0,
+     "per_modality_top": {
+      "trace": "gateway",
+      "log": "gateway",
+      "metric": "gateway"
+     },
+     "coverage": 1.0
+    },
+    "signals_used": [
+     "sufficiency",
+     "agreement",
+     "margin",
+     "coverage"
+    ],
+    "decision": "DIAGNOSE",
+    "decision_margin": "DIAGNOSE",
+    "tau": 0.5,
+    "note": "S is a heuristic ordering score, not a probability"
+   },
+   "e1_abstention_descriptive": {
+    "S": 0.5,
+    "S_margin": 1.0,
+    "components": {
+     "margin": 1.0,
+     "sufficiency": 1.0,
+     "agreement": 0.0,
+     "per_modality_top": {
+      "trace": "gateway",
+      "log": "gateway",
+      "metric": "gateway"
+     },
+     "coverage": 0.0
+    },
+    "signals_used": [
+     "sufficiency",
+     "agreement",
+     "margin",
+     "coverage"
+    ],
+    "decision": "DIAGNOSE",
+    "decision_margin": "DIAGNOSE",
+    "tau": 0.5,
+    "note": "S is a heuristic ordering score, not a probability"
+   },
+   "score": {
+    "fault_present": true,
+    "decision": "DIAGNOSE",
+    "top1_correct": false,
+    "top3_correct": false,
+    "correct_abstention": null,
+    "llm_own_suspect_correct": false,
+    "llm_own_decision": "DIAGNOSE",
+    "fault_type_correct_llm": false,
+    "claims_pre_filter": 6,
+    "observed_claims": 6,
+    "observed_verified": 0,
+    "inferred_claims": 0,
+    "inferred_premises_valid": 0,
+    "failed_checks_observed": {
+     "V3": 4,
+     "V4": 4,
+     "V5": 4,
+     "V0": 1
+    },
+    "rejected_predicates": [
+     "error_rate_above_baseline",
+     "latency_above_baseline",
+     "latency_above_baseline",
+     "latency_above_baseline",
+     "latency_above_baseline",
+     "log_error_pattern"
+    ],
+    "edges": 1,
+    "edges_verified": 1,
+    "verifier_flags": [
+     "DIAGNOSE without a verified observed claim about the suspected service"
+    ]
+   },
+   "memory": {
+    "ollama_rss_peak_mb": 3657.9,
+    "ollama_ps": [
+     {
+      "name": "qwen3:4b",
+      "digest": "359d7dd4bcdab3d86b87d73ac27966f4dbb9f5efdfcc75d34a8764a09474fae7",
+      "size": 3487815434,
+      "size_vram": 3487815434,
+      "context_length": 6144
+     }
+    ],
+    "system_after": {
+     "free_mb": 73,
+     "inactive_mb": 512,
+     "compressed_mb": 1657,
+     "swap": "total = 11264.00M  used = 10676.38M  free = 587.62M  (encrypted)",
+     "pressure_free_pct": "15%"
+    }
+   }
+  },
+  {
+   "n": 4,
+   "condition": "B4",
+   "case": "70a3e296",
+   "view": "MT",
+   "role": "missing telemetry (no traces)",
+   "case_id": "70a3e296-764a-47fb-be3b-5d9611a74383",
+   "view_id": "vw-1e0d11a9fb9c1bb5",
+   "alert_fired": true,
+   "window_anchor": "alert",
+   "end_to_end_wall_s": 50.64,
+   "call": {
+    "outcome": "ok",
+    "attempts": [
+     {
+      "attempt": 0,
+      "outcome": "ok",
+      "http": 200,
+      "wall_s": 50.275,
+      "thinking_chars": 0
+     }
+    ],
+    "done_reason": "stop",
+    "prompt_tokens": 2674,
+    "output_tokens": 623,
+    "load_s": 0.0553,
+    "prompt_eval_s": 12.3056,
+    "eval_s": 37.3029,
+    "total_s": 50.1462,
+    "wall_s": 50.278,
+    "prompt_tokens_per_s": 217.3,
+    "output_tokens_per_s": 16.7,
+    "context_overflow_risk": false,
+    "truncated_at_token_limit": false
+   },
+   "parse": {
+    "status": "valid",
+    "errors": []
+   },
+   "semantic_issues": [],
+   "citations": {
+    "n_cited": 6,
+    "n_known_alias": 6,
+    "n_in_view": 6,
+    "rate_known_alias": 1.0
+   },
+   "prompt_meta": {
+    "prompt_version": "p4a-v1",
+    "condition": "B4",
+    "system_sha256": "86edf89620e033f1eb4303c1d4a8c843d36e4565ae8592c756c37f663f2c7aa8",
+    "task_sha256": "9b3cfaedb76f63c32b32329ad33eb4fb094c56277456619b879c2c1418780101",
+    "case_text_sha256": "e8204d9c1a772b75ba395af4b461443b19d381f85ef98b92ad53f48f25a6885b",
+    "case_text_chars": 4789,
+    "system_chars": 2897,
+    "n_records": 32
+   },
+   "llm": {
+    "decision": "DIAGNOSE",
+    "suspected_service": "inventory",
+    "suspected_fault_type": "cascading_failure",
+    "ranked_candidates": [
+     "inventory",
+     "gateway",
+     "payment",
+     "order",
+     "postgres"
+    ],
+    "uncertainty_reasons": [
+     "missing telemetry for some services",
+     "conflicting signals in error rates",
+     "weak deviation in latency metrics"
+    ],
+    "explanation": "The gateway shows high error rates and latency spikes, indicating downstream failures. Inventory has elevated error rates and latency, suggesting it's the root cause of the downstream failures. Payment has latency spikes but is likely affected by inventory failures."
+   },
+   "e0": null,
+   "e0_abstention": null,
+   "e1_abstention_descriptive": null,
+   "score": {
+    "fault_present": true,
+    "decision": "DIAGNOSE",
+    "top1_correct": true,
+    "top3_correct": true,
+    "correct_abstention": null,
+    "llm_own_suspect_correct": true,
+    "llm_own_decision": "DIAGNOSE",
+    "fault_type_correct_llm": false,
+    "claims_pre_filter": 6,
+    "observed_claims": 6,
+    "observed_verified": 4,
+    "inferred_claims": 0,
+    "inferred_premises_valid": 0,
+    "failed_checks_observed": {
+     "V4": 1,
+     "V5": 1
+    },
+    "rejected_predicates": [
+     "error_rate_above_baseline",
+     "latency_above_baseline"
+    ],
+    "edges": 1,
+    "edges_verified": 0,
+    "verifier_flags": []
+   },
+   "memory": {
+    "ollama_rss_peak_mb": 3684.6,
+    "ollama_ps": [
+     {
+      "name": "qwen3:4b",
+      "digest": "359d7dd4bcdab3d86b87d73ac27966f4dbb9f5efdfcc75d34a8764a09474fae7",
+      "size": 3487815434,
+      "size_vram": 3487815434,
+      "context_length": 6144
+     }
+    ],
+    "system_after": {
+     "free_mb": 63,
+     "inactive_mb": 497,
+     "compressed_mb": 1661,
+     "swap": "total = 12288.00M  used = 11435.50M  free = 852.50M  (encrypted)",
+     "pressure_free_pct": "14%"
+    }
+   }
+  },
+  {
+   "n": 5,
+   "condition": "B4",
+   "case": "be737f04",
+   "view": "C0",
+   "role": "insufficient evidence (healthy control, fixed median-time window)",
+   "fixed_window": true,
+   "case_id": "be737f04-58a1-44de-805e-7eea5b332a97",
+   "view_id": "vw-1e3774b270751e2b",
+   "alert_fired": false,
+   "window_anchor": "fixed-median",
+   "end_to_end_wall_s": 60.54,
+   "call": {
+    "outcome": "ok",
+    "attempts": [
+     {
+      "attempt": 0,
+      "outcome": "ok",
+      "http": 200,
+      "wall_s": 59.334,
+      "thinking_chars": 0
+     }
+    ],
+    "done_reason": "stop",
+    "prompt_tokens": 3553,
+    "output_tokens": 632,
+    "load_s": 0.0413,
+    "prompt_eval_s": 18.4559,
+    "eval_s": 40.3871,
+    "total_s": 59.2294,
+    "wall_s": 59.338,
+    "prompt_tokens_per_s": 192.51,
+    "output_tokens_per_s": 15.65,
+    "context_overflow_risk": false,
+    "truncated_at_token_limit": false
+   },
+   "parse": {
+    "status": "valid",
+    "errors": []
+   },
+   "semantic_issues": [],
+   "citations": {
+    "n_cited": 6,
+    "n_known_alias": 6,
+    "n_in_view": 6,
+    "rate_known_alias": 1.0
+   },
+   "prompt_meta": {
+    "prompt_version": "p4a-v1",
+    "condition": "B4",
+    "system_sha256": "86edf89620e033f1eb4303c1d4a8c843d36e4565ae8592c756c37f663f2c7aa8",
+    "task_sha256": "9b3cfaedb76f63c32b32329ad33eb4fb094c56277456619b879c2c1418780101",
+    "case_text_sha256": "3db4f97934086d7f5b546d5a901188ea298d69edf9d225eb2520b42bab36949f",
+    "case_text_chars": 6872,
+    "system_chars": 2897,
+    "n_records": 36
+   },
+   "llm": {
+    "decision": "DIAGNOSE",
+    "suspected_service": "inventory",
+    "suspected_fault_type": "network_timeout",
+    "ranked_candidates": [
+     "inventory",
+     "gateway",
+     "order",
+     "payment",
+     "postgres"
+    ],
+    "uncertainty_reasons": [
+     "Conflicting signals: inventory latency is high but error_ratio is low"
+    ],
+    "explanation": "The gateway service shows a high error rate (0.186) and latency spikes, with failed calls to inventory. Inventory has high latency and the gateway is timing out when calling inventory, indicating inventory is the root cause."
+   },
+   "e0": null,
+   "e0_abstention": null,
+   "e1_abstention_descriptive": null,
+   "score": {
+    "fault_present": false,
+    "decision": "DIAGNOSE",
+    "top1_correct": null,
+    "top3_correct": null,
+    "correct_abstention": false,
+    "llm_own_suspect_correct": null,
+    "llm_own_decision": "DIAGNOSE",
+    "fault_type_correct_llm": null,
+    "claims_pre_filter": 6,
+    "observed_claims": 6,
+    "observed_verified": 1,
+    "inferred_claims": 0,
+    "inferred_premises_valid": 0,
+    "failed_checks_observed": {
+     "V0": 1,
+     "V3": 3,
+     "V5": 4
+    },
+    "rejected_predicates": [
+     "call_failed",
+     "error_rate_above_baseline",
+     "latency_above_baseline",
+     "latency_above_baseline",
+     "latency_above_baseline"
+    ],
+    "edges": 2,
+    "edges_verified": 0,
+    "verifier_flags": []
+   },
+   "memory": {
+    "ollama_rss_peak_mb": 3761.0,
+    "ollama_ps": [
+     {
+      "name": "qwen3:4b",
+      "digest": "359d7dd4bcdab3d86b87d73ac27966f4dbb9f5efdfcc75d34a8764a09474fae7",
+      "size": 3487815434,
+      "size_vram": 3487815434,
+      "context_length": 6144
+     }
+    ],
+    "system_after": {
+     "free_mb": 73,
+     "inactive_mb": 514,
+     "compressed_mb": 1667,
+     "swap": "total = 13312.00M  used = 11934.62M  free = 1377.38M  (encrypted)",
+     "pressure_free_pct": "16%"
+    }
+   }
+  }
+ ],
+ "cost": {
+  "api_cost_usd": 0.0,
+  "note": "local inference only; no paid API or cloud service"
+ },
+ "notes": [
+  "E1's diagnosis-level outcome is E0's by construction; the model's own pick is in llm.*",
+  "abstention scores are descriptive; no tau is applied to B4/E1 in Phase 4A"
+ ]
+}

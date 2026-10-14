@@ -1,0 +1,382 @@
+{
+ "schema": "evidencerca.phase4a.structured_output_tests/v1",
+ "prompt_version": "p4a-v1",
+ "split": "dev seed 11 only",
+ "model_calls": 0,
+ "scenarios": [
+  {
+   "name": "B4: valid answer re-expressing E0 claims",
+   "expected": {
+    "call_outcome": "ok",
+    "parse": "valid",
+    "attempts": 1,
+    "all_pre_filter_kept": true,
+    "aliases_mapped_to_view_ids": true
+   },
+   "observed": {
+    "call_outcome": "ok",
+    "parse": "valid",
+    "attempts": 1,
+    "called": true,
+    "semantic_issues": [],
+    "decision": "DIAGNOSE",
+    "n_pre": 3,
+    "n_post": 3,
+    "n_observed": 3,
+    "all_pre_filter_kept": true,
+    "aliases_mapped_to_view_ids": true
+   },
+   "passed": true
+  },
+  {
+   "name": "E1: valid answer re-expressing E0 claims",
+   "expected": {
+    "call_outcome": "ok",
+    "parse": "valid",
+    "attempts": 1,
+    "all_pre_filter_kept": true,
+    "aliases_mapped_to_view_ids": true
+   },
+   "observed": {
+    "call_outcome": "ok",
+    "parse": "valid",
+    "attempts": 1,
+    "called": true,
+    "semantic_issues": [],
+    "decision": "DIAGNOSE",
+    "n_pre": 6,
+    "n_post": 4,
+    "n_observed": 5,
+    "all_pre_filter_kept": true,
+    "aliases_mapped_to_view_ids": true
+   },
+   "passed": true
+  },
+  {
+   "name": "truncated output",
+   "expected": {
+    "parse": "malformed_json",
+    "attempts": 1,
+    "decision": "ABSTAIN",
+    "n_pre": 0,
+    "truncated_flag": true
+   },
+   "observed": {
+    "call_outcome": "ok",
+    "parse": "malformed_json",
+    "attempts": 1,
+    "called": true,
+    "semantic_issues": [],
+    "decision": "ABSTAIN",
+    "n_pre": 0,
+    "n_post": 0,
+    "truncated_flag": true
+   },
+   "passed": true
+  },
+  {
+   "name": "schema: missing key",
+   "expected": {
+    "parse": "schema_noncompliant",
+    "decision": "ABSTAIN",
+    "n_pre": 0
+   },
+   "observed": {
+    "call_outcome": "ok",
+    "parse": "schema_noncompliant",
+    "attempts": 1,
+    "called": true,
+    "semantic_issues": [],
+    "decision": "ABSTAIN",
+    "n_pre": 0,
+    "n_post": 0,
+    "errors": [
+     "$.explanation: missing"
+    ]
+   },
+   "passed": true
+  },
+  {
+   "name": "schema: bad enum",
+   "expected": {
+    "parse": "schema_noncompliant",
+    "decision": "ABSTAIN",
+    "n_pre": 0
+   },
+   "observed": {
+    "call_outcome": "ok",
+    "parse": "schema_noncompliant",
+    "attempts": 1,
+    "called": true,
+    "semantic_issues": [],
+    "decision": "ABSTAIN",
+    "n_pre": 0,
+    "n_post": 0,
+    "errors": [
+     "$.suspected_service: 'database' not in enum"
+    ]
+   },
+   "passed": true
+  },
+  {
+   "name": "schema: too many claims",
+   "expected": {
+    "parse": "schema_noncompliant",
+    "decision": "ABSTAIN",
+    "n_pre": 0
+   },
+   "observed": {
+    "call_outcome": "ok",
+    "parse": "schema_noncompliant",
+    "attempts": 1,
+    "called": true,
+    "semantic_issues": [],
+    "decision": "ABSTAIN",
+    "n_pre": 0,
+    "n_post": 0,
+    "errors": [
+     "$.claims: 12 items > maxItems 6"
+    ]
+   },
+   "passed": true
+  },
+  {
+   "name": "schema: unexpected key",
+   "expected": {
+    "parse": "schema_noncompliant",
+    "decision": "ABSTAIN",
+    "n_pre": 0
+   },
+   "observed": {
+    "call_outcome": "ok",
+    "parse": "schema_noncompliant",
+    "attempts": 1,
+    "called": true,
+    "semantic_issues": [],
+    "decision": "ABSTAIN",
+    "n_pre": 0,
+    "n_post": 0,
+    "errors": [
+     "$: unexpected keys ['confidence']"
+    ]
+   },
+   "passed": true
+  },
+  {
+   "name": "schema: string value",
+   "expected": {
+    "parse": "schema_noncompliant",
+    "decision": "ABSTAIN",
+    "n_pre": 0
+   },
+   "observed": {
+    "call_outcome": "ok",
+    "parse": "schema_noncompliant",
+    "attempts": 1,
+    "called": true,
+    "semantic_issues": [],
+    "decision": "ABSTAIN",
+    "n_pre": 0,
+    "n_post": 0,
+    "errors": [
+     "$.claims[0].value: expected number"
+    ]
+   },
+   "passed": true
+  },
+  {
+   "name": "invented citation",
+   "expected": {
+    "parse": "valid",
+    "c1_V1": "fail",
+    "c1_verified": false,
+    "c1_cites_kept_verbatim": true
+   },
+   "observed": {
+    "call_outcome": "ok",
+    "parse": "valid",
+    "attempts": 1,
+    "called": true,
+    "semantic_issues": [
+     "claims[0] cites unknown aliases ['E99']"
+    ],
+    "decision": "DIAGNOSE",
+    "n_pre": 3,
+    "n_post": 2,
+    "c1_V1": "fail",
+    "c1_verified": false,
+    "c1_cites_kept_verbatim": true
+   },
+   "passed": true
+  },
+  {
+   "name": "wrong value",
+   "expected": {
+    "parse": "valid",
+    "c1_V4": "fail",
+    "c1_verified": false,
+    "value_unchanged": true,
+    "c1_in_post_filter": false
+   },
+   "observed": {
+    "call_outcome": "ok",
+    "parse": "valid",
+    "attempts": 1,
+    "called": true,
+    "semantic_issues": [],
+    "decision": "DIAGNOSE",
+    "n_pre": 3,
+    "n_post": 2,
+    "c1_V4": "fail",
+    "c1_verified": false,
+    "value_unchanged": true,
+    "c1_in_post_filter": false
+   },
+   "passed": true
+  },
+  {
+   "name": "timeout twice",
+   "expected": {
+    "call_outcome": "timeout",
+    "attempts": 2,
+    "parse": "no_response",
+    "decision": "ABSTAIN"
+   },
+   "observed": {
+    "call_outcome": "timeout",
+    "parse": "no_response",
+    "attempts": 2,
+    "called": true,
+    "semantic_issues": [],
+    "decision": "ABSTAIN",
+    "n_pre": 0,
+    "n_post": 0
+   },
+   "passed": true
+  },
+  {
+   "name": "HTTP 500 then ok",
+   "expected": {
+    "call_outcome": "ok",
+    "attempts": 2,
+    "parse": "valid"
+   },
+   "observed": {
+    "call_outcome": "ok",
+    "parse": "valid",
+    "attempts": 2,
+    "called": true,
+    "semantic_issues": [],
+    "decision": "DIAGNOSE",
+    "n_pre": 3,
+    "n_post": 3
+   },
+   "passed": true
+  },
+  {
+   "name": "HTTP 404",
+   "expected": {
+    "call_outcome": "model_failure",
+    "attempts": 1,
+    "parse": "no_response"
+   },
+   "observed": {
+    "call_outcome": "model_failure",
+    "parse": "no_response",
+    "attempts": 1,
+    "called": true,
+    "semantic_issues": [],
+    "decision": "ABSTAIN",
+    "n_pre": 0,
+    "n_post": 0
+   },
+   "passed": true
+  },
+  {
+   "name": "DIAGNOSE with none",
+   "expected": {
+    "parse": "valid",
+    "decision": "ABSTAIN",
+    "semantic_issues": [
+     "DIAGNOSE with suspected_service none"
+    ]
+   },
+   "observed": {
+    "call_outcome": "ok",
+    "parse": "valid",
+    "attempts": 1,
+    "called": true,
+    "semantic_issues": [
+     "DIAGNOSE with suspected_service none"
+    ],
+    "decision": "ABSTAIN",
+    "n_pre": 3,
+    "n_post": 3
+   },
+   "passed": true
+  },
+  {
+   "name": "E1 model disagrees with E0",
+   "expected": {
+    "parse": "valid",
+    "e1_suspected_is_e0": true,
+    "llm_disagreement_recorded": true
+   },
+   "observed": {
+    "call_outcome": "ok",
+    "parse": "valid",
+    "attempts": 1,
+    "called": true,
+    "semantic_issues": [],
+    "decision": "DIAGNOSE",
+    "n_pre": 6,
+    "n_post": 4,
+    "e1_suspected_is_e0": true,
+    "llm_disagreement_recorded": true
+   },
+   "passed": true
+  },
+  {
+   "name": "no alert",
+   "expected": {
+    "called": false,
+    "decision": "ABSTAIN",
+    "requests_sent": 0
+   },
+   "observed": {
+    "call_outcome": null,
+    "parse": null,
+    "attempts": 0,
+    "called": false,
+    "semantic_issues": null,
+    "decision": "ABSTAIN",
+    "n_pre": 0,
+    "n_post": 0,
+    "requests_sent": 0
+   },
+   "passed": true
+  },
+  {
+   "name": "request settings",
+   "observed": {
+    "options": {
+     "num_ctx": 6144,
+     "num_predict": 1024,
+     "seed": 20261014,
+     "temperature": 0.0
+    },
+    "think": false,
+    "format_is_schema": true
+   },
+   "passed": true
+  }
+ ],
+ "prompt_leakage": {
+  "prompts_scanned": 84,
+  "violations": [],
+  "distinct_system_prompts": 1,
+  "record_count_equal_B4_E1": true,
+  "passed": true
+ },
+ "passed": true
+}

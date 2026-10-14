@@ -2,7 +2,7 @@
 
 EvidenceRCA is the research prototype for ICICYTA 2026 Paper 3: an evidence-verification and abstention layer for root-cause analysis (RCA) in microservices, evaluated with a matched-perturbation protocol. The plan, literature and protocol are in [`docs/`](docs/).
 
-Work proceeds in approval-gated phases. Phases 0–3 are done (design; testbed and telemetry validation; workload, fault injection, ground truth and leakage controls; deterministic baselines, EvidenceRCA without an LLM, the evidence verifier and abstention, evaluated on dev data only). **No LLM integration exists (Phase 4).**
+Work proceeds in approval-gated phases. Phases 0–3 and the frozen deterministic evaluation are done. Phase 4A (local LLM setup, the post-study B4/E1 conditions, and a five-call dev benchmark) is done on branch `phase4a`, in the separate package `phase4/`. It never modifies the frozen study. Phase 4B (the full LLM evaluation) needs approval.
 
 | Phase | Status | Report |
 |---|---|---|
@@ -11,7 +11,8 @@ Work proceeds in approval-gated phases. Phases 0–3 are done (design; testbed a
 | 2: workload, fault injection, ground truth, leakage prevention, pilot | done | [`docs/phase2_validation.md`](docs/phase2_validation.md), [`docs/fault_catalog.md`](docs/fault_catalog.md) |
 | 3: baselines B1–B3, EvidenceRCA (no LLM), verifier V0–V6, abstention, dev evaluation | done | [`docs/phase3_validation.md`](docs/phase3_validation.md), [`docs/baseline_implementation.md`](docs/baseline_implementation.md), [`docs/evidence_verifier_spec.md`](docs/evidence_verifier_spec.md) |
 | Frozen calibration/test evaluation (deterministic methods) | done | [`docs/final_results.md`](docs/final_results.md), [`docs/frozen/frozen_protocol.md`](docs/frozen/frozen_protocol.md) |
-| 4+: LLM provider, B4/E1 | not started (needs approval) | — |
+| 4A: local LLM (qwen3:4b via Ollama), B4/E1 integration, five-call dev benchmark | done | [`docs/phase4a_validation.md`](docs/phase4a_validation.md), [`docs/llm_evaluation_protocol.md`](docs/llm_evaluation_protocol.md) |
+| 4B: full LLM evaluation | not started (needs approval) | — |
 
 ## Repository layout
 
@@ -47,7 +48,10 @@ evidencerca/                  agent side (never reads ground truth)
 evaluation/                   evaluation side (may read ground truth): views (18 per case), dev runs, verifier
                               mutation tests, CPU-variant analysis, audit sheet
 scripts/run_phase2.py         pilot / mechanism / load captures; leakage_check.py; summarize_phase2.py
-tests/                        validator self-test, leakage tests
+phase4/                       post-study LLM conditions (separate from the frozen study)
+  agent/                      evidence pack, versioned prompts, output schema/validator, bounded Ollama client, B4/E1
+  eval/                       structured-output tests (mock server), five-call dev benchmark
+tests/                        validator self-test, leakage tests, Phase 4 tests
 results/phase1/, phase2/      committed reports and evidence
 data/                         cases/ (raw, read-only), ground_truth/, mechanism/, load/ (gitignored)
 runs/                         raw per-run data (gitignored)
@@ -179,3 +183,16 @@ uv run python -m evaluation.sensitivity_adjudicated             # sensitivity: a
 - No fabricated telemetry or results. Every check reads what the collector actually wrote.
 - No paid API calls. Local LLM only (Phase 4).
 - No secrets in the repository. `.env` is gitignored, and manifests redact passwords.
+
+## Reproduce Phase 4A (local LLM; dev seed 11 only)
+
+Stop Docker/Colima first; the 8 GB machine cannot run both. Use AC power and close memory-heavy apps.
+
+```bash
+uv run python -m phase4.eval.structured_tests       # 17 mock-server scenarios + prompt leakage scan (no model)
+uv run pytest -q tests/test_phase4.py
+ollama pull qwen3:4b                                # 2.4 GiB, digest 359d7dd4bcda...
+OLLAMA_HOST=127.0.0.1:11434 OLLAMA_NUM_PARALLEL=1 OLLAMA_MAX_LOADED_MODELS=1 ollama serve &
+caffeinate -dims uv run python -m phase4.eval.benchmark   # -> results/phase4a/five_call_benchmark.json, raw/
+pkill -f "ollama serve"
+```

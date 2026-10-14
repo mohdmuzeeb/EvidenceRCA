@@ -1,0 +1,64 @@
+call 1 E1 successful (E0 correct on dev): outcome=ok parse=valid wall=86.8s tokens=3847/674 decision=DIAGNOSE verified=3/6
+call 2 B4 successful case, LLM-only: outcome=ok parse=valid wall=54.1s tokens=3536/690 decision=DIAGNOSE verified=3/6
+call 3 E1 difficult (cascade; E0 wrong on dev): outcome=ok parse=valid wall=64.7s tokens=3954/661 decision=DIAGNOSE verified=0/6
+call 4 B4 missing telemetry (no traces): outcome=ok parse=valid wall=50.6s tokens=2674/623 decision=DIAGNOSE verified=4/6
+call 5 B4 insufficient evidence (healthy control, fixed median-time window): outcome=ok parse=valid wall=60.5s tokens=3553/632 decision=DIAGNOSE verified=1/6
+{
+ "calls": 5,
+ "attempts_total": 5,
+ "outcomes": {
+  "ok": 5,
+  "timeout": 0,
+  "model_failure": 0
+ },
+ "parse": {
+  "valid": 5,
+  "schema_noncompliant": 0,
+  "malformed_json": 0,
+  "no_response": 0
+ },
+ "json_valid_rate": 1.0,
+ "schema_compliance_rate": 1.0,
+ "citation_known_alias_rate": 1.0,
+ "observed_claims": 30,
+ "observed_verified": 11,
+ "model_load_s_cold": 13.1785,
+ "per_call_wall_s": [
+  82.777,
+  53.357,
+  63.576,
+  50.278,
+  59.338
+ ],
+ "prompt_tokens": [
+  3847,
+  3536,
+  3954,
+  2674,
+  3553
+ ],
+ "output_tokens": [
+  674,
+  690,
+  661,
+  623,
+  632
+ ],
+ "prompt_tok_per_s": [
+  162.03,
+  380.51,
+  190.2,
+  217.3,
+  192.51
+ ],
+ "output_tok_per_s": [
+  15.25,
+  16.78,
+  15.76,
+  16.7,
+  15.65
+ ],
+ "ollama_rss_peak_mb": 3761.0,
+ "benchmark_wall_s": 349.2,
+ "warm_calls_wall_s_mean": 56.64
+}
