@@ -1,0 +1,649 @@
+example_id,dev_audit_id,predicate_group,windows,claim,cited_records,context_baseline_same_family,context_analysis_same_family,observed_call_edges,support_label,partial_reason,evidence_relevance,explanation,labelled_by
+W01,A031,latency/cpu/pool,Analysis window: t=-60s to t=+60s; baseline window: t=-110s to t=-60s (t=0 is the window anchor).,OBSERVED: latency_above_baseline(subject=gateway) = 347.2 ms,t=-53.922s | gateway | trace SERVER /api/orders | 347.2 ms | ok http=201,"t=-104.572s | gateway | trace SERVER /api/stock/{item_id} | 3.6 ms | ok http=200
+t=-104.095s | gateway | trace SERVER /api/orders | 4.1 ms | ok http=409
+t=-103.827s | gateway | trace SERVER /api/stock/{item_id} | 7.0 ms | ok http=200
+t=-99.341s | gateway | trace SERVER /api/orders | 35.1 ms | ok http=201
+t=-97.437s | gateway | trace SERVER /api/stock/{item_id} | 5.2 ms | ok http=200
+t=-97.211s | gateway | trace SERVER /api/orders | 26.9 ms | ok http=201
+t=-95.599s | gateway | trace SERVER /api/stock/{item_id} | 3.7 ms | ok http=200
+t=-93.490s | gateway | trace SERVER /api/orders | 30.7 ms | ok http=201
+t=-93.186s | gateway | trace SERVER /api/orders | 31.5 ms | ok http=201
+t=-92.980s | gateway | trace SERVER /api/stock/{item_id} | 13.0 ms | ok http=200
+t=-92.476s | gateway | trace SERVER /api/orders | 12.7 ms | ok http=201
+t=-84.754s | gateway | trace SERVER /api/stock/{item_id} | 254.2 ms | ok http=200
+t=-83.863s | gateway | trace SERVER /api/stock/{item_id} | 6.8 ms | ok http=200
+t=-83.648s | gateway | trace SERVER /api/orders | 35.2 ms | ok http=201
+t=-80.778s | gateway | trace SERVER /api/stock/{item_id} | 5.0 ms | ok http=200
+t=-80.266s | gateway | trace SERVER /api/orders | 23.7 ms | ok http=201
+t=-78.871s | gateway | trace SERVER /api/orders | 32.4 ms | ok http=201
+t=-78.319s | gateway | trace SERVER /api/orders/{order_id} | 7.8 ms | ok http=200
+t=-78.318s | gateway | trace SERVER /api/orders/{order_id} | 7.1 ms | ok http=200
+t=-76.820s | gateway | trace SERVER /api/orders/{order_id} | 10.9 ms | ok http=200
+t=-73.094s | gateway | trace SERVER /api/orders | 1.3 ms | ok http=422
+t=-69.253s | gateway | trace SERVER /api/orders | 6.9 ms | ok http=409
+t=-69.035s | gateway | trace SERVER /api/stock/{item_id} | 4.6 ms | ok http=200
+t=-68.965s | gateway | trace SERVER /api/orders | 26.1 ms | ok http=201
+t=-64.125s | gateway | trace SERVER /api/orders/{order_id} | 6.3 ms | ok http=200
+t=-64.091s | gateway | trace SERVER /api/orders | 20.4 ms | ok http=201
+t=-63.092s | gateway | trace SERVER /api/orders | 13.5 ms | ok http=201
+t=-62.467s | gateway | trace SERVER /api/orders | 5.4 ms | ok http=409
+t=-61.558s | gateway | trace SERVER /api/stock/{item_id} | 3.9 ms | ok http=200
+t=-60.463s | gateway | trace SERVER /api/orders | 14.1 ms | ok http=201","t=-52.450s | gateway | trace SERVER /api/stock/{item_id} | 8.7 ms | ok http=200
+t=-46.922s | gateway | trace SERVER /api/orders | 15.5 ms | ok http=201
+t=-37.775s | gateway | trace SERVER /api/orders | 31.6 ms | ok http=201
+t=-35.592s | gateway | trace SERVER /api/stock/{item_id} | 4.0 ms | ok http=200
+t=-32.537s | gateway | trace SERVER /api/stock/{item_id} | 5.1 ms | ok http=200
+t=-29.174s | gateway | trace SERVER /api/orders | 15.0 ms | ok http=201
+t=-25.208s | gateway | trace SERVER /api/stock/{item_id} | 9.3 ms | ok http=200
+t=-20.521s | gateway | trace SERVER /api/orders | 22.1 ms | ok http=201
+t=-13.726s | gateway | trace SERVER /api/orders | 12.9 ms | ok http=201
+t=-12.285s | gateway | trace SERVER /api/orders | 125.6 ms | ok http=201
+t=-6.691s | gateway | trace SERVER /api/orders | 13.5 ms | ok http=409
+t=-2.310s | gateway | trace SERVER /api/orders | 33.1 ms | ok http=201
+t=+0.087s | gateway | trace SERVER /api/orders | 14.4 ms | ok http=201
+t=+0.954s | gateway | trace SERVER /api/stock/{item_id} | 4.4 ms | ok http=200
+t=+3.201s | gateway | trace SERVER /api/stock/{item_id} | 4.7 ms | ok http=200
+t=+4.432s | gateway | trace SERVER /api/stock/{item_id} | 4.4 ms | ok http=200
+t=+11.035s | gateway | trace SERVER /api/orders | 334.3 ms | error 503 http=503
+t=+11.102s | gateway | trace SERVER /api/stock/{item_id} | 2.9 ms | ok http=200
+t=+25.494s | gateway | trace SERVER /api/orders/{order_id} | 13.3 ms | ok http=200
+t=+26.648s | gateway | trace SERVER /api/stock/{item_id} | 3.5 ms | ok http=200
+t=+27.344s | gateway | trace SERVER /api/orders/{order_id} | 12.8 ms | ok http=200
+t=+29.630s | gateway | trace SERVER /api/stock/{item_id} | 3.8 ms | ok http=200
+t=+31.179s | gateway | trace SERVER /api/orders | 354.0 ms | error 503 http=503
+t=+37.992s | gateway | trace SERVER /api/orders/{order_id} | 11.9 ms | ok http=200
+t=+46.247s | gateway | trace SERVER /api/orders | 398.7 ms | error 503 http=503
+t=+49.413s | gateway | trace SERVER /api/stock/{item_id} | 3.3 ms | ok http=200
+t=+54.077s | gateway | trace SERVER /api/orders | 341.5 ms | error 503 http=503
+t=+55.568s | gateway | trace SERVER /api/orders | 352.0 ms | error 503 http=503
+t=+56.035s | gateway | trace SERVER /api/orders | 370.2 ms | error 503 http=503
+t=+58.335s | gateway | trace SERVER /api/orders | 350.9 ms | error 503 http=503","gateway -> inventory (2647 calls)
+gateway -> order (2182 calls)
+inventory -> postgres (8314 calls)
+order -> inventory (1889 calls)
+order -> payment (2959 calls)
+order -> postgres (3002 calls)",,,,,
+W02,A052,latency/cpu/pool,Analysis window: t=-60s to t=+60s; baseline window: t=-105s to t=-60s (t=0 is the window anchor).,OBSERVED: latency_above_baseline(subject=order) = 2004.3 ms,"t=-58.505s | order | trace CLIENT connect | 1.9 ms | ok
+t=-58.502s | order -> postgres | trace CLIENT SELECT shop | 1.3 ms | ok","t=-102.728s | inventory -> postgres | trace CLIENT SELECT shop | 0.3 ms | ok
+t=-102.725s | order -> postgres | trace CLIENT INSERT shop | 0.3 ms | ok
+t=-101.445s | inventory -> postgres | trace CLIENT SELECT shop | 0.4 ms | ok
+t=-101.379s | inventory -> postgres | trace CLIENT SELECT shop | 0.8 ms | ok
+t=-101.378s | order -> postgres | trace CLIENT SELECT shop | 0.8 ms | ok
+t=-101.100s | order | trace CLIENT connect | 0.3 ms | ok
+t=-100.371s | inventory -> postgres | trace CLIENT SELECT shop | 0.9 ms | ok
+t=-99.961s | inventory -> postgres | trace CLIENT SELECT shop | 1.0 ms | ok
+t=-99.826s | inventory -> postgres | trace CLIENT SELECT shop | 1.6 ms | ok
+t=-99.300s | order | trace CLIENT connect | 0.4 ms | ok
+t=-95.995s | order | trace CLIENT connect | 0.4 ms | ok
+t=-94.456s | inventory -> postgres | trace CLIENT SELECT shop | 1.1 ms | ok
+t=-91.147s | inventory -> postgres | trace CLIENT INSERT shop | 0.5 ms | ok
+t=-91.018s | inventory -> postgres | trace CLIENT INSERT shop | 0.7 ms | ok
+t=-86.411s | inventory -> postgres | trace CLIENT SELECT shop | 0.4 ms | ok
+t=-83.479s | inventory -> postgres | trace CLIENT UPDATE shop | 0.2 ms | ok
+t=-83.016s | inventory -> postgres | trace CLIENT INSERT shop | 0.7 ms | ok
+t=-82.724s | inventory -> postgres | trace CLIENT INSERT shop | 1.3 ms | ok
+t=-81.830s | inventory -> postgres | trace CLIENT SELECT shop | 0.6 ms | ok
+t=-81.809s | order | trace CLIENT connect | 0.3 ms | ok
+t=-81.586s | inventory -> postgres | trace CLIENT SELECT shop | 0.4 ms | ok
+t=-80.206s | inventory -> postgres | trace CLIENT SELECT shop | 1.0 ms | ok
+t=-79.006s | inventory -> postgres | trace CLIENT SELECT shop | 0.3 ms | ok
+t=-76.516s | inventory -> postgres | trace CLIENT UPDATE shop | 0.5 ms | ok
+t=-75.142s | inventory -> postgres | trace CLIENT UPDATE shop | 0.4 ms | ok
+t=-75.047s | order -> postgres | trace CLIENT UPDATE shop | 0.3 ms | ok
+t=-67.534s | inventory -> postgres | trace CLIENT SELECT shop | 3.6 ms | ok
+t=-63.807s | inventory -> postgres | trace CLIENT INSERT shop | 1.1 ms | ok
+t=-62.504s | order -> postgres | trace CLIENT UPDATE shop | 0.6 ms | ok
+t=-61.244s | inventory -> postgres | trace CLIENT SELECT shop | 0.3 ms | ok","t=-51.716s | inventory -> postgres | trace CLIENT SELECT shop | 0.4 ms | ok
+t=-51.519s | order -> postgres | trace CLIENT SELECT shop | 0.9 ms | ok
+t=-49.624s | order | trace CLIENT connect | 0.4 ms | ok
+t=-48.692s | order | trace CLIENT connect | 0.3 ms | ok
+t=-45.575s | inventory -> postgres | trace CLIENT SELECT shop | 0.9 ms | ok
+t=-36.148s | order | trace CLIENT connect | 0.3 ms | ok
+t=-33.759s | order -> postgres | trace CLIENT INSERT shop | 1.5 ms | ok
+t=-33.398s | order -> postgres | trace CLIENT UPDATE shop | 0.9 ms | ok
+t=-33.262s | inventory -> postgres | trace CLIENT UPDATE shop | 0.4 ms | ok
+t=-33.183s | inventory -> postgres | trace CLIENT SELECT shop | 0.5 ms | ok
+t=-32.274s | order -> postgres | trace CLIENT UPDATE shop | 0.5 ms | ok
+t=-29.714s | order -> postgres | trace CLIENT SELECT shop | 0.3 ms | ok
+t=-29.008s | inventory -> postgres | trace CLIENT UPDATE shop | 0.4 ms | ok
+t=-25.828s | inventory -> postgres | trace CLIENT SELECT shop | 0.3 ms | ok
+t=-21.374s | inventory -> postgres | trace CLIENT SELECT shop | 1.7 ms | ok
+t=-19.338s | order -> postgres | trace CLIENT UPDATE shop | 0.7 ms | ok
+t=-17.775s | order -> postgres | trace CLIENT INSERT shop | 0.2 ms | ok
+t=-16.554s | inventory -> postgres | trace CLIENT SELECT shop | 0.8 ms | ok
+t=-16.233s | order | trace CLIENT connect | 0.2 ms | ok
+t=-14.427s | order | trace CLIENT connect | 0.2 ms | ok
+t=-13.654s | inventory -> postgres | trace CLIENT SELECT shop | 1.5 ms | ok
+t=-13.117s | inventory -> postgres | trace CLIENT UPDATE shop | 0.4 ms | ok
+t=-7.826s | inventory -> postgres | trace CLIENT SELECT shop | 0.5 ms | ok
+t=-4.149s | order -> postgres | trace CLIENT UPDATE shop | 0.7 ms | ok
+t=-4.143s | order | trace CLIENT connect | 0.3 ms | ok
+t=+13.872s | inventory -> postgres | trace CLIENT SELECT shop | 0.3 ms | ok
+t=+20.570s | inventory -> postgres | trace CLIENT SELECT shop | 0.4 ms | ok
+t=+31.978s | inventory -> postgres | trace CLIENT SELECT shop | 0.7 ms | ok
+t=+45.326s | inventory -> postgres | trace CLIENT SELECT shop | 0.6 ms | ok
+t=+45.360s | inventory -> postgres | trace CLIENT SELECT shop | 0.3 ms | ok","gateway -> inventory (2549 calls)
+gateway -> order (2195 calls)
+inventory -> postgres (5000 calls)
+order -> inventory (821 calls)
+order -> payment (817 calls)
+order -> postgres (1801 calls)",,,,,
+W03,A045,errors/calls/timeouts/logs,Analysis window: t=-60s to t=+60s; baseline window: t=-105s to t=-60s (t=0 is the window anchor).,"OBSERVED: call_failed(subject=gateway, object=inventory) = 1 1",t=-58.052s | gateway -> inventory | trace CLIENT GET | 4.3 ms | error 404 http=404,"t=-104.955s | gateway -> inventory | trace CLIENT GET | 6.1 ms | ok http=200
+t=-104.206s | gateway -> inventory | trace CLIENT GET | 4.6 ms | ok http=200
+t=-100.896s | gateway -> inventory | trace CLIENT GET | 2.9 ms | ok http=200
+t=-99.709s | gateway -> inventory | trace CLIENT GET | 3.0 ms | error 404 http=404
+t=-96.309s | gateway -> inventory | trace CLIENT GET | 2.8 ms | ok http=200
+t=-95.779s | gateway -> inventory | trace CLIENT GET | 2.8 ms | ok http=200
+t=-94.811s | gateway -> inventory | trace CLIENT GET | 4.4 ms | ok http=200
+t=-91.793s | order -> inventory | trace CLIENT POST | 5.1 ms | ok http=200
+t=-89.520s | gateway -> inventory | trace CLIENT GET | 2.8 ms | ok http=200
+t=-89.439s | order -> inventory | trace CLIENT POST | 3.5 ms | ok http=200
+t=-85.399s | gateway -> inventory | trace CLIENT GET | 2.5 ms | ok http=200
+t=-83.191s | gateway -> inventory | trace CLIENT GET | 2.8 ms | ok http=200
+t=-82.353s | gateway -> inventory | trace CLIENT GET | 7.8 ms | ok http=200
+t=-79.512s | order -> inventory | trace CLIENT POST | 6.6 ms | ok http=200
+t=-77.777s | gateway -> inventory | trace CLIENT GET | 3.5 ms | ok http=200
+t=-76.007s | order -> inventory | trace CLIENT POST | 6.0 ms | ok http=200
+t=-75.853s | gateway -> inventory | trace CLIENT GET | 2.6 ms | ok http=200
+t=-74.226s | order -> inventory | trace CLIENT POST | 4.2 ms | ok http=200
+t=-72.312s | gateway -> inventory | trace CLIENT GET | 3.7 ms | ok http=200
+t=-71.712s | gateway -> inventory | trace CLIENT GET | 5.9 ms | ok http=200
+t=-70.947s | order -> inventory | trace CLIENT POST | 4.1 ms | ok http=200
+t=-70.824s | order -> inventory | trace CLIENT POST | 3.4 ms | ok http=200
+t=-67.633s | order -> inventory | trace CLIENT POST | 2.7 ms | ok http=200
+t=-67.365s | gateway -> inventory | trace CLIENT GET | 7.4 ms | ok http=200
+t=-67.046s | order -> inventory | trace CLIENT POST | 3.3 ms | ok http=200
+t=-65.203s | gateway -> inventory | trace CLIENT GET | 4.9 ms | ok http=200
+t=-61.908s | gateway -> inventory | trace CLIENT GET | 3.4 ms | ok http=200
+t=-60.933s | order -> inventory | trace CLIENT POST | 4.0 ms | ok http=200
+t=-60.769s | gateway -> inventory | trace CLIENT GET | 2.5 ms | ok http=200
+t=-60.523s | gateway -> inventory | trace CLIENT GET | 3.1 ms | ok http=200","t=-44.828s | gateway -> inventory | trace CLIENT GET | 6.5 ms | ok http=200
+t=-36.018s | gateway -> inventory | trace CLIENT GET | 9.5 ms | ok http=200
+t=-34.938s | gateway -> inventory | trace CLIENT GET | 2.9 ms | ok http=200
+t=-23.815s | order -> inventory | trace CLIENT POST | 5.6 ms | ok http=200
+t=-20.436s | gateway -> inventory | trace CLIENT GET | 4.0 ms | ok http=200
+t=-18.889s | gateway -> inventory | trace CLIENT GET | 4.2 ms | ok http=200
+t=-18.636s | gateway -> inventory | trace CLIENT GET | 5.3 ms | ok http=200
+t=-3.930s | gateway -> inventory | trace CLIENT GET | 5.7 ms | ok http=200
+t=-1.436s | order -> inventory | trace CLIENT POST | 4.3 ms | ok http=200
+t=+12.333s | order -> inventory | trace CLIENT POST | 8.1 ms | ok http=200
+t=+14.729s | order -> inventory | trace CLIENT POST | 11.8 ms | ok http=200
+t=+17.152s | gateway -> inventory | trace CLIENT GET | 4.0 ms | ok http=200
+t=+21.360s | order -> inventory | trace CLIENT POST | 10.4 ms | ok http=200
+t=+23.216s | gateway -> inventory | trace CLIENT GET | 5.8 ms | ok http=200
+t=+26.266s | order -> inventory | trace CLIENT POST | 7.2 ms | ok http=200
+t=+31.301s | gateway -> inventory | trace CLIENT GET | 4.9 ms | ok http=200
+t=+32.753s | gateway -> inventory | trace CLIENT GET | 5.8 ms | ok http=200
+t=+33.251s | gateway -> inventory | trace CLIENT GET | 8.1 ms | ok http=200
+t=+36.394s | gateway -> inventory | trace CLIENT GET | 4.6 ms | ok http=200
+t=+39.767s | order -> inventory | trace CLIENT POST | 4.8 ms | ok http=200
+t=+39.771s | order -> inventory | trace CLIENT POST | 4.3 ms | ok http=200
+t=+41.193s | gateway -> inventory | trace CLIENT GET | 4.2 ms | error 404 http=404
+t=+43.017s | gateway -> inventory | trace CLIENT GET | 3.6 ms | ok http=200
+t=+46.092s | gateway -> inventory | trace CLIENT GET | 2.1 ms | ok http=200
+t=+52.412s | order -> inventory | trace CLIENT POST | 6.9 ms | ok http=200
+t=+53.461s | gateway -> inventory | trace CLIENT GET | 4.8 ms | ok http=200
+t=+53.660s | gateway -> inventory | trace CLIENT GET | 4.4 ms | ok http=200
+t=+54.840s | gateway -> inventory | trace CLIENT GET | 3.5 ms | ok http=200
+t=+56.193s | order -> inventory | trace CLIENT POST | 5.8 ms | ok http=200
+t=+58.279s | gateway -> inventory | trace CLIENT GET | 4.7 ms | ok http=200","gateway -> inventory (2679 calls)
+gateway -> order (1722 calls)
+inventory -> postgres (6900 calls)
+order -> inventory (1407 calls)
+order -> payment (1407 calls)
+order -> postgres (3129 calls)",,,,,
+W04,A049,errors/calls/timeouts/logs,Analysis window: t=-60s to t=+60s; baseline window: t=-115s to t=-60s (t=0 is the window anchor).,OBSERVED: call_failed(subject=order) = 0 1,t=-56.209s | order -> payment | trace CLIENT POST | 6.2 ms | ok http=200,"t=-112.419s | order -> payment | trace CLIENT POST | 1.5 ms | ok http=200
+t=-111.216s | order -> payment | trace CLIENT POST | 1.6 ms | ok http=200
+t=-110.731s | order -> payment | trace CLIENT POST | 3.1 ms | ok http=200
+t=-109.975s | order -> payment | trace CLIENT POST | 2.7 ms | ok http=200
+t=-109.433s | order -> payment | trace CLIENT POST | 4.3 ms | ok http=200
+t=-105.789s | order -> payment | trace CLIENT POST | 2.2 ms | ok http=200
+t=-103.511s | order -> payment | trace CLIENT POST | 2.2 ms | ok http=200
+t=-101.038s | order -> payment | trace CLIENT POST | 2.8 ms | ok http=200
+t=-99.507s | order -> payment | trace CLIENT POST | 2.3 ms | ok http=200
+t=-98.337s | order -> payment | trace CLIENT POST | 3.3 ms | ok http=200
+t=-96.554s | order -> payment | trace CLIENT POST | 1.6 ms | ok http=200
+t=-96.129s | order -> payment | trace CLIENT POST | 1.8 ms | ok http=200
+t=-93.282s | order -> payment | trace CLIENT POST | 1.6 ms | ok http=200
+t=-91.387s | order -> payment | trace CLIENT POST | 3.0 ms | ok http=200
+t=-90.927s | order -> payment | trace CLIENT POST | 1.6 ms | ok http=200
+t=-88.667s | order -> payment | trace CLIENT POST | 2.2 ms | ok http=200
+t=-84.525s | order -> payment | trace CLIENT POST | 2.4 ms | ok http=200
+t=-84.208s | order -> payment | trace CLIENT POST | 3.8 ms | ok http=200
+t=-84.077s | order -> payment | trace CLIENT POST | 2.6 ms | ok http=200
+t=-82.803s | order -> payment | trace CLIENT POST | 1.7 ms | ok http=200
+t=-81.240s | order -> payment | trace CLIENT POST | 5.3 ms | ok http=200
+t=-81.053s | order -> payment | trace CLIENT POST | 2.0 ms | ok http=200
+t=-80.132s | order -> payment | trace CLIENT POST | 1.6 ms | ok http=200
+t=-80.020s | order -> payment | trace CLIENT POST | 1.6 ms | ok http=200
+t=-79.407s | order -> payment | trace CLIENT POST | 2.4 ms | ok http=200
+t=-66.959s | order -> payment | trace CLIENT POST | 2.9 ms | ok http=200
+t=-66.423s | order -> payment | trace CLIENT POST | 1.5 ms | ok http=200
+t=-62.331s | order -> payment | trace CLIENT POST | 2.7 ms | ok http=200
+t=-61.385s | order -> payment | trace CLIENT POST | 1.9 ms | ok http=200
+t=-61.177s | order -> payment | trace CLIENT POST | 1.6 ms | ok http=200","t=-59.030s | order -> payment | trace CLIENT POST | 2.0 ms | ok http=200
+t=-57.300s | order -> payment | trace CLIENT POST | 2.0 ms | ok http=200
+t=-56.208s | order -> payment | trace CLIENT POST | 3.9 ms | ok http=200
+t=-48.762s | order -> payment | trace CLIENT POST | 2.7 ms | ok http=200
+t=-45.125s | order -> payment | trace CLIENT POST | 1.7 ms | ok http=200
+t=-44.754s | order -> payment | trace CLIENT POST | 1.8 ms | ok http=200
+t=-39.617s | order -> payment | trace CLIENT POST | 3.0 ms | ok http=200
+t=-37.910s | order -> payment | trace CLIENT POST | 1.7 ms | ok http=200
+t=-35.901s | order -> payment | trace CLIENT POST | 3.4 ms | ok http=200
+t=-35.628s | order -> payment | trace CLIENT POST | 2.4 ms | ok http=200
+t=-34.737s | order -> payment | trace CLIENT POST | 1.8 ms | ok http=200
+t=-32.049s | order -> payment | trace CLIENT POST | 2.7 ms | ok http=200
+t=-29.804s | order -> payment | trace CLIENT POST | 1.5 ms | ok http=200
+t=-29.567s | order -> payment | trace CLIENT POST | 2.2 ms | ok http=200
+t=-26.732s | order -> payment | trace CLIENT POST | 2.0 ms | ok http=200
+t=-26.645s | order -> payment | trace CLIENT POST | 1.7 ms | ok http=200
+t=-24.314s | order -> payment | trace CLIENT POST | 4.9 ms | ok http=200
+t=-23.107s | order -> payment | trace CLIENT POST | 1.9 ms | ok http=200
+t=-16.681s | order -> payment | trace CLIENT POST | 2.2 ms | ok http=200
+t=-12.181s | order -> payment | trace CLIENT POST | 3.1 ms | ok http=200
+t=-11.401s | order -> payment | trace CLIENT POST | 2.6 ms | ok http=200
+t=-10.742s | order -> payment | trace CLIENT POST | 2.2 ms | ok http=200
+t=-9.891s | order -> payment | trace CLIENT POST | 4.4 ms | ok http=200
+t=-7.294s | order -> payment | trace CLIENT POST | 2.5 ms | ok http=200
+t=-6.206s | order -> payment | trace CLIENT POST | 1.7 ms | ok http=200
+t=-3.659s | order -> payment | trace CLIENT POST | 5.1 ms | ok http=200
+t=-2.491s | order -> payment | trace CLIENT POST | 2.0 ms | ok http=200
+t=-2.444s | order -> payment | trace CLIENT POST | 1.9 ms | ok http=200
+t=-0.894s | order -> payment | trace CLIENT POST | 2.6 ms | ok http=200
+t=-0.679s | order -> payment | trace CLIENT POST | 2.9 ms | ok http=200","gateway -> inventory (3355 calls)
+gateway -> order (1226 calls)
+inventory -> postgres (4443 calls)
+order -> inventory (907 calls)
+order -> payment (907 calls)
+order -> postgres (2133 calls)",,,,,
+W05,A099,silence,Analysis window: t=-60s to t=+60s; baseline window: t=-120s to t=-60s (t=0 is the window anchor).,OBSERVED: no_telemetry_from(subject=gateway) = 5.0 s,"t=-28.738s | postgres | metric container_cpu | 0.1044 %
+t=-28.738s | order | metric container_cpu | 0.3 %
+t=-23.738s | gateway | metric container_cpu | 0.3311 %
+t=-23.738s | payment | metric container_cpu | 0.2865 %
+t=-23.738s | inventory | metric container_cpu | 0.3891 %","t=-118.738s | postgres | metric container_cpu | 0.05883 %
+t=-118.738s | payment | metric container_cpu | 0.1066 %
+t=-118.738s | inventory | metric container_cpu | 0.1135 %
+t=-113.738s | payment | metric container_cpu | 0.1186 %
+t=-113.738s | postgres | metric container_cpu | 0.06188 %
+t=-113.738s | inventory | metric container_cpu | 0.1314 %
+t=-108.738s | gateway | metric container_cpu | 0.1034 %
+t=-103.737s | postgres | metric container_cpu | 0.06716 %
+t=-103.737s | payment | metric container_cpu | 0.1363 %
+t=-98.738s | gateway | metric container_cpu | 0.1292 %
+t=-98.738s | inventory | metric container_cpu | 0.1694 %
+t=-98.738s | order | metric container_cpu | 0.1303 %
+t=-93.738s | payment | metric container_cpu | 0.153 %
+t=-93.738s | postgres | metric container_cpu | 0.07174 %
+t=-93.738s | gateway | metric container_cpu | 0.1443 %
+t=-93.738s | inventory | metric container_cpu | 0.1846 %
+t=-88.738s | order | metric container_cpu | 0.1532 %
+t=-88.738s | payment | metric container_cpu | 0.1619 %
+t=-88.738s | postgres | metric container_cpu | 0.07393 %
+t=-83.738s | inventory | metric container_cpu | 0.2112 %
+t=-83.738s | order | metric container_cpu | 0.165 %
+t=-78.738s | postgres | metric container_cpu | 0.07797 %
+t=-78.738s | gateway | metric container_cpu | 0.179 %
+t=-73.738s | inventory | metric container_cpu | 0.2385 %
+t=-73.738s | payment | metric container_cpu | 0.1888 %
+t=-73.738s | order | metric container_cpu | 0.1869 %
+t=-73.738s | gateway | metric container_cpu | 0.195 %
+t=-68.738s | inventory | metric container_cpu | 0.2538 %
+t=-63.738s | payment | metric container_cpu | 0.2062 %
+t=-63.738s | postgres | metric container_cpu | 0.08558 %","t=-58.738s | postgres | metric container_cpu | 0.08823 %
+t=-53.738s | gateway | metric container_cpu | 0.248 %
+t=-53.738s | postgres | metric container_cpu | 0.0907 %
+t=-48.737s | gateway | metric container_cpu | 0.2634 %
+t=-43.738s | postgres | metric container_cpu | 0.09662 %
+t=-43.738s | gateway | metric container_cpu | 0.2748 %
+t=-43.738s | order | metric container_cpu | 0.2634 %
+t=-38.738s | gateway | metric container_cpu | 0.289 %
+t=-38.738s | postgres | metric container_cpu | 0.09927 %
+t=-33.737s | payment | metric container_cpu | 0.2683 %
+t=-33.737s | inventory | metric container_cpu | 0.3586 %
+t=-33.737s | order | metric container_cpu | 0.2899 %
+t=-28.738s | order | metric container_cpu | 0.3 %
+t=-23.738s | payment | metric container_cpu | 0.2865 %
+t=-18.738s | gateway | metric container_cpu | 0.3421 %
+t=-13.738s | gateway | metric container_cpu | 0.3578 %
+t=-8.737s | inventory | metric container_cpu | 0.4305 %
+t=+1.262s | order | metric container_cpu | 0.3755 %
+t=+1.262s | payment | metric container_cpu | 0.33 %
+t=+6.263s | inventory | metric container_cpu | 0.4846 %
+t=+11.262s | postgres | metric container_cpu | 0.121 %
+t=+16.263s | inventory | metric container_cpu | 0.5296 %
+t=+16.263s | payment | metric container_cpu | 0.3514 %
+t=+26.262s | payment | metric container_cpu | 0.3652 %
+t=+31.263s | payment | metric container_cpu | 0.3787 %
+t=+31.263s | postgres | metric container_cpu | 0.1261 %
+t=+46.263s | payment | metric container_cpu | 0.3993 %
+t=+46.263s | inventory | metric container_cpu | 0.6839 %
+t=+51.264s | gateway | metric container_cpu | 0.5754 %
+t=+56.265s | payment | metric container_cpu | 0.4143 %",(no call edges observed),,,,,
+W06,A093,silence,Analysis window: t=-60s to t=+60s; baseline window: t=-110s to t=-60s (t=0 is the window anchor).,OBSERVED: no_telemetry_from(subject=gateway) = 5.0 s,"t=-58.754s | payment | metric process_cpu | 0.007465 1
+t=-58.657s | gateway | trace SERVER /api/orders | 44.7 ms | ok http=201
+t=-58.651s | inventory -> postgres | trace CLIENT SELECT shop | 2.8 ms | ok
+t=-58.644s | gateway -> order | trace CLIENT POST | 30.8 ms | ok http=201
+t=-58.643s | order | trace SERVER /orders | 29.2 ms | ok http=201","t=-109.970s | gateway | trace SERVER /api/orders | 29.0 ms | ok http=201
+t=-109.328s | inventory -> postgres | trace CLIENT SELECT shop | 0.9 ms | ok
+t=-107.666s | inventory -> postgres | trace CLIENT INSERT shop | 0.4 ms | ok
+t=-106.409s | inventory -> postgres | trace CLIENT UPDATE shop | 0.4 ms | ok
+t=-103.848s | order | trace SERVER /orders | 8.5 ms | ok http=201
+t=-102.617s | gateway | trace SERVER /api/orders | 22.6 ms | ok http=201
+t=-101.683s | inventory -> postgres | trace CLIENT UPDATE shop | 0.2 ms | ok
+t=-98.569s | inventory -> postgres | trace CLIENT SELECT shop | 1.2 ms | ok
+t=-94.584s | gateway -> order | trace CLIENT POST | 13.8 ms | ok http=201
+t=-92.667s | gateway | trace SERVER /api/stock/{item_id} | 11.6 ms | ok http=200
+t=-92.584s | order | trace SERVER /orders | 15.5 ms | ok http=201
+t=-90.150s | inventory -> postgres | trace CLIENT SELECT shop | 0.4 ms | ok
+t=-90.003s | inventory -> postgres | trace CLIENT SELECT shop | 0.2 ms | ok
+t=-84.666s | inventory -> postgres | trace CLIENT SELECT shop | 0.5 ms | ok
+t=-84.013s | inventory -> postgres | trace CLIENT SELECT shop | 0.7 ms | ok
+t=-83.027s | gateway -> order | trace CLIENT GET | 5.0 ms | ok http=200
+t=-82.529s | gateway -> order | trace CLIENT GET | 3.7 ms | ok http=200
+t=-79.901s | gateway | trace SERVER /api/orders | 19.0 ms | ok http=201
+t=-79.614s | inventory -> postgres | trace CLIENT SELECT shop | 0.2 ms | ok
+t=-79.189s | inventory -> postgres | trace CLIENT INSERT shop | 0.4 ms | ok
+t=-79.056s | gateway -> order | trace CLIENT POST | 8.8 ms | ok http=201
+t=-78.757s | order -> postgres | trace CLIENT UPDATE shop | 0.4 ms | ok
+t=-74.771s | order -> postgres | trace CLIENT INSERT shop | 0.6 ms | ok
+t=-68.054s | gateway | trace SERVER /api/stock/{item_id} | 4.4 ms | ok http=200
+t=-67.783s | gateway | trace SERVER /api/stock/{item_id} | 10.0 ms | ok http=200
+t=-66.084s | gateway | trace SERVER /api/stock/{item_id} | 5.9 ms | ok http=200
+t=-65.549s | inventory -> postgres | trace CLIENT UPDATE shop | 0.2 ms | ok
+t=-65.311s | gateway | trace SERVER /api/orders | 19.5 ms | ok http=201
+t=-64.021s | order -> postgres | trace CLIENT INSERT shop | 0.4 ms | ok
+t=-61.015s | order | trace SERVER /orders | 24.1 ms | ok http=201","t=-59.332s | inventory -> postgres | trace CLIENT UPDATE shop | 0.2 ms | ok
+t=-55.725s | order -> postgres | trace CLIENT INSERT shop | 0.3 ms | ok
+t=-55.472s | inventory -> postgres | trace CLIENT SELECT shop | 0.3 ms | ok
+t=-52.191s | inventory -> postgres | trace CLIENT SELECT shop | 0.6 ms | ok
+t=-49.397s | gateway | trace SERVER /api/orders | 23.0 ms | ok http=201
+t=-43.965s | inventory -> postgres | trace CLIENT SELECT shop | 0.1 ms | ok
+t=-34.444s | order -> postgres | trace CLIENT UPDATE shop | 0.7 ms | ok
+t=-31.011s | gateway | trace SERVER /api/orders | 35.4 ms | ok http=201
+t=-30.722s | order -> postgres | trace CLIENT UPDATE shop | 0.3 ms | ok
+t=-24.916s | gateway -> order | trace CLIENT POST | 9.7 ms | ok http=201
+t=-24.105s | inventory -> postgres | trace CLIENT UPDATE shop | 0.4 ms | ok
+t=-18.755s | inventory -> postgres | trace CLIENT UPDATE shop | 0.4 ms | ok
+t=-16.481s | inventory -> postgres | trace CLIENT SELECT shop | 0.7 ms | ok
+t=-12.720s | gateway | trace SERVER /api/stock/{item_id} | 13.5 ms | ok http=200
+t=-11.784s | order -> postgres | trace CLIENT SELECT shop | 0.9 ms | ok
+t=-6.109s | gateway | trace SERVER /api/stock/{item_id} | 5.2 ms | ok http=200
+t=-5.974s | order -> postgres | trace CLIENT INSERT shop | 1.4 ms | ok
+t=-2.732s | gateway -> order | trace CLIENT POST | 17.6 ms | ok http=201
+t=-2.586s | gateway | trace SERVER /api/stock/{item_id} | 6.9 ms | ok http=200
+t=+1.444s | gateway -> order | trace CLIENT POST | 13.7 ms | ok http=201
+t=+1.456s | order -> postgres | trace CLIENT UPDATE shop | 0.3 ms | ok
+t=+2.242s | gateway | trace SERVER /api/orders/{order_id} | 6.0 ms | ok http=200
+t=+12.730s | order -> postgres | trace CLIENT SELECT shop | 0.9 ms | ok
+t=+17.328s | gateway | trace SERVER /api/orders | 4133.6 ms | error 503 http=503
+t=+26.308s | gateway | trace SERVER /api/stock/{item_id} | 4120.2 ms | error 503 http=503
+t=+29.802s | gateway | trace SERVER /api/stock/{item_id} | 4124.8 ms | error 503 http=503
+t=+33.387s | order | trace SERVER /orders/{order_id} | 3.7 ms | ok http=200
+t=+56.945s | gateway | trace SERVER /api/orders | 4126.8 ms | error 503 http=503
+t=+58.311s | order | trace SERVER /orders/{order_id} | 4.9 ms | ok http=200
+t=+59.647s | order | trace SERVER /orders/{order_id} | 2.3 ms | ok http=200","gateway -> inventory (3240 calls)
+gateway -> order (1157 calls)
+inventory -> postgres (4221 calls)
+order -> inventory (854 calls)
+order -> payment (854 calls)
+order -> postgres (2011 calls)",,,,,
+W07,A008,onset,Analysis window: t=-60s to t=+60s; baseline window: t=-143s to t=-60s (t=0 is the window anchor).,"OBSERVED: onset_before(subject=inventory, object=postgres) = 2.8 s",t=-57.740s | inventory -> postgres | trace CLIENT INSERT shop | 2.8 ms | ok,"t=-142.489s | inventory -> postgres | trace CLIENT SELECT shop | 0.4 ms | ok
+t=-140.048s | inventory -> postgres | trace CLIENT SELECT shop | 0.8 ms | ok
+t=-138.182s | order -> postgres | trace CLIENT INSERT shop | 0.3 ms | ok
+t=-133.073s | inventory -> postgres | trace CLIENT SELECT shop | 0.3 ms | ok
+t=-132.001s | inventory -> postgres | trace CLIENT UPDATE shop | 0.7 ms | ok
+t=-131.300s | order -> postgres | trace CLIENT UPDATE shop | 0.3 ms | ok
+t=-128.765s | inventory -> postgres | trace CLIENT SELECT shop | 0.6 ms | ok
+t=-127.713s | order -> postgres | trace CLIENT INSERT shop | 0.5 ms | ok
+t=-121.576s | inventory -> postgres | trace CLIENT SELECT shop | 0.4 ms | ok
+t=-117.536s | inventory -> postgres | trace CLIENT UPDATE shop | 0.2 ms | ok
+t=-111.323s | inventory -> postgres | trace CLIENT INSERT shop | 0.7 ms | ok
+t=-107.729s | inventory -> postgres | trace CLIENT UPDATE shop | 0.4 ms | ok
+t=-106.681s | inventory -> postgres | trace CLIENT UPDATE shop | 0.4 ms | ok
+t=-106.403s | inventory -> postgres | trace CLIENT SELECT shop | 1.1 ms | ok
+t=-104.679s | inventory -> postgres | trace CLIENT UPDATE shop | 0.4 ms | ok
+t=-95.665s | inventory -> postgres | trace CLIENT UPDATE shop | 0.3 ms | ok
+t=-93.378s | order -> postgres | trace CLIENT UPDATE shop | 0.6 ms | ok
+t=-92.080s | inventory -> postgres | trace CLIENT UPDATE shop | 1.3 ms | ok
+t=-91.269s | inventory -> postgres | trace CLIENT INSERT shop | 0.9 ms | ok
+t=-86.491s | order -> postgres | trace CLIENT UPDATE shop | 0.4 ms | ok
+t=-81.272s | inventory -> postgres | trace CLIENT SELECT shop | 0.8 ms | ok
+t=-80.341s | order -> postgres | trace CLIENT INSERT shop | 0.3 ms | ok
+t=-79.808s | inventory -> postgres | trace CLIENT UPDATE shop | 0.2 ms | ok
+t=-79.481s | inventory -> postgres | trace CLIENT INSERT shop | 0.5 ms | ok
+t=-78.860s | order -> postgres | trace CLIENT SELECT shop | 0.6 ms | ok
+t=-76.512s | inventory -> postgres | trace CLIENT SELECT shop | 0.6 ms | ok
+t=-68.324s | order -> postgres | trace CLIENT INSERT shop | 0.8 ms | ok
+t=-68.094s | inventory -> postgres | trace CLIENT SELECT shop | 0.7 ms | ok
+t=-68.089s | inventory -> postgres | trace CLIENT INSERT shop | 0.8 ms | ok
+t=-65.320s | inventory -> postgres | trace CLIENT SELECT shop | 1.6 ms | ok","t=-59.427s | inventory -> postgres | trace CLIENT SELECT shop | 0.3 ms | ok
+t=-42.311s | inventory -> postgres | trace CLIENT UPDATE shop | 0.4 ms | ok
+t=-40.893s | inventory -> postgres | trace CLIENT SELECT shop | 0.8 ms | ok
+t=-39.179s | order -> postgres | trace CLIENT INSERT shop | 0.4 ms | ok
+t=-34.430s | order -> postgres | trace CLIENT UPDATE shop | 0.6 ms | ok
+t=-34.162s | inventory -> postgres | trace CLIENT UPDATE shop | 0.3 ms | ok
+t=-31.728s | inventory -> postgres | trace CLIENT SELECT shop | 0.4 ms | ok
+t=-31.356s | inventory -> postgres | trace CLIENT SELECT shop | 0.1 ms | ok
+t=-29.573s | inventory -> postgres | trace CLIENT UPDATE shop | 0.3 ms | ok
+t=-27.591s | inventory -> postgres | trace CLIENT SELECT shop | 0.7 ms | ok
+t=-20.798s | inventory -> postgres | trace CLIENT SELECT shop | 0.4 ms | ok
+t=-15.725s | inventory -> postgres | trace CLIENT UPDATE shop | 0.6 ms | ok
+t=-12.722s | inventory -> postgres | trace CLIENT SELECT shop | 1.0 ms | ok
+t=-12.298s | inventory -> postgres | trace CLIENT INSERT shop | 2.2 ms | ok
+t=-12.296s | inventory -> postgres | trace CLIENT UPDATE shop | 0.9 ms | ok
+t=-10.614s | order -> postgres | trace CLIENT UPDATE shop | 0.8 ms | ok
+t=-10.157s | order -> postgres | trace CLIENT INSERT shop | 0.6 ms | ok
+t=-8.307s | inventory -> postgres | trace CLIENT UPDATE shop | 0.2 ms | ok
+t=-0.707s | inventory -> postgres | trace CLIENT INSERT shop | 0.8 ms | ok
+t=+4.838s | order -> postgres | trace CLIENT UPDATE shop | 0.6 ms | ok
+t=+8.811s | order -> postgres | trace CLIENT UPDATE shop | 0.4 ms | ok
+t=+13.211s | inventory -> postgres | trace CLIENT UPDATE shop | 0.3 ms | ok
+t=+13.223s | order -> postgres | trace CLIENT UPDATE shop | 1.1 ms | ok
+t=+17.423s | order -> postgres | trace CLIENT SELECT shop | 1.2 ms | ok
+t=+19.571s | order -> postgres | trace CLIENT INSERT shop | 0.4 ms | ok
+t=+28.292s | order -> postgres | trace CLIENT UPDATE shop | 0.5 ms | ok
+t=+42.016s | inventory -> postgres | trace CLIENT SELECT shop | 0.3 ms | ok
+t=+43.803s | inventory -> postgres | trace CLIENT INSERT shop | 0.7 ms | ok
+t=+54.141s | inventory -> postgres | trace CLIENT SELECT shop | 0.7 ms | ok
+t=+55.828s | inventory -> postgres | trace CLIENT UPDATE shop | 0.5 ms | ok","gateway -> inventory (2677 calls)
+gateway -> order (1696 calls)
+inventory -> postgres (6883 calls)
+order -> inventory (1402 calls)
+order -> payment (1402 calls)
+order -> postgres (3098 calls)",,,,,
+W08,A135,onset,Analysis window: t=-60s to t=+60s; baseline window: t=-105s to t=-60s (t=0 is the window anchor).,"OBSERVED: onset_before(subject=order, object=payment) = 0.0 s",t=-58.351s | order -> payment | trace CLIENT POST | 8.6 ms | ok http=200,"t=-103.588s | order -> payment | trace CLIENT POST | 4.4 ms | ok http=200
+t=-102.971s | order -> payment | trace CLIENT POST | 2.4 ms | ok http=200
+t=-102.721s | order -> payment | trace CLIENT POST | 1.6 ms | ok http=200
+t=-102.221s | order -> payment | trace CLIENT POST | 2.5 ms | ok http=200
+t=-101.874s | order -> payment | trace CLIENT POST | 3.4 ms | ok http=200
+t=-101.514s | order -> payment | trace CLIENT POST | 3.8 ms | ok http=200
+t=-101.101s | order -> payment | trace CLIENT POST | 1.5 ms | ok http=200
+t=-99.955s | order -> payment | trace CLIENT POST | 4.1 ms | ok http=200
+t=-99.822s | order -> payment | trace CLIENT POST | 3.7 ms | ok http=200
+t=-96.394s | order -> payment | trace CLIENT POST | 5.1 ms | ok http=200
+t=-92.532s | order -> payment | trace CLIENT POST | 4.7 ms | ok http=200
+t=-92.520s | order -> payment | trace CLIENT POST | 2.6 ms | ok http=200
+t=-91.489s | order -> payment | trace CLIENT POST | 3.2 ms | ok http=200
+t=-90.613s | order -> payment | trace CLIENT POST | 1.7 ms | ok http=200
+t=-87.188s | order -> payment | trace CLIENT POST | 4.8 ms | ok http=200
+t=-81.967s | order -> payment | trace CLIENT POST | 3.2 ms | ok http=200
+t=-81.805s | order -> payment | trace CLIENT POST | 2.1 ms | ok http=200
+t=-80.637s | order -> payment | trace CLIENT POST | 19.2 ms | ok http=200
+t=-79.498s | order -> payment | trace CLIENT POST | 3.6 ms | ok http=200
+t=-78.977s | order -> payment | trace CLIENT POST | 4.8 ms | ok http=200
+t=-77.998s | order -> payment | trace CLIENT POST | 2.5 ms | ok http=200
+t=-77.272s | order -> payment | trace CLIENT POST | 3.3 ms | ok http=200
+t=-75.089s | order -> payment | trace CLIENT POST | 2.9 ms | ok http=200
+t=-69.762s | order -> payment | trace CLIENT POST | 2.0 ms | ok http=200
+t=-69.699s | order -> payment | trace CLIENT POST | 1.9 ms | ok http=200
+t=-66.222s | order -> payment | trace CLIENT POST | 1.6 ms | ok http=200
+t=-64.661s | order -> payment | trace CLIENT POST | 2.1 ms | ok http=200
+t=-64.215s | order -> payment | trace CLIENT POST | 1.8 ms | ok http=200
+t=-64.125s | order -> payment | trace CLIENT POST | 1.8 ms | ok http=200
+t=-61.147s | order -> payment | trace CLIENT POST | 6.1 ms | ok http=200","t=-59.458s | order -> payment | trace CLIENT POST | 3.2 ms | ok http=200
+t=-56.815s | order -> payment | trace CLIENT POST | 5.6 ms | ok http=200
+t=-56.238s | order -> payment | trace CLIENT POST | 1.3 ms | ok http=200
+t=-55.976s | order -> payment | trace CLIENT POST | 1.8 ms | ok http=200
+t=-54.164s | order -> payment | trace CLIENT POST | 3.1 ms | ok http=200
+t=-54.011s | order -> payment | trace CLIENT POST | 5.7 ms | ok http=200
+t=-53.158s | order -> payment | trace CLIENT POST | 1.4 ms | ok http=200
+t=-52.694s | order -> payment | trace CLIENT POST | 2.6 ms | ok http=200
+t=-51.141s | order -> payment | trace CLIENT POST | 1.5 ms | ok http=200
+t=-50.236s | order -> payment | trace CLIENT POST | 1.8 ms | ok http=200
+t=-48.167s | order -> payment | trace CLIENT POST | 3.3 ms | ok http=200
+t=-46.568s | order -> payment | trace CLIENT POST | 2.8 ms | ok http=200
+t=-44.945s | order -> payment | trace CLIENT POST | 3.2 ms | ok http=200
+t=-40.095s | order -> payment | trace CLIENT POST | 1.5 ms | ok http=200
+t=-36.760s | order -> payment | trace CLIENT POST | 4.2 ms | ok http=200
+t=-33.402s | order -> payment | trace CLIENT POST | 3.4 ms | ok http=200
+t=-32.278s | order -> payment | trace CLIENT POST | 3.0 ms | ok http=200
+t=-29.738s | order -> payment | trace CLIENT POST | 1.6 ms | ok http=200
+t=-25.819s | order -> payment | trace CLIENT POST | 1.9 ms | ok http=200
+t=-23.984s | order -> payment | trace CLIENT POST | 1.8 ms | ok http=200
+t=-21.145s | order -> payment | trace CLIENT POST | 1.4 ms | ok http=200
+t=-13.816s | order -> payment | trace CLIENT POST | 7.5 ms | ok http=200
+t=-12.865s | order -> payment | trace CLIENT POST | 3.0 ms | ok http=200
+t=-12.627s | order -> payment | trace CLIENT POST | 2.5 ms | ok http=200
+t=-12.118s | order -> payment | trace CLIENT POST | 2.7 ms | ok http=200
+t=-10.864s | order -> payment | trace CLIENT POST | 1.5 ms | ok http=200
+t=-9.159s | order -> payment | trace CLIENT POST | 3.4 ms | ok http=200
+t=-8.501s | order -> payment | trace CLIENT POST | 8.3 ms | ok http=200
+t=-6.923s | order -> payment | trace CLIENT POST | 3.1 ms | ok http=200
+t=-4.136s | order -> payment | trace CLIENT POST | 2.4 ms | ok http=200","gateway -> inventory (2549 calls)
+gateway -> order (2195 calls)
+inventory -> postgres (5000 calls)
+order -> inventory (821 calls)
+order -> payment (817 calls)
+order -> postgres (1801 calls)",,,,,
+W09,A108,inferred,Analysis window: t=-60s to t=+60s; baseline window: t=-115s to t=-60s (t=0 is the window anchor).,INFERRED: log_error_pattern(subject=inventory) [causal hypothesis; judge premises only],"t=+2.851s | inventory | log severity=17 | 'unhandled exception' | error
+t=+3.032s | inventory | log severity=17 | 'unhandled exception' | error
+t=+3.130s | inventory | log severity=17 | 'unhandled exception' | error","t=-114.050s | inventory | log severity=9 | 'stock reserved' | ok
+t=-112.327s | inventory | log severity=9 | 'request completed' | ok
+t=-110.055s | inventory | log severity=9 | 'request completed' | ok
+t=-107.896s | inventory | log severity=9 | 'request completed' | ok
+t=-105.314s | inventory | log severity=9 | 'request completed' | ok
+t=-101.963s | inventory | log severity=9 | 'request completed' | ok
+t=-98.798s | inventory | log severity=9 | 'request completed' | ok
+t=-98.590s | inventory | log severity=9 | 'request completed' | ok
+t=-98.584s | inventory | log severity=9 | 'stock reserved' | ok
+t=-98.472s | inventory | log severity=9 | 'request completed' | ok
+t=-98.201s | inventory | log severity=9 | 'request completed' | ok
+t=-97.420s | inventory | log severity=9 | 'request completed' | ok
+t=-91.810s | inventory | log severity=9 | 'stock reserved' | ok
+t=-91.121s | inventory | log severity=9 | 'request completed' | ok
+t=-90.927s | inventory | log severity=9 | 'request completed' | ok
+t=-90.792s | inventory | log severity=9 | 'request completed' | ok
+t=-90.598s | inventory | log severity=9 | 'request completed' | ok
+t=-88.668s | inventory | log severity=9 | 'stock reserved' | ok
+t=-83.388s | inventory | log severity=9 | 'request completed' | ok
+t=-75.590s | inventory | log severity=9 | 'request completed' | ok
+t=-72.362s | inventory | log severity=9 | 'request completed' | ok
+t=-70.483s | inventory | log severity=9 | 'stock reserved' | ok
+t=-70.134s | inventory | log severity=9 | 'request completed' | ok
+t=-69.600s | inventory | log severity=9 | 'request completed' | ok
+t=-67.887s | inventory | log severity=9 | 'request completed' | ok
+t=-67.810s | inventory | log severity=9 | 'request completed' | ok
+t=-67.402s | inventory | log severity=9 | 'stock reserved' | ok
+t=-64.939s | inventory | log severity=9 | 'request completed' | ok
+t=-63.430s | inventory | log severity=9 | 'request completed' | ok
+t=-62.196s | inventory | log severity=9 | 'request completed' | ok","t=-59.904s | inventory | log severity=9 | 'stock reserved' | ok
+t=-51.778s | inventory | log severity=9 | 'request completed' | ok
+t=-49.060s | inventory | log severity=9 | 'request completed' | ok
+t=-46.949s | inventory | log severity=9 | 'request completed' | ok
+t=-45.189s | inventory | log severity=9 | 'request completed' | ok
+t=-44.755s | inventory | log severity=9 | 'request completed' | ok
+t=-40.825s | inventory | log severity=9 | 'request completed' | ok
+t=-35.020s | inventory | log severity=9 | 'request completed' | ok
+t=-29.811s | inventory | log severity=9 | 'request completed' | ok
+t=-26.919s | inventory | log severity=9 | 'request completed' | ok
+t=-25.670s | inventory | log severity=9 | 'request completed' | ok
+t=-23.038s | inventory | log severity=9 | 'stock reserved' | ok
+t=-7.084s | inventory | log severity=9 | 'request completed' | ok
+t=-2.541s | inventory | log severity=9 | 'request completed' | ok
+t=-0.819s | inventory | log severity=9 | 'request completed' | ok
+t=+7.060s | inventory | log severity=17 | 'unhandled exception' | error
+t=+14.581s | inventory | log severity=9 | 'request completed' | ok
+t=+16.868s | inventory | log severity=17 | 'unhandled exception' | error
+t=+20.054s | inventory | log severity=9 | 'request completed' | ok
+t=+21.787s | inventory | log severity=9 | 'request completed' | ok
+t=+22.449s | inventory | log severity=17 | 'unhandled exception' | error
+t=+23.077s | inventory | log severity=9 | 'request completed' | ok
+t=+23.191s | inventory | log severity=9 | 'request completed' | ok
+t=+24.246s | inventory | log severity=9 | 'request completed' | ok
+t=+26.117s | inventory | log severity=9 | 'request completed' | ok
+t=+30.870s | inventory | log severity=17 | 'unhandled exception' | error
+t=+39.431s | inventory | log severity=9 | 'request completed' | ok
+t=+41.692s | inventory | log severity=9 | 'request completed' | ok
+t=+45.122s | inventory | log severity=9 | 'request completed' | ok
+t=+48.557s | inventory | log severity=17 | 'unhandled exception' | error","gateway -> inventory (3355 calls)
+gateway -> order (1226 calls)
+inventory -> postgres (4443 calls)
+order -> inventory (907 calls)
+order -> payment (907 calls)
+order -> postgres (2133 calls)",,,,,
+W10,A053,inferred,Analysis window: t=-60s to t=+60s; baseline window: t=-115s to t=-60s (t=0 is the window anchor).,INFERRED: log_error_pattern(subject=inventory) [causal hypothesis; judge premises only],"t=+2.851s | inventory | log severity=17 | 'unhandled exception' | error
+t=+3.032s | inventory | log severity=17 | 'unhandled exception' | error
+t=+3.130s | inventory | log severity=17 | 'unhandled exception' | error","t=-111.749s | inventory | log severity=9 | 'request completed' | ok
+t=-111.042s | inventory | log severity=9 | 'request completed' | ok
+t=-111.033s | inventory | log severity=9 | 'request completed' | ok
+t=-110.748s | inventory | log severity=9 | 'request completed' | ok
+t=-110.733s | inventory | log severity=9 | 'request completed' | ok
+t=-107.039s | inventory | log severity=9 | 'request completed' | ok
+t=-105.800s | inventory | log severity=9 | 'request completed' | ok
+t=-104.244s | inventory | log severity=9 | 'request completed' | ok
+t=-99.976s | inventory | log severity=9 | 'request completed' | ok
+t=-99.779s | inventory | log severity=9 | 'stock reserved' | ok
+t=-99.647s | inventory | log severity=9 | 'stock reserved' | ok
+t=-93.730s | inventory | log severity=9 | 'request completed' | ok
+t=-93.165s | inventory | log severity=9 | 'request completed' | ok
+t=-92.441s | inventory | log severity=9 | 'stock reserved' | ok
+t=-91.810s | inventory | log severity=9 | 'stock reserved' | ok
+t=-90.792s | inventory | log severity=9 | 'request completed' | ok
+t=-89.671s | inventory | log severity=9 | 'request completed' | ok
+t=-88.669s | inventory | log severity=9 | 'stock reserved' | ok
+t=-87.900s | inventory | log severity=9 | 'request completed' | ok
+t=-83.388s | inventory | log severity=9 | 'request completed' | ok
+t=-81.243s | inventory | log severity=9 | 'stock reserved' | ok
+t=-79.408s | inventory | log severity=9 | 'request completed' | ok
+t=-76.334s | inventory | log severity=9 | 'request completed' | ok
+t=-76.040s | inventory | log severity=9 | 'request completed' | ok
+t=-75.865s | inventory | log severity=9 | 'stock reserved' | ok
+t=-73.784s | inventory | log severity=9 | 'request completed' | ok
+t=-71.645s | inventory | log severity=9 | 'request completed' | ok
+t=-71.629s | inventory | log severity=9 | 'stock reserved' | ok
+t=-66.475s | inventory | log severity=9 | 'request completed' | ok
+t=-66.429s | inventory | log severity=9 | 'request completed' | ok","t=-46.808s | inventory | log severity=9 | 'stock reserved' | ok
+t=-45.967s | inventory | log severity=9 | 'request completed' | ok
+t=-45.426s | inventory | log severity=9 | 'request completed' | ok
+t=-39.960s | inventory | log severity=9 | 'request completed' | ok
+t=-24.868s | inventory | log severity=9 | 'request completed' | ok
+t=-24.316s | inventory | log severity=9 | 'stock reserved' | ok
+t=-23.655s | inventory | log severity=9 | 'stock reserved' | ok
+t=-22.060s | inventory | log severity=13 | 'unknown item' | ok
+t=-19.838s | inventory | log severity=9 | 'stock reserved' | ok
+t=-19.296s | inventory | log severity=9 | 'stock reserved' | ok
+t=-15.810s | inventory | log severity=9 | 'request completed' | ok
+t=-11.482s | inventory | log severity=9 | 'request completed' | ok
+t=-7.536s | inventory | log severity=9 | 'request completed' | ok
+t=-2.705s | inventory | log severity=9 | 'request completed' | ok
+t=+10.959s | inventory | log severity=17 | 'unhandled exception' | error
+t=+12.884s | inventory | log severity=17 | 'unhandled exception' | error
+t=+14.020s | inventory | log severity=9 | 'request completed' | ok
+t=+14.816s | inventory | log severity=17 | 'unhandled exception' | error
+t=+16.690s | inventory | log severity=17 | 'unhandled exception' | error
+t=+17.176s | inventory | log severity=17 | 'unhandled exception' | error
+t=+19.286s | inventory | log severity=9 | 'request completed' | ok
+t=+26.459s | inventory | log severity=9 | 'request completed' | ok
+t=+31.142s | inventory | log severity=9 | 'request completed' | ok
+t=+32.012s | inventory | log severity=17 | 'unhandled exception' | error
+t=+32.815s | inventory | log severity=9 | 'request completed' | ok
+t=+33.578s | inventory | log severity=17 | 'unhandled exception' | error
+t=+41.121s | inventory | log severity=17 | 'unhandled exception' | error
+t=+49.847s | inventory | log severity=17 | 'unhandled exception' | error
+t=+55.989s | inventory | log severity=9 | 'request completed' | ok
+t=+56.839s | inventory | log severity=17 | 'unhandled exception' | error","gateway -> inventory (3355 calls)
+gateway -> order (1226 calls)
+inventory -> postgres (4443 calls)
+order -> inventory (907 calls)
+order -> payment (907 calls)
+order -> postgres (2133 calls)",,,,,

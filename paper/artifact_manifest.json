@@ -1,0 +1,41 @@
+{
+ "generator": "paper/build_artifacts.py",
+ "generator_sha256": "7a7911776acad01d1cafd214c9840cdf3fd02db102d3366de3897ed5fb49f3c6",
+ "svgfig_sha256": "8b093d3c8ce36e5a1b2760a61cf99ab316647647db276e7beefa36016be44eea",
+ "inputs": {
+  "results/final/test_results.json": "aef9e898b2f86ef010c899ceed9cd16536c9e0e1e52112b3d7dabdea5ad42174",
+  "results/final/test_trials.jsonl.gz": "07d832510913351fbbb46abd75a3564c82cdfd7cb97ad4fb8f39ec7850bf79db",
+  "results/phase4b/condition_comparison.json": "40d8740b79770c7a281eaa257dacf0f9c9fc35d0065cfd4452b96ca430138768",
+  "results/phase4b/claim_metrics.json": "fff166a35ad889ed00d63b8c54f0f213c1720301118fe1095a24a0b26c03d6a9",
+  "results/phase4b/runtime_summary.json": "966bb6499fd63299ffd1d5ca649a19095154f561a78860f447c6a014fd55b233",
+  "results/phase4b/llm_trials.jsonl.gz": "7d6abf4c74f1456d54883eb33460cee958bc0769922d46e1ce2e878d3990e0c6"
+ },
+ "outputs": {
+  "paper/tables/conf_localization.tex": "dce2b2a9a3332d103f1f66f162ac24992bfe3d033c793731c5a45fe7dca3f366",
+  "paper/tables/conf_fault_types.tex": "47ca1908ce0a75404dc2a9569fbe503bef41b7ab3bc915bb49107938d5e3e034",
+  "paper/tables/conf_paired.tex": "e85ec2b68c5a9ff922e055bf35a74f4674694968fd9c9d4df22873e4dc33151f",
+  "paper/tables/conf_abstention.tex": "ebe9993483b2ed7cc88d5374cc3d7861a6e5cb2aa75724326a5cf47c6fad6d22",
+  "paper/tables/conf_verifier.tex": "d8266b9a247729c8da2d80d231010027bf88676679b44fe6fb60d4a28ac973a3",
+  "paper/tables/exp_diagnosis.tex": "a694ca5c9ab8b74ef389ce07af1eacd43d5d772c5fc6e7bd62556af36f2821b0",
+  "paper/tables/exp_views.tex": "240fe319d50264607cce4fa50ab4d5243f55b6b40c254a80ae1361a29afb1cad",
+  "paper/tables/exp_fault_types.tex": "048d296510c5de67b09e1d09eafa8b6b9e831bf142583e466b6d275a82d09f1d",
+  "paper/tables/exp_claims.tex": "e0b8f43edaad215fadd8514e3f76953bbe4818e571a05fb0efbfe1aebef6e8fc",
+  "paper/tables/exp_rejections.tex": "8ef71d9e6765621834b387b7549a388c168574c57d74d0aca8c12447cf6e8720",
+  "paper/tables/exp_e2.tex": "d20a12b233549afebe97617f20d6a3b9689429028c1cb2ba32326beb24a30fa7",
+  "paper/tables/exp_controls.tex": "97df7bd4891c8bb8551aac87029f4840bea5a4c221dc640ccf9e24ba7bfccbb5",
+  "paper/tables/exp_runtime.tex": "2da8277b7392891f2268cb55b3821392f727fcd63fdc8eae9edf97b79eea820f",
+  "paper/tables/README.md": "174c519e20aa20cd24573f13841fb16925f2cc5503f072bd6fbe4a3f980b12a9",
+  "paper/figures/fig_conf_localization.svg": "b3c63d5817f07185aa092da86e7fe5a3cd023d9b28146beb0f74c68c8b0ef11f",
+  "paper/figures/fig_conf_fault_types.svg": "9721ce1a42485ad9723fc627f515f1a3e9f71b54f75024408a272fd631cf48e1",
+  "paper/figures/fig_conf_risk_coverage.svg": "de156ad280e8017babfac96543bc6938beb410d568becb8c1d77bfc27f12c529",
+  "paper/figures/fig_exp_diagnosis.svg": "b6755df0399546da73963df93b66956793f09a4b4e6818f120e40ba01d2513b7",
+  "paper/figures/fig_exp_claims.svg": "3944bb6fc2526d9c2f2e57201b79fb9bbd3dfcbc0039bd802ec80aba940bb44b",
+  "paper/figures/README.md": "a4a1bf6f87a3394715c55f7a6a2bc55053bef4c5d70e34a01375cd8bbdf44673",
+  "paper/numbers.tex": "ed55ac3af21214b1fc844d81c35edee985ed8942a1398b32ca73985445837b50"
+ },
+ "not_hashed": "PDF/PNG conversions (renderer-dependent bytes); rebuild them from the hashed SVGs",
+ "tiers": {
+  "confirmatory": "Confirmatory (frozen protocol, held-out test seeds 41/53/67)",
+  "exploratory": "Exploratory (Phase 4B, post-study; held-out seeds previously inspected for E0)"
+ }
+}
