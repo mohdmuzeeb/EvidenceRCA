@@ -1,0 +1,75 @@
+analyzed view 1/265
+analyzed view 26/265
+analyzed view 51/265
+analyzed view 76/265
+analyzed view 101/265
+analyzed view 126/265
+analyzed view 151/265
+analyzed view 176/265
+analyzed view 201/265
+analyzed view 226/265
+analyzed view 251/265
+{
+ "B4": {
+  "top1": 74,
+  "fault_views": 235,
+  "ctrl_fd": 30,
+  "calls": 265
+ },
+ "E1": {
+  "top1": 148,
+  "fault_views": 235,
+  "ctrl_fd": 12,
+  "calls": 247
+ },
+ "E1-frozen-gated": {
+  "top1": 148,
+  "fault_views": 235,
+  "ctrl_fd": 0,
+  "calls": 233
+ },
+ "E2": {
+  "top1": 148,
+  "fault_views": 235,
+  "ctrl_fd": 12,
+  "calls": 247
+ },
+ "B4-G": {
+  "top1": 74,
+  "fault_views": 235,
+  "ctrl_fd": 0,
+  "calls": 233
+ },
+ "E0": {
+  "top1": 148,
+  "fault_views": 235,
+  "ctrl_fd": 0,
+  "calls": 0
+ }
+}
+{
+ "E0": {
+  "population": 1315,
+  "accepted_available": 1256,
+  "rejected_available": 59,
+  "taken_accepted": 40,
+  "taken_rejected": 40,
+  "shortfall_note": null
+ },
+ "E1": {
+  "population": 1455,
+  "accepted_available": 371,
+  "rejected_available": 1084,
+  "taken_accepted": 40,
+  "taken_rejected": 40,
+  "shortfall_note": null
+ },
+ "B4": {
+  "population": 1574,
+  "accepted_available": 458,
+  "rejected_available": 1116,
+  "taken_accepted": 40,
+  "taken_rejected": 40,
+  "shortfall_note": null
+ }
+}

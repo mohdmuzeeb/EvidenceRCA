@@ -1,0 +1,73 @@
+{
+ "n_items": 240,
+ "per_condition": {
+  "E0": 80,
+  "E1": 80,
+  "B4": 80
+ },
+ "stratum_fill": {
+  "E0": {
+   "population": 1315,
+   "accepted_available": 1256,
+   "rejected_available": 59,
+   "taken_accepted": 40,
+   "taken_rejected": 40,
+   "shortfall_note": null
+  },
+  "E1": {
+   "population": 1455,
+   "accepted_available": 371,
+   "rejected_available": 1084,
+   "taken_accepted": 40,
+   "taken_rejected": 40,
+   "shortfall_note": null
+  },
+  "B4": {
+   "population": 1574,
+   "accepted_available": 458,
+   "rejected_available": 1116,
+   "taken_accepted": 40,
+   "taken_rejected": 40,
+   "shortfall_note": null
+  }
+ },
+ "per_condition_group_verdict": {
+  "B4|errors/calls/timeouts/logs|rejected": 10,
+  "B4|errors/calls/timeouts/logs|accepted": 4,
+  "B4|inferred|rejected": 3,
+  "B4|inferred|accepted": 4,
+  "B4|latency/cpu/pool|rejected": 19,
+  "B4|latency/cpu/pool|accepted": 32,
+  "B4|onset|rejected": 4,
+  "B4|silence|rejected": 4,
+  "E0|errors/calls/timeouts/logs|rejected": 1,
+  "E0|errors/calls/timeouts/logs|accepted": 12,
+  "E0|inferred|accepted": 11,
+  "E0|latency/cpu/pool|accepted": 9,
+  "E0|onset|rejected": 39,
+  "E0|onset|accepted": 4,
+  "E0|silence|accepted": 4,
+  "E1|errors/calls/timeouts/logs|rejected": 11,
+  "E1|errors/calls/timeouts/logs|accepted": 4,
+  "E1|inferred|rejected": 1,
+  "E1|inferred|accepted": 2,
+  "E1|latency/cpu/pool|rejected": 20,
+  "E1|latency/cpu/pool|accepted": 33,
+  "E1|onset|rejected": 4,
+  "E1|silence|rejected": 4,
+  "E1|silence|accepted": 1
+ },
+ "max_per_base_case_and_condition": 3,
+ "csv_sha256": "885a5c6150d114c09a2c7b0bbd99c076b427639a60790877cf86f40d28deef77",
+ "key_sha256": "7705df07722fd09ff2069ff507a6da004e8d47c674fe33e6c7dcfefdfbd62204",
+ "status": "PENDING: no human labels exist; the verifier's verdicts are not labels",
+ "blinded_fields_removed": [
+  "condition",
+  "prompt version",
+  "model wording and explanation",
+  "selection tags",
+  "verifier verdict and statistics",
+  "ground truth and fault labels",
+  "case, view and scenario ids"
+ ]
+}

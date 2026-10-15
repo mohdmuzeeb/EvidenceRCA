@@ -502,6 +502,29 @@ def _paired(a_trials, b_trials, field="top1_correct"):
             "cluster_boot95": cluster_boot(pc) if pc else None}
 
 
+def _paired_claims(a_claims, b_claims):
+    """Added after the run (descriptive; disclosed in docs/phase4b_validation.md): per base case, verified rate of
+    observed claims and verified root claims, A minus B, over base cases with observed claims under both."""
+    def per_case(cl):
+        d = defaultdict(lambda: [0, 0, 0])
+        for c in cl:
+            if c["kind"] == "observed":
+                d[c["case_id"]][0] += c["verified"]
+                d[c["case_id"]][1] += 1
+                d[c["case_id"]][2] += c["verified"] and c["subject_is_root"]
+        return d
+    A, B = per_case(a_claims), per_case(b_claims)
+    keys = sorted(set(A) & set(B))
+    rate = {k: A[k][0] / A[k][1] - B[k][0] / B[k][1] for k in keys}
+    root = {k: float(A[k][2] - B[k][2]) for k in keys}
+    return {"n_base_cases": len(keys),
+            "verified_rate_mean_case_difference": round(statistics.mean(rate.values()), 4) if keys else None,
+            "verified_rate_cluster_boot95": cluster_boot(rate) if keys else None,
+            "cases_a_higher": sum(v > 0 for v in rate.values()), "cases_b_higher": sum(v < 0 for v in rate.values()),
+            "verified_root_claims_mean_case_difference": round(statistics.mean(root.values()), 4) if keys else None,
+            "verified_root_claims_cluster_boot95": cluster_boot(root) if keys else None}
+
+
 def analyze() -> int:
     plan = json.loads(PLAN.read_text())
     recs = _load_records(plan)
@@ -696,6 +719,7 @@ def analyze() -> int:
               "E1_frozen_gated_vs_B4_top1": _paired(trials["E1-frozen-gated"], trials["B4"]),
               "B4G_vs_B4_top1": _paired(trials["B4-G"], trials["B4"]),
               "E1_vs_B4_fault_type": _paired(trials["E1"], trials["B4"], "fault_type_correct")}
+    paired["claims_E1_vs_B4"] = _paired_claims(claims["E1"], claims["B4"])     # added after the run (disclosed)
     agree = [t for t in trials["E1"] if t["called"] and t["fault_present"]]
     llm_view = {"E1_llm_agrees_with_e0_top1": _rate(sum(t["llm_agrees_with_e0"] is True for t in agree), len(agree)),
                 "E1_llm_own_suspect_correct": _rate(sum(bool(t["llm_suspect_correct"]) for t in agree), len(agree)),

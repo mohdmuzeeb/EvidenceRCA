@@ -1,0 +1,26 @@
+{
+ "environment": {
+  "colima_running": false,
+  "docker_processes": "559 /Library/PrivilegedHelperTools/com.docker.vmnetd\n38265 /opt/homebrew/bin/limactl usernet -p /Users/muzeebmohammad/.colima/_lima/_networks/user-v2/usernet_user-v2.pid -e /Users/muzeebmohammad/.colima/_lima/_networks/user-v2/user-v2_ep.sock --listen-qemu /Users/muzeebmohammad/.colima/_lima/_networks/user-v2/user-v2_qemu.sock --listen /Users/muzeebmohammad/.colima/_lima/_networks/user-v2/user-v2_fd.sock --subnet 192.168.5.0/24\n41375 /opt/homebrew/bin/limactl usernet -p /Users/muzeebmohammad/.colima/_lima/_networks/user-v2/usernet_user-v2.pid -e /Users/muzeebmohammad/.colima/_lima/_networks/user-v2/user-v2_ep.sock --listen-qemu /Users/muzeebmohammad/.colima/_lima/_networks/user-v2/user-v2_qemu.sock --listen /Users/muzeebmohammad/.colima/_lima/_networks/user-v2/user-v2_fd.sock --subnet 192.168.5.0/24\n44133 /opt/homebrew/bin/limactl usernet -p /Users/muzeebmohammad/.colima/_lima/_networks/user-v2/usernet_user-v2.pid -e /Users/muzeebmohammad/.colima/_lima/_networks/user-v2/user-v2_ep.sock --listen-qemu /Users/muzeebmohammad/.colima/_lima/_networks/user-v2/user-v2_qemu.sock --listen /Users/muzeebmohammad/.colima/_lima/_networks/user-v2/user-v2_fd.sock --subnet 192.168.5.0/24",
+  "power": "Now drawing from 'AC Power'",
+  "disk_free_gb": 22.9,
+  "ollama_models_dir_mb": 2381.6,
+  "hw": {
+   "model": "MacBookAir10,1",
+   "memsize_gb": 8.0,
+   "cpu": "Apple M1",
+   "os": "26.5.2"
+  },
+  "git_head": "b5bf5329cfc38e6411eaa7a1e07ce4efe411b106",
+  "git_branch": "phase4b"
+ },
+ "memory": {
+  "free_mb": 86,
+  "inactive_mb": 1150,
+  "compressed_mb": 3160,
+  "swap": "total = 6144.00M  used = 5370.31M  free = 773.69M  (encrypted)",
+  "pressure_free_pct": "34%"
+ },
+ "model_digest": "359d7dd4bcdab3d86b87d73ac27966f4dbb9f5efdfcc75d34a8764a09474fae7",
+ "ollama_version": "0.34.2"
+}

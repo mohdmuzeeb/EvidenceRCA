@@ -1,0 +1,2859 @@
+{
+ "schema": "evidencerca.phase4b.condition_comparison/v1",
+ "generated_at": "2026-10-15T06:15:44+00:00",
+ "split": "test seeds 41/53/67 (held-out; E0 results already seen)",
+ "plan_sha256": "41be858916e31574b23d8c39defaa961406315233c205d62b5c226e89be672e5",
+ "prompt_version": "p4a-v1",
+ "n_planned_calls": 512,
+ "n_completed_calls": 512,
+ "views_with_missing_planned_calls": [],
+ "model": {
+  "name": "qwen3:4b",
+  "digests": [
+   "359d7dd4bcdab3d86b87d73ac27966f4dbb9f5efdfcc75d34a8764a09474fae7"
+  ],
+  "ollama_versions": [
+   "0.34.2"
+  ]
+ },
+ "note": "verifier verdicts are the frozen verifier's (V0-V6); they are not human ground truth",
+ "definitions": {
+  "B4": "ungated LLM-only (p4a-v1): window = alert window, else median-time window; decision is the model's",
+  "E1": "frozen E0 ranking/localization + p4a-v1 claims; same window rule as B4; diagnosis-level outcome is E0's on that window (E0 receives no LLM input; E1's LLM sees E0's ranking, B4's does not)",
+  "E1-frozen-gated": "E1 under the frozen protocol: no alert -> ABSTAIN (equals frozen E0 test outputs)",
+  "E2": "E1 + deterministic ownership; diagnosis identical to E1 by construction",
+  "B4-G": "hybrid: frozen detector gate, then B4's stored output; not an LLM-only baseline",
+  "E0": "frozen deterministic reference on the alert window (already reported in docs/final_results.md)",
+  "unit": "the base case (scenario) is the independent unit; views are repeated measures",
+  "top1": "DIAGNOSE with the true root as suspected service, over all fault views"
+ },
+ "diagnosis": {
+  "B4": {
+   "all": {
+    "views": 265,
+    "fault_views": 235,
+    "control_views": 30,
+    "fault_base_cases": 47,
+    "control_base_cases": 6,
+    "calls": 265,
+    "top1": {
+     "k": 74,
+     "n": 235,
+     "rate": 0.3149,
+     "wilson95": [
+      0.2589,
+      0.3769
+     ]
+    },
+    "top1_case_mean": 0.3149,
+    "top1_case_mean_cluster_boot95": [
+     0.2128,
+     0.4213
+    ],
+    "top3": {
+     "k": 182,
+     "n": 235,
+     "rate": 0.7745,
+     "wilson95": [
+      0.7169,
+      0.8232
+     ]
+    },
+    "fault_type": {
+     "k": 48,
+     "n": 235,
+     "rate": 0.2043,
+     "wilson95": [
+      0.1577,
+      0.2604
+     ]
+    },
+    "fault_abstained": {
+     "k": 1,
+     "n": 235,
+     "rate": 0.0043,
+     "wilson95": [
+      0.0008,
+      0.0237
+     ]
+    },
+    "wrong_service_diagnoses": 160,
+    "control_false_diagnoses": {
+     "k": 30,
+     "n": 30,
+     "rate": 1.0,
+     "wilson95": [
+      0.8865,
+      1.0
+     ]
+    },
+    "control_cases_with_any_false_diagnosis": 6,
+    "unusable_outputs": 0
+   },
+   "by_spec": {
+    "C0": {
+     "views": 53,
+     "fault_views": 47,
+     "control_views": 6,
+     "fault_base_cases": 47,
+     "control_base_cases": 6,
+     "calls": 53,
+     "top1": {
+      "k": 15,
+      "n": 47,
+      "rate": 0.3191,
+      "wilson95": [
+       0.204,
+       0.4617
+      ]
+     },
+     "top1_case_mean": 0.3191,
+     "top1_case_mean_cluster_boot95": [
+      0.1915,
+      0.4468
+     ],
+     "top3": {
+      "k": 38,
+      "n": 47,
+      "rate": 0.8085,
+      "wilson95": [
+       0.6746,
+       0.8958
+      ]
+     },
+     "fault_type": {
+      "k": 7,
+      "n": 47,
+      "rate": 0.1489,
+      "wilson95": [
+       0.0741,
+       0.2769
+      ]
+     },
+     "fault_abstained": {
+      "k": 0,
+      "n": 47,
+      "rate": 0.0,
+      "wilson95": [
+       0.0,
+       0.0756
+      ]
+     },
+     "wrong_service_diagnoses": 32,
+     "control_false_diagnoses": {
+      "k": 6,
+      "n": 6,
+      "rate": 1.0,
+      "wilson95": [
+       0.6097,
+       1.0
+      ]
+     },
+     "control_cases_with_any_false_diagnosis": 6,
+     "unusable_outputs": 0
+    },
+    "R40": {
+     "views": 53,
+     "fault_views": 47,
+     "control_views": 6,
+     "fault_base_cases": 47,
+     "control_base_cases": 6,
+     "calls": 53,
+     "top1": {
+      "k": 14,
+      "n": 47,
+      "rate": 0.2979,
+      "wilson95": [
+       0.1865,
+       0.4398
+      ]
+     },
+     "top1_case_mean": 0.2979,
+     "top1_case_mean_cluster_boot95": [
+      0.1702,
+      0.4255
+     ],
+     "top3": {
+      "k": 37,
+      "n": 47,
+      "rate": 0.7872,
+      "wilson95": [
+       0.651,
+       0.8801
+      ]
+     },
+     "fault_type": {
+      "k": 11,
+      "n": 47,
+      "rate": 0.234,
+      "wilson95": [
+       0.136,
+       0.3722
+      ]
+     },
+     "fault_abstained": {
+      "k": 0,
+      "n": 47,
+      "rate": 0.0,
+      "wilson95": [
+       0.0,
+       0.0756
+      ]
+     },
+     "wrong_service_diagnoses": 33,
+     "control_false_diagnoses": {
+      "k": 6,
+      "n": 6,
+      "rate": 1.0,
+      "wilson95": [
+       0.6097,
+       1.0
+      ]
+     },
+     "control_cases_with_any_false_diagnosis": 6,
+     "unusable_outputs": 0
+    },
+    "MT": {
+     "views": 53,
+     "fault_views": 47,
+     "control_views": 6,
+     "fault_base_cases": 47,
+     "control_base_cases": 6,
+     "calls": 53,
+     "top1": {
+      "k": 15,
+      "n": 47,
+      "rate": 0.3191,
+      "wilson95": [
+       0.204,
+       0.4617
+      ]
+     },
+     "top1_case_mean": 0.3191,
+     "top1_case_mean_cluster_boot95": [
+      0.1915,
+      0.4468
+     ],
+     "top3": {
+      "k": 34,
+      "n": 47,
+      "rate": 0.7234,
+      "wilson95": [
+       0.5824,
+       0.8306
+      ]
+     },
+     "fault_type": {
+      "k": 5,
+      "n": 47,
+      "rate": 0.1064,
+      "wilson95": [
+       0.0463,
+       0.2259
+      ]
+     },
+     "fault_abstained": {
+      "k": 0,
+      "n": 47,
+      "rate": 0.0,
+      "wilson95": [
+       0.0,
+       0.0756
+      ]
+     },
+     "wrong_service_diagnoses": 32,
+     "control_false_diagnoses": {
+      "k": 6,
+      "n": 6,
+      "rate": 1.0,
+      "wilson95": [
+       0.6097,
+       1.0
+      ]
+     },
+     "control_cases_with_any_false_diagnosis": 6,
+     "unusable_outputs": 0
+    },
+    "ML": {
+     "views": 53,
+     "fault_views": 47,
+     "control_views": 6,
+     "fault_base_cases": 47,
+     "control_base_cases": 6,
+     "calls": 53,
+     "top1": {
+      "k": 15,
+      "n": 47,
+      "rate": 0.3191,
+      "wilson95": [
+       0.204,
+       0.4617
+      ]
+     },
+     "top1_case_mean": 0.3191,
+     "top1_case_mean_cluster_boot95": [
+      0.1915,
+      0.4468
+     ],
+     "top3": {
+      "k": 37,
+      "n": 47,
+      "rate": 0.7872,
+      "wilson95": [
+       0.651,
+       0.8801
+      ]
+     },
+     "fault_type": {
+      "k": 9,
+      "n": 47,
+      "rate": 0.1915,
+      "wilson95": [
+       0.1042,
+       0.3254
+      ]
+     },
+     "fault_abstained": {
+      "k": 1,
+      "n": 47,
+      "rate": 0.0213,
+      "wilson95": [
+       0.0038,
+       0.1111
+      ]
+     },
+     "wrong_service_diagnoses": 31,
+     "control_false_diagnoses": {
+      "k": 6,
+      "n": 6,
+      "rate": 1.0,
+      "wilson95": [
+       0.6097,
+       1.0
+      ]
+     },
+     "control_cases_with_any_false_diagnosis": 6,
+     "unusable_outputs": 0
+    },
+    "CF": {
+     "views": 53,
+     "fault_views": 47,
+     "control_views": 6,
+     "fault_base_cases": 47,
+     "control_base_cases": 6,
+     "calls": 53,
+     "top1": {
+      "k": 15,
+      "n": 47,
+      "rate": 0.3191,
+      "wilson95": [
+       0.204,
+       0.4617
+      ]
+     },
+     "top1_case_mean": 0.3191,
+     "top1_case_mean_cluster_boot95": [
+      0.1915,
+      0.4468
+     ],
+     "top3": {
+      "k": 36,
+      "n": 47,
+      "rate": 0.766,
+      "wilson95": [
+       0.6278,
+       0.864
+      ]
+     },
+     "fault_type": {
+      "k": 16,
+      "n": 47,
+      "rate": 0.3404,
+      "wilson95": [
+       0.2217,
+       0.4833
+      ]
+     },
+     "fault_abstained": {
+      "k": 0,
+      "n": 47,
+      "rate": 0.0,
+      "wilson95": [
+       0.0,
+       0.0756
+      ]
+     },
+     "wrong_service_diagnoses": 32,
+     "control_false_diagnoses": {
+      "k": 6,
+      "n": 6,
+      "rate": 1.0,
+      "wilson95": [
+       0.6097,
+       1.0
+      ]
+     },
+     "control_cases_with_any_false_diagnosis": 6,
+     "unusable_outputs": 0
+    }
+   }
+  },
+  "E1": {
+   "all": {
+    "views": 265,
+    "fault_views": 235,
+    "control_views": 30,
+    "fault_base_cases": 47,
+    "control_base_cases": 6,
+    "calls": 247,
+    "top1": {
+     "k": 148,
+     "n": 235,
+     "rate": 0.6298,
+     "wilson95": [
+      0.5664,
+      0.689
+     ]
+    },
+    "top1_case_mean": 0.6298,
+    "top1_case_mean_cluster_boot95": [
+     0.5447,
+     0.7106
+    ],
+    "top3": {
+     "k": 206,
+     "n": 235,
+     "rate": 0.8766,
+     "wilson95": [
+      0.8284,
+      0.9127
+     ]
+    },
+    "fault_type": {
+     "k": 134,
+     "n": 235,
+     "rate": 0.5702,
+     "wilson95": [
+      0.5063,
+      0.6319
+     ]
+    },
+    "fault_abstained": {
+     "k": 0,
+     "n": 235,
+     "rate": 0.0,
+     "wilson95": [
+      0.0,
+      0.0161
+     ]
+    },
+    "wrong_service_diagnoses": 87,
+    "control_false_diagnoses": {
+     "k": 12,
+     "n": 30,
+     "rate": 0.4,
+     "wilson95": [
+      0.2459,
+      0.5768
+     ]
+    },
+    "control_cases_with_any_false_diagnosis": 6,
+    "unusable_outputs": 0
+   },
+   "by_spec": {
+    "C0": {
+     "views": 53,
+     "fault_views": 47,
+     "control_views": 6,
+     "fault_base_cases": 47,
+     "control_base_cases": 6,
+     "calls": 49,
+     "top1": {
+      "k": 38,
+      "n": 47,
+      "rate": 0.8085,
+      "wilson95": [
+       0.6746,
+       0.8958
+      ]
+     },
+     "top1_case_mean": 0.8085,
+     "top1_case_mean_cluster_boot95": [
+      0.7021,
+      0.9149
+     ],
+     "top3": {
+      "k": 44,
+      "n": 47,
+      "rate": 0.9362,
+      "wilson95": [
+       0.8284,
+       0.9781
+      ]
+     },
+     "fault_type": {
+      "k": 35,
+      "n": 47,
+      "rate": 0.7447,
+      "wilson95": [
+       0.6049,
+       0.8475
+      ]
+     },
+     "fault_abstained": {
+      "k": 0,
+      "n": 47,
+      "rate": 0.0,
+      "wilson95": [
+       0.0,
+       0.0756
+      ]
+     },
+     "wrong_service_diagnoses": 9,
+     "control_false_diagnoses": {
+      "k": 2,
+      "n": 6,
+      "rate": 0.3333,
+      "wilson95": [
+       0.0968,
+       0.7
+      ]
+     },
+     "control_cases_with_any_false_diagnosis": 2,
+     "unusable_outputs": 0
+    },
+    "R40": {
+     "views": 53,
+     "fault_views": 47,
+     "control_views": 6,
+     "fault_base_cases": 47,
+     "control_base_cases": 6,
+     "calls": 53,
+     "top1": {
+      "k": 20,
+      "n": 47,
+      "rate": 0.4255,
+      "wilson95": [
+       0.2951,
+       0.5672
+      ]
+     },
+     "top1_case_mean": 0.4255,
+     "top1_case_mean_cluster_boot95": [
+      0.2766,
+      0.5745
+     ],
+     "top3": {
+      "k": 37,
+      "n": 47,
+      "rate": 0.7872,
+      "wilson95": [
+       0.651,
+       0.8801
+      ]
+     },
+     "fault_type": {
+      "k": 13,
+      "n": 47,
+      "rate": 0.2766,
+      "wilson95": [
+       0.1694,
+       0.4176
+      ]
+     },
+     "fault_abstained": {
+      "k": 0,
+      "n": 47,
+      "rate": 0.0,
+      "wilson95": [
+       0.0,
+       0.0756
+      ]
+     },
+     "wrong_service_diagnoses": 27,
+     "control_false_diagnoses": {
+      "k": 6,
+      "n": 6,
+      "rate": 1.0,
+      "wilson95": [
+       0.6097,
+       1.0
+      ]
+     },
+     "control_cases_with_any_false_diagnosis": 6,
+     "unusable_outputs": 0
+    },
+    "MT": {
+     "views": 53,
+     "fault_views": 47,
+     "control_views": 6,
+     "fault_base_cases": 47,
+     "control_base_cases": 6,
+     "calls": 48,
+     "top1": {
+      "k": 15,
+      "n": 47,
+      "rate": 0.3191,
+      "wilson95": [
+       0.204,
+       0.4617
+      ]
+     },
+     "top1_case_mean": 0.3191,
+     "top1_case_mean_cluster_boot95": [
+      0.1915,
+      0.4468
+     ],
+     "top3": {
+      "k": 37,
+      "n": 47,
+      "rate": 0.7872,
+      "wilson95": [
+       0.651,
+       0.8801
+      ]
+     },
+     "fault_type": {
+      "k": 19,
+      "n": 47,
+      "rate": 0.4043,
+      "wilson95": [
+       0.2764,
+       0.5466
+      ]
+     },
+     "fault_abstained": {
+      "k": 0,
+      "n": 47,
+      "rate": 0.0,
+      "wilson95": [
+       0.0,
+       0.0756
+      ]
+     },
+     "wrong_service_diagnoses": 32,
+     "control_false_diagnoses": {
+      "k": 1,
+      "n": 6,
+      "rate": 0.1667,
+      "wilson95": [
+       0.0301,
+       0.5635
+      ]
+     },
+     "control_cases_with_any_false_diagnosis": 1,
+     "unusable_outputs": 0
+    },
+    "ML": {
+     "views": 53,
+     "fault_views": 47,
+     "control_views": 6,
+     "fault_base_cases": 47,
+     "control_base_cases": 6,
+     "calls": 48,
+     "top1": {
+      "k": 37,
+      "n": 47,
+      "rate": 0.7872,
+      "wilson95": [
+       0.651,
+       0.8801
+      ]
+     },
+     "top1_case_mean": 0.7872,
+     "top1_case_mean_cluster_boot95": [
+      0.6596,
+      0.8936
+     ],
+     "top3": {
+      "k": 44,
+      "n": 47,
+      "rate": 0.9362,
+      "wilson95": [
+       0.8284,
+       0.9781
+      ]
+     },
+     "fault_type": {
+      "k": 32,
+      "n": 47,
+      "rate": 0.6809,
+      "wilson95": [
+       0.5383,
+       0.796
+      ]
+     },
+     "fault_abstained": {
+      "k": 0,
+      "n": 47,
+      "rate": 0.0,
+      "wilson95": [
+       0.0,
+       0.0756
+      ]
+     },
+     "wrong_service_diagnoses": 10,
+     "control_false_diagnoses": {
+      "k": 1,
+      "n": 6,
+      "rate": 0.1667,
+      "wilson95": [
+       0.0301,
+       0.5635
+      ]
+     },
+     "control_cases_with_any_false_diagnosis": 1,
+     "unusable_outputs": 0
+    },
+    "CF": {
+     "views": 53,
+     "fault_views": 47,
+     "control_views": 6,
+     "fault_base_cases": 47,
+     "control_base_cases": 6,
+     "calls": 49,
+     "top1": {
+      "k": 38,
+      "n": 47,
+      "rate": 0.8085,
+      "wilson95": [
+       0.6746,
+       0.8958
+      ]
+     },
+     "top1_case_mean": 0.8085,
+     "top1_case_mean_cluster_boot95": [
+      0.7021,
+      0.9149
+     ],
+     "top3": {
+      "k": 44,
+      "n": 47,
+      "rate": 0.9362,
+      "wilson95": [
+       0.8284,
+       0.9781
+      ]
+     },
+     "fault_type": {
+      "k": 35,
+      "n": 47,
+      "rate": 0.7447,
+      "wilson95": [
+       0.6049,
+       0.8475
+      ]
+     },
+     "fault_abstained": {
+      "k": 0,
+      "n": 47,
+      "rate": 0.0,
+      "wilson95": [
+       0.0,
+       0.0756
+      ]
+     },
+     "wrong_service_diagnoses": 9,
+     "control_false_diagnoses": {
+      "k": 2,
+      "n": 6,
+      "rate": 0.3333,
+      "wilson95": [
+       0.0968,
+       0.7
+      ]
+     },
+     "control_cases_with_any_false_diagnosis": 2,
+     "unusable_outputs": 0
+    }
+   }
+  },
+  "E1-frozen-gated": {
+   "all": {
+    "views": 265,
+    "fault_views": 235,
+    "control_views": 30,
+    "fault_base_cases": 47,
+    "control_base_cases": 6,
+    "calls": 233,
+    "top1": {
+     "k": 148,
+     "n": 235,
+     "rate": 0.6298,
+     "wilson95": [
+      0.5664,
+      0.689
+     ]
+    },
+    "top1_case_mean": 0.6298,
+    "top1_case_mean_cluster_boot95": [
+     0.5447,
+     0.7106
+    ],
+    "top3": {
+     "k": 204,
+     "n": 235,
+     "rate": 0.8681,
+     "wilson95": [
+      0.8188,
+      0.9055
+     ]
+    },
+    "fault_type": {
+     "k": 134,
+     "n": 235,
+     "rate": 0.5702,
+     "wilson95": [
+      0.5063,
+      0.6319
+     ]
+    },
+    "fault_abstained": {
+     "k": 2,
+     "n": 235,
+     "rate": 0.0085,
+     "wilson95": [
+      0.0023,
+      0.0305
+     ]
+    },
+    "wrong_service_diagnoses": 85,
+    "control_false_diagnoses": {
+     "k": 0,
+     "n": 30,
+     "rate": 0.0,
+     "wilson95": [
+      -0.0,
+      0.1135
+     ]
+    },
+    "control_cases_with_any_false_diagnosis": 0,
+    "unusable_outputs": 0
+   },
+   "by_spec": {
+    "C0": {
+     "views": 53,
+     "fault_views": 47,
+     "control_views": 6,
+     "fault_base_cases": 47,
+     "control_base_cases": 6,
+     "calls": 47,
+     "top1": {
+      "k": 38,
+      "n": 47,
+      "rate": 0.8085,
+      "wilson95": [
+       0.6746,
+       0.8958
+      ]
+     },
+     "top1_case_mean": 0.8085,
+     "top1_case_mean_cluster_boot95": [
+      0.7021,
+      0.9149
+     ],
+     "top3": {
+      "k": 44,
+      "n": 47,
+      "rate": 0.9362,
+      "wilson95": [
+       0.8284,
+       0.9781
+      ]
+     },
+     "fault_type": {
+      "k": 35,
+      "n": 47,
+      "rate": 0.7447,
+      "wilson95": [
+       0.6049,
+       0.8475
+      ]
+     },
+     "fault_abstained": {
+      "k": 0,
+      "n": 47,
+      "rate": 0.0,
+      "wilson95": [
+       0.0,
+       0.0756
+      ]
+     },
+     "wrong_service_diagnoses": 9,
+     "control_false_diagnoses": {
+      "k": 0,
+      "n": 6,
+      "rate": 0.0,
+      "wilson95": [
+       0.0,
+       0.3903
+      ]
+     },
+     "control_cases_with_any_false_diagnosis": 0,
+     "unusable_outputs": 0
+    },
+    "R40": {
+     "views": 53,
+     "fault_views": 47,
+     "control_views": 6,
+     "fault_base_cases": 47,
+     "control_base_cases": 6,
+     "calls": 47,
+     "top1": {
+      "k": 20,
+      "n": 47,
+      "rate": 0.4255,
+      "wilson95": [
+       0.2951,
+       0.5672
+      ]
+     },
+     "top1_case_mean": 0.4255,
+     "top1_case_mean_cluster_boot95": [
+      0.2766,
+      0.5745
+     ],
+     "top3": {
+      "k": 37,
+      "n": 47,
+      "rate": 0.7872,
+      "wilson95": [
+       0.651,
+       0.8801
+      ]
+     },
+     "fault_type": {
+      "k": 13,
+      "n": 47,
+      "rate": 0.2766,
+      "wilson95": [
+       0.1694,
+       0.4176
+      ]
+     },
+     "fault_abstained": {
+      "k": 0,
+      "n": 47,
+      "rate": 0.0,
+      "wilson95": [
+       0.0,
+       0.0756
+      ]
+     },
+     "wrong_service_diagnoses": 27,
+     "control_false_diagnoses": {
+      "k": 0,
+      "n": 6,
+      "rate": 0.0,
+      "wilson95": [
+       0.0,
+       0.3903
+      ]
+     },
+     "control_cases_with_any_false_diagnosis": 0,
+     "unusable_outputs": 0
+    },
+    "MT": {
+     "views": 53,
+     "fault_views": 47,
+     "control_views": 6,
+     "fault_base_cases": 47,
+     "control_base_cases": 6,
+     "calls": 45,
+     "top1": {
+      "k": 15,
+      "n": 47,
+      "rate": 0.3191,
+      "wilson95": [
+       0.204,
+       0.4617
+      ]
+     },
+     "top1_case_mean": 0.3191,
+     "top1_case_mean_cluster_boot95": [
+      0.1915,
+      0.4468
+     ],
+     "top3": {
+      "k": 35,
+      "n": 47,
+      "rate": 0.7447,
+      "wilson95": [
+       0.6049,
+       0.8475
+      ]
+     },
+     "fault_type": {
+      "k": 19,
+      "n": 47,
+      "rate": 0.4043,
+      "wilson95": [
+       0.2764,
+       0.5466
+      ]
+     },
+     "fault_abstained": {
+      "k": 2,
+      "n": 47,
+      "rate": 0.0426,
+      "wilson95": [
+       0.0117,
+       0.1425
+      ]
+     },
+     "wrong_service_diagnoses": 30,
+     "control_false_diagnoses": {
+      "k": 0,
+      "n": 6,
+      "rate": 0.0,
+      "wilson95": [
+       0.0,
+       0.3903
+      ]
+     },
+     "control_cases_with_any_false_diagnosis": 0,
+     "unusable_outputs": 0
+    },
+    "ML": {
+     "views": 53,
+     "fault_views": 47,
+     "control_views": 6,
+     "fault_base_cases": 47,
+     "control_base_cases": 6,
+     "calls": 47,
+     "top1": {
+      "k": 37,
+      "n": 47,
+      "rate": 0.7872,
+      "wilson95": [
+       0.651,
+       0.8801
+      ]
+     },
+     "top1_case_mean": 0.7872,
+     "top1_case_mean_cluster_boot95": [
+      0.6596,
+      0.8936
+     ],
+     "top3": {
+      "k": 44,
+      "n": 47,
+      "rate": 0.9362,
+      "wilson95": [
+       0.8284,
+       0.9781
+      ]
+     },
+     "fault_type": {
+      "k": 32,
+      "n": 47,
+      "rate": 0.6809,
+      "wilson95": [
+       0.5383,
+       0.796
+      ]
+     },
+     "fault_abstained": {
+      "k": 0,
+      "n": 47,
+      "rate": 0.0,
+      "wilson95": [
+       0.0,
+       0.0756
+      ]
+     },
+     "wrong_service_diagnoses": 10,
+     "control_false_diagnoses": {
+      "k": 0,
+      "n": 6,
+      "rate": 0.0,
+      "wilson95": [
+       0.0,
+       0.3903
+      ]
+     },
+     "control_cases_with_any_false_diagnosis": 0,
+     "unusable_outputs": 0
+    },
+    "CF": {
+     "views": 53,
+     "fault_views": 47,
+     "control_views": 6,
+     "fault_base_cases": 47,
+     "control_base_cases": 6,
+     "calls": 47,
+     "top1": {
+      "k": 38,
+      "n": 47,
+      "rate": 0.8085,
+      "wilson95": [
+       0.6746,
+       0.8958
+      ]
+     },
+     "top1_case_mean": 0.8085,
+     "top1_case_mean_cluster_boot95": [
+      0.7021,
+      0.9149
+     ],
+     "top3": {
+      "k": 44,
+      "n": 47,
+      "rate": 0.9362,
+      "wilson95": [
+       0.8284,
+       0.9781
+      ]
+     },
+     "fault_type": {
+      "k": 35,
+      "n": 47,
+      "rate": 0.7447,
+      "wilson95": [
+       0.6049,
+       0.8475
+      ]
+     },
+     "fault_abstained": {
+      "k": 0,
+      "n": 47,
+      "rate": 0.0,
+      "wilson95": [
+       0.0,
+       0.0756
+      ]
+     },
+     "wrong_service_diagnoses": 9,
+     "control_false_diagnoses": {
+      "k": 0,
+      "n": 6,
+      "rate": 0.0,
+      "wilson95": [
+       0.0,
+       0.3903
+      ]
+     },
+     "control_cases_with_any_false_diagnosis": 0,
+     "unusable_outputs": 0
+    }
+   }
+  },
+  "E2": {
+   "all": {
+    "views": 265,
+    "fault_views": 235,
+    "control_views": 30,
+    "fault_base_cases": 47,
+    "control_base_cases": 6,
+    "calls": 247,
+    "top1": {
+     "k": 148,
+     "n": 235,
+     "rate": 0.6298,
+     "wilson95": [
+      0.5664,
+      0.689
+     ]
+    },
+    "top1_case_mean": 0.6298,
+    "top1_case_mean_cluster_boot95": [
+     0.5447,
+     0.7106
+    ],
+    "top3": {
+     "k": 206,
+     "n": 235,
+     "rate": 0.8766,
+     "wilson95": [
+      0.8284,
+      0.9127
+     ]
+    },
+    "fault_type": {
+     "k": 134,
+     "n": 235,
+     "rate": 0.5702,
+     "wilson95": [
+      0.5063,
+      0.6319
+     ]
+    },
+    "fault_abstained": {
+     "k": 0,
+     "n": 235,
+     "rate": 0.0,
+     "wilson95": [
+      0.0,
+      0.0161
+     ]
+    },
+    "wrong_service_diagnoses": 87,
+    "control_false_diagnoses": {
+     "k": 12,
+     "n": 30,
+     "rate": 0.4,
+     "wilson95": [
+      0.2459,
+      0.5768
+     ]
+    },
+    "control_cases_with_any_false_diagnosis": 6,
+    "unusable_outputs": 0
+   },
+   "by_spec": {
+    "C0": {
+     "views": 53,
+     "fault_views": 47,
+     "control_views": 6,
+     "fault_base_cases": 47,
+     "control_base_cases": 6,
+     "calls": 49,
+     "top1": {
+      "k": 38,
+      "n": 47,
+      "rate": 0.8085,
+      "wilson95": [
+       0.6746,
+       0.8958
+      ]
+     },
+     "top1_case_mean": 0.8085,
+     "top1_case_mean_cluster_boot95": [
+      0.7021,
+      0.9149
+     ],
+     "top3": {
+      "k": 44,
+      "n": 47,
+      "rate": 0.9362,
+      "wilson95": [
+       0.8284,
+       0.9781
+      ]
+     },
+     "fault_type": {
+      "k": 35,
+      "n": 47,
+      "rate": 0.7447,
+      "wilson95": [
+       0.6049,
+       0.8475
+      ]
+     },
+     "fault_abstained": {
+      "k": 0,
+      "n": 47,
+      "rate": 0.0,
+      "wilson95": [
+       0.0,
+       0.0756
+      ]
+     },
+     "wrong_service_diagnoses": 9,
+     "control_false_diagnoses": {
+      "k": 2,
+      "n": 6,
+      "rate": 0.3333,
+      "wilson95": [
+       0.0968,
+       0.7
+      ]
+     },
+     "control_cases_with_any_false_diagnosis": 2,
+     "unusable_outputs": 0
+    },
+    "R40": {
+     "views": 53,
+     "fault_views": 47,
+     "control_views": 6,
+     "fault_base_cases": 47,
+     "control_base_cases": 6,
+     "calls": 53,
+     "top1": {
+      "k": 20,
+      "n": 47,
+      "rate": 0.4255,
+      "wilson95": [
+       0.2951,
+       0.5672
+      ]
+     },
+     "top1_case_mean": 0.4255,
+     "top1_case_mean_cluster_boot95": [
+      0.2766,
+      0.5745
+     ],
+     "top3": {
+      "k": 37,
+      "n": 47,
+      "rate": 0.7872,
+      "wilson95": [
+       0.651,
+       0.8801
+      ]
+     },
+     "fault_type": {
+      "k": 13,
+      "n": 47,
+      "rate": 0.2766,
+      "wilson95": [
+       0.1694,
+       0.4176
+      ]
+     },
+     "fault_abstained": {
+      "k": 0,
+      "n": 47,
+      "rate": 0.0,
+      "wilson95": [
+       0.0,
+       0.0756
+      ]
+     },
+     "wrong_service_diagnoses": 27,
+     "control_false_diagnoses": {
+      "k": 6,
+      "n": 6,
+      "rate": 1.0,
+      "wilson95": [
+       0.6097,
+       1.0
+      ]
+     },
+     "control_cases_with_any_false_diagnosis": 6,
+     "unusable_outputs": 0
+    },
+    "MT": {
+     "views": 53,
+     "fault_views": 47,
+     "control_views": 6,
+     "fault_base_cases": 47,
+     "control_base_cases": 6,
+     "calls": 48,
+     "top1": {
+      "k": 15,
+      "n": 47,
+      "rate": 0.3191,
+      "wilson95": [
+       0.204,
+       0.4617
+      ]
+     },
+     "top1_case_mean": 0.3191,
+     "top1_case_mean_cluster_boot95": [
+      0.1915,
+      0.4468
+     ],
+     "top3": {
+      "k": 37,
+      "n": 47,
+      "rate": 0.7872,
+      "wilson95": [
+       0.651,
+       0.8801
+      ]
+     },
+     "fault_type": {
+      "k": 19,
+      "n": 47,
+      "rate": 0.4043,
+      "wilson95": [
+       0.2764,
+       0.5466
+      ]
+     },
+     "fault_abstained": {
+      "k": 0,
+      "n": 47,
+      "rate": 0.0,
+      "wilson95": [
+       0.0,
+       0.0756
+      ]
+     },
+     "wrong_service_diagnoses": 32,
+     "control_false_diagnoses": {
+      "k": 1,
+      "n": 6,
+      "rate": 0.1667,
+      "wilson95": [
+       0.0301,
+       0.5635
+      ]
+     },
+     "control_cases_with_any_false_diagnosis": 1,
+     "unusable_outputs": 0
+    },
+    "ML": {
+     "views": 53,
+     "fault_views": 47,
+     "control_views": 6,
+     "fault_base_cases": 47,
+     "control_base_cases": 6,
+     "calls": 48,
+     "top1": {
+      "k": 37,
+      "n": 47,
+      "rate": 0.7872,
+      "wilson95": [
+       0.651,
+       0.8801
+      ]
+     },
+     "top1_case_mean": 0.7872,
+     "top1_case_mean_cluster_boot95": [
+      0.6596,
+      0.8936
+     ],
+     "top3": {
+      "k": 44,
+      "n": 47,
+      "rate": 0.9362,
+      "wilson95": [
+       0.8284,
+       0.9781
+      ]
+     },
+     "fault_type": {
+      "k": 32,
+      "n": 47,
+      "rate": 0.6809,
+      "wilson95": [
+       0.5383,
+       0.796
+      ]
+     },
+     "fault_abstained": {
+      "k": 0,
+      "n": 47,
+      "rate": 0.0,
+      "wilson95": [
+       0.0,
+       0.0756
+      ]
+     },
+     "wrong_service_diagnoses": 10,
+     "control_false_diagnoses": {
+      "k": 1,
+      "n": 6,
+      "rate": 0.1667,
+      "wilson95": [
+       0.0301,
+       0.5635
+      ]
+     },
+     "control_cases_with_any_false_diagnosis": 1,
+     "unusable_outputs": 0
+    },
+    "CF": {
+     "views": 53,
+     "fault_views": 47,
+     "control_views": 6,
+     "fault_base_cases": 47,
+     "control_base_cases": 6,
+     "calls": 49,
+     "top1": {
+      "k": 38,
+      "n": 47,
+      "rate": 0.8085,
+      "wilson95": [
+       0.6746,
+       0.8958
+      ]
+     },
+     "top1_case_mean": 0.8085,
+     "top1_case_mean_cluster_boot95": [
+      0.7021,
+      0.9149
+     ],
+     "top3": {
+      "k": 44,
+      "n": 47,
+      "rate": 0.9362,
+      "wilson95": [
+       0.8284,
+       0.9781
+      ]
+     },
+     "fault_type": {
+      "k": 35,
+      "n": 47,
+      "rate": 0.7447,
+      "wilson95": [
+       0.6049,
+       0.8475
+      ]
+     },
+     "fault_abstained": {
+      "k": 0,
+      "n": 47,
+      "rate": 0.0,
+      "wilson95": [
+       0.0,
+       0.0756
+      ]
+     },
+     "wrong_service_diagnoses": 9,
+     "control_false_diagnoses": {
+      "k": 2,
+      "n": 6,
+      "rate": 0.3333,
+      "wilson95": [
+       0.0968,
+       0.7
+      ]
+     },
+     "control_cases_with_any_false_diagnosis": 2,
+     "unusable_outputs": 0
+    }
+   }
+  },
+  "B4-G": {
+   "all": {
+    "views": 265,
+    "fault_views": 235,
+    "control_views": 30,
+    "fault_base_cases": 47,
+    "control_base_cases": 6,
+    "calls": 233,
+    "top1": {
+     "k": 74,
+     "n": 235,
+     "rate": 0.3149,
+     "wilson95": [
+      0.2589,
+      0.3769
+     ]
+    },
+    "top1_case_mean": 0.3149,
+    "top1_case_mean_cluster_boot95": [
+     0.2128,
+     0.4213
+    ],
+    "top3": {
+     "k": 181,
+     "n": 235,
+     "rate": 0.7702,
+     "wilson95": [
+      0.7123,
+      0.8194
+     ]
+    },
+    "fault_type": {
+     "k": 48,
+     "n": 235,
+     "rate": 0.2043,
+     "wilson95": [
+      0.1577,
+      0.2604
+     ]
+    },
+    "fault_abstained": {
+     "k": 3,
+     "n": 235,
+     "rate": 0.0128,
+     "wilson95": [
+      0.0044,
+      0.0369
+     ]
+    },
+    "wrong_service_diagnoses": 158,
+    "control_false_diagnoses": {
+     "k": 0,
+     "n": 30,
+     "rate": 0.0,
+     "wilson95": [
+      -0.0,
+      0.1135
+     ]
+    },
+    "control_cases_with_any_false_diagnosis": 0,
+    "unusable_outputs": 0
+   },
+   "by_spec": {
+    "C0": {
+     "views": 53,
+     "fault_views": 47,
+     "control_views": 6,
+     "fault_base_cases": 47,
+     "control_base_cases": 6,
+     "calls": 47,
+     "top1": {
+      "k": 15,
+      "n": 47,
+      "rate": 0.3191,
+      "wilson95": [
+       0.204,
+       0.4617
+      ]
+     },
+     "top1_case_mean": 0.3191,
+     "top1_case_mean_cluster_boot95": [
+      0.1915,
+      0.4468
+     ],
+     "top3": {
+      "k": 38,
+      "n": 47,
+      "rate": 0.8085,
+      "wilson95": [
+       0.6746,
+       0.8958
+      ]
+     },
+     "fault_type": {
+      "k": 7,
+      "n": 47,
+      "rate": 0.1489,
+      "wilson95": [
+       0.0741,
+       0.2769
+      ]
+     },
+     "fault_abstained": {
+      "k": 0,
+      "n": 47,
+      "rate": 0.0,
+      "wilson95": [
+       0.0,
+       0.0756
+      ]
+     },
+     "wrong_service_diagnoses": 32,
+     "control_false_diagnoses": {
+      "k": 0,
+      "n": 6,
+      "rate": 0.0,
+      "wilson95": [
+       0.0,
+       0.3903
+      ]
+     },
+     "control_cases_with_any_false_diagnosis": 0,
+     "unusable_outputs": 0
+    },
+    "R40": {
+     "views": 53,
+     "fault_views": 47,
+     "control_views": 6,
+     "fault_base_cases": 47,
+     "control_base_cases": 6,
+     "calls": 47,
+     "top1": {
+      "k": 14,
+      "n": 47,
+      "rate": 0.2979,
+      "wilson95": [
+       0.1865,
+       0.4398
+      ]
+     },
+     "top1_case_mean": 0.2979,
+     "top1_case_mean_cluster_boot95": [
+      0.1702,
+      0.4255
+     ],
+     "top3": {
+      "k": 37,
+      "n": 47,
+      "rate": 0.7872,
+      "wilson95": [
+       0.651,
+       0.8801
+      ]
+     },
+     "fault_type": {
+      "k": 11,
+      "n": 47,
+      "rate": 0.234,
+      "wilson95": [
+       0.136,
+       0.3722
+      ]
+     },
+     "fault_abstained": {
+      "k": 0,
+      "n": 47,
+      "rate": 0.0,
+      "wilson95": [
+       0.0,
+       0.0756
+      ]
+     },
+     "wrong_service_diagnoses": 33,
+     "control_false_diagnoses": {
+      "k": 0,
+      "n": 6,
+      "rate": 0.0,
+      "wilson95": [
+       0.0,
+       0.3903
+      ]
+     },
+     "control_cases_with_any_false_diagnosis": 0,
+     "unusable_outputs": 0
+    },
+    "MT": {
+     "views": 53,
+     "fault_views": 47,
+     "control_views": 6,
+     "fault_base_cases": 47,
+     "control_base_cases": 6,
+     "calls": 45,
+     "top1": {
+      "k": 15,
+      "n": 47,
+      "rate": 0.3191,
+      "wilson95": [
+       0.204,
+       0.4617
+      ]
+     },
+     "top1_case_mean": 0.3191,
+     "top1_case_mean_cluster_boot95": [
+      0.1915,
+      0.4468
+     ],
+     "top3": {
+      "k": 33,
+      "n": 47,
+      "rate": 0.7021,
+      "wilson95": [
+       0.5602,
+       0.8135
+      ]
+     },
+     "fault_type": {
+      "k": 5,
+      "n": 47,
+      "rate": 0.1064,
+      "wilson95": [
+       0.0463,
+       0.2259
+      ]
+     },
+     "fault_abstained": {
+      "k": 2,
+      "n": 47,
+      "rate": 0.0426,
+      "wilson95": [
+       0.0117,
+       0.1425
+      ]
+     },
+     "wrong_service_diagnoses": 30,
+     "control_false_diagnoses": {
+      "k": 0,
+      "n": 6,
+      "rate": 0.0,
+      "wilson95": [
+       0.0,
+       0.3903
+      ]
+     },
+     "control_cases_with_any_false_diagnosis": 0,
+     "unusable_outputs": 0
+    },
+    "ML": {
+     "views": 53,
+     "fault_views": 47,
+     "control_views": 6,
+     "fault_base_cases": 47,
+     "control_base_cases": 6,
+     "calls": 47,
+     "top1": {
+      "k": 15,
+      "n": 47,
+      "rate": 0.3191,
+      "wilson95": [
+       0.204,
+       0.4617
+      ]
+     },
+     "top1_case_mean": 0.3191,
+     "top1_case_mean_cluster_boot95": [
+      0.1915,
+      0.4468
+     ],
+     "top3": {
+      "k": 37,
+      "n": 47,
+      "rate": 0.7872,
+      "wilson95": [
+       0.651,
+       0.8801
+      ]
+     },
+     "fault_type": {
+      "k": 9,
+      "n": 47,
+      "rate": 0.1915,
+      "wilson95": [
+       0.1042,
+       0.3254
+      ]
+     },
+     "fault_abstained": {
+      "k": 1,
+      "n": 47,
+      "rate": 0.0213,
+      "wilson95": [
+       0.0038,
+       0.1111
+      ]
+     },
+     "wrong_service_diagnoses": 31,
+     "control_false_diagnoses": {
+      "k": 0,
+      "n": 6,
+      "rate": 0.0,
+      "wilson95": [
+       0.0,
+       0.3903
+      ]
+     },
+     "control_cases_with_any_false_diagnosis": 0,
+     "unusable_outputs": 0
+    },
+    "CF": {
+     "views": 53,
+     "fault_views": 47,
+     "control_views": 6,
+     "fault_base_cases": 47,
+     "control_base_cases": 6,
+     "calls": 47,
+     "top1": {
+      "k": 15,
+      "n": 47,
+      "rate": 0.3191,
+      "wilson95": [
+       0.204,
+       0.4617
+      ]
+     },
+     "top1_case_mean": 0.3191,
+     "top1_case_mean_cluster_boot95": [
+      0.1915,
+      0.4468
+     ],
+     "top3": {
+      "k": 36,
+      "n": 47,
+      "rate": 0.766,
+      "wilson95": [
+       0.6278,
+       0.864
+      ]
+     },
+     "fault_type": {
+      "k": 16,
+      "n": 47,
+      "rate": 0.3404,
+      "wilson95": [
+       0.2217,
+       0.4833
+      ]
+     },
+     "fault_abstained": {
+      "k": 0,
+      "n": 47,
+      "rate": 0.0,
+      "wilson95": [
+       0.0,
+       0.0756
+      ]
+     },
+     "wrong_service_diagnoses": 32,
+     "control_false_diagnoses": {
+      "k": 0,
+      "n": 6,
+      "rate": 0.0,
+      "wilson95": [
+       0.0,
+       0.3903
+      ]
+     },
+     "control_cases_with_any_false_diagnosis": 0,
+     "unusable_outputs": 0
+    }
+   }
+  },
+  "E0": {
+   "all": {
+    "views": 265,
+    "fault_views": 235,
+    "control_views": 30,
+    "fault_base_cases": 47,
+    "control_base_cases": 6,
+    "calls": 0,
+    "top1": {
+     "k": 148,
+     "n": 235,
+     "rate": 0.6298,
+     "wilson95": [
+      0.5664,
+      0.689
+     ]
+    },
+    "top1_case_mean": 0.6298,
+    "top1_case_mean_cluster_boot95": [
+     0.5447,
+     0.7106
+    ],
+    "top3": {
+     "k": 204,
+     "n": 235,
+     "rate": 0.8681,
+     "wilson95": [
+      0.8188,
+      0.9055
+     ]
+    },
+    "fault_type": {
+     "k": 134,
+     "n": 235,
+     "rate": 0.5702,
+     "wilson95": [
+      0.5063,
+      0.6319
+     ]
+    },
+    "fault_abstained": {
+     "k": 2,
+     "n": 235,
+     "rate": 0.0085,
+     "wilson95": [
+      0.0023,
+      0.0305
+     ]
+    },
+    "wrong_service_diagnoses": 85,
+    "control_false_diagnoses": {
+     "k": 0,
+     "n": 30,
+     "rate": 0.0,
+     "wilson95": [
+      -0.0,
+      0.1135
+     ]
+    },
+    "control_cases_with_any_false_diagnosis": 0,
+    "unusable_outputs": 0
+   },
+   "by_spec": {
+    "C0": {
+     "views": 53,
+     "fault_views": 47,
+     "control_views": 6,
+     "fault_base_cases": 47,
+     "control_base_cases": 6,
+     "calls": 0,
+     "top1": {
+      "k": 38,
+      "n": 47,
+      "rate": 0.8085,
+      "wilson95": [
+       0.6746,
+       0.8958
+      ]
+     },
+     "top1_case_mean": 0.8085,
+     "top1_case_mean_cluster_boot95": [
+      0.7021,
+      0.9149
+     ],
+     "top3": {
+      "k": 44,
+      "n": 47,
+      "rate": 0.9362,
+      "wilson95": [
+       0.8284,
+       0.9781
+      ]
+     },
+     "fault_type": {
+      "k": 35,
+      "n": 47,
+      "rate": 0.7447,
+      "wilson95": [
+       0.6049,
+       0.8475
+      ]
+     },
+     "fault_abstained": {
+      "k": 0,
+      "n": 47,
+      "rate": 0.0,
+      "wilson95": [
+       0.0,
+       0.0756
+      ]
+     },
+     "wrong_service_diagnoses": 9,
+     "control_false_diagnoses": {
+      "k": 0,
+      "n": 6,
+      "rate": 0.0,
+      "wilson95": [
+       0.0,
+       0.3903
+      ]
+     },
+     "control_cases_with_any_false_diagnosis": 0,
+     "unusable_outputs": 0
+    },
+    "R40": {
+     "views": 53,
+     "fault_views": 47,
+     "control_views": 6,
+     "fault_base_cases": 47,
+     "control_base_cases": 6,
+     "calls": 0,
+     "top1": {
+      "k": 20,
+      "n": 47,
+      "rate": 0.4255,
+      "wilson95": [
+       0.2951,
+       0.5672
+      ]
+     },
+     "top1_case_mean": 0.4255,
+     "top1_case_mean_cluster_boot95": [
+      0.2766,
+      0.5745
+     ],
+     "top3": {
+      "k": 37,
+      "n": 47,
+      "rate": 0.7872,
+      "wilson95": [
+       0.651,
+       0.8801
+      ]
+     },
+     "fault_type": {
+      "k": 13,
+      "n": 47,
+      "rate": 0.2766,
+      "wilson95": [
+       0.1694,
+       0.4176
+      ]
+     },
+     "fault_abstained": {
+      "k": 0,
+      "n": 47,
+      "rate": 0.0,
+      "wilson95": [
+       0.0,
+       0.0756
+      ]
+     },
+     "wrong_service_diagnoses": 27,
+     "control_false_diagnoses": {
+      "k": 0,
+      "n": 6,
+      "rate": 0.0,
+      "wilson95": [
+       0.0,
+       0.3903
+      ]
+     },
+     "control_cases_with_any_false_diagnosis": 0,
+     "unusable_outputs": 0
+    },
+    "MT": {
+     "views": 53,
+     "fault_views": 47,
+     "control_views": 6,
+     "fault_base_cases": 47,
+     "control_base_cases": 6,
+     "calls": 0,
+     "top1": {
+      "k": 15,
+      "n": 47,
+      "rate": 0.3191,
+      "wilson95": [
+       0.204,
+       0.4617
+      ]
+     },
+     "top1_case_mean": 0.3191,
+     "top1_case_mean_cluster_boot95": [
+      0.1915,
+      0.4468
+     ],
+     "top3": {
+      "k": 35,
+      "n": 47,
+      "rate": 0.7447,
+      "wilson95": [
+       0.6049,
+       0.8475
+      ]
+     },
+     "fault_type": {
+      "k": 19,
+      "n": 47,
+      "rate": 0.4043,
+      "wilson95": [
+       0.2764,
+       0.5466
+      ]
+     },
+     "fault_abstained": {
+      "k": 2,
+      "n": 47,
+      "rate": 0.0426,
+      "wilson95": [
+       0.0117,
+       0.1425
+      ]
+     },
+     "wrong_service_diagnoses": 30,
+     "control_false_diagnoses": {
+      "k": 0,
+      "n": 6,
+      "rate": 0.0,
+      "wilson95": [
+       0.0,
+       0.3903
+      ]
+     },
+     "control_cases_with_any_false_diagnosis": 0,
+     "unusable_outputs": 0
+    },
+    "ML": {
+     "views": 53,
+     "fault_views": 47,
+     "control_views": 6,
+     "fault_base_cases": 47,
+     "control_base_cases": 6,
+     "calls": 0,
+     "top1": {
+      "k": 37,
+      "n": 47,
+      "rate": 0.7872,
+      "wilson95": [
+       0.651,
+       0.8801
+      ]
+     },
+     "top1_case_mean": 0.7872,
+     "top1_case_mean_cluster_boot95": [
+      0.6596,
+      0.8936
+     ],
+     "top3": {
+      "k": 44,
+      "n": 47,
+      "rate": 0.9362,
+      "wilson95": [
+       0.8284,
+       0.9781
+      ]
+     },
+     "fault_type": {
+      "k": 32,
+      "n": 47,
+      "rate": 0.6809,
+      "wilson95": [
+       0.5383,
+       0.796
+      ]
+     },
+     "fault_abstained": {
+      "k": 0,
+      "n": 47,
+      "rate": 0.0,
+      "wilson95": [
+       0.0,
+       0.0756
+      ]
+     },
+     "wrong_service_diagnoses": 10,
+     "control_false_diagnoses": {
+      "k": 0,
+      "n": 6,
+      "rate": 0.0,
+      "wilson95": [
+       0.0,
+       0.3903
+      ]
+     },
+     "control_cases_with_any_false_diagnosis": 0,
+     "unusable_outputs": 0
+    },
+    "CF": {
+     "views": 53,
+     "fault_views": 47,
+     "control_views": 6,
+     "fault_base_cases": 47,
+     "control_base_cases": 6,
+     "calls": 0,
+     "top1": {
+      "k": 38,
+      "n": 47,
+      "rate": 0.8085,
+      "wilson95": [
+       0.6746,
+       0.8958
+      ]
+     },
+     "top1_case_mean": 0.8085,
+     "top1_case_mean_cluster_boot95": [
+      0.7021,
+      0.9149
+     ],
+     "top3": {
+      "k": 44,
+      "n": 47,
+      "rate": 0.9362,
+      "wilson95": [
+       0.8284,
+       0.9781
+      ]
+     },
+     "fault_type": {
+      "k": 35,
+      "n": 47,
+      "rate": 0.7447,
+      "wilson95": [
+       0.6049,
+       0.8475
+      ]
+     },
+     "fault_abstained": {
+      "k": 0,
+      "n": 47,
+      "rate": 0.0,
+      "wilson95": [
+       0.0,
+       0.0756
+      ]
+     },
+     "wrong_service_diagnoses": 9,
+     "control_false_diagnoses": {
+      "k": 0,
+      "n": 6,
+      "rate": 0.0,
+      "wilson95": [
+       0.0,
+       0.3903
+      ]
+     },
+     "control_cases_with_any_false_diagnosis": 0,
+     "unusable_outputs": 0
+    }
+   }
+  }
+ },
+ "paired": {
+  "E1_vs_B4_top1": {
+   "n_base_cases": 47,
+   "n_views": 235,
+   "per_spec": {
+    "C0": {
+     "n_base_cases": 47,
+     "a_correct": 38,
+     "b_correct": 15,
+     "a_only": 26,
+     "b_only": 3,
+     "mcnemar_exact_p": 1.5e-05,
+     "holm_p": 7.6e-05
+    },
+    "R40": {
+     "n_base_cases": 47,
+     "a_correct": 20,
+     "b_correct": 14,
+     "a_only": 11,
+     "b_only": 5,
+     "mcnemar_exact_p": 0.210114,
+     "holm_p": 0.420227
+    },
+    "MT": {
+     "n_base_cases": 47,
+     "a_correct": 15,
+     "b_correct": 15,
+     "a_only": 10,
+     "b_only": 10,
+     "mcnemar_exact_p": 1.0,
+     "holm_p": 1.0
+    },
+    "ML": {
+     "n_base_cases": 47,
+     "a_correct": 37,
+     "b_correct": 15,
+     "a_only": 28,
+     "b_only": 6,
+     "mcnemar_exact_p": 0.000195,
+     "holm_p": 0.000585
+    },
+    "CF": {
+     "n_base_cases": 47,
+     "a_correct": 38,
+     "b_correct": 15,
+     "a_only": 27,
+     "b_only": 4,
+     "mcnemar_exact_p": 3.4e-05,
+     "holm_p": 0.000136
+    }
+   },
+   "mean_case_difference_a_minus_b": 0.3149,
+   "cluster_boot95": [
+    0.1787,
+    0.4426
+   ]
+  },
+  "E1_frozen_gated_vs_B4_top1": {
+   "n_base_cases": 47,
+   "n_views": 235,
+   "per_spec": {
+    "C0": {
+     "n_base_cases": 47,
+     "a_correct": 38,
+     "b_correct": 15,
+     "a_only": 26,
+     "b_only": 3,
+     "mcnemar_exact_p": 1.5e-05,
+     "holm_p": 7.6e-05
+    },
+    "R40": {
+     "n_base_cases": 47,
+     "a_correct": 20,
+     "b_correct": 14,
+     "a_only": 11,
+     "b_only": 5,
+     "mcnemar_exact_p": 0.210114,
+     "holm_p": 0.420227
+    },
+    "MT": {
+     "n_base_cases": 47,
+     "a_correct": 15,
+     "b_correct": 15,
+     "a_only": 10,
+     "b_only": 10,
+     "mcnemar_exact_p": 1.0,
+     "holm_p": 1.0
+    },
+    "ML": {
+     "n_base_cases": 47,
+     "a_correct": 37,
+     "b_correct": 15,
+     "a_only": 28,
+     "b_only": 6,
+     "mcnemar_exact_p": 0.000195,
+     "holm_p": 0.000585
+    },
+    "CF": {
+     "n_base_cases": 47,
+     "a_correct": 38,
+     "b_correct": 15,
+     "a_only": 27,
+     "b_only": 4,
+     "mcnemar_exact_p": 3.4e-05,
+     "holm_p": 0.000136
+    }
+   },
+   "mean_case_difference_a_minus_b": 0.3149,
+   "cluster_boot95": [
+    0.1787,
+    0.4426
+   ]
+  },
+  "B4G_vs_B4_top1": {
+   "n_base_cases": 47,
+   "n_views": 235,
+   "per_spec": {
+    "C0": {
+     "n_base_cases": 47,
+     "a_correct": 15,
+     "b_correct": 15,
+     "a_only": 0,
+     "b_only": 0,
+     "mcnemar_exact_p": 1.0,
+     "holm_p": 1.0
+    },
+    "R40": {
+     "n_base_cases": 47,
+     "a_correct": 14,
+     "b_correct": 14,
+     "a_only": 0,
+     "b_only": 0,
+     "mcnemar_exact_p": 1.0,
+     "holm_p": 1.0
+    },
+    "MT": {
+     "n_base_cases": 47,
+     "a_correct": 15,
+     "b_correct": 15,
+     "a_only": 0,
+     "b_only": 0,
+     "mcnemar_exact_p": 1.0,
+     "holm_p": 1.0
+    },
+    "ML": {
+     "n_base_cases": 47,
+     "a_correct": 15,
+     "b_correct": 15,
+     "a_only": 0,
+     "b_only": 0,
+     "mcnemar_exact_p": 1.0,
+     "holm_p": 1.0
+    },
+    "CF": {
+     "n_base_cases": 47,
+     "a_correct": 15,
+     "b_correct": 15,
+     "a_only": 0,
+     "b_only": 0,
+     "mcnemar_exact_p": 1.0,
+     "holm_p": 1.0
+    }
+   },
+   "mean_case_difference_a_minus_b": 0.0,
+   "cluster_boot95": [
+    0.0,
+    0.0
+   ]
+  },
+  "E1_vs_B4_fault_type": {
+   "n_base_cases": 47,
+   "n_views": 235,
+   "per_spec": {
+    "C0": {
+     "n_base_cases": 47,
+     "a_correct": 35,
+     "b_correct": 7,
+     "a_only": 28,
+     "b_only": 0,
+     "mcnemar_exact_p": 0.0,
+     "holm_p": 0.0
+    },
+    "R40": {
+     "n_base_cases": 47,
+     "a_correct": 13,
+     "b_correct": 11,
+     "a_only": 11,
+     "b_only": 9,
+     "mcnemar_exact_p": 0.823803,
+     "holm_p": 0.823803
+    },
+    "MT": {
+     "n_base_cases": 47,
+     "a_correct": 19,
+     "b_correct": 5,
+     "a_only": 15,
+     "b_only": 1,
+     "mcnemar_exact_p": 0.000519,
+     "holm_p": 0.001038
+    },
+    "ML": {
+     "n_base_cases": 47,
+     "a_correct": 32,
+     "b_correct": 9,
+     "a_only": 25,
+     "b_only": 2,
+     "mcnemar_exact_p": 6e-06,
+     "holm_p": 2.3e-05
+    },
+    "CF": {
+     "n_base_cases": 47,
+     "a_correct": 35,
+     "b_correct": 16,
+     "a_only": 21,
+     "b_only": 2,
+     "mcnemar_exact_p": 6.6e-05,
+     "holm_p": 0.000198
+    }
+   },
+   "mean_case_difference_a_minus_b": 0.366,
+   "cluster_boot95": [
+    0.2596,
+    0.4723
+   ]
+  },
+  "claims_E1_vs_B4": {
+   "n_base_cases": 53,
+   "verified_rate_mean_case_difference": -0.0387,
+   "verified_rate_cluster_boot95": [
+    -0.0943,
+    0.0182
+   ],
+   "cases_a_higher": 22,
+   "cases_b_higher": 29,
+   "verified_root_claims_mean_case_difference": 1.5094,
+   "verified_root_claims_cluster_boot95": [
+    0.5094,
+    2.6604
+   ]
+  }
+ },
+ "llm_own": {
+  "E1_llm_agrees_with_e0_top1": {
+   "k": 199,
+   "n": 235,
+   "rate": 0.8468,
+   "wilson95": [
+    0.7952,
+    0.8872
+   ]
+  },
+  "E1_llm_own_suspect_correct": {
+   "k": 149,
+   "n": 235,
+   "rate": 0.634,
+   "wilson95": [
+    0.5708,
+    0.693
+   ]
+  },
+  "E1_llm_own_ABSTAIN_on_fault_views": {
+   "k": 1,
+   "n": 235,
+   "rate": 0.0043,
+   "wilson95": [
+    0.0008,
+    0.0237
+   ]
+  },
+  "E1_llm_own_ABSTAIN_on_controls": {
+   "k": 0,
+   "n": 12,
+   "rate": 0.0,
+   "wilson95": [
+    0.0,
+    0.2425
+   ]
+  },
+  "B4_own_ABSTAIN_on_fault_views": {
+   "k": 1,
+   "n": 235,
+   "rate": 0.0043,
+   "wilson95": [
+    0.0008,
+    0.0237
+   ]
+  },
+  "B4_own_ABSTAIN_on_controls": {
+   "k": 0,
+   "n": 30,
+   "rate": 0.0,
+   "wilson95": [
+    -0.0,
+    0.1135
+   ]
+  }
+ },
+ "b4g_gate": {
+  "fault_views_alerted": {
+   "k": 233,
+   "n": 235,
+   "rate": 0.9915,
+   "wilson95": [
+    0.9695,
+    0.9977
+   ]
+  },
+  "missed_fault_views": {
+   "k": 2,
+   "n": 235,
+   "rate": 0.0085,
+   "wilson95": [
+    0.0023,
+    0.0305
+   ]
+  },
+  "missed_fault_base_cases": [
+   "41:cpu_pressure:payment:0:strong",
+   "67:cpu_pressure:payment:0:strong"
+  ],
+  "control_views_alerted": {
+   "k": 0,
+   "n": 30,
+   "rate": 0.0,
+   "wilson95": [
+    -0.0,
+    0.1135
+   ]
+  },
+  "missed_by_spec": {
+   "C0": 0,
+   "R40": 0,
+   "MT": 2,
+   "ML": 0,
+   "CF": 0
+  },
+  "counterfactual_call_saving": {
+   "b4_calls_ungated": 265,
+   "b4g_calls": 233,
+   "calls_avoided": 32,
+   "calls_avoided_on_controls": 30,
+   "calls_avoided_on_fault_views": 2,
+   "b4_correct_top1_lost_by_gate": 0,
+   "b4_false_diagnoses_removed_on_controls": 30,
+   "llm_seconds_avoided": 2296.3,
+   "note": "counterfactual: B4's stored calls on gate-silent views were made (B4 is ungated) and are counted as calls B4-G would not make; no new call was run for B4-G"
+  }
+ },
+ "abstention": {
+  "B4": "own DIAGNOSE/ABSTAIN only: a single operating point; no confidence score, no RC curve",
+  "E0_frozen": {
+   "abstention": {
+    "E0:S": {
+     "n_diagnosed_fault_trials": 844,
+     "aurc": 0.2135,
+     "aurc_ci": [
+      0.1463,
+      0.2955
+     ],
+     "A-abst_selective_risk_at_full_coverage": 0.3211,
+     "op1": {
+      "tau": 0.567529,
+      "coverage": 0.7168,
+      "coverage_ci": [
+       0.6855,
+       0.7462
+      ],
+      "selective_risk": 0.2793,
+      "selective_risk_ci": [
+       0.2451,
+       0.3164
+      ],
+      "controls_diagnosed": 0,
+      "control_trials": 108
+     },
+     "op2": {
+      "tau": 0.958333,
+      "coverage": 0.0024,
+      "coverage_ci": [
+       0.0007,
+       0.0086
+      ],
+      "selective_risk": 0.0,
+      "selective_risk_ci": [
+       0.0,
+       0.6576
+      ],
+      "controls_diagnosed": 0,
+      "control_trials": 108
+     }
+    },
+    "E0:A-margin": {
+     "n_diagnosed_fault_trials": 844,
+     "aurc": 0.1603,
+     "aurc_ci": [
+      0.0955,
+      0.2517
+     ],
+     "A-abst_selective_risk_at_full_coverage": 0.3211,
+     "op1": {
+      "tau": 0.103448,
+      "coverage": 0.7062,
+      "coverage_ci": [
+       0.6746,
+       0.7359
+      ],
+      "selective_risk": 0.2198,
+      "selective_risk_ci": [
+       0.1884,
+       0.2548
+      ],
+      "controls_diagnosed": 0,
+      "control_trials": 108
+     },
+     "op2": {
+      "tau": 1.0,
+      "coverage": 0.4597,
+      "coverage_ci": [
+       0.4264,
+       0.4934
+      ],
+      "selective_risk": 0.0954,
+      "selective_risk_ci": [
+       0.07,
+       0.1287
+      ],
+      "controls_diagnosed": 0,
+      "control_trials": 108
+     }
+    },
+    "E0:A-ver": {
+     "n_diagnosed_fault_trials": 844,
+     "aurc": 0.2038,
+     "aurc_ci": [
+      0.142,
+      0.2766
+     ],
+     "A-abst_selective_risk_at_full_coverage": 0.3211,
+     "op1": {
+      "tau": 0.445029,
+      "coverage": 0.7429,
+      "coverage_ci": [
+       0.7124,
+       0.7712
+      ],
+      "selective_risk": 0.2775,
+      "selective_risk_ci": [
+       0.2439,
+       0.3138
+      ],
+      "controls_diagnosed": 0,
+      "control_trials": 108
+     },
+     "op2": {
+      "tau": 0.888889,
+      "coverage": 0.0024,
+      "coverage_ci": [
+       0.0007,
+       0.0086
+      ],
+      "selective_risk": 0.0,
+      "selective_risk_ci": [
+       0.0,
+       0.6576
+      ],
+      "controls_diagnosed": 0,
+      "control_trials": 108
+     }
+    },
+    "E0-A-graph:S": {
+     "n_diagnosed_fault_trials": 844,
+     "aurc": 0.6581,
+     "aurc_ci": [
+      0.4962,
+      0.8153
+     ],
+     "A-abst_selective_risk_at_full_coverage": 0.5675,
+     "op1": {
+      "tau": 0.333333,
+      "coverage": 0.9988,
+      "coverage_ci": [
+       0.9933,
+       0.9998
+      ],
+      "selective_risk": 0.567,
+      "selective_risk_ci": [
+       0.5333,
+       0.6001
+      ],
+      "controls_diagnosed": 0,
+      "control_trials": 108
+     },
+     "op2": {
+      "tau": null,
+      "note": "not achievable on calibration seeds"
+     }
+    },
+    "B1:margin": {
+     "n_diagnosed_fault_trials": 844,
+     "aurc": 0.7604,
+     "aurc_ci": [
+      0.6194,
+      0.8766
+     ],
+     "A-abst_selective_risk_at_full_coverage": 0.7322,
+     "op1": {
+      "tau": 0.279758,
+      "coverage": 0.8033,
+      "coverage_ci": [
+       0.7752,
+       0.8287
+      ],
+      "selective_risk": 0.7375,
+      "selective_risk_ci": [
+       0.7031,
+       0.7692
+      ],
+      "controls_diagnosed": 0,
+      "control_trials": 108
+     },
+     "op2": {
+      "tau": 1.0,
+      "coverage": 0.0,
+      "coverage_ci": [
+       0.0,
+       0.0045
+      ],
+      "selective_risk": null,
+      "selective_risk_ci": null,
+      "controls_diagnosed": 0,
+      "control_trials": 108
+     }
+    },
+    "B2:margin": {
+     "n_diagnosed_fault_trials": 632,
+     "aurc": 0.1744,
+     "aurc_ci": [
+      0.0862,
+      0.2942
+     ],
+     "A-abst_selective_risk_at_full_coverage": 0.3465,
+     "op1": {
+      "tau": 0.15,
+      "coverage": 0.8687,
+      "coverage_ci": [
+       0.8401,
+       0.8928
+      ],
+      "selective_risk": 0.2495,
+      "selective_risk_ci": [
+       0.2152,
+       0.2874
+      ],
+      "controls_diagnosed": 0,
+      "control_trials": 108
+     },
+     "op2": {
+      "tau": 0.293392,
+      "coverage": 0.2753,
+      "coverage_ci": [
+       0.2419,
+       0.3114
+      ],
+      "selective_risk": 0.0402,
+      "selective_risk_ci": [
+       0.0196,
+       0.0807
+      ],
+      "controls_diagnosed": 0,
+      "control_trials": 108
+     }
+    },
+    "B3:margin": {
+     "n_diagnosed_fault_trials": 799,
+     "aurc": 0.9,
+     "aurc_ci": [
+      0.7836,
+      0.9955
+     ],
+     "A-abst_selective_risk_at_full_coverage": 0.9199,
+     "op1": {
+      "tau": 0.0,
+      "coverage": 1.0,
+      "coverage_ci": [
+       0.9952,
+       1.0
+      ],
+      "selective_risk": 0.9199,
+      "selective_risk_ci": [
+       0.899,
+       0.9368
+      ],
+      "controls_diagnosed": 0,
+      "control_trials": 108
+     },
+     "op2": {
+      "tau": null,
+      "note": "not achievable on calibration seeds"
+     }
+    }
+   }
+  }
+ },
+ "e0_reproduces_frozen_test_outputs": {
+  "matched": 233,
+  "checked": 233
+ }
+}
