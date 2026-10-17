@@ -25,63 +25,69 @@ Rebuild: `uv run python paper/figures/evidencerca_architecture_build.py`.
 
 ## 2. Component → source map
 
+The figure was simplified on 2026-10-16 at the user's request: shorter labels and fewer boxes (§3). The map covers what the figure shows now.
+
 | Figure element | Source |
 |---|---|
 | **A** testbed: API gateway, order, inventory, payment, PostgreSQL | `testbed/app/*.py`, `compose.yaml` |
-| Testbed arrows: gateway→order, gateway→inventory, order→inventory, order→payment, order→PostgreSQL, inventory→PostgreSQL | `gateway.py:12-13`, `order.py:15-16`; DB access via `DATABASE_URL` for order and inventory only (`compose.yaml` `x-db-env`). Payment has no DB |
-| "faults injected here" | `harness/faults.py` (injection acts on the running testbed) |
-| **B** OpenTelemetry traces · metrics · logs | `testbed/app/telemetry.py`, `testbed/otel-collector.yaml` (OTLP, docker_stats, fluentd for Postgres) |
-| "logs carry trace/span IDs" (correlation identifiers) | `telemetry.py:63-64` |
-| "checksummed raw bundle" | `evidencerca/rca_input.py` (manifest SHA-256, allowed files only) |
-| Normalization; ID = content hash | `evidence.py:232` `normalize`, `:61` `content_id` (`ev-` + 20 hex) |
-| Evidence view: one case, C0 or one of 11 perturbations | `evidence.py:244` `View`; `evaluation/views.py` `SPECS` (12 view types) |
-| Shared alert detector → analysis + baseline windows | `core.py:77` `detect_alert` (gateway SLO, 3 consecutive 5 s buckets), `:103` `make_windows` (±60 s analysis, 90 s baseline) |
-| **C** Anomaly signals: robust baseline (MAD), onset | `signals.py` (median + 3·scaled MAD; onset = first of ≥2 exceeding buckets) |
-| Observed call graph: *invocation edges, not a causal graph* | `core.py:110` `observed_graph` (CLIENT→SERVER parent/child pairs, CLIENT peer) |
-| Constrained scoring (callee anomalous no later than caller + 10 s ⇒ caller's latency/error/log signals are symptoms) | `evidencerca_e0.py:48` `rank`, `:19` `ONSET_TOLERANCE_NS`; intrinsic signals keep full weight, pool signals half |
-| Ranked root candidates + fault-type rule | `diagnosis.py` `finish`; `evidencerca_e0.py:84` `infer_fault_type` |
-| **D** Evidence retrieval → template claims | `evidencerca_e0.py:108` `_cite`, `:114` `make_claims`, `:177` `propagation_path` |
-| E0 → E1 hand-off "E0 ranking + retrieved ev-IDs (to E1 only)" | `conditions.py:58-66` (`ranking = e0`, `first_ids`) |
-| **E1** Evidence pack: E0's records first, neutral fill to ≤36, + digest and call graph | `evidence_pack.py:25`, `:91` `build(view, win, first_ids)` |
-| E1 LLM: qwen3:4b, local; ranking stays E0's; the LLM's pick is logged | `llm_client.py:25`; `conditions.py:85` (`diag[k] = ranking[k]`), `agrees_with_e0_top1` |
-| E2 (optional): provenance → canonical claims | `conditions_e2.py:19` `e2_from_e1`; `ownership.py:146` `canonicalize`. Original claims are kept, and canonical claims are verified separately |
-| **B4** Evidence pack, method-neutral | `evidence_pack.build(view, win, None)` |
-| B4 LLM-only diagnosis: own ranking, fault type, claims | `conditions.py:75-81` |
-| B4-G (optional): the detector gates B4 | `conditions_e2.py:48` `run_b4g` |
-| **F** verifier: deterministic, independent, re-reads the view | `evidencerca/verifier.py`; it imports no `evidencerca.*` module (test-enforced; spec §1). Its call edges are re-derived (`verifier.py:127` `call_edges`), not taken from E0's graph |
-| V0–V5 | `verifier.py:292-333` (spec §3) |
-| V6 | `verifier.py:350` in `verify` (propagation edges; spec §3) |
-| "checks claims only; never changes a ranking" | `verify(diag, view)` returns verdicts. No caller writes them back to `ranked_candidates` (`conditions.py`, `evidencerca_e0.py`) |
-| **G** Accepted / rejected claims; all kept, none rewritten; *accepted ≠ audited truth* | `conditions.py` `_claim_sets` (pre-filter, post-filter, rejected ids); spec §3–4; the human audit is pending (`audit/`) |
-| Abstention (optional, E0 only) | `abstention.py:73` `score`; τ was chosen on calibration seeds (protocol) |
+| Testbed arrows: gateway→order, gateway→inventory, order→inventory, order→payment, order→PostgreSQL, inventory→PostgreSQL | `gateway.py:12-13`, `order.py:15-16`. Only order and inventory get `DATABASE_URL` (`compose.yaml` `x-db-env`); payment has no DB |
+| **B** OpenTelemetry: traces · metrics · logs | `testbed/app/telemetry.py` (logs carry trace/span IDs, `:63-64`), `testbed/otel-collector.yaml`. The checksummed raw bundle is read only via `evidencerca/rca_input.py` |
+| Normalization: typed records + ev-IDs | `evidence.py:232` `normalize`, `:61` `content_id` (`ev-` + 20 hex, content hash) |
+| Evidence view: typed records | `evidence.py:244` `View`. One case under C0 or one of 11 perturbations (`evaluation/views.py` `SPECS`) |
+| Shared alert detector → analysis window | `core.py:77` `detect_alert` (gateway SLO), `:103` `make_windows` (±60 s analysis window, plus a 90 s baseline) |
+| Fault labels: evaluation only | `data/ground_truth/`; agent-side loading refuses it (`rca_input.py:50`). The harness uses it for scoring and view building (§1, row 8) |
+| **E0** Anomaly signals: per service + onset | `signals.py:188` `evaluate_all` (median + 3·scaled MAD; onset) |
+| Observed call graph: *not causal* | `core.py:110` `observed_graph` (invocation edges from spans) |
+| Constrained scoring: callee anomalous first ⇒ caller is a symptom | `evidencerca_e0.py:48` `rank`. The callee's onset must be ≤ the caller's + 10 s (`:19`). The caller's latency, error and log signals are then dropped; intrinsic signals keep full weight and pool signals half |
+| Ranked root candidates | `diagnosis.py` `finish`; the fault type comes from `infer_fault_type` (`:84`, not drawn) |
+| Evidence retrieval: cited ev-IDs | `evidencerca_e0.py:108` `_cite`, `:114` `make_claims` (template claims), `:177` `propagation_path` |
+| E0 → E1 "E0 ranking + evidence (E1 only)" | `conditions.py:58-66` (`ranking = e0`, `first_ids` lead E1's evidence pack, `evidence_pack.py:91`) |
+| **E1** LLM explanation (qwen3:4b): writes claims; ranking stays E0's | `llm_client.py:25`; `conditions.py:85` (`diag[k] = ranking[k]`); the LLM's own pick is only logged |
+| E2 (optional): canonical claims | `conditions_e2.py:19`, `ownership.py:146`. Original claims are kept; canonical claims are verified separately |
+| **B4** LLM-only diagnosis (same model): own ranking, fault type, claims | `conditions.py:75-81`, with a method-neutral evidence pack (`evidence_pack.build(view, win, None)`) |
+| B4-G (optional): no alert ⇒ ABSTAIN, no LLM call | `conditions_e2.py:48` `run_b4g` |
+| **Evidence verifier**: deterministic, independent | `evidencerca/verifier.py`. It imports no `evidencerca.*` module (test-enforced) and re-reads the view itself, including its own call edges (`:127`) |
+| V0 schema + unit · V1 evidence ID exists · V2 case + time window · V3 emitter / callee · V4 value + unit · V5 above baseline | `verifier.py:292-333` (spec §3). V4 allows a 5 % relative tolerance; V5 also covers onset order for `onset_before` |
+| V6 observed call edge | `verifier.py:350` (propagation edges) |
+| *never changes a ranking* | `verify(diag, view)` only returns verdicts; nothing writes them back to `ranked_candidates` |
+| Accepted / rejected claims: *not audited truth* | `conditions.py` `_claim_sets`. All claims are kept and rejected claims are never rewritten (spec §3). The human audit is pending (`audit/`) |
+| Abstention (optional): E0 only, ABSTAIN if S < τ | `abstention.py:73` `score`. S averages sufficiency, agreement, margin and verified coverage, hence the arrows from E0's ranking and from the verifier. τ was chosen on calibration seeds |
 
-**Arrows.** Every solid arrow is a data dependency in the code above. Dashed arrows are E2 and B4-G, both derived after the study from stored outputs (Phase 4B), with no new calls. The colors encode the component type: blue fill = deterministic; grey fill = LLM call; thick blue border = output.
+**Arrows.** Every solid arrow is a data dependency in the code above. The dashed ones are E2 and B4-G, both derived after the study from stored Phase 4B outputs, with no new calls. Box styles: blue fill = deterministic, grey fill = LLM call, thick blue border = output.
 
 ## 3. Simplifications
-- **Call edges.** The testbed edges are the application's designed HTTP/SQL calls. E0's graph is re-observed per view from spans and can lose edges (for example under MT, where traces are missing).
-- **Evidence pack contents.** The pack's digest of descriptive statistics, the aliasing of ev-IDs as E01… for the prompt (`prompts.py:56`), and the parse/schema step are summarized as "Evidence pack" and "LLM".
-- **When E1 runs.** E1 calls the LLM only when E0 has a positive-score candidate. B4 and E1 also used the median-time fallback window in Phase 4B (§1, row 2). Neither is drawn.
-- **Other methods.** Baselines B1–B3 and the E0-A-graph ablation are not drawn; the latter is E0 without the graph constraint.
-- **Prompt versions.** The p4a-v2 typed gate (`conditions_v2.py`) was a dev pilot, not used in Phase 4B, and is not drawn.
 
-## 4. Visual checks (performed)
-- **Size and fonts:**
-  - The canvas is 518 × 247 pt (7.19 × 3.43 in, aspect 2.10). Scaled to `\textwidth` (≈ 7.16 in), it is printed at about 99.6 %.
-  - The smallest text is 5.8 pt and most body text is 6.2 pt; group titles are 6.6 pt bold.
-- **Rendering review.** I viewed renders at 7 in wide (150 dpi) and at 6× zoom:
+**Omitted from the simplified figure** (still true in the code):
+- the evidence-pack boxes (≤36 records plus a digest; E1's pack starts with E0's records);
+- the fault-type rule;
+- the baseline window;
+- the correlation IDs and checksummed raw bundle;
+- the perturbation list;
+- the detail of S's four components;
+- the fact that all claims are kept and none rewritten.
+
+**Never drawn:**
+- **Call edges.** The testbed edges are the application's designed HTTP/SQL calls. E0's graph is re-observed per view and can lose edges (for example under MT, where traces are missing).
+- **LLM plumbing.** The aliasing of ev-IDs as E01… (`prompts.py:56`) and the parse/schema step are folded into "LLM".
+- **When E1 runs.** E1 calls the LLM only when E0 has a positive-score candidate, and Phase 4B used a median-time fallback window when the detector did not alert (§1, row 2).
+- **Other methods.** Baselines B1–B3, the E0-A-graph ablation and the p4a-v2 dev pilot are not shown.
+
+## 4. Visual checks (performed on the simplified figure)
+- **Size:** the canvas is 517 × 231 pt (7.18 × 3.21 in, aspect 2.24). Scaled to `\textwidth` (≈ 7.16 in), it prints at about 99.7 %.
+- **Fonts:** most text is 6.6 pt and group titles are 7.0 pt bold. The legend and the dashed optional boxes use 5.8–5.9 pt.
+- **Rendering review** at 7 in wide (150 dpi):
   - no text is clipped and no boxes overlap;
-  - every arrow is horizontal or vertical, except the testbed's call edges, and no arrows cross.
-  - The legend's dashed sample is drawn as three short segments; a single 12 pt dashed line rendered as one dash.
-- **PDF fonts.**
-  - All fonts are embedded as subsets: 12 `FontFile` entries for Helvetica, Helvetica-Bold and Helvetica-Oblique.
-  - Hiragino Sans and Lucida Grande are also embedded, as cairo's fallback for ⇒, ≠, τ, ≤ and →.
-  - If the publisher's PDF check rejects mixed fonts, replace those glyphs with ASCII in the build script.
-- **Content checks:**
-  - V0–V6 are checked against `verifier.py` and the spec (§1, row 1).
-  - B4 (grey, lower lane, "no E0 input") is visibly separate from E1 (middle lane, blue hand-off arrow from E0).
-  - There is no arrow from the verifier into E0's ranking.
-- **Determinism.** Two consecutive builds produced byte-identical PDF, SVG, PNG and DOT files. The PDF carries no creation date.
-- **Not done:** LaTeX is not installed (`pdflatex` and `tectonic` are absent), so the figure was **not** tested in a compiled manuscript, and the six-page fit is unverified. The figure takes about 3.4 in of height across both columns, roughly 35 % of one page.
+  - every arrow is horizontal or vertical except the testbed's call edges, and no arrows cross;
+  - the E0 → E1 hand-off arrow clears the E1 title.
+- **PDF fonts:**
+  - all fonts are embedded as subsets: Helvetica, Helvetica-Bold and Helvetica-Oblique;
+  - Hiragino Sans and Lucida Grande are also embedded, as cairo's fallback for ⇒, τ and →.
+- **Content:**
+  - V0–V6 match `verifier.py`;
+  - B4 (bottom lane, "no E0 input") is separate from E1 (middle lane, blue hand-off from E0);
+  - there is no arrow from the verifier into a ranking.
+- **Determinism (corrected).** The first version of this report said the PDF carried no creation date. That was wrong: cairo writes one inside a compressed object stream, which my uncompressed search missed. The build now sets `SOURCE_DATE_EPOCH`, and six rebuilds at least 1 s apart produced byte-identical PDF, SVG, PNG and DOT files.
+- **Not done:** LaTeX is not installed, so the figure was **not** tested in a compiled manuscript, and the six-page fit is unverified. It takes about 3.2 in of height across both columns.
 
 ## 5. Suggested LaTeX (IEEEtran)
 
@@ -90,8 +96,7 @@ Rebuild: `uv run python paper/figures/evidencerca_architecture_build.py`.
   \centering
   \includegraphics[width=\textwidth]{figures/evidencerca_architecture.pdf}
   \caption{EvidenceRCA architecture. Telemetry from the instrumented testbed is normalized into typed
-  evidence records with content-hash IDs. A shared gateway-SLO detector fixes the analysis and baseline
-  windows. E0 ranks root-service candidates deterministically: per-service anomaly signals are scored under
+  evidence records with content-hash IDs. A shared gateway-SLO detector fixes the analysis window. E0 ranks root-service candidates deterministically: per-service anomaly signals are scored under
   the observed caller--callee graph and onset order (invocation edges, not a causal graph), and the cited
   evidence is retrieved. In the exploratory LLM branches, E1's model explains E0's ranking without changing it,
   while B4's model diagnoses alone and never sees E0's output. A deterministic verifier (V0--V6) independently
