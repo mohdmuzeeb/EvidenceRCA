@@ -2,7 +2,11 @@
 
 EvidenceRCA is the research prototype for ICICYTA 2026 Paper 3: an evidence-verification and abstention layer for root-cause analysis (RCA) in microservices, evaluated with a matched-perturbation protocol. The plan, literature and protocol are in [`docs/`](docs/).
 
-Work proceeds in approval-gated phases. Phases 0–3 and the frozen deterministic evaluation are done. Phase 4A (local LLM setup, the post-study B4/E1 conditions, and a five-call dev benchmark) is done on branch `phase4a`, in the separate package `phase4/`. It never modifies the frozen study. Phase 4A-v2 (a typed, ownership-aware prompt p4a-v2 compared with p4a-v1 on a pre-registered dev pilot) is on branch `phase4a-v2`. Phase 4A-v3 (E2 deterministic evidence ownership and the B4-G detector gate) is on branch `phase4a-v3`. Phase 4B (the full LLM evaluation) needs approval.
+Work proceeds in approval-gated phases. Phases 0–3 and the frozen deterministic evaluation are done. Phase 4A (local LLM setup, the post-study B4/E1 conditions, and a five-call dev benchmark) is done on branch `phase4a`, in the separate package `phase4/`. It never modifies the frozen study. Phase 4A-v2 (a typed, ownership-aware prompt p4a-v2 compared with p4a-v1 on a pre-registered dev pilot) is on branch `phase4a-v2`. Phase 4A-v3 (E2 deterministic evidence ownership and the B4-G detector gate) is on branch `phase4a-v3`. Phase 4B (the full LLM evaluation on the test seeds) is done on branch `phase4b`, and the manuscript was prepared on `manuscript-prep`.
+
+The paper, *EvidenceRCA: Dependency-Constrained Root-Cause Localization and Auditable Evidence Verification for Cloud-Native Microservices*, was accepted at ICICyTA 2026 (paper #1571369538).
+
+Docs written before 2026-11-01 cite commit hashes from before a one-time history correction (author identity; sealed audit keys withheld until the audit is adjudicated); [`docs/commit_hash_map.md`](docs/commit_hash_map.md) maps each one to its published commit.
 
 | Phase | Status | Report |
 |---|---|---|
@@ -12,7 +16,7 @@ Work proceeds in approval-gated phases. Phases 0–3 and the frozen deterministi
 | 3: baselines B1–B3, EvidenceRCA (no LLM), verifier V0–V6, abstention, dev evaluation | done | [`docs/phase3_validation.md`](docs/phase3_validation.md), [`docs/baseline_implementation.md`](docs/baseline_implementation.md), [`docs/evidence_verifier_spec.md`](docs/evidence_verifier_spec.md) |
 | Frozen calibration/test evaluation (deterministic methods) | done | [`docs/final_results.md`](docs/final_results.md), [`docs/frozen/frozen_protocol.md`](docs/frozen/frozen_protocol.md) |
 | 4A: local LLM (qwen3:4b via Ollama), B4/E1 integration, five-call dev benchmark | done | [`docs/phase4a_validation.md`](docs/phase4a_validation.md), [`docs/llm_evaluation_protocol.md`](docs/llm_evaluation_protocol.md) |
-| 4B: full LLM evaluation | not started (needs approval) | — |
+| 4B: full LLM evaluation (test seeds, 512 calls) | done | [`docs/phase4b_results.md`](docs/phase4b_results.md), [`docs/phase4b_validation.md`](docs/phase4b_validation.md) |
 
 ## Repository layout
 

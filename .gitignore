@@ -14,3 +14,8 @@ results/final/*_trials.jsonl
 # Phase 4B per-call raw records (packed into results/phase4b/llm_trials.jsonl.gz)
 results/phase4b/raw/
 results/phase4b/raw_repro/
+
+# Sealed answer keys for the blinded human audit: kept local, never published
+results/phase4b/audit_key_sealed.json
+results/phase4a_v2/audit/audit_key_dev_pilot.SEALED.json
+results/phase4a_v3/audit_dry_run/key.SEALED.json
