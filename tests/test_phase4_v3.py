@@ -12,6 +12,7 @@ from evaluation.freeze import verify_frozen
 from evidencerca.core import Windows
 from phase4.agent import conditions_e2, ownership
 from phase4.agent.llm_client import LLMSettings, OllamaClient
+from tests.withheld import present
 
 REPO = Path(__file__).resolve().parent.parent
 
@@ -22,7 +23,7 @@ def test_frozen_tree_unchanged():
 
 def test_phase4a_v1_and_v2_preserved():
     man = json.loads((REPO / "results/phase4a_v3/preserved_phase4a_v1_v2.json").read_text())
-    changed = [f for f, h in man["files"].items() if hashlib.sha256((REPO / f).read_bytes()).hexdigest() != h]
+    changed = [f for f, h in man["files"].items() if present(f) and hashlib.sha256((REPO / f).read_bytes()).hexdigest() != h]
     assert not changed, changed
 
 

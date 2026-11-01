@@ -104,7 +104,7 @@ def check_package() -> dict:
     man = json.loads(MANIFEST.read_text())
     if sha256(BLINDED) != man["csv_sha256"]:
         raise AuditError("audit_blinded.csv does not match its manifest checksum; do not distribute it")
-    if sha256(KEY) != man["key_sha256"]:
+    if KEY.exists() and sha256(KEY) != man["key_sha256"]:   # the key is withheld from the public repository
         raise AuditError("audit_key_sealed.json does not match its manifest checksum")
     items = blinded_items()
     ids = [r["audit_id"] for r in items]
@@ -599,6 +599,8 @@ def unseal():
     ref = read_rows(ref_path)
     if sorted(r["audit_id"] for r in ref) != sorted(r["audit_id"] for r in blinded_items()):
         raise AuditError("reference labels do not cover exactly the 240 audit items")
+    if not KEY.exists():
+        raise AuditError("audit_key_sealed.json is withheld from the public repository; restore it to unseal")
     key = json.loads(KEY.read_text())
     result = {"unsealed_at": datetime.now(timezone.utc).isoformat(timespec="seconds"),
               "reference_labels_sha256": sha256(ref_path), "key_sha256": sha256(KEY),

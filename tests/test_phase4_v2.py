@@ -9,6 +9,7 @@ import pytest
 from evaluation.freeze import verify_frozen
 from harness import leakage
 from phase4.agent import output_schema_v2 as schema, prompts, prompts_v2
+from tests.withheld import present
 
 REPO = Path(__file__).resolve().parent.parent
 
@@ -19,7 +20,7 @@ def test_frozen_tree_unchanged():
 
 def test_p4a_v1_preserved():
     man = json.loads((REPO / "results/phase4a_v2/p4a_v1_preserved.json").read_text())
-    changed = [f for f, h in man["files"].items() if hashlib.sha256((REPO / f).read_bytes()).hexdigest() != h]
+    changed = [f for f, h in man["files"].items() if present(f) and hashlib.sha256((REPO / f).read_bytes()).hexdigest() != h]
     assert not changed, changed
     bench = json.loads((REPO / "results/phase4a/five_call_benchmark.json").read_text())
     assert bench["prompt_version"] == prompts.PROMPT_VERSION == "p4a-v1"

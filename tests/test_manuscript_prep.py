@@ -5,6 +5,7 @@ import json
 from pathlib import Path
 
 from evaluation.freeze import verify_frozen
+from tests.withheld import present
 
 REPO = Path(__file__).resolve().parents[1]
 
@@ -20,14 +21,15 @@ def test_frozen_tree_unchanged():
 def test_everything_tracked_before_manuscript_prep_is_unchanged():
     lock = json.loads((REPO / "results/manuscript_prep/preserved_before_manuscript_prep.json").read_text())
     assert lock["source_commit"] == "12af836" and len(lock["files"]) == 320
-    changed = [f for f, h in lock["files"].items() if _sha(REPO / f) != h]
+    changed = [f for f, h in lock["files"].items() if present(f) and _sha(REPO / f) != h]
     assert not changed, changed
 
 
 def test_audit_package_still_sealed_and_unlabelled():
     man = json.loads((REPO / "results/phase4b/audit_manifest.json").read_text())
     assert _sha(REPO / "results/phase4b/audit_blinded.csv") == man["csv_sha256"]
-    assert _sha(REPO / "results/phase4b/audit_key_sealed.json") == man["key_sha256"]
+    if present("results/phase4b/audit_key_sealed.json"):
+        assert _sha(REPO / "results/phase4b/audit_key_sealed.json") == man["key_sha256"]
     assert man["status"].startswith("PENDING")
     # no human-label outputs exist yet: no registered submissions, no reference labels, no unsealed analysis
     for p in ("audit/submissions", "audit/results/reference_labels.csv", "audit/results/audit_analysis.json"):

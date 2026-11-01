@@ -12,6 +12,7 @@ from evaluation.freeze import verify_frozen
 from phase4.agent import output_schema
 from phase4.agent.llm_client import LLMSettings, OllamaClient
 from phase4.eval import phase4b
+from tests.withheld import present
 
 REPO = Path(__file__).resolve().parent.parent
 PLAN = REPO / "results/phase4b/plan.json"
@@ -23,7 +24,7 @@ def test_frozen_tree_unchanged():
 
 def test_pre_phase4b_artifacts_preserved():
     man = json.loads((REPO / "results/phase4b/preserved_before_phase4b.json").read_text())
-    changed = [f for f, h in man["files"].items() if hashlib.sha256((REPO / f).read_bytes()).hexdigest() != h]
+    changed = [f for f, h in man["files"].items() if present(f) and hashlib.sha256((REPO / f).read_bytes()).hexdigest() != h]
     assert not changed, changed
 
 
